@@ -41,6 +41,13 @@ import jakarta.servlet.http.HttpServletRequest;
 @Slf4j
 public class ArticleController {
 
+    @GetMapping("/{taskId}/review")
+    @Operation(summary = "获取已保存的评审与草稿版本")
+    public BaseResponse<com.yupi.template.model.dto.article.ReviewTrace> getReview(
+            @PathVariable String taskId, HttpServletRequest request) {
+        return ResultUtils.success(articleService.getArticleReview(taskId, userService.getLoginUser(request)));
+    }
+
     @Resource
     private ArticleService articleService;
 

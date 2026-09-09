@@ -374,6 +374,8 @@ const getStatusText = (status: string) => {
     PENDING: '等待中',
     PROCESSING: '生成中',
     COMPLETED: '已完成',
+    IMAGES_FAILED: '配图待重试',
+    NEEDS_REVIEW: '待人工评审',
     FAILED: '失败',
   }
   return textMap[status] || status

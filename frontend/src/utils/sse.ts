@@ -29,7 +29,7 @@ export const connectSSE = (taskId: string, options: SSEOptions): EventSource => 
       onMessage(message)
       
       // 检查是否完成
-      if (message.type === 'ALL_COMPLETE' || message.type === 'ERROR') {
+      if (message.type === 'IMAGES_FAILED' || message.type === 'NEEDS_REVIEW' || message.type === 'ALL_COMPLETE' || message.type === 'ERROR') {
         eventSource.close()
         onComplete?.()
       }

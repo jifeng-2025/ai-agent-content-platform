@@ -1,0 +1,417 @@
+diff --git a/.gitignore b/.gitignore
+index b655a21..80eb490 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -69,4 +69,8 @@ frontend/src/config/env.ts
+ *.swo
+ *~
+ 
+-.claude/**
+\ No newline at end of file
++.claude/**
++# A0 isolated development validation
++artifacts/a0/runs/
++tools/dev-harness/.cache/
++tools/dev-harness/.work/
+diff --git a/frontend/package.json b/frontend/package.json
+index 01e18a1..b51f2f9 100644
+--- a/frontend/package.json
++++ b/frontend/package.json
+@@ -12,6 +12,7 @@
+     "build-only": "vite build",
+     "type-check": "vue-tsc --build",
+     "lint": "eslint . --fix",
++    "lint:check": "eslint .",
+     "format": "prettier --write src/"
+   },
+   "dependencies": {
+diff --git a/src/test/java/com/yupi/template/baseline/A0BaselineTest.java b/src/test/java/com/yupi/template/baseline/A0BaselineTest.java
+new file mode 100644
+index 0000000..96dcc4c
+--- /dev/null
++++ b/src/test/java/com/yupi/template/baseline/A0BaselineTest.java
+@@ -0,0 +1,145 @@
++package com.yupi.template.baseline;
++
++import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
++import com.yupi.template.agent.ArticleAgentOrchestrator;
++import com.yupi.template.agent.agents.*;
++import com.yupi.template.agent.config.AgentConfig;
++import com.yupi.template.agent.parallel.ParallelImageGenerator;
++import com.yupi.template.controller.ArticleController;
++import com.yupi.template.manager.SseEmitterManager;
++import com.yupi.template.model.dto.article.*;
++import com.yupi.template.model.entity.Article;
++import com.yupi.template.model.entity.User;
++import com.yupi.template.model.enums.ArticleStatusEnum;
++import com.yupi.template.model.enums.ArticlePhaseEnum;
++import com.yupi.template.service.*;
++import com.yupi.template.utils.GsonUtils;
++import org.junit.jupiter.api.DynamicTest;
++import org.junit.jupiter.api.TestFactory;
++import org.mockito.ArgumentCaptor;
++import org.springframework.ai.chat.messages.AssistantMessage;
++import org.springframework.ai.chat.model.ChatResponse;
++import org.springframework.ai.chat.model.Generation;
++import org.springframework.ai.chat.prompt.Prompt;
++import org.springframework.mock.web.MockHttpServletRequest;
++import org.springframework.test.util.ReflectionTestUtils;
++import reactor.core.publisher.Flux;
++import java.nio.charset.StandardCharsets;
++import java.util.*;
++import java.util.stream.Stream;
++import static org.junit.jupiter.api.Assertions.*;
++import static org.mockito.ArgumentMatchers.*;
++import static org.mockito.Mockito.*;
++
++/** A0 characterization: real controller/service/graphs/nodes; mock persistence, model and image I/O.
++ * No Spring context, database, Redis, credentials, HTTP server, or application configuration is loaded.
++ * Async proxy and actual SSE transport are outside this test's scope.
++ */
++class A0BaselineTest {
++    record Case(String id, String topic, String style, String audience, String outcome, String reviewFocus) {}
++    @TestFactory
++    Stream<DynamicTest> fixedCases() throws Exception {
++        try (var input = getClass().getResourceAsStream("/a0/cases.json")) {
++            assertNotNull(input);
++            var cases = GsonUtils.fromJson(new String(input.readAllBytes(), StandardCharsets.UTF_8), Case[].class);
++            assertEquals(5, cases.length);
++            assertEquals(5, Arrays.stream(cases).map(Case::id).distinct().count());
++            return Arrays.stream(cases).map(c -> DynamicTest.dynamicTest(c.id + " " + c.topic, () -> runCase(c)));
++        }
++    }
++    private ChatResponse response(String text) {
++        return new ChatResponse(List.of(new Generation(new AssistantMessage(text))));
++    }
++    private void runCase(Case c) throws Exception {
++        var model = mock(DashScopeChatModel.class);
++        var persistence = mock(ArticleService.class);
++        var users = mock(UserService.class);
++        var sse = mock(SseEmitterManager.class);
++        var image = mock(ParallelImageGenerator.class);
++        var config = mock(AgentConfig.class);
++        when(config.isOrchestratorEnabled()).thenReturn(true);
++        var legacy = mock(ArticleAgentService.class);
++        var graph = new ArticleAgentOrchestrator();
++        ReflectionTestUtils.setField(graph, "agentConfig", config);
++        ReflectionTestUtils.setField(graph, "titleGeneratorAgent", new TitleGeneratorAgent(model));
++        ReflectionTestUtils.setField(graph, "outlineGeneratorAgent", new OutlineGeneratorAgent(model));
++        ReflectionTestUtils.setField(graph, "contentGeneratorAgent", new ContentGeneratorAgent(model));
++        ReflectionTestUtils.setField(graph, "imageAnalyzerAgent", new ImageAnalyzerAgent(model));
++        ReflectionTestUtils.setField(graph, "parallelImageGenerator", image);
++        ReflectionTestUtils.setField(graph, "contentMergerAgent", new ContentMergerAgent());
++        var async = new ArticleAsyncService();
++        ReflectionTestUtils.setField(async, "agentConfig", config);
++        ReflectionTestUtils.setField(async, "articleAgentOrchestrator", graph);
++        ReflectionTestUtils.setField(async, "articleAgentService", legacy);
++        ReflectionTestUtils.setField(async, "articleService", persistence);
++        ReflectionTestUtils.setField(async, "sseEmitterManager", sse);
++        var controller = new ArticleController();
++        ReflectionTestUtils.setField(controller, "articleService", persistence);
++        ReflectionTestUtils.setField(controller, "articleAsyncService", async);
++        ReflectionTestUtils.setField(controller, "userService", users);
++        var request = new MockHttpServletRequest();
++        var user = new User(); user.setId(-1L);
++        when(users.getLoginUser(request)).thenReturn(user);
++        when(persistence.createArticleTaskWithQuotaCheck(eq(c.topic), eq(c.style), anyList(), same(user))).thenReturn(c.id);
++        var article = new Article();
++        article.setTaskId(c.id); article.setStyle(c.style);
++        article.setMainTitle(c.topic); article.setSubTitle("从一个小步骤开始");
++        article.setUserDescription(c.audience); article.setEnabledImageMethods("[\"PEXELS\"]");
++        when(persistence.getByTaskId(c.id)).thenReturn(article);
++        var titleJson = GsonUtils.toJson(List.of(Map.of("mainTitle", c.topic, "subTitle", article.getSubTitle())));
++        if (c.outcome.equals("model-error")) when(model.call(any(Prompt.class))).thenThrow(new IllegalStateException("A0 simulated provider unavailable"));
++        else when(model.call(any(Prompt.class))).thenReturn(response(c.outcome.equals("malformed-json") ? "{invalid-json" : titleJson));
++        var create = new ArticleCreateRequest(); create.setTopic(c.topic); create.setStyle(c.style); create.setEnabledImageMethods(List.of("PEXELS"));
++        assertEquals(c.id, controller.createArticle(create, request).getData());
++        verifyNoInteractions(legacy);
++        var events = ArgumentCaptor.forClass(String.class);
++        if (!c.outcome.equals("success")) {
++            verify(persistence).updateArticleStatus(eq(c.id), eq(ArticleStatusEnum.FAILED), anyString());
++            verify(persistence, never()).saveTitleOptions(anyString(), any());
++            verify(persistence, never()).saveArticleContent(anyString(), any());
++            verify(sse).complete(c.id);
++            verify(sse, atLeastOnce()).send(eq(c.id), events.capture());
++            assertTrue(events.getAllValues().stream().anyMatch(e -> e.contains("\"type\":\"ERROR\"")));
++            verify(model, times(1)).call(any(Prompt.class));
++            return;
++        }
++        var titles = ArgumentCaptor.forClass(List.class);
++        verify(persistence).saveTitleOptions(eq(c.id), titles.capture());
++        assertEquals(c.topic, ((ArticleState.TitleOption) titles.getValue().getFirst()).getMainTitle());
++        verify(persistence).updatePhase(c.id, ArticlePhaseEnum.TITLE_SELECTING);
++        var section = new ArticleState.OutlineSection(); section.setSection(1); section.setTitle("开始行动"); section.setPoints(List.of("选择一个小任务"));
++        var outline = new ArticleState.OutlineResult(); outline.setSections(List.of(section));
++        when(model.stream(any(Prompt.class))).thenReturn(Flux.just(response(GsonUtils.toJson(outline))));
++        var titleRequest = new ArticleConfirmTitleRequest(); titleRequest.setTaskId(c.id); titleRequest.setSelectedMainTitle(c.topic);
++        titleRequest.setSelectedSubTitle(article.getSubTitle()); titleRequest.setUserDescription(c.audience);
++        controller.confirmTitle(titleRequest, request);
++        verify(persistence).confirmTitle(c.id, c.topic, article.getSubTitle(), c.audience, user);
++        verify(persistence).updatePhase(c.id, ArticlePhaseEnum.OUTLINE_EDITING);
++        assertEquals(1, GsonUtils.fromJson(article.getOutline(), ArticleState.OutlineSection[].class).length);
++        String content = "## 开始行动\n选择一个小任务，完成后记录感受。";
++        String placeholderContent = content + "\n{{IMAGE_PLACEHOLDER_1}}";
++        when(model.stream(any(Prompt.class))).thenReturn(Flux.just(response(content)));
++        when(model.call(any(Prompt.class))).thenReturn(response(GsonUtils.toJson(Map.of(
++            "contentWithPlaceholders", placeholderContent,
++            "imageRequirements", List.of(Map.of("position", 1, "type", "illustration", "sectionTitle", "开始行动", "keywords", "desk", "imageSource", "PEXELS", "placeholderId", "{{IMAGE_PLACEHOLDER_1}}"))))));
++        var picture = new ArticleState.ImageResult(); picture.setPosition(1); picture.setUrl("https://example.invalid/a0.png");
++        picture.setMethod("PEXELS"); picture.setDescription("固定测试配图"); picture.setPlaceholderId("{{IMAGE_PLACEHOLDER_1}}");
++        when(image.apply(any())).thenReturn(Map.of("images", List.of(picture)));
++        var outlineRequest = new ArticleConfirmOutlineRequest(); outlineRequest.setTaskId(c.id); outlineRequest.setOutline(List.of(section));
++        controller.confirmOutline(outlineRequest, request);
++        verify(persistence).confirmOutline(c.id, List.of(section), user);
++        var finalState = ArgumentCaptor.forClass(ArticleState.class);
++        verify(persistence).saveArticleContent(eq(c.id), finalState.capture());
++        assertEquals(content + "\n![固定测试配图](https://example.invalid/a0.png)", finalState.getValue().getFullContent());
++        verify(persistence).updateArticleStatus(c.id, ArticleStatusEnum.COMPLETED, null);
++        verify(persistence, never()).updateArticleStatus(eq(c.id), eq(ArticleStatusEnum.FAILED), any());
++        verify(sse).complete(c.id);
++        verify(sse, atLeastOnce()).send(eq(c.id), events.capture());
++        for (String event : List.of("TITLES_GENERATED", "OUTLINE_GENERATED", "ALL_COMPLETE")) {
++            assertTrue(events.getAllValues().stream().anyMatch(e -> e.contains("\"type\":\"" + event + "\"")), event);
++        }
++        verify(model, times(2)).call(any(Prompt.class));
++        verify(model, times(2)).stream(any(Prompt.class));
++        verifyNoInteractions(legacy);
++    }
++}
+\ No newline at end of file
+diff --git a/src/test/resources/a0/cases.json b/src/test/resources/a0/cases.json
+new file mode 100644
+index 0000000..47caf93
+--- /dev/null
++++ b/src/test/resources/a0/cases.json
+@@ -0,0 +1,7 @@
++[
++  {"id":"C01","topic":"普通人如何用 AI 提升工作效率","style":"educational","audience":"非技术职场新人","outcome":"success","reviewFocus":"受众偏离、未经证实的效率百分比"},
++  {"id":"C02","topic":"周末散步中的小发现","style":"emotional","audience":"普通生活读者","outcome":"success","reviewFocus":"可读性、段落连贯、图文匹配"},
++  {"id":"C03","topic":"给新手解释数据备份","style":"tech","audience":"电脑新手","outcome":"success","reviewFocus":"术语解释、不编造机构归因"},
++  {"id":"C04","topic":"整理书桌的三个步骤","style":"humorous","audience":"学生","outcome":"malformed-json","reviewFocus":"结构错误进入失败出口"},
++  {"id":"C05","topic":"第一次制作旅行清单","style":"educational","audience":"旅行新手","outcome":"model-error","reviewFocus":"服务异常进入失败出口"}
++]
+diff --git a/tools/dev-harness/run.mjs b/tools/dev-harness/run.mjs
+new file mode 100644
+index 0000000..9635988
+--- /dev/null
++++ b/tools/dev-harness/run.mjs
+@@ -0,0 +1,119 @@
++import { createHash } from 'node:crypto'
++import { spawnSync } from 'node:child_process'
++import { mkdirSync, writeFileSync, copyFileSync, existsSync, readFileSync, readdirSync, realpathSync } from 'node:fs'
++import { dirname, resolve, relative } from 'node:path'
++import { fileURLToPath } from 'node:url'
++
++const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
++const mode = process.argv[2] ?? 'baseline'
++if (!['baseline', 'mock', 'health', 'dev'].includes(mode)) throw new Error('Use baseline | mock | health | dev <snapshot>; real API uses real-smoke.mjs')
++const stamp = new Date().toISOString().replace(/[:.]/g, '-')
++const out = resolve(root, 'artifacts/a0/runs', stamp)
++const workBase = resolve(root, 'tools/dev-harness/.work')
++const work = mode === 'dev' ? realpathSync(resolve(process.argv[3] ?? '')) : resolve(workBase, stamp)
++if (mode === 'dev' && (!/^\d{4}-\d{2}-\d{2}T[\d-]+Z$/.test(relative(realpathSync(workBase), work)) || !existsSync(resolve(work, 'frontend/node_modules')))) {
++  throw new Error('dev requires an existing timestamped harness snapshot with installed dependencies')
++}
++const cache = resolve(root, 'tools/dev-harness/.cache/m2')
++for (const p of [out, work, cache]) mkdirSync(p, { recursive: true })
++const maven = 'maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85'
++const node = 'node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32'
++const results = []
++const redact = text => text.replace(/sk-[\w-]+/g, '[REDACTED]').replace(/(Authorization:\s*Bearer\s+)\S+/gi, '$1[REDACTED]')
++function command(id, exe, args, timeout = 600000) {
++  const start = Date.now()
++  const r = spawnSync(exe, args, { cwd: root, encoding: 'utf8', timeout, maxBuffer: 32 * 1024 * 1024, windowsHide: true })
++  writeFileSync(resolve(out, `${id}.txt`), redact((r.stdout ?? '') + (r.stderr ?? '') + (r.error ? `\n${r.error.message}` : '')))
++  const row = { id, command: [exe, ...args], exitCode: r.status, signal: r.signal, durationMs: Date.now() - start, status: r.status === 0 ? 'PASS' : 'FAIL' }
++  results.push(row)
++  console.log(`${id}: ${row.status} (${row.durationMs} ms)`)
++  return r.status === 0
++}
++function docker(id, image, args, { offline = false, frontend = false } = {}) {
++  // Only allowlisted source snapshot; no user .env, local config, database or Docker socket.
++  const name = `a0-${stamp.toLowerCase()}-${id}`
++  if (image === maven && args[0] === 'mvn') args = ['mvn', '-s', '/work/a0-maven-settings.xml', ...args.slice(1)]
++  const ok = command(id, 'docker', ['run', '--rm', '--name', name, '--cpus=2', '--memory=3g', ...(offline ? ['--network=none'] : []),
++    '--mount', `type=bind,source=${work},target=/work`, '--mount', `type=bind,source=${cache},target=/root/.m2`,
++    '-w', frontend ? '/work/frontend' : '/work', image, ...args])
++  if (!ok) spawnSync('docker', ['rm', '-f', name], { windowsHide: true, stdio: 'ignore' })
++  if (['mock', 'existing-test', 'test-dependencies'].includes(id)) {
++    const reports = resolve(work, 'target/surefire-reports')
++    if (existsSync(reports)) for (const file of readdirSync(reports).filter(f => f.endsWith('.txt'))) {
++      writeFileSync(resolve(out, `${id}-${file}`), redact(readFileSync(resolve(reports, file), 'utf8')))
++    }
++  }
++  return ok
++}
++async function devStartup() {
++  const name = `a0-${stamp.toLowerCase()}-dev`
++  try {
++    const started = command('dev-start', 'docker', ['run', '-d', '--name', name, '--cpus=2', '--memory=1g',
++      '-p', '127.0.0.1::5173', '--mount', `type=bind,source=${work},target=/work`, '-w', '/work/frontend',
++      node, 'npm', 'run', 'dev', '--', '--host', '0.0.0.0'])
++    if (!started) return
++    const port = spawnSync('docker', ['port', name, '5173/tcp'], { encoding: 'utf8', windowsHide: true }).stdout.trim()
++    if (!/^127\.0\.0\.1:\d+$/.test(port)) throw new Error('Unexpected dev port')
++    let ready = false
++    const probeStarted = Date.now()
++    const deadline = probeStarted + 90000
++    while (Date.now() < deadline) {
++      try {
++        const response = await fetch(`http://${port}/`, { signal: AbortSignal.timeout(1000) })
++        if (response.ok && (await response.text()).includes('<html')) { ready = true; break }
++      } catch { /* bounded startup wait */ }
++      await new Promise(r => setTimeout(r, 1000))
++    }
++    results.push({ id: 'isolated-dev-health', status: ready ? 'PASS' : 'FAIL', url: `http://${port}/`, durationMs: Date.now() - probeStarted, timeoutMs: 90000, scope: 'Vite startup only, no browser or API generation' })
++    command('dev-log', 'docker', ['logs', name])
++  } catch (e) { results.push({ id: 'isolated-dev-health', status: 'FAIL', error: e.message }) }
++  finally { command('dev-stop', 'docker', ['rm', '-f', name]) }
++}
++async function health(id, url, json = false) {
++  const start = Date.now()
++  try {
++    const r = await fetch(url, { signal: AbortSignal.timeout(10000), redirect: 'error' })
++    const body = await r.text()
++    const valid = json ? (() => { const v = JSON.parse(body); return v.code === 0 && v.data === 'ok' })() : /<html/i.test(body)
++    results.push({ id, command: ['GET', url], status: r.ok && valid ? 'PASS' : 'FAIL', httpStatus: r.status, durationMs: Date.now() - start })
++  } catch (e) { results.push({ id, command: ['GET', url], status: 'FAIL', error: e.message, durationMs: Date.now() - start }) }
++}
++command('git-head', 'git', ['rev-parse', 'HEAD'])
++command('git-status', 'git', ['status', '--short'])
++command('git-diff', 'git', ['diff', '--', 'frontend/package.json', '.gitignore'])
++if (mode === 'dev') await devStartup()
++if (mode !== 'health' && mode !== 'dev') {
++  const listing = spawnSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '-z', '--', 'pom.xml', 'src', 'frontend'], { cwd: root, encoding: 'utf8', windowsHide: true })
++  if (listing.status !== 0) throw new Error('Cannot enumerate source snapshot')
++  copyFileSync(resolve(root, 'tools/dev-harness/maven-settings.xml'), resolve(work, 'a0-maven-settings.xml'))
++  const manifest = []
++  for (const p of new Set(listing.stdout.split('\0').filter(Boolean))) {
++    if (/application-local|(^|\/)\.env|(^|\/)env\.ts$|(^|\/)(node_modules|target|dist)\//.test(p)) continue
++    const dest = resolve(work, p)
++    if (relative(work, dest).startsWith('..')) throw new Error('Unsafe source path')
++    if (!existsSync(resolve(root, p))) continue
++    mkdirSync(dirname(dest), { recursive: true }); copyFileSync(resolve(root, p), dest); manifest.push({ path: p, sha256: createHash('sha256').update(readFileSync(dest)).digest('hex') })
++  }
++  writeFileSync(resolve(work, 'frontend/src/config/env.ts'), "export const API_BASE_URL = '/api'\n")
++  writeFileSync(resolve(out, 'source-manifest.json'), JSON.stringify(manifest, null, 2))
++  command('maven-version', 'docker', ['run', '--rm', maven, 'mvn', '-version'])
++  const compiled = docker('backend-package', maven, ['mvn', '-B', '-DskipTests', 'package'])
++  if (compiled) {
++    docker('test-dependencies', maven, ['mvn', '-B', '-Dtest=A0BaselineTest', 'test'])
++    docker('mock', maven, ['mvn', '-o', '-B', '-Dtest=A0BaselineTest', 'test'], { offline: true })
++    if (mode === 'baseline') docker('existing-test', maven, ['mvn', '-o', '-B', '-Dtest=MainApplicationTests', 'test'], { offline: true })
++  } else results.push({ id: 'mock', status: 'BLOCKED', reason: 'backend-package failed' })
++  if (mode === 'baseline') {
++    command('node-version', 'docker', ['run', '--rm', node, 'node', '--version'])
++    if (docker('npm-ci', node, ['npm', 'ci', '--no-audit', '--no-fund'], { frontend: true })) {
++      await devStartup()
++      for (const task of ['type-check', 'build', 'lint:check']) docker(task.replace(':', '-'), node, ['npm', 'run', task], { frontend: true, offline: true })
++    }
++  }
++}
++await health('deployed-backend-health', 'http://localhost:8123/api/health', true)
++await health('deployed-frontend-health', 'http://localhost/')
++results.push({ id: 'real-api', status: 'NOT_RUN', reason: 'Separate opt-in provider smoke; health and mocks do not demonstrate real generation.' })
++writeFileSync(resolve(out, 'summary.json'), JSON.stringify({ mode, generatedAt: new Date().toISOString(), work, images: { maven, node }, results }, null, 2))
++console.log(`Evidence: ${out}`)
++process.exitCode = results.some(r => ['FAIL', 'BLOCKED'].includes(r.status)) ? 1 : 0
+diff --git a/tools/dev-harness/real-smoke.mjs b/tools/dev-harness/real-smoke.mjs
+new file mode 100644
+index 0000000..04d9a9f
+--- /dev/null
++++ b/tools/dev-harness/real-smoke.mjs
+@@ -0,0 +1,33 @@
++import { mkdirSync, writeFileSync } from 'node:fs'
++import { dirname, resolve } from 'node:path'
++import { fileURLToPath } from 'node:url'
++const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
++const out = resolve(root, 'artifacts/a0/runs', `real-${new Date().toISOString().replace(/[:.]/g, '-')}`)
++mkdirSync(out, { recursive: true })
++const result = { kind: 'REAL_PROVIDER_TEXT_SMOKE', model: 'qwen-plus', calls: 0, imageCalls: 0, status: 'NOT_RUN', cost: 'not incurred' }
++if (!process.argv.includes('--execute')) result.reason = 'Preflight only; use --execute with A0_DASHSCOPE_API_KEY to issue one bounded text request.'
++else if (!process.env.A0_DASHSCOPE_API_KEY) {
++  result.status = 'BLOCKED'; result.reason = 'A0_DASHSCOPE_API_KEY missing; never load the application .env automatically.'; process.exitCode = 2
++} else {
++  const started = Date.now()
++  result.calls = 1
++  result.cost = 'unknown; consult provider billing; usage is recorded, no price is guessed'
++  try {
++    const r = await fetch('https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', {
++      method: 'POST', signal: AbortSignal.timeout(45000),
++      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.A0_DASHSCOPE_API_KEY}` },
++      body: JSON.stringify({ model: result.model, temperature: 0, max_tokens: 256, messages: [{ role: 'user', content: '为“普通人如何用 AI 提升工作效率”提供一个面向非技术新人的标题。只返回 JSON 数组，字段为 mainTitle 和 subTitle。不要编造数字或机构归因。' }] })
++    })
++    result.httpStatus = r.status
++    const body = await r.json()
++    result.usage = body.usage ?? null
++    if (!r.ok) throw new Error(`Provider HTTP ${r.status}`)
++    const titles = JSON.parse(body.choices?.[0]?.message?.content)
++    if (!Array.isArray(titles) || !titles.length || !titles.every(t => typeof t.mainTitle === 'string' && t.mainTitle.trim() && typeof t.subTitle === 'string' && t.subTitle.trim())) throw new Error('Invalid title JSON contract')
++    result.status = 'PASS'; result.titleCount = titles.length
++  } catch (e) { result.status = 'FAIL'; result.reason = e.name === 'TimeoutError' ? '45 second timeout' : (e instanceof SyntaxError ? 'Invalid provider JSON' : e.message); process.exitCode = 1 }
++  result.durationMs = Date.now() - started
++}
++// Never persist request headers, API keys or provider response text.
++writeFileSync(resolve(out, 'summary.json'), JSON.stringify(result, null, 2))
++console.log(JSON.stringify(result, null, 2)); console.log(`Evidence: ${out}`)
+diff --git a/tools/dev-harness/maven-settings.xml b/tools/dev-harness/maven-settings.xml
+new file mode 100644
+index 0000000..66c2c08
+--- /dev/null
++++ b/tools/dev-harness/maven-settings.xml
+@@ -0,0 +1,10 @@
++<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0">
++  <!-- A0 uses published Central artifacts; no version substitutions or credentials. -->
++  <mirrors>
++    <mirror>
++      <id>central</id>
++      <mirrorOf>spring-milestones,spring-snapshots</mirrorOf>
++      <url>https://repo.maven.apache.org/maven2</url>
++    </mirror>
++  </mirrors>
++</settings>
+diff --git a/tools/dev-harness/README.md b/tools/dev-harness/README.md
+new file mode 100644
+index 0000000..6e63262
+--- /dev/null
++++ b/tools/dev-harness/README.md
+@@ -0,0 +1,38 @@
++# A0 / H0 开发验证
++
++仅建立开发验证入口，不实现 Reviewer、修订循环、恢复、H1 或部署。
++
++在仓库根目录使用宿主 Node（本机 Codex 提供）和 Docker：
++
++```powershell
++node tools/dev-harness/run.mjs baseline
++node tools/dev-harness/run.mjs mock
++node tools/dev-harness/run.mjs health
++node tools/dev-harness/real-smoke.mjs
++```
++
++`baseline` 串行执行 JDK/Maven 版本、后端 package、Mock、原有 contextLoads、Node 版本、npm ci、临时 Vite 启动健康检查、类型检查、完整 build、只读 lint，以及已部署前后端 GET 健康检查。`mock` 仅后端准备与固定回归（仍附带只读健康检查）；`health` 不构建。任一执行检查失败会退出 1，不把已知基线失败变成绿色；真实 API 的 NOT_RUN 单独记录，不算通过。
++
++每次运行创建 `artifacts/a0/runs/<UTC时间>/summary.json`，包含命令、退出码/HTTP 状态、耗时及日志。源码副本在 `tools/dev-harness/.work/<时间>`，Maven 缓存在 `.cache/m2`。这些目录已忽略提交，保留本地排错证据，不自动删除。首次运行需联网拉取固定 digest 的镜像、Maven 与 npm 依赖；资源约束为单容器 2 CPU / 3 GiB，单命令最多 10 分钟，超时移除本次命名的工具容器。
++
++隔离规则：仅复制 pom.xml、src、frontend 中 Git 跟踪及未忽略的文件，排除 .env、application-local、env.ts；在副本生成 `API_BASE_URL='/api'`。不挂载现有 MySQL/Redis 卷、Docker socket、宿主凭据或配置。Mock 与原有 contextLoads 在 `--network=none` 下执行；测试依赖首次由纯 Mock 测试在线预热（无 Spring 上下文/真实 I/O），随后断网复跑。原有 contextLoads 没有独立数据库、Redis、模型配置，失败应如实记录。禁止用 production 配置运行它来制造通过。
++
++五个案例唯一来源为 `src/test/resources/a0/cases.json`：C01–C03 正常三阶段，C04 标题 JSON 错误，C05 模型异常。真实 Controller、ArticleAsyncService、StateGraph、标题/大纲/正文/配图分析/合成节点执行；模型、ParallelImageGenerator、ArticleService 持久化边界、UserService 与 SSE 发送器为 Mock。断言标题/大纲保存、配置分流、配图替换、完成/失败状态、SSE 事件以及模型调用次数。固定响应在 A0BaselineTest 中维护，不自动更新断言或样例。
++
++局限：Controller 为直接方法调用，不包含 Spring HTTP 映射、权限 AOP、真实事务、线程池代理或网络 SSE；图片工具不实际访问图库/生图；三个成功案例的固定正文仅用于编排契约，不是受众质量评测。案例的 audience/reviewFocus 为后续 A1 评测输入，不代表当前已实现质量评分。旧 ArticleAgentService 分流仅做无调用断言，旧分支内部未验证。
++
++真实文本 API 冒烟独立入口：
++
++```powershell
++# A0_DASHSCOPE_API_KEY 由当前会话环境提供；不要写入脚本、提交或日志
++node tools/dev-harness/real-smoke.mjs --execute
++```
++
++固定请求 qwen-plus，一次文本调用、最多 256 输出 token、45 秒超时、无自动重试；缺少专用环境变量退出 2，默认调用仅预检（0 次调用）。只记录状态、模型、耗时、token usage；不落盘响应正文和密钥。费用需按供应商账单核实，不猜价格。它验证供应商文本契约，不证明应用全流程、真实配图或内容质量。真实生图本次未执行，不混入 Mock 通过率。
++
++本入口不会启动/重启已有 Compose 服务、创建用户记录、消耗站内配额、迁移数据库、推送 Git 或部署服务器。现有健康检查只证明被访问进程可响应，不能证明容器镜像等于当前源码。
++
++本次依赖获取使用 `maven-settings.xml` 将 POM 中两个 Spring 仓库映射到 Central，仅影响验证工具；没有改写 pom 或依赖版本。源码清单保存 SHA-256；测试文本报告复制到运行产物目录。临时 Vite 仅绑定 127.0.0.1 随机端口，健康检查后移除本次容器。它不连接数据库，也不证明浏览器功能通过。
++
++2026-09-09 单独真实文本实测见 `artifacts/a0/real-api-result.json`：本次任务显式将已有 DashScope 配置传入专用进程环境，完成后清除；runner 本身仍不读取 .env。一次 HTTP 200、98 token、0 次生图，不存储响应正文。运行 baseline 时出现 real-api NOT_RUN 指“此条 runner 未调用真实接口”，须与单独真实 API 产物分别解读。
++单独重验开发启动可用 `node tools/dev-harness/run.mjs dev <既有源码副本绝对路径>`，路径取先前 summary.json 的 work 字段。该模式只接受 `.work` 下已安装依赖的时间戳目录，复用该次源码/依赖，不重新安装或构建。Vite就绪预算为90秒，仍要求HTTP成功且响应包含HTML；超时记录FAIL并清理本次容器。首次20秒探针未就绪的证据保留，增加冷启动预算不改变功能断言。
+\ No newline at end of file

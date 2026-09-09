@@ -1,0 +1,18 @@
+{
+  "head": "9a7dbf1ff58ec68115f2c0c7310b680b2febe370",
+  "branch": "main",
+  "protectedSourceDiffExitCode": 0,
+  "protectedPaths": [
+    "src/main",
+    "frontend/src",
+    "pom.xml",
+    "frontend/package-lock.json",
+    "docker-compose.yml"
+  ],
+  "newCaseCount": 5,
+  "mockRunsPassed": 2,
+  "realTextCalls": 1,
+  "realImageCalls": 0,
+  "pushed": false,
+  "deployed": false
+}

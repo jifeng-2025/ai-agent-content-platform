@@ -1,0 +1,198 @@
+{
+  "backend": {
+    "status": "PASS",
+    "uniqueTests": 56,
+    "executionsPerSuite": 2,
+    "counts": [
+      {
+        "suite": "A0BaselineTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "evidence": "artifacts/a1/runs/2026-09-09T06-45-45-620Z/mock-com.yupi.template.baseline.A0BaselineTest.txt"
+      },
+      {
+        "suite": "A1IntegrationTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "evidence": "artifacts/a1/runs/2026-09-09T06-45-45-620Z/mock-com.yupi.template.review.A1IntegrationTest.txt"
+      },
+      {
+        "suite": "A1PersistenceTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "evidence": "artifacts/a1/runs/2026-09-09T06-45-45-620Z/mock-com.yupi.template.review.A1PersistenceTest.txt"
+      },
+      {
+        "suite": "A1ReviewLoopTest",
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "evidence": "artifacts/a1/runs/2026-09-09T06-45-45-620Z/mock-com.yupi.template.review.A1ReviewLoopTest.txt"
+      }
+    ]
+  },
+  "snapshotChecks": [
+    {
+      "scope": "src/",
+      "snapshot": "artifacts/a1/runs/2026-09-09T06-45-45-620Z",
+      "files": 122,
+      "status": "MATCH"
+    },
+    {
+      "scope": "frontend/",
+      "snapshot": "artifacts/a1/runs/2026-09-09T06-40-28-463Z",
+      "files": 63,
+      "status": "MATCH"
+    }
+  ],
+  "frontend": {
+    "status": "PASS_WITH_EXISTING_LINT_FAILURE",
+    "sseTests": 4,
+    "evidence": "artifacts/a1/runs/2026-09-09T06-40-28-463Z",
+    "checks": [
+      {
+        "id": "sse-compatibility",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t06-40-28-463z-sse-compatibility",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T06-40-28-463Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "node",
+          "../a1-sse-test.cjs"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 1675,
+        "status": "PASS"
+      },
+      {
+        "id": "isolated-dev-health",
+        "status": "PASS",
+        "url": "http://127.0.0.1:61465/",
+        "durationMs": 52027,
+        "timeoutMs": 90000,
+        "scope": "Vite startup only, no browser or API generation"
+      },
+      {
+        "id": "type-check",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t06-40-28-463z-type-check",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T06-40-28-463Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "type-check"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 112066,
+        "status": "PASS"
+      },
+      {
+        "id": "build",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t06-40-28-463z-build",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T06-40-28-463Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "build"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 230659,
+        "status": "PASS"
+      },
+      {
+        "id": "lint-check",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t06-40-28-463z-lint-check",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T06-40-28-463Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "lint:check"
+        ],
+        "exitCode": 1,
+        "signal": null,
+        "durationMs": 160834,
+        "status": "FAIL"
+      }
+    ]
+  },
+  "realApi": "NOT_RUN",
+  "generatedAt": "2026-09-09T07:08:45.904Z",
+  "existingFailures": {
+    "contextLoads": {
+      "tests": 1,
+      "errors": 1,
+      "rootCause": "DashScope API key must be set",
+      "evidence": "artifacts/a1/runs/2026-09-09T06-40-28-463Z/existing-test.txt"
+    },
+    "lint": {
+      "errors": 16,
+      "warnings": 1,
+      "diagnosticsUnchanged": true,
+      "baseline": "artifacts/a0/runs/2026-09-09T05-16-36-817Z/lint-check.txt",
+      "evidence": "artifacts/a1/runs/2026-09-09T06-40-28-463Z/lint-check.txt"
+    }
+  },
+  "migration": {
+    "status": "PASS",
+    "evidence": "artifacts/a1/runs/2026-09-09T06-35-21-313Z/migration-smoke.json"
+  }
+}

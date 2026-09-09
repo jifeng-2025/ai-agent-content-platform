@@ -1,0 +1,10 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0">
+  <!-- A0 uses published Central artifacts; no version substitutions or credentials. -->
+  <mirrors>
+    <mirror>
+      <id>central</id>
+      <mirrorOf>spring-milestones,spring-snapshots</mirrorOf>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </mirror>
+  </mirrors>
+</settings>

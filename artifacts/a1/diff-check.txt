@@ -1,0 +1,14 @@
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/agent/ArticleAgentOrchestrator.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/agent/agents/ContentGeneratorAgent.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/agent/config/AgentConfig.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/controller/ArticleController.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/model/dto/article/ArticleState.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/model/enums/ArticlePhaseEnum.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/model/enums/ArticleStatusEnum.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/model/enums/SseMessageTypeEnum.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/service/ArticleAsyncService.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/service/ArticleService.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/java/com/yupi/template/service/impl/ArticleServiceImpl.java', LF will be replaced by CRLF the next time Git touches it
+
+exitCode=0

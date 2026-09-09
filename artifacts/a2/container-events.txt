@@ -1,0 +1,14 @@
+1788943498 die elated_mcnulty <no value> 1
+1788943520 kill ai-passage-frontend 3 <no value>
+1788943521 stop ai-passage-frontend <no value> <no value>
+1788943521 die ai-passage-frontend <no value> 0
+1788943521 kill ai-passage-backend 15 <no value>
+1788943522 stop ai-passage-backend <no value> <no value>
+1788943522 die ai-passage-backend <no value> 143
+1788943522 kill ai-passage-redis 15 <no value>
+1788943522 kill ai-passage-mysql 15 <no value>
+1788943523 stop ai-passage-redis <no value> <no value>
+1788943523 die ai-passage-redis <no value> 0
+1788943525 stop ai-passage-mysql <no value> <no value>
+1788943525 die ai-passage-mysql <no value> 0
+1788943529 die thirsty_pike <no value> 1

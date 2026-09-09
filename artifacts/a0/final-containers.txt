@@ -1,0 +1,4 @@
+ai-passage-frontend Up 2 hours (healthy) 0.0.0.0:80->80/tcp, [::]:80->80/tcp
+ai-passage-backend Up 2 hours (healthy) 0.0.0.0:8123->8123/tcp, [::]:8123->8123/tcp
+ai-passage-redis Up 2 hours (healthy) 6379/tcp
+ai-passage-mysql Up 2 hours (healthy) 3306/tcp, 33060/tcp

@@ -1,0 +1,49 @@
+
+> frontend@0.0.1 lint:check
+> eslint .
+
+
+/work/frontend/src/api/articleController.ts
+  1:1  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/work/frontend/src/api/healthController.ts
+  1:1  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/work/frontend/src/api/index.ts
+  1:1  error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  2:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/work/frontend/src/api/paymentController.ts
+  1:1  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/work/frontend/src/api/statisticsController.ts
+  1:1  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/work/frontend/src/api/typings.d.ts
+    6:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  161:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/work/frontend/src/api/userController.ts
+  1:1  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/work/frontend/src/components/GlobalHeader.vue
+  70:25  error  'h' is defined but never used  @typescript-eslint/no-unused-vars
+
+/work/frontend/src/pages/article/ArticleListPage.vue
+  155:26  error  'watch' is defined but never used         @typescript-eslint/no-unused-vars
+  256:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  287:33  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/work/frontend/src/pages/user/UserLoginPage.vue
+  105:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/work/frontend/src/stores/loginUser.ts
+  24:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/work/frontend/src/utils/sse.ts
+  8:10  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  9:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 17 problems (16 errors, 1 warning)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

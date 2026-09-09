@@ -19,6 +19,10 @@ import java.util.List;
  */
 public interface ArticleService extends IService<Article> {
 
+    void saveReviewProgress(String taskId, ArticleState state);
+
+    com.yupi.template.model.dto.article.ReviewTrace getArticleReview(String taskId, User loginUser);
+
     /**
      * 创建文章任务
      *

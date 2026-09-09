@@ -50,6 +50,8 @@
 
           <a-divider />
 
+          <ArticleReviewPanel :task-id="String(route.params.taskId)" @updated="refreshFromReview" />
+
           <!-- 执行日志面板 -->
           <div v-if="executionStats && executionStats.logs && executionStats.logs.length > 0" class="execution-logs-section">
             <div class="logs-header" @click="showExecutionLogs = !showExecutionLogs">
@@ -137,7 +139,7 @@
           <div v-if="article.fullContent" class="content-section">
             <h2 class="section-title">
               <FileTextOutlined class="section-icon" />
-              完整图文
+              {{ article.status === 'COMPLETED' ? '图文任务已完成' : '当前图文草稿' }}
             </h2>
             <div v-html="markdownToHtml(article.fullContent)" class="markdown-content"></div>
           </div>
@@ -174,7 +176,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watch, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { message, Modal } from 'ant-design-vue'
 import {
@@ -191,7 +193,9 @@ import {
   ThunderboltOutlined
 } from '@ant-design/icons-vue'
 import { getArticle, getExecutionLogs } from '@/api/articleController'
-import { marked } from 'marked'
+import { safeMarkdown } from '@/utils/safeMarkdown'
+import ArticleReviewPanel from '@/components/ArticleReviewPanel.vue'
+import type { InterventionView } from '@/api/interventions'
 import dayjs from 'dayjs'
 
 const router = useRouter()
@@ -202,10 +206,13 @@ const article = ref<API.ArticleVO | null>(null)
 const executionStats = ref<API.AgentExecutionStats | null>(null)
 const logsLoading = ref(false)
 const showExecutionLogs = ref(false)
+let detailController = new AbortController()
+let detailEpoch = 0
+let detailDisposed = false
 
 // Markdown 转 HTML
 const markdownToHtml = (markdown: string) => {
-  return marked(markdown)
+  return safeMarkdown(markdown)
 }
 
 // 加载文章
@@ -216,27 +223,39 @@ const loadArticle = async () => {
     return
   }
 
+  const epoch = ++detailEpoch
+  detailController.abort(); detailController = new AbortController()
+  article.value = null; executionStats.value = null
   loading.value = true
   try {
-    const res = await getArticle({ taskId })
+    const res = await getArticle({ taskId }, { signal: detailController.signal })
+    if (epoch !== detailEpoch || detailDisposed) return
     article.value = res.data.data || null
     // 自动加载执行日志
     await loadExecutionLogs(taskId)
   } catch (error) {
-    message.error((error as Error).message || '加载失败')
+    if (epoch === detailEpoch && !detailDisposed && !detailController.signal.aborted) message.error((error as Error).message || '加载失败')
   } finally {
-    loading.value = false
+    if (epoch === detailEpoch) loading.value = false
   }
+}
+
+const refreshFromReview = async (view: InterventionView) => {
+  if (!view.enabled) return
+  try {
+    const res = await getArticle({ taskId: view.taskId }, { signal: detailController.signal })
+    if (!detailDisposed && res.data.code === 0 && String(route.params.taskId) === view.taskId) article.value = res.data.data || null
+  } catch { /* review panel exposes connection state and will retry */ }
 }
 
 // 加载执行日志
 const loadExecutionLogs = async (taskId: string) => {
   logsLoading.value = true
   try {
-    const res = await getExecutionLogs({ taskId })
-    executionStats.value = res.data.data || null
+    const res = await getExecutionLogs({ taskId }, { signal: detailController.signal })
+    if (!detailDisposed && String(route.params.taskId) === taskId) executionStats.value = res.data.data || null
   } catch (error) {
-    console.error('加载执行日志失败:', error)
+    if (!detailDisposed && !detailController.signal.aborted) console.error('加载执行日志失败:', error)
   } finally {
     logsLoading.value = false
   }
@@ -298,6 +317,8 @@ const getStatusColor = (status: string) => {
     PENDING: 'default',
     PROCESSING: 'processing',
     COMPLETED: 'success',
+    IMAGES_FAILED: 'warning',
+    NEEDS_REVIEW: 'warning',
     FAILED: 'error',
   }
   return colorMap[status] || 'default'
@@ -309,6 +330,8 @@ const getStatusText = (status: string) => {
     PENDING: '等待中',
     PROCESSING: '生成中',
     COMPLETED: '已完成',
+    IMAGES_FAILED: '配图待重试',
+    NEEDS_REVIEW: '待人工评审',
     FAILED: '失败',
   }
   return textMap[status] || status
@@ -348,9 +371,8 @@ const handleRetry = () => {
   })
 }
 
-onMounted(() => {
-  loadArticle()
-})
+watch(() => route.params.taskId, () => { void loadArticle() }, { immediate: true })
+onBeforeUnmount(() => { detailDisposed = true; detailEpoch++; detailController.abort() })
 </script>
 
 <style scoped lang="scss">

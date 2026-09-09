@@ -1,0 +1,556 @@
+{
+  "task": "A0",
+  "outcome": "BASELINE_ESTABLISHED_WITH_KNOWN_FAILURES",
+  "baseline": {
+    "mode": "baseline",
+    "generatedAt": "2026-09-09T05:49:57.267Z",
+    "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z",
+    "images": {
+      "maven": "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+      "node": "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32"
+    },
+    "results": [
+      {
+        "id": "git-head",
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 247,
+        "status": "PASS"
+      },
+      {
+        "id": "git-status",
+        "command": [
+          "git",
+          "status",
+          "--short"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 196,
+        "status": "PASS"
+      },
+      {
+        "id": "git-diff",
+        "command": [
+          "git",
+          "diff",
+          "--",
+          "frontend/package.json",
+          ".gitignore"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 161,
+        "status": "PASS"
+      },
+      {
+        "id": "maven-version",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+          "mvn",
+          "-version"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 1196,
+        "status": "PASS"
+      },
+      {
+        "id": "backend-package",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-backend-package",
+          "--cpus=2",
+          "--memory=3g",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work",
+          "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+          "mvn",
+          "-s",
+          "/work/a0-maven-settings.xml",
+          "-B",
+          "-DskipTests",
+          "package"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 567843,
+        "status": "PASS"
+      },
+      {
+        "id": "test-dependencies",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-test-dependencies",
+          "--cpus=2",
+          "--memory=3g",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work",
+          "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+          "mvn",
+          "-s",
+          "/work/a0-maven-settings.xml",
+          "-B",
+          "-Dtest=A0BaselineTest",
+          "test"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 171786,
+        "status": "PASS"
+      },
+      {
+        "id": "mock",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-mock",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work",
+          "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+          "mvn",
+          "-s",
+          "/work/a0-maven-settings.xml",
+          "-o",
+          "-B",
+          "-Dtest=A0BaselineTest",
+          "test"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 150098,
+        "status": "PASS"
+      },
+      {
+        "id": "existing-test",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-existing-test",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work",
+          "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+          "mvn",
+          "-s",
+          "/work/a0-maven-settings.xml",
+          "-o",
+          "-B",
+          "-Dtest=MainApplicationTests",
+          "test"
+        ],
+        "exitCode": 1,
+        "signal": null,
+        "durationMs": 180226,
+        "status": "FAIL"
+      },
+      {
+        "id": "node-version",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "node",
+          "--version"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 874,
+        "status": "PASS"
+      },
+      {
+        "id": "npm-ci",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-npm-ci",
+          "--cpus=2",
+          "--memory=3g",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "ci",
+          "--no-audit",
+          "--no-fund"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 377332,
+        "status": "PASS"
+      },
+      {
+        "id": "dev-start",
+        "command": [
+          "docker",
+          "run",
+          "-d",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-dev",
+          "--cpus=2",
+          "--memory=1g",
+          "-p",
+          "127.0.0.1::5173",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "dev",
+          "--",
+          "--host",
+          "0.0.0.0"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 673,
+        "status": "PASS"
+      },
+      {
+        "id": "isolated-dev-health",
+        "status": "FAIL",
+        "url": "http://127.0.0.1:60609/",
+        "scope": "Vite startup only, no browser or API generation"
+      },
+      {
+        "id": "dev-log",
+        "command": [
+          "docker",
+          "logs",
+          "a0-2026-09-09t05-16-36-817z-dev"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 297,
+        "status": "PASS"
+      },
+      {
+        "id": "dev-stop",
+        "command": [
+          "docker",
+          "rm",
+          "-f",
+          "a0-2026-09-09t05-16-36-817z-dev"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 799,
+        "status": "PASS"
+      },
+      {
+        "id": "type-check",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-type-check",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "type-check"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 111482,
+        "status": "PASS"
+      },
+      {
+        "id": "build",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-build",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "build"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 249945,
+        "status": "PASS"
+      },
+      {
+        "id": "lint-check",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "a0-2026-09-09t05-16-36-817z-lint-check",
+          "--cpus=2",
+          "--memory=3g",
+          "--network=none",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "lint:check"
+        ],
+        "exitCode": 1,
+        "signal": null,
+        "durationMs": 165532,
+        "status": "FAIL"
+      },
+      {
+        "id": "deployed-backend-health",
+        "command": [
+          "GET",
+          "http://localhost:8123/api/health"
+        ],
+        "status": "PASS",
+        "httpStatus": 200,
+        "durationMs": 102
+      },
+      {
+        "id": "deployed-frontend-health",
+        "command": [
+          "GET",
+          "http://localhost/"
+        ],
+        "status": "PASS",
+        "httpStatus": 200,
+        "durationMs": 11
+      },
+      {
+        "id": "real-api",
+        "status": "NOT_RUN",
+        "reason": "Separate opt-in provider smoke; health and mocks do not demonstrate real generation."
+      }
+    ]
+  },
+  "startupFollowUp": {
+    "mode": "dev",
+    "generatedAt": "2026-09-09T05:44:02.808Z",
+    "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z",
+    "images": {
+      "maven": "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+      "node": "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32"
+    },
+    "results": [
+      {
+        "id": "git-head",
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 243,
+        "status": "PASS"
+      },
+      {
+        "id": "git-status",
+        "command": [
+          "git",
+          "status",
+          "--short"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 184,
+        "status": "PASS"
+      },
+      {
+        "id": "git-diff",
+        "command": [
+          "git",
+          "diff",
+          "--",
+          "frontend/package.json",
+          ".gitignore"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 167,
+        "status": "PASS"
+      },
+      {
+        "id": "dev-start",
+        "command": [
+          "docker",
+          "run",
+          "-d",
+          "--name",
+          "a0-2026-09-09t05-43-18-295z-dev",
+          "--cpus=2",
+          "--memory=1g",
+          "-p",
+          "127.0.0.1::5173",
+          "--mount",
+          "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+          "-w",
+          "/work/frontend",
+          "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+          "npm",
+          "run",
+          "dev",
+          "--",
+          "--host",
+          "0.0.0.0"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 711,
+        "status": "PASS"
+      },
+      {
+        "id": "isolated-dev-health",
+        "status": "PASS",
+        "url": "http://127.0.0.1:60499/",
+        "durationMs": 41749,
+        "timeoutMs": 90000,
+        "scope": "Vite startup only, no browser or API generation"
+      },
+      {
+        "id": "dev-log",
+        "command": [
+          "docker",
+          "logs",
+          "a0-2026-09-09t05-43-18-295z-dev"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 307,
+        "status": "PASS"
+      },
+      {
+        "id": "dev-stop",
+        "command": [
+          "docker",
+          "rm",
+          "-f",
+          "a0-2026-09-09t05-43-18-295z-dev"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 811,
+        "status": "PASS"
+      },
+      {
+        "id": "deployed-backend-health",
+        "command": [
+          "GET",
+          "http://localhost:8123/api/health"
+        ],
+        "status": "PASS",
+        "httpStatus": 200,
+        "durationMs": 63
+      },
+      {
+        "id": "deployed-frontend-health",
+        "command": [
+          "GET",
+          "http://localhost/"
+        ],
+        "status": "PASS",
+        "httpStatus": 200,
+        "durationMs": 12
+      },
+      {
+        "id": "real-api",
+        "status": "NOT_RUN",
+        "reason": "Separate opt-in provider smoke; health and mocks do not demonstrate real generation."
+      }
+    ]
+  },
+  "realProviderSmoke": {
+    "kind": "REAL_PROVIDER_TEXT_SMOKE",
+    "model": "qwen-plus",
+    "calls": 1,
+    "imageCalls": 0,
+    "status": "PASS",
+    "cost": "unknown; consult provider billing; usage is recorded, no price is guessed",
+    "httpStatus": 200,
+    "usage": {
+      "total_tokens": 98,
+      "completion_tokens": 49,
+      "prompt_tokens": 49,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "titleCount": 1,
+    "durationMs": 2629
+  },
+  "outstanding": [
+    "Existing contextLoads: missing isolated DashScope configuration",
+    "Existing frontend lint: 16 errors, 1 warning"
+  ],
+  "resolvedHarnessIssue": "Initial 20s startup window failed; 90s budget independently passed at 41749ms"
+}

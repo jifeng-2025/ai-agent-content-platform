@@ -10,6 +10,8 @@ import lombok.Getter;
 @Getter
 public enum ArticleStatusEnum {
 
+    IMAGES_FAILED("IMAGES_FAILED", "配图待重试"),
+    NEEDS_REVIEW("NEEDS_REVIEW", "待人工评审"),
     PENDING("PENDING", "等待处理"),
     PROCESSING("PROCESSING", "处理中"),
     COMPLETED("COMPLETED", "已完成"),

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.yupi.template.baseline.A0BaselineTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.21 s -- in com.yupi.template.baseline.A0BaselineTest

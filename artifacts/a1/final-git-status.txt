@@ -1,0 +1,30 @@
+ M .gitignore
+ M frontend/package.json
+ M frontend/src/pages/article/ArticleCreatePage.vue
+ M frontend/src/pages/article/ArticleDetailPage.vue
+ M frontend/src/pages/article/ArticleListPage.vue
+ M frontend/src/utils/sse.ts
+ M src/main/java/com/yupi/template/agent/ArticleAgentOrchestrator.java
+ M src/main/java/com/yupi/template/agent/agents/ContentGeneratorAgent.java
+ M src/main/java/com/yupi/template/agent/config/AgentConfig.java
+ M src/main/java/com/yupi/template/controller/ArticleController.java
+ M src/main/java/com/yupi/template/model/dto/article/ArticleState.java
+ M src/main/java/com/yupi/template/model/enums/ArticlePhaseEnum.java
+ M src/main/java/com/yupi/template/model/enums/ArticleStatusEnum.java
+ M src/main/java/com/yupi/template/model/enums/SseMessageTypeEnum.java
+ M src/main/java/com/yupi/template/service/ArticleAsyncService.java
+ M src/main/java/com/yupi/template/service/ArticleService.java
+ M src/main/java/com/yupi/template/service/impl/ArticleServiceImpl.java
+?? AGENTS.md
+?? agent.md
+?? artifacts/
+?? docs/
+?? sql/add_article_review.sql
+?? src/main/java/com/yupi/template/agent/review/
+?? src/main/java/com/yupi/template/model/dto/article/ReviewResult.java
+?? src/main/java/com/yupi/template/model/dto/article/ReviewTrace.java
+?? src/main/java/com/yupi/template/repository/
+?? src/test/java/com/yupi/template/baseline/
+?? src/test/java/com/yupi/template/review/
+?? src/test/resources/
+?? tools/

@@ -1,0 +1,136 @@
+{
+  "mode": "dev",
+  "generatedAt": "2026-09-09T05:44:02.808Z",
+  "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z",
+  "images": {
+    "maven": "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+    "node": "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32"
+  },
+  "results": [
+    {
+      "id": "git-head",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 243,
+      "status": "PASS"
+    },
+    {
+      "id": "git-status",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 184,
+      "status": "PASS"
+    },
+    {
+      "id": "git-diff",
+      "command": [
+        "git",
+        "diff",
+        "--",
+        "frontend/package.json",
+        ".gitignore"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 167,
+      "status": "PASS"
+    },
+    {
+      "id": "dev-start",
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "a0-2026-09-09t05-43-18-295z-dev",
+        "--cpus=2",
+        "--memory=1g",
+        "-p",
+        "127.0.0.1::5173",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T05-16-36-817Z,target=/work",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "npm",
+        "run",
+        "dev",
+        "--",
+        "--host",
+        "0.0.0.0"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 711,
+      "status": "PASS"
+    },
+    {
+      "id": "isolated-dev-health",
+      "status": "PASS",
+      "url": "http://127.0.0.1:60499/",
+      "durationMs": 41749,
+      "timeoutMs": 90000,
+      "scope": "Vite startup only, no browser or API generation"
+    },
+    {
+      "id": "dev-log",
+      "command": [
+        "docker",
+        "logs",
+        "a0-2026-09-09t05-43-18-295z-dev"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 307,
+      "status": "PASS"
+    },
+    {
+      "id": "dev-stop",
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "a0-2026-09-09t05-43-18-295z-dev"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 811,
+      "status": "PASS"
+    },
+    {
+      "id": "deployed-backend-health",
+      "command": [
+        "GET",
+        "http://localhost:8123/api/health"
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "durationMs": 63
+    },
+    {
+      "id": "deployed-frontend-health",
+      "command": [
+        "GET",
+        "http://localhost/"
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "durationMs": 12
+    },
+    {
+      "id": "real-api",
+      "status": "NOT_RUN",
+      "reason": "Separate opt-in provider smoke; health and mocks do not demonstrate real generation."
+    }
+  ]
+}

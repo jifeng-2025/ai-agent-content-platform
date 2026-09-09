@@ -44,6 +44,33 @@ import static com.yupi.template.constant.UserConstant.VIP_ROLE;
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     @Resource
+    private com.yupi.template.repository.ReviewTraceStore reviewTraceStore;
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveReviewProgress(String taskId, ArticleState state) {
+        Article article = getByTaskId(taskId);
+        ThrowUtils.throwIf(article == null, ErrorCode.NOT_FOUND_ERROR, "文章不存在");
+        var trace = java.util.Objects.requireNonNull(state.getReviewTrace());
+        reviewTraceStore.save(taskId, trace);
+        article.setContent(state.getContent());
+        article.setFullContent(state.getContent());
+        boolean human = "NEEDS_REVIEW".equals(trace.status());
+        article.setStatus(human ? "NEEDS_REVIEW" : "PROCESSING");
+        article.setPhase("PASS".equals(trace.status()) ? "CONTENT_GENERATING" : trace.status());
+        article.setErrorMessage(human ? trace.stopReason() : null);
+        if (!updateById(article)) throw new IllegalStateException("草稿保存失败");
+    }
+
+    @Override
+    public com.yupi.template.model.dto.article.ReviewTrace getArticleReview(String taskId, User loginUser) {
+        Article article = getByTaskId(taskId);
+        ThrowUtils.throwIf(article == null, ErrorCode.NOT_FOUND_ERROR, "文章不存在");
+        checkArticlePermission(article, loginUser);
+        return reviewTraceStore.find(taskId);
+    }
+
+    @Resource
     private QuotaService quotaService;
 
     @Resource

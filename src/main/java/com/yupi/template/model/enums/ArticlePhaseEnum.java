@@ -10,6 +10,9 @@ import lombok.Getter;
 @Getter
 public enum ArticlePhaseEnum {
 
+    REVIEWING("REVIEWING", "评审中"),
+    REVISING("REVISING", "局部修订中"),
+    NEEDS_REVIEW("NEEDS_REVIEW", "待人工评审"),
     PENDING("PENDING", "等待处理"),
     TITLE_GENERATING("TITLE_GENERATING", "生成标题中"),
     TITLE_SELECTING("TITLE_SELECTING", "等待选择标题"),
@@ -68,7 +71,10 @@ public enum ArticlePhaseEnum {
             case TITLE_SELECTING -> targetPhase == OUTLINE_GENERATING;
             case OUTLINE_GENERATING -> targetPhase == OUTLINE_EDITING;
             case OUTLINE_EDITING -> targetPhase == CONTENT_GENERATING;
-            case CONTENT_GENERATING -> false; // 最终阶段，不再转换
+            case CONTENT_GENERATING -> targetPhase == REVIEWING;
+            case REVIEWING -> targetPhase == REVISING || targetPhase == NEEDS_REVIEW || targetPhase == CONTENT_GENERATING;
+            case REVISING -> targetPhase == REVIEWING || targetPhase == NEEDS_REVIEW;
+            case NEEDS_REVIEW -> false;
         };
     }
 }

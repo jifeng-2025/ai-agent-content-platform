@@ -535,6 +535,7 @@
 
 <script setup lang="ts">
 import { ref, onBeforeUnmount, onMounted, nextTick, computed } from 'vue'
+import { fetchIntervention } from '@/api/interventions'
 import { useRouter, useRoute } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { useLoginUserStore } from '@/stores/loginUser'
@@ -866,6 +867,13 @@ const handleSSEMessage = (msg: SSEMessage) => {
       addLog('图文合成完成', 'success')
       break
 
+    case 'IMAGES_FAILED':
+    case 'NEEDS_REVIEW':
+      isCreating.value = false
+      message.warning(msg.type === 'IMAGES_FAILED' ? '正文已保存，部分配图需重试' : '草稿已保存，需人工评审')
+      void router.push('/article/' + taskId.value)
+      break
+
     case 'ALL_COMPLETE':
       // 全部完成
       currentPhase.value = 'COMPLETED'
@@ -920,6 +928,12 @@ const handleConfirmOutline = async (outlineData: Array<{section: number, title: 
     outlineRaw.value = JSON.stringify({ sections: outlineData })
     // 不直接切换阶段，等待后端开始生成正文并推送 AGENT3_STREAMING
     message.success('大纲已确认，正在生成正文...')
+    const reviewView = await fetchIntervention(taskId.value).catch(() => null)
+    if (reviewView?.enabled) {
+      closeSSE(eventSource)
+      eventSource = null
+      await router.push('/article/' + taskId.value)
+    }
   } catch (error) {
     const err = error as Error
     message.error(err.message || '确认大纲失败')

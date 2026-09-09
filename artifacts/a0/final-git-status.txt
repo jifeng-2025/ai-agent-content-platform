@@ -1,0 +1,9 @@
+ M .gitignore
+ M frontend/package.json
+?? AGENTS.md
+?? agent.md
+?? artifacts/
+?? docs/
+?? src/test/java/com/yupi/template/baseline/
+?? src/test/resources/
+?? tools/

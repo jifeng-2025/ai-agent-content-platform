@@ -1,0 +1,7 @@
+[
+  {"id":"C01","topic":"普通人如何用 AI 提升工作效率","style":"educational","audience":"非技术职场新人","outcome":"success","reviewFocus":"受众偏离、未经证实的效率百分比"},
+  {"id":"C02","topic":"周末散步中的小发现","style":"emotional","audience":"普通生活读者","outcome":"success","reviewFocus":"可读性、段落连贯、图文匹配"},
+  {"id":"C03","topic":"给新手解释数据备份","style":"tech","audience":"电脑新手","outcome":"success","reviewFocus":"术语解释、不编造机构归因"},
+  {"id":"C04","topic":"整理书桌的三个步骤","style":"humorous","audience":"学生","outcome":"malformed-json","reviewFocus":"结构错误进入失败出口"},
+  {"id":"C05","topic":"第一次制作旅行清单","style":"educational","audience":"旅行新手","outcome":"model-error","reviewFocus":"服务异常进入失败出口"}
+]

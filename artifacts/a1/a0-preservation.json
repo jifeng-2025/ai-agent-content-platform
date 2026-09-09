@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "baselineManifest": "artifacts\\a0\\runs\\2026-09-09T05-16-36-817Z\\source-manifest.json",
+  "checks": [
+    {
+      "path": "src/test/java/com/yupi/template/baseline/A0BaselineTest.java",
+      "sha256": "c4cd67120aaffae6f33d41c6708f094acdacb7fa6c9582c0987c82680682259d",
+      "a0Sha256": "c4cd67120aaffae6f33d41c6708f094acdacb7fa6c9582c0987c82680682259d"
+    },
+    {
+      "path": "src/test/resources/a0/cases.json",
+      "sha256": "492da0376cc6b03a47b17f6b79887c8f8f521af1438c20797140acd501f237a6",
+      "a0Sha256": "492da0376cc6b03a47b17f6b79887c8f8f521af1438c20797140acd501f237a6"
+    }
+  ]
+}

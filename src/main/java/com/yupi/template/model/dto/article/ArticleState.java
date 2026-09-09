@@ -13,6 +13,9 @@ import java.util.List;
 @Data
 public class ArticleState implements Serializable {
 
+    private ReviewTrace reviewTrace;
+    private boolean mediaHandled;
+
     /**
      * 任务ID
      */

@@ -25,6 +25,12 @@ public class AgentConfig {
     @Value("${article.agent.orchestrator.enabled:true}")
     private boolean orchestratorEnabled;
 
+    @Value("${article.agent.review-loop.enabled:false}")
+    private boolean reviewLoopEnabled;
+
+    @Value("${article.agent.intervention.enabled:false}")
+    private boolean interventionEnabled;
+
     /**
      * Agent 最大迭代次数
      */

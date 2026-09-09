@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "currentVersion": 1,
+  "maxRevisions": 2,
+  "versions": [
+    {
+      "version": 0,
+      "content": "## 开始行动\n\n选择任务。\n\n记录感受。",
+      "review": {
+        "schemaVersion": 1,
+        "decision": "REVISE",
+        "issues": [
+          {
+            "type": "AUDIENCE",
+            "severity": "ERROR",
+            "sectionId": "p2",
+            "reason": "固定问题：AUDIENCE",
+            "suggestedAction": "局部改写"
+          }
+        ]
+      }
+    },
+    {
+      "version": 1,
+      "content": "## 开始行动\n\n选择一个日常小任务，先完成第一步。\n\n记录感受。",
+      "review": {
+        "schemaVersion": 1,
+        "decision": "PASS",
+        "issues": []
+      }
+    }
+  ],
+  "review": {
+    "schemaVersion": 1,
+    "decision": "PASS",
+    "issues": []
+  }
+}

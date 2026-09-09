@@ -1,0 +1,14 @@
+{
+  "id": "A0",
+  "goal": "建立实际入口、5个固定案例、隔离可重复验证和诚实基线",
+  "baselineRef": "9a7dbf1ff58ec68115f2c0c7310b680b2febe370",
+  "allowedPaths": ["tools/dev-harness", "src/test", "frontend/package.json", ".gitignore", "docs/agent/status.md", "artifacts/a0"],
+  "testCommands": ["node tools/dev-harness/run.mjs baseline", "node tools/dev-harness/run.mjs mock"],
+  "acceptance": ["标明Controller-Service-Agent路由与开关", "固定5案例可重复断网Mock", "保存构建/类型/测试/健康的独立结果和已有失败", "真实API结果独立于Mock", "无现有数据卷或生产写入"],
+  "maxAttempts": 3,
+  "timeoutPerCommandMs": 600000,
+  "status": "completed_with_baseline_failures",
+  "artifacts": "artifacts/a0",
+  "visualScenarios": [],
+  "visualScope": "A0不宣称浏览器交互/视觉验收通过，留给后续授权任务"
+}

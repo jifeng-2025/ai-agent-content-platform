@@ -1,0 +1,19 @@
+{
+  "kind": "REAL_PROVIDER_TEXT_SMOKE",
+  "model": "qwen-plus",
+  "calls": 1,
+  "imageCalls": 0,
+  "status": "PASS",
+  "cost": "unknown; consult provider billing; usage is recorded, no price is guessed",
+  "httpStatus": 200,
+  "usage": {
+    "total_tokens": 98,
+    "completion_tokens": 49,
+    "prompt_tokens": 49,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "titleCount": 1,
+  "durationMs": 2629
+}

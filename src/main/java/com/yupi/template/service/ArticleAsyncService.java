@@ -198,6 +198,9 @@ public class ArticleAsyncService {
             state.setTaskId(taskId);
             state.setStyle(article.getStyle());
             
+            state.setTopic(article.getTopic());
+            state.setUserDescription(article.getUserDescription());
+
             // 从数据库获取允许的配图方式
             List<String> enabledMethods = null;
             if (article.getEnabledImageMethods() != null) {
@@ -228,6 +231,10 @@ public class ArticleAsyncService {
             if (useOrchestrator) {
                 articleAgentOrchestrator.executePhase3_GenerateContent(state, message -> {
                     handleAgentMessage(taskId, message, state);
+                }, progress -> {
+                    articleService.saveReviewProgress(taskId, progress);
+                    sendReviewMessage(taskId, SseMessageTypeEnum.REVIEW_UPDATED,
+                            Map.of("taskId", taskId, "reviewTrace", progress.getReviewTrace()));
                 });
             } else {
                 articleAgentService.executePhase3_GenerateContent(state, message -> {
@@ -235,6 +242,18 @@ public class ArticleAsyncService {
                 });
             }
             
+            if (state.getReviewTrace() != null && "NEEDS_REVIEW".equals(state.getReviewTrace().status())) {
+                sendReviewMessage(taskId, SseMessageTypeEnum.NEEDS_REVIEW,
+                        Map.of("taskId", taskId, "status", "NEEDS_REVIEW", "reviewTrace", state.getReviewTrace()));
+                sseEmitterManager.complete(taskId);
+                return;
+            }
+
+            if (state.isMediaHandled()) {
+                sendReviewMessage(taskId, "IMAGES_FAILED".equals(state.getPhase()) ? SseMessageTypeEnum.IMAGES_FAILED : SseMessageTypeEnum.ALL_COMPLETE, Map.of("taskId", taskId));
+                sseEmitterManager.complete(taskId);
+                return;
+            }
             // 保存完整文章到数据库
             articleService.saveArticleContent(taskId, state);
             
@@ -356,6 +375,15 @@ public class ArticleAsyncService {
     /**
      * 发送 SSE 消息
      */
+    // Delivery is best effort after commit. A disconnected client must not change durable review status.
+    private void sendReviewMessage(String taskId, SseMessageTypeEnum type, Map<String, Object> data) {
+        try {
+            sendSseMessage(taskId, type, data);
+        } catch (RuntimeException e) {
+            log.warn("评审状态已保存，SSE发送失败，可通过详情接口读取: taskId={}, type={}", taskId, type);
+        }
+    }
+
     private void sendSseMessage(String taskId, SseMessageTypeEnum type, Map<String, Object> additionalData) {
         Map<String, Object> data = new HashMap<>();
         data.put("type", type.getValue());

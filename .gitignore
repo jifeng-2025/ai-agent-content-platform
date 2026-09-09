@@ -70,3 +70,11 @@ frontend/src/config/env.ts
 *~
 
 .claude/**
+# A0 isolated development validation
+artifacts/a0/runs/
+tools/dev-harness/.cache/
+tools/dev-harness/.work/
+
+artifacts/a1/runs/
+
+artifacts/a2/runs/

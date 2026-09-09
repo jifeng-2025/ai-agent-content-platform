@@ -10,6 +10,11 @@ import lombok.Getter;
 @Getter
 public enum SseMessageTypeEnum {
 
+    IMAGES_FAILED("IMAGES_FAILED", "配图待重试"),
+    MEDIA_UPDATED("MEDIA_UPDATED", "配图状态更新"),
+    REVIEW_UPDATED("REVIEW_UPDATED", "评审状态已保存"),
+    NEEDS_REVIEW("NEEDS_REVIEW", "草稿需人工评审"),
+
     /**
      * 智能体1完成（生成标题方案）
      */

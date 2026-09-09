@@ -54,6 +54,12 @@ public class ArticleAgentOrchestrator {
     @Resource
     private ContentMergerAgent contentMergerAgent;
 
+    @Resource
+    private com.yupi.template.agent.review.ArticleReviewLoop articleReviewLoop;
+
+    @Resource
+    private com.yupi.template.service.ArticleMediaProcessor articleMediaProcessor;
+
     // region 状态键常量
 
     private static final String KEY_TASK_ID = "taskId";
@@ -186,6 +192,10 @@ public class ArticleAgentOrchestrator {
      * @param streamHandler 流式输出处理器
      */
     public void executePhase3_GenerateContent(ArticleState state, Consumer<String> streamHandler) {
+        executePhase3_GenerateContent(state, streamHandler, ignored -> {});
+    }
+
+    public void executePhase3_GenerateContent(ArticleState state, Consumer<String> streamHandler, Consumer<ArticleState> checkpoint) {
         log.info("阶段3（多智能体编排）：开始生成正文+配图, taskId={}", state.getTaskId());
         
         // 设置流式处理器到 ThreadLocal
@@ -202,7 +212,30 @@ public class ArticleAgentOrchestrator {
             inputs.put(KEY_ENABLED_IMAGE_METHODS, state.getEnabledImageMethods());
             
             // 构建并执行图
-            StateGraph graph = buildPhase3Graph();
+            StateGraph graph;
+            if (agentConfig.isReviewLoopEnabled()) {
+                inputs.put(KEY_TOPIC, state.getTopic());
+                inputs.put(KEY_USER_DESCRIPTION, state.getUserDescription());
+                inputs.put("reviewLoopEnabled", true);
+                state.setContent((String) contentGeneratorAgent.apply(new OverAllState(inputs)).get(KEY_CONTENT));
+                articleReviewLoop.run(state, checkpoint);
+                if ("NEEDS_REVIEW".equals(state.getReviewTrace().status())) return;
+                if (agentConfig.isInterventionEnabled()) {
+                    articleMediaProcessor.generate(state, streamHandler);
+                    return;
+                }
+                inputs.put(KEY_CONTENT, state.getContent());
+                graph = new StateGraph(createKeyStrategyFactory())
+                        .addNode("image_analyzer", node_async(imageAnalyzerAgent))
+                        .addNode("parallel_image_generator", node_async(parallelImageGenerator))
+                        .addNode("content_merger", node_async(contentMergerAgent))
+                        .addEdge(START, "image_analyzer")
+                        .addEdge("image_analyzer", "parallel_image_generator")
+                        .addEdge("parallel_image_generator", "content_merger")
+                        .addEdge("content_merger", END);
+            } else {
+                graph = buildPhase3Graph();
+            }
             CompiledGraph compiledGraph = graph.compile();
             
             Optional<OverAllState> result = compiledGraph.invoke(inputs);

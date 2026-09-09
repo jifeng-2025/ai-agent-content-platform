@@ -1,0 +1,37 @@
+[
+  {
+    "id": "C01",
+    "topic": "普通人如何用 AI 提升工作效率",
+    "junitName": "fixedCases()[1]",
+    "durationSeconds": "24.936",
+    "status": "PASS"
+  },
+  {
+    "id": "C02",
+    "topic": "周末散步中的小发现",
+    "junitName": "fixedCases()[2]",
+    "durationSeconds": "0.034",
+    "status": "PASS"
+  },
+  {
+    "id": "C03",
+    "topic": "给新手解释数据备份",
+    "junitName": "fixedCases()[3]",
+    "durationSeconds": "0.028",
+    "status": "PASS"
+  },
+  {
+    "id": "C04",
+    "topic": "整理书桌的三个步骤",
+    "junitName": "fixedCases()[4]",
+    "durationSeconds": "0.112",
+    "status": "PASS"
+  },
+  {
+    "id": "C05",
+    "topic": "第一次制作旅行清单",
+    "junitName": "fixedCases()[5]",
+    "durationSeconds": "0.029",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "stage": "A2",
+  "date": "2026-09-09",
+  "acceptance": "PASS_WITH_EXISTING_BASELINE_FAILURES",
+  "java": {
+    "uniqueTests": 72,
+    "unitRegression": 63,
+    "httpIntegration": 9,
+    "failures": 0,
+    "skipped": 0,
+    "scope": "HTTP uses actual Spring/Redis/MySQL and mocked cloud boundaries"
+  },
+  "frontend": {
+    "typeCheck": "PASS",
+    "build": "PASS",
+    "sseCompatibilityChecks": 4,
+    "browserChecks": 32,
+    "consoleErrors": 0,
+    "screenshots": 12,
+    "visualInspection": "12 screenshots individually inspected",
+    "httpErrors": 0,
+    "canceledRequests": 2,
+    "realApi": "NOT_RUN"
+  },
+  "existingFailures": {
+    "contextLoads": "DashScope API key must be set; 1 error",
+    "lint": "16 errors, 1 warning, unchanged baseline"
+  },
+  "preservedTests": [
+    {
+      "path": "src/test/java/com/yupi/template/baseline/A0BaselineTest.java",
+      "unchanged": true
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1IntegrationTest.java",
+      "unchanged": true
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1PersistenceTest.java",
+      "unchanged": true
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1ReviewLoopTest.java",
+      "unchanged": true
+    },
+    {
+      "path": "src/test/resources/a0/cases.json",
+      "unchanged": true
+    }
+  ],
+  "finalSourceMismatches": [],
+  "evidence": {
+    "backend": "artifacts/a2/runs/2026-09-09T08-34-27-747Z-live/final-backend",
+    "http": "artifacts/a2/runs/2026-09-09T08-34-27-747Z-live/com.yupi.template.intervention.A2HttpIT.txt",
+    "browser": "artifacts/a2/runs/2026-09-09T08-34-27-747Z-live/browser-2026-09-09T08-45-08-590Z",
+    "frontend": "artifacts/a2/runs/2026-09-09T08-37-16-312Z-front"
+  },
+  "containerState": "Original four containers exited at 08:45 UTC, OOM=false; actor unknown. No restart performed. Test containers cleaned."
+}
