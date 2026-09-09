@@ -6,8 +6,8 @@
 | 原平台部署 | 已有 | 用户使用截图；2026-09-09 已检查四个 Docker 容器 |
 | 改造规划 | 已完成 | agent.md + 按需模块 |
 | GitHub MCP | 已验证连接 | get_profile / list_repositories 成功，账号 jifeng-2025 |
-| 个人项目远端 G0 | 已绑定；待首次推送核验 | origin=https://github.com/jifeng-2025/ai-agent-content-platform.git（Public）；原仓库保留为 upstream |
-| 本地 Git 推送认证 | 待首次推送验证 | MCP OAuth 不代表 Git HTTPS/SSH 认证；PATH 未找到 gh，使用系统 Git 凭据管理器 |
+| 个人项目远端 G0 | 已完成 | origin=https://github.com/jifeng-2025/ai-agent-content-platform.git（Public）；main 已推送并核验；原仓库保留为 upstream |
+| 本地 Git 推送认证 | 已验证 | GitHub CLI + Git Credential Manager；账号 jifeng-2025；未保存明文凭据 |
 | A0 基线 / H0 | A0已完成；H0入口已建立，基线非全绿 | [报告与证据](../../artifacts/a0/baseline-report.md)：Mock 5/5两次、打包/类型/构建/Vite/真实文本通过；保留context配置与lint失败 |
 | A1 后端质量 Loop | A1已完成；基线非全绿 | [实现与证据](../../artifacts/a1/report.md)；默认关闭，[A2契约](a1-contract.md) |
 | A2 评审可视化与人工闭环 | 已完成；默认关闭；基线非全绿 | [报告与截图](../../artifacts/a2/report.md)、[接口契约](a2-contract.md)、[验收索引](../../artifacts/a2/validation.json) |
@@ -27,3 +27,5 @@
 2026-09-09 | A1 | 默认关闭的结构化评审与最多2次局部修订；草稿/版本持久化、待人工终态与SSE结束 | [报告](../../artifacts/a1/report.md)、[统计](../../artifacts/a1/validation.json)、[A2契约](a1-contract.md) | Java56/56两次、SSE4/4、编译/类型/build/Vite/独立SQL通过；contextLoads配置失败与lint16错1警告原样保留；真API未跑，未迁移用户库/推送/部署 | 下一任务A2（未进入）。
 
 2026-09-09 | A2 | 评审面板/版本差异、人工接受/编辑重评/单图重试、服务端版本与请求去重、Flex/JDBC事务对齐 | [报告](../../artifacts/a2/report.md)、[72个Java测试/32项浏览器检查](../../artifacts/a2/validation.json)、[契约](a2-contract.md) | 63纯回归+9真实HTTP通过；SSE4/4；类型/build通过；12截图已检查；保留contextLoads与lint16错1警告；云API未跑，原容器结束时退出未重启 | 下一任务A3（未进入）。
+
+2026-09-09 | G0 | 绑定个人公开仓库，保留原仓库为 upstream；.env 忽略、历史路径与密钥模式检查通过；完成 main 首次推送并核验 SHA | https://github.com/jifeng-2025/ai-agent-content-platform | 当前机器 PATH 未刷新 gh，但凭据已由 GitHub CLI/GCM 配置 | 三机从 origin clone/pull/push。
