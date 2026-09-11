@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "kind": "upgrade",
+  "checks": [
+    "actual packaged MainApplication, no JUnit runner",
+    "register/login real HTTP and Redis session",
+    "synthetic legacy content retained",
+    "non-destructive switch-off rollback preserves article count",
+    "Redis login session survives application restart",
+    "same JAR re-enabled; no table or volume dropped"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T11:04:22.727Z",
+      "event": "application health HTTP 200"
+    },
+    {
+      "at": "2026-09-10T11:05:16.161Z",
+      "event": "application health HTTP 200"
+    },
+    {
+      "at": "2026-09-10T11:06:10.899Z",
+      "event": "application health HTTP 200"
+    }
+  ],
+  "jarSha256": "b7ae1922d1439a4dcb22e29234d92dff0f9fe7e95c8ae0a07bd9a3fd388f37c1"
+}

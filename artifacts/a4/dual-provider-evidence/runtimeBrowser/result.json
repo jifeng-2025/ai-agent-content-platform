@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "checks": [
+    "loaded /user/login",
+    "login form",
+    "real backend login",
+    "loaded /article/cancel-case",
+    "cancel terminal visible",
+    "runtime panel rendered",
+    "cancel restored after refresh",
+    "loaded /article/budget-case",
+    "budget terminal visible",
+    "runtime panel rendered",
+    "loaded /article/browser-2026-09-11t03-53-24-035z-recovering",
+    "recovering durable snapshot fixture",
+    "runtime panel rendered",
+    "durable SSE cursor consumed",
+    "real network disconnect reconnect carries cursor",
+    "loaded /article/browser-2026-09-11t03-53-24-035z-uncertain",
+    "uncertain visible",
+    "runtime panel rendered",
+    "mobile uncertainty restored",
+    "runtime panel rendered",
+    "mobile no horizontal overflow",
+    "explicit acknowledgement shown",
+    "retry submitted",
+    "real backend retry debits same run budget",
+    "retry UI action settled",
+    "fresh snapshot settled",
+    "real cancel operation completed",
+    "terminal streams and polling cleaned",
+    "loaded /article/browser-old",
+    "old article remains compatible"
+  ],
+  "errors": [
+    {
+      "type": "error",
+      "args": [
+        "SSE 连接错误:",
+        "Event"
+      ]
+    }
+  ],
+  "networkErrors": [
+    {
+      "requestId": "42288.561",
+      "error": "net::ERR_CONNECTION_CLOSED",
+      "canceled": false
+    },
+    {
+      "requestId": "42288.764",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "42288.768",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "scope": "Actual Chrome with real Spring/MySQL/Redis HTTP; cloud mocked. Recovering visual uses explicitly seeded persisted fixture; actual recovery is separately proven by process tests."
+}

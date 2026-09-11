@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 public class ParallelImageGenerator implements NodeAction {
 
     private final ImageGenerationTool imageGenerationTool;
+    @jakarta.annotation.Resource private com.yupi.template.service.image.ImageProfileStore profiles;
 
     public static final String INPUT_IMAGE_REQUIREMENTS = "imageRequirements";
     public static final String OUTPUT_IMAGES = "images";
@@ -65,6 +66,7 @@ public class ParallelImageGenerator implements NodeAction {
             return Map.of(OUTPUT_IMAGES, new ArrayList<>());
         }
         
+        for(var req:imageRequirements)if(com.yupi.template.service.image.ImageProfile.paid(req.getImageSource()))req.setProfile(profiles.find(state.value("taskId",String.class).orElse(null),req.getImageSource()));
         // 按 imageSource 分组
         Map<String, List<ArticleState.ImageRequirement>> groupedBySource = imageRequirements.stream()
                 .collect(Collectors.groupingBy(ArticleState.ImageRequirement::getImageSource));
@@ -114,15 +116,7 @@ public class ParallelImageGenerator implements NodeAction {
                     for (ArticleState.ImageRequirement req : requirements) {
                         try {
                             ImageGenerationTool.ImageGenerationResult result = 
-                                    imageGenerationTool.generateImageDirect(
-                                            req.getImageSource(),
-                                            req.getKeywords(),
-                                            req.getPrompt(),
-                                            req.getPosition(),
-                                            req.getType(),
-                                            req.getSectionTitle(),
-                                            req.getPlaceholderId()
-                                    );
+                                    generateTool(req);
                             
                             if (result.isSuccess()) {
                                 ArticleState.ImageResult imageResult = convertToImageResult(result);
@@ -142,6 +136,7 @@ public class ParallelImageGenerator implements NodeAction {
                                         imageSource, req.getPosition(), result.getError());
                             }
                         } catch (Exception e) {
+                            if(com.yupi.template.service.image.ImageProfile.paid(req.getImageSource()))throw new java.util.concurrent.CompletionException(e);
                             log.error("图片生成异常: imageSource={}, position={}", 
                                     imageSource, req.getPosition(), e);
                         }
@@ -160,10 +155,15 @@ public class ParallelImageGenerator implements NodeAction {
     /**
      * 转换 ImageGenerationResult 为 ArticleState.ImageResult
      */
+    private ImageGenerationTool.ImageGenerationResult generateTool(ArticleState.ImageRequirement req){
+      if(com.yupi.template.service.image.ImageProfile.paid(req.getImageSource()))return imageGenerationTool.generateImageDirect(req.getImageSource(),req.getKeywords(),req.getPrompt(),req.getPosition(),req.getType(),req.getSectionTitle(),req.getPlaceholderId(),req.getProfile());
+      return imageGenerationTool.generateImageDirect(req.getImageSource(),req.getKeywords(),req.getPrompt(),req.getPosition(),req.getType(),req.getSectionTitle(),req.getPlaceholderId());
+    }
     private ArticleState.ImageResult convertToImageResult(ImageGenerationTool.ImageGenerationResult genResult) {
         ArticleState.ImageResult imageResult = new ArticleState.ImageResult();
         imageResult.setPosition(genResult.getPosition());
         imageResult.setUrl(genResult.getUrl());
+        imageResult.setMetadata(genResult.getMetadata());
         imageResult.setMethod(genResult.getMethod());
         imageResult.setKeywords(genResult.getKeywords());
         imageResult.setSectionTitle(genResult.getSectionTitle());

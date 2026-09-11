@@ -1,0 +1,1081 @@
+{
+  "scope": "final source; excludes private configuration",
+  "files": [
+    {
+      "path": "frontend/.dockerignore",
+      "sha256": "2b4f4e671074c64d921c2f813bb98f969f2f38f96679da005015cf469877de2f"
+    },
+    {
+      "path": "frontend/.editorconfig",
+      "sha256": "9754ea748a8ce8c80dba5b5be8db01d73ff10f78dd43629c8c438814551b6da9"
+    },
+    {
+      "path": "frontend/.gitattributes",
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c"
+    },
+    {
+      "path": "frontend/.gitignore",
+      "sha256": "c74b99855c5ae26d25398cd8fd0b2352a789d7c9011e5f45f31f6a3464cbd9a1"
+    },
+    {
+      "path": "frontend/.prettierrc.json",
+      "sha256": "f676d50058f1d9c72b54328a9a44c0f0df5ad31be3252849ab910ce83123cca6"
+    },
+    {
+      "path": "frontend/Dockerfile",
+      "sha256": "d4b27a2711c79e40e0190f05a6929fb6942969aa2967ea4d1311f2ccd436168b"
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "4345741cb837140671b68df24d1d54acb42a4c92c3bae6c47b1133911a0f161c"
+    },
+    {
+      "path": "frontend/env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "frontend/eslint.config.ts",
+      "sha256": "38ae19f00afb1a921b12cf672188f7093f80b437c60d68711614ddb6e8a47a25"
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "dac5d26a936acb267e7068a9ed90bef3c66cfa26eed5fe1a888e140fe7605471"
+    },
+    {
+      "path": "frontend/nginx.conf",
+      "sha256": "0aebd2734590bd58d2c510979293f5efd91a9927862f0120e2d7c6231730a8a1"
+    },
+    {
+      "path": "frontend/openapi2ts.config.ts",
+      "sha256": "e5477a6bff3f0b4cc7cbc8094fea874388b2addf2f8b356d831964dfdffb688b"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "5c327f3006b64b948895eecd7c7f3dcb67afa8f3f40193f939cabd99fabe8b51"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "c9456cac3fee02a188410e3c37021e532087b272c28d2f0d82c1d6b49918411b"
+    },
+    {
+      "path": "frontend/public/favicon.png",
+      "sha256": "e46d2abcbc997e88bb640ca29bc9b64fd392cb4218f84922710535646ed1b579"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "4a0e82a3a1da577af3916621b5db515137d91f70acb6541fc3f7e412127cb6b4"
+    },
+    {
+      "path": "frontend/src/access.ts",
+      "sha256": "79f9e6202b2d30beeddf2a86ff7e002f49249be2f9eedf6449958ca69eaa5e91"
+    },
+    {
+      "path": "frontend/src/api/articleController.ts",
+      "sha256": "c96fd053df91ca321258f864de21fe725085657d02494dc4b1dd1bdead9124a5"
+    },
+    {
+      "path": "frontend/src/api/healthController.ts",
+      "sha256": "a609bc4ca2b57f7566d6c0d0d7769e2467ad8ec9649ddb79f490ed915621b133"
+    },
+    {
+      "path": "frontend/src/api/index.ts",
+      "sha256": "e041a4a61ec9d3eabf4e4300f3f575d9e39c9f889aea1575124067b1e3a977fc"
+    },
+    {
+      "path": "frontend/src/api/interventions.ts",
+      "sha256": "0ee84e76fa54f8743acb4d66e1babfd4eac4f8028fc9f740d53aadd9d6afcd75"
+    },
+    {
+      "path": "frontend/src/api/paymentController.ts",
+      "sha256": "b54cf65b6bcda0a3bc382d18ca9d1f36fb60283de883f56e489a530b9b246836"
+    },
+    {
+      "path": "frontend/src/api/runtime.ts",
+      "sha256": "647e30c0bb9e857ebd010a63ca81d10a388b186aa6008751210c03425c3d2126"
+    },
+    {
+      "path": "frontend/src/api/statisticsController.ts",
+      "sha256": "af7362c4ccacd8d24f22537b3a725f9676464646caf85e0de4d5728a02c02354"
+    },
+    {
+      "path": "frontend/src/api/typings.d.ts",
+      "sha256": "bc72ed26b542fc6bb17d0a4e273f119106031aabd771e0ca1a7862c121769961"
+    },
+    {
+      "path": "frontend/src/api/userController.ts",
+      "sha256": "29d13b9ea21e361177745684847ba650d58b55cf365ee7923683882c7bd201ed"
+    },
+    {
+      "path": "frontend/src/assets/logo.png",
+      "sha256": "72d31ccb4c8a29c4bf90e01b87dd19fd85765fd12776d52b4b61242716701cf9"
+    },
+    {
+      "path": "frontend/src/components/ArticleReviewPanel.vue",
+      "sha256": "401b9b0e9343051633f055cbd2b9cbe97870c53b53503a812728326969a0415f"
+    },
+    {
+      "path": "frontend/src/components/AuthBrandSection.vue",
+      "sha256": "73a77e1d352eda0606de18d86b26f3bfef06de768c671d9ce70cbfebc07b28c6"
+    },
+    {
+      "path": "frontend/src/components/GlobalFooter.vue",
+      "sha256": "be887998461a6ad6a3c1bb4a9bd859003f961d28b3b6a1363b64c4e616e64f53"
+    },
+    {
+      "path": "frontend/src/components/GlobalHeader.vue",
+      "sha256": "34fb3e284090915840632ced97812ed475f13a72e23b2e656c4018c95052d55b"
+    },
+    {
+      "path": "frontend/src/components/QuickAdvice.vue",
+      "sha256": "01a4fcef7d5b407134d210257e0139ca573dea3be299e2d6d51c66b73fe5c915"
+    },
+    {
+      "path": "frontend/src/components/QuickMedia.vue",
+      "sha256": "8dc4060e60ba657a68e146baa88accaaf8ec835628a42b221c536c0b2d7d1e81"
+    },
+    {
+      "path": "frontend/src/components/StatusBadge.vue",
+      "sha256": "d778675e87cf0edaa73377db5fa5174f023644eda719788079d8bb91810c9762"
+    },
+    {
+      "path": "frontend/src/config/env.example.ts",
+      "sha256": "f85d18365c3b91a658efb44c55acadbd06aba708e369f9c6c6ba7b274d923cca"
+    },
+    {
+      "path": "frontend/src/constants/article.ts",
+      "sha256": "c6782af729957beebaa73cc4a6c1c5e54acd623cb60df7b0376fc406163958f3"
+    },
+    {
+      "path": "frontend/src/constants/index.ts",
+      "sha256": "384d1b5b67fb4f9bd35c746b68966726fbd48bd9f31a0ee9861915933667743d"
+    },
+    {
+      "path": "frontend/src/constants/user.ts",
+      "sha256": "4ac7932d26bd6eca0a17f3ab8f6d97fd18b77456aeedd7403cc1360f7c79fccd"
+    },
+    {
+      "path": "frontend/src/layouts/BasicLayout.vue",
+      "sha256": "3f464b78d63e3167eb8302837f03ecb6288a5fd1aac3e939ed6152bc6e4ba78e"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "fe8238b5dac79aa995a245234d34b7289149e65bbe5e9c0876cb46c577b8f687"
+    },
+    {
+      "path": "frontend/src/pages/HomePage.vue",
+      "sha256": "48fde237053c1a1159c2c2e2f9157e41cb20729aa4504981f777800be212cf58"
+    },
+    {
+      "path": "frontend/src/pages/VipPage.vue",
+      "sha256": "c05c46c07b626f4dd83fba6f5004719242c93bed20a1ae721919fc1a7255c426"
+    },
+    {
+      "path": "frontend/src/pages/admin/ModelSettingsPage.vue",
+      "sha256": "648605e4c92dfa8c4db88db320a8b01e8ca5d26340159f920d41db3f8961e67a"
+    },
+    {
+      "path": "frontend/src/pages/admin/StatisticsPage.vue",
+      "sha256": "cac5e132d61b42e847d4dd32e1ab5fc12353553cf68819f0205953e62fdc5309"
+    },
+    {
+      "path": "frontend/src/pages/admin/UserManagePage.vue",
+      "sha256": "6ae886293614b420cc3f92d50a08aaa2a6ef6349443c034225ae16a70cac01ed"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleCreatePage.vue",
+      "sha256": "249b1c9b37537874e67194c18f7b3b232887351c0ce7d9f528b7c50e06883117"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleDetailPage.vue",
+      "sha256": "0d7ea1ef605820945a4d1f2bd2d301535e4f10be6a85080490e4a22b02205f23"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleListPage.vue",
+      "sha256": "069364cbaf510c2d6677dbf4583765ace0495a96ce1505e20243d1fd23d3cddc"
+    },
+    {
+      "path": "frontend/src/pages/article/QuickCreatePage.vue",
+      "sha256": "dd77eeea14c312694e4a53439b1a4cb21af7e751a9be7d849946803e47506043"
+    },
+    {
+      "path": "frontend/src/pages/article/components/CompletedState.vue",
+      "sha256": "10c91330875bb1ee6deff1a43ab4c82d420501c4234d177538522c90a5d1a5c9"
+    },
+    {
+      "path": "frontend/src/pages/article/components/CreatingState.vue",
+      "sha256": "06250d14fe96a7b5a753caaad7631145366996ed33db92a2859d887a259e8bb6"
+    },
+    {
+      "path": "frontend/src/pages/article/components/InputState.vue",
+      "sha256": "04f5d9b7bd33b5614176d0504015c95e689f4d69af9ccc698f6ec5199d1546dd"
+    },
+    {
+      "path": "frontend/src/pages/article/components/OutlineEditingStage.vue",
+      "sha256": "8e9849faea9d2dce0435511342a830084814d2ae7d278a953828f1692104ad94"
+    },
+    {
+      "path": "frontend/src/pages/article/components/TitleSelectingStage.vue",
+      "sha256": "87a18a1786bb785c42f34ca3080ac5e62309619468e3f9d3235e0081dc65e74e"
+    },
+    {
+      "path": "frontend/src/pages/user/UserLoginPage.vue",
+      "sha256": "b13088645f20673a3d1511d9703ae05b56ddf745078084db7cbd26d021f34f1f"
+    },
+    {
+      "path": "frontend/src/pages/user/UserRegisterPage.vue",
+      "sha256": "46900332511b0ae244ba3d5acdba3c278a1a600246429b928a8b8d28419699e5"
+    },
+    {
+      "path": "frontend/src/request.ts",
+      "sha256": "62d5b20ecf6bd7200ba01ac1ccd6640633adebff18416add57aca58e70462163"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "sha256": "194173663af9348c59d8507430ce932775f46143659d31614fc137e91c46f344"
+    },
+    {
+      "path": "frontend/src/stores/loginUser.ts",
+      "sha256": "aeadde618557f48bc06a91a88ff8d655efa655850799c9f56eb689c36bc21f60"
+    },
+    {
+      "path": "frontend/src/styles/common.css",
+      "sha256": "d06fc1148a3dda2f3108d3f3aa83ac082b073b8b6cfb252dff6e8c60a2f58273"
+    },
+    {
+      "path": "frontend/src/styles/variables.css",
+      "sha256": "ddc0adc23360e932b213a2df26d5ee233be76e686f9bb59405a22d60cfdb4640"
+    },
+    {
+      "path": "frontend/src/utils/article.ts",
+      "sha256": "9fc9f9fec2715eb71e5a67e2cbff12a54218b007029b399ca5cec07aab3a9404"
+    },
+    {
+      "path": "frontend/src/utils/date.ts",
+      "sha256": "e308503f050ca9cbd31c33a318488a36ce1e199e940bf776378e9815e07b2110"
+    },
+    {
+      "path": "frontend/src/utils/markdown.ts",
+      "sha256": "2860f670377e8d89a5cafd815e9c6f3f35c996b1d8a80b600e27fbb342346a96"
+    },
+    {
+      "path": "frontend/src/utils/permission.ts",
+      "sha256": "26a772432df198a9de81a10a0283ef460e50242d20044fa0ba608b5f8939f57a"
+    },
+    {
+      "path": "frontend/src/utils/reviewDiff.ts",
+      "sha256": "a70144770c76d5b7d851455f8af91ab9cfcec0203f06f5f045d5c3d772b1bf83"
+    },
+    {
+      "path": "frontend/src/utils/safeMarkdown.ts",
+      "sha256": "0b1e13b6f6eb19dc580c11cd34a69344c756edd8f5c739f1f1ba1194ff9a6a2b"
+    },
+    {
+      "path": "frontend/src/utils/sse.ts",
+      "sha256": "4a0ae12ba68b3439dbf6cffda42083418d181973549cf4fb7666ea06606eae33"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "sha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "3dd280df663fb5fbe9e85e5981289d27a7120b97a852827dd16e0ac296836d1b"
+    },
+    {
+      "path": "frontend/tsconfig.node.json",
+      "sha256": "1ea52d45c8d207adfd7bb59b478a50fb43114945efd903317706bd6a738c4867"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "sha256": "5c492bc61d8a6fc18e31c595e75f5818b1db2f42952ffd23150dd26189c0e73c"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "2a1b29cba7de1c2fe10a39784c29eb068fdd1265dbd77ba8cd3da222faa76eba"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/MainApplication.java",
+      "sha256": "5c8ecaa3f480770ab75c35b8d2d1a3d4583eeee37beb1f9036443facb02ecde0"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/ArticleAgentOrchestrator.java",
+      "sha256": "204e2361c5cf874c8184938240f9f56545c8d2987b5f5210841bfe6ff74dda3c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ContentGeneratorAgent.java",
+      "sha256": "5395c331445ce2dc5e025e81cc2a90ed1abddc656d55b4a90f3b918db749237e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ContentMergerAgent.java",
+      "sha256": "a3546621937dee3dd532f0b9a6d95c7f1f75fb5b6102c078ea24c09b3624dfb9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ImageAnalyzerAgent.java",
+      "sha256": "c350b1063249904dc0493bf73bd6d1cac231e8999131db5ff19867c0d2682a97"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/OutlineGeneratorAgent.java",
+      "sha256": "886582e935a511b659e57e3bb59948751a7fb80658976e646ab99270e79a1ab6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/TitleGeneratorAgent.java",
+      "sha256": "5d3b41f49962d16fbc124f4098948316178e4120281ae46e5f0538c7e9c47396"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/config/AgentConfig.java",
+      "sha256": "0d122c33f42f3a6b3081493b3d16cda141fd0522ab9e20928be3cd86e2f89998"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/context/StreamHandlerContext.java",
+      "sha256": "71a8669593b4739d45eb7a2e26150b3736f8ce184ff9726a9c7000db46a293c4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/parallel/ParallelImageGenerator.java",
+      "sha256": "a44fb792715fc58b180723e33032baab43621d7f2cd04c22538e2180103679a9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/AdvisoryReviewSkill.java",
+      "sha256": "e002283ffe3528ad2a55a0d93992d215807047122ff2a69465eeee8696f70a30"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ArticleReviewLoop.java",
+      "sha256": "6f60b01a94102760c955b8d0c4deb029c351fdce72f56c2ab110b26599d2d9a8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/DashScopeReviewModelGateway.java",
+      "sha256": "34ddad97004a8e9919506359b2784705d9a2711621436118fdba2f3ffff0a284"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ParagraphDraft.java",
+      "sha256": "f7a0f2351cc396b2a3bdca7ac5b66d6b5cac42e383a110515c7677046b450ced"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ReviewJson.java",
+      "sha256": "971708aed72536dce89d61c66aa021c67de622a15e613f859526500eaae40d17"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ReviewModelGateway.java",
+      "sha256": "380d26331cdc742bb07e021c717d9a3723291e95be3cc2a66805f0e0f2658e47"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ReviewRules.java",
+      "sha256": "6fcaf59ec405f5d8f1594fdbfd21aa18f8b6d23950b9f597f1b1f592098a12fb"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/tools/ImageGenerationTool.java",
+      "sha256": "3b02236aa6073b5303419b73b3a0c89161b0aa94e06c6275611df3af800bb065"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/annotation/AgentExecution.java",
+      "sha256": "feafbfe962a024cf7c08cb92b380a4e1b97c3b3ed2291a0eafa7eac03aa00262"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/annotation/AuthCheck.java",
+      "sha256": "3d1f740ff68cbc1acaa0f826f6fe0422875a0046670e7c8d62f318abedb82a0e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/aop/AgentExecutionAspect.java",
+      "sha256": "46b5d7017e89f30edb2aee669ba1660226bd81afef6388a7576b768eeb2159cf"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/aop/AuthInterceptor.java",
+      "sha256": "61118fe61937eea69de096af92111a88b5c5be967145ca0b351198286c112691"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/BaseResponse.java",
+      "sha256": "21e1d1b32e8d4ae9f99a8df35ce062052c991870d100888f7311bf3da1bd8813"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/DeleteRequest.java",
+      "sha256": "0e837b63107ec2c8ff03481126aa938dc63297c08fe804012547305c4192d10a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/PageRequest.java",
+      "sha256": "9c77f6182bb463519a5f50a08a87ffd3b2783d111ef30e531aca43197fee7eba"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/ResultUtils.java",
+      "sha256": "31e6bf3495e25531bce4c597755b5c0cbf921755f2e7e3ef7ba024319ae5f7b4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/ArticleJdbcConfig.java",
+      "sha256": "2f999c38abf1d3ac48dedc52f32be6df865fc86cc32eb74757175d83a38cf187"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/AsyncConfig.java",
+      "sha256": "36a6559210088f8e1f7ff413d5fa361e4831c36a714a9494a1f9f6593562d408"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/CorsConfig.java",
+      "sha256": "f33fbbc9f74a45b69ae29f39fd504ceecb094e3dd204c03e004fa7f4d13531f6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/CosConfig.java",
+      "sha256": "5a426afa72b528ce60bf7428bee562477ae99870a6cb92dfe3c8a136a97724db"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/DoubaoConfig.java",
+      "sha256": "aab3a7a05665db91a19ddec20b6ada33a04a3e01e4de1c568545133fb91e487a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/EmojiPackConfig.java",
+      "sha256": "639bbf3d449329ceb6a9671630fa8f710560a7edcbd3c6ba74cfa624bc7aeea5"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/IconifyConfig.java",
+      "sha256": "69f493bffb1e5cf284af8e613123157649332c7db8acdbb3183df00b69d44d6c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/JsonConfig.java",
+      "sha256": "2faa22eff9175462b94bd37cd04a384cc58ef429e12e9fd08fdad90f046d3214"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/MermaidConfig.java",
+      "sha256": "fbf9f96c11d0d2633bbcba5f7b323baaf29a17756fb111ec3b61d62974351eec"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/NanoBananaConfig.java",
+      "sha256": "8f93a24fab016646c56806d988e4787ca303566fb2631b2662eec821dd80bfa1"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/PexelsConfig.java",
+      "sha256": "645b97c76a2e61c408f91df7ef212681cb991ebe93dd8f94acb0d54f6b997e6c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/PromptConfig.java",
+      "sha256": "fb4de3d51e0d79bc95bdfeae937937910cc993dc1bd5a2bcb326366114cf2453"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/StripeConfig.java",
+      "sha256": "24c2aafb2b280059a34b0095e6d2def715580a77ce19d623a582831e6cd55b8e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/SvgDiagramConfig.java",
+      "sha256": "e9625dd4fee1429a12f7e22a99da9173c2d08eb4f359ba2e962e1aaf5043897a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/constant/ArticleConstant.java",
+      "sha256": "33b45abbf971f69a1c3204de27843734cc4a6e38541a9ac5fbb9078784c300d9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/constant/PromptConstant.java",
+      "sha256": "60148eca9d7c9bf520dc1e12b727824dda97594d70dd4b08025f21d24246d475"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/constant/UserConstant.java",
+      "sha256": "5bf8c772b66b3864b2d95463f018a80772d2d1e6d1a3734d3314a2d9b4b63c3d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/ArticleController.java",
+      "sha256": "ed4dbfbc6106aea606d0d906c001f5f79d0ac3107fa1074605464880d96d7cf2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/ArticleImageController.java",
+      "sha256": "2986ba20bfce643fb11f979e1e745fba460170287111e6565c3f8f2f647f6d58"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/ArticleInterventionController.java",
+      "sha256": "ba35d112e7ade42f3ee722f6f84cd664232799b8f02d7b007401ef2a527671fd"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/HealthController.java",
+      "sha256": "611666197fa9668f3db77a7ec7e14603838acff1803179bffd3f86d0bc147062"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/PaymentController.java",
+      "sha256": "c09bbf3eb5987da03cb8b5194a31da0d873cfa89288a4c8052c26ffa1615a5b2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/StatisticsController.java",
+      "sha256": "cb72cd300d8667304e041716136d6c78671fa9d3b3b0bf9286bcd25e33be5908"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/StripeWebhookController.java",
+      "sha256": "a2a3ada9d57b81985343c4e6e9831de7d8190a6880cd4f8a74579ddfc822529c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/UserController.java",
+      "sha256": "01aee3db559f471a40690209cde12db6bfdf8717ec4c09175db8348a2b51afe1"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/BusinessException.java",
+      "sha256": "122a8eaea4709114d0b6b4a15d9a82331a4955483555f092f27e3e6482282e2f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/ErrorCode.java",
+      "sha256": "f003c02b1981f71bd2d36ed022e92de974aa271533f3b41a73d0190748d66783"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/GlobalExceptionHandler.java",
+      "sha256": "17cfc8eaae6d3b36706fc5f13220fa9304c772bbe44d017a3e2f81ab20c82337"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/ThrowUtils.java",
+      "sha256": "aedb3c361360b89c41b22bfd27374d2699d0c47a534e454b975868ff82fff76f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/manager/SseEmitterManager.java",
+      "sha256": "5cea13badfcb9f818240adff7b6fe7e7ec58e9cf7cacff8a660f4f0de93b7d1f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/AgentLogMapper.java",
+      "sha256": "107ba0be969ce1ff72a0e3237da6448f1df131709a9134e13fc11e8edac1409e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/ArticleMapper.java",
+      "sha256": "163f74594eed60fc0c61ef351df91d41300f3812743fed9661f2cc46fa050dc9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/PaymentRecordMapper.java",
+      "sha256": "a2d87a544d1511ac6abb0a3ec84f741877686613468d661fd060490d7378fde4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/UserMapper.java",
+      "sha256": "63f5cc0e98b0e50c85f9792a8f5d45bd0ae1b1eec7d823090a0429017c17a55e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleAiModifyOutlineRequest.java",
+      "sha256": "cd5511662698da8d2c691c32cd354415911f2b34fb587b9dfe0b0aa5fd84a57e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleConfirmOutlineRequest.java",
+      "sha256": "09eb70f930e51b411926d86b502ab04594a7fc142177dcec0c93db4ff9f58f6a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleConfirmTitleRequest.java",
+      "sha256": "28f2d7869ebc93bbe7d020d1deb27f71bf7631224e6cd7f2a97ace9690a3c36c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleCreateRequest.java",
+      "sha256": "c7d85edda72abca390348f0fb456f3f4e486abf981075c571f99a3359005ab79"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleQueryRequest.java",
+      "sha256": "eaf49c91eb93d7c0607d8670e2a2cc736b97a1278838e3ff56b3e08df5d39900"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleState.java",
+      "sha256": "909f05b8d6b936f9ab94ccf22b4071ab9eef43f40dbc5401ee154a266cf79729"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/InterventionRequest.java",
+      "sha256": "a4c0cea1cab7faefa60061358357069b303efd2c6946ba6b54611bb0008ff0ff"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/InterventionView.java",
+      "sha256": "638935477700e03fe1701183d4c1519bdef94bbf83b6c247670d72af60ce9d53"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/MediaState.java",
+      "sha256": "ba378c49e32a618074210caf85f0341518b838e2658f30d63c98af98aa5086d2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ReviewResult.java",
+      "sha256": "25ead5af97f0d8b39d9efeb54caf6409d5b35fd8fba629c165e99baaec8a50b4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ReviewTrace.java",
+      "sha256": "40337bfa2560aa5865f90ed1a640179da0a94c63bcff005f6d83b426cb3128b2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/image/ImageData.java",
+      "sha256": "58f2a96846946886b4f7ae4a05e9dbf47c276b1123c28156ad35cc6d94364b22"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/image/ImageRequest.java",
+      "sha256": "b5cdef2ab5b39a8270733262929ee22d0980176669f7cfc84e380f61664f8bd9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserAddRequest.java",
+      "sha256": "c81ca99be6b2705deb0f4b95be0f6116c27210d5509fe32ca6ebf6b866f64470"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserLoginRequest.java",
+      "sha256": "12eed439f1272c3d10093c16858f4e62708ea965b109eb73d845eb834085e186"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserQueryRequest.java",
+      "sha256": "1a6603dd67f44565338ab418e128f34a9d1ec26dd783196ace910391800d46f6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserRegisterRequest.java",
+      "sha256": "58a64ce574d53e23653e4614cea98bc74a1e2aa275ba4919200fd549122d3570"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserUpdateRequest.java",
+      "sha256": "88096640ae946d5eb6abd437b0b3ea1dac8da8dae8028c8b3c65ebadb6ffd496"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/AgentLog.java",
+      "sha256": "b0865d2feb75edf1d2f99dd12dbf0df69fff8889eb20598543d915f6b995d31b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/Article.java",
+      "sha256": "0f4665d3e898a014b43f3ca790ba46d67b9e79037d6053a10f9cf1bae6387055"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/PaymentRecord.java",
+      "sha256": "9fd80bfa1d811972461e31dc2b62fb3e3a3fef4f0318d5df88100371c1713d4d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/User.java",
+      "sha256": "ec6a4dcd2b3b16dddfac1d79a016a7508402864ac49d959afde0ea74a0916a3a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ArticlePhaseEnum.java",
+      "sha256": "2824bdf54f0b0c2153a25b379ef477a7137354f6010ff893bdbd7cbfd3dc53a8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ArticleStatusEnum.java",
+      "sha256": "7647f93001339f1dba20580e510ce216f35922a84745c97ca0a105ba47d153cc"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ArticleStyleEnum.java",
+      "sha256": "87d0ba39b345980a156611365c97586e5cd5eb75b7cb8e1b4958ad10e3c26848"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ImageMethodEnum.java",
+      "sha256": "037c70911ed3f35728b4aa85563a212ca990298972c801653028be89d261d032"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/PaymentStatusEnum.java",
+      "sha256": "9088f3895b5780dc87b6e168d63c5ef0301e6d0cb76707cdb468c4ff7c2081e2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ProductTypeEnum.java",
+      "sha256": "d2d9e4861b3b4761833ebfa5d026c8fbc4e983eaad42aeadfed743e0f2c14b33"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/SseMessageTypeEnum.java",
+      "sha256": "7fb46645496fb2b3e0ffedcbf8cdae41dcdd9b9fbaf4dbf0e843d2b2604d4d62"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/UserRoleEnum.java",
+      "sha256": "c8d70e8edeb554f7e8cbadca36ff5b439c8fe622d066b0c1e14f9a3cba05fae8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/AgentExecutionStats.java",
+      "sha256": "8cd8824901f548b4c20326cc03a726f35579ae8392d65f98941842479676b5f9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/ArticleVO.java",
+      "sha256": "9996701840fdefbef0bb8e607c0e02bc626fafba49ff3a410956a59d08fc71db"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/LoginUserVO.java",
+      "sha256": "8f6f7f57018320247dd675de9d42a3e85ac03d6621a47bba06333414c1a0df90"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/StatisticsVO.java",
+      "sha256": "ad4ae28e72461686a199843f2b09f7f8f6d2566053ad116c35ebc3208a06623c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/UserVO.java",
+      "sha256": "74a456f8ec4fe34b6c545808236959a755c1299cbeb9f43cfd487841851d2518"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ManagedChatModel.java",
+      "sha256": "0ae1240469201da640bbc54f2508b92008fa7a89785aaaeaf0b66913fe85ec75"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelAdminController.java",
+      "sha256": "d79ffe70b83e014484eb12f88f87135665810d0b89816db7a6938e6d48400e43"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelAdminErrors.java",
+      "sha256": "07f96e95fc61bc4e331cb94eaa685c0f27be4138b085a61d5971733c87e9407e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelAdminGuard.java",
+      "sha256": "b519bdf718308a316260e1dd441af6651a0f20216b14968d85a54a8c9981ab82"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelContext.java",
+      "sha256": "c5a3a669a2056947e689ca036de99af55e8882e6b0bf9192ed1959505d0ea145"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelSettings.java",
+      "sha256": "4a6d6d82714c107930758a425e5b7d7d130289cdd4b1f3a039e0bdb9ab4a3766"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelSpec.java",
+      "sha256": "d698fa53afcff3d53d86f205f15ade7412ab8279bf2adb4e4e54c92ffc33bfa9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/ModelVault.java",
+      "sha256": "70368307dff762b890068babfffdf549b59365a0b90e358e8c91f813e983800f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/modelconfig/SafeModelHttp.java",
+      "sha256": "a0d278377b75be5a3a102b0ca48fd690aed0fe3e887e918fb4715109d7484bdc"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/repository/ArticleMediaStore.java",
+      "sha256": "fa014c68983756cdc1bff5d4e265784b634565a6816a7d61344dcea586ebf6ba"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/repository/ReviewTraceStore.java",
+      "sha256": "7da1109b7cbc4fd644c8ed2f27e901dfee7f50798d123e46be07df12e8845e25"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/QuickCreation.java",
+      "sha256": "f1af7a78922cd94d26366cd0c374fc1d0269d0350adccd452c2333aec4ddc6af"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/QuickCreationController.java",
+      "sha256": "a7e9bd6616b9c277869a1848e8a45d6f2898e286da35d9dab8011c1ea10c20d4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/QuickCreationStore.java",
+      "sha256": "43ae26b16e33e23131865b4a6ab9580c43602f63f02929991fa4d13f040958ba"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeConfig.java",
+      "sha256": "8646c3ec078080653e8b600a218174e345daaed1eda7a236f03dca110d7cc627"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeControl.java",
+      "sha256": "3f815f68c409ef25de0ec8060b9a33bf13a28ef59f0c271efc061f5cfe329532"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeController.java",
+      "sha256": "0e2cdd23f877295e7d9de42ef64c8512855f2d05796c117122c1e3e2e083cb4a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeEventStore.java",
+      "sha256": "b24b460f3926002e21fa8969d8fe188bc605848eb7ac35910ade600ff44f5ed2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeEvents.java",
+      "sha256": "7ae2a22477ef4e83a3ced13ca68551a402e760b29956e426aeb30af00445b041"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeExternal.java",
+      "sha256": "88dec0880075b9d9631f3cae3cb7c0d7769d25faddd36e5415278a29fe171215"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeIntake.java",
+      "sha256": "54a43e0e660c81e65fe5e465603a27b628e2bd5910f9432bd67aceb7637d48e6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeLedger.java",
+      "sha256": "fc97f38ff3810a46e76d8d1003555241afc8157300c18e794c10c291168d2bbf"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeProvider.java",
+      "sha256": "3ac6230d4238f681c2f9c47e57ecd762d9f8844399f1fdb2b6a0a35b01341d7a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeScope.java",
+      "sha256": "4bf560359a03046aed732957d8179c2164af406e16e1168c9e7558cb49c41738"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeSingleAttemptConfig.java",
+      "sha256": "554ef78b73f75167a905a8285842d7c618476c3ba9de455f8c63f70b9959edf6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeStop.java",
+      "sha256": "63ee65cc9154215a183fcf1955286ffa9186ad2efa5dfc4211268cd149f7373f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeStore.java",
+      "sha256": "69735721a00524bce94097630ec5cb1e9928fe788d68ad88bfe8d0cc718b936f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeWorker.java",
+      "sha256": "69164455c0fd8ec45240373eb3a3df9afcc867711fe85549153767d6b1cbfcdd"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/AgentLogService.java",
+      "sha256": "e972aef7b9484183d20490b3f5e60af73f597faa1be953b7b2499ecee4987edb"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleAgentService.java",
+      "sha256": "0f887fa799ad43c390c94e25bdc012b1a9cc60b6fc1156c5523e74e2753d944c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleAsyncService.java",
+      "sha256": "4632402b655fb13bb449d9d69d7c265856e918dfa8cc7f88f31a088555b57c45"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleImagePlacement.java",
+      "sha256": "f27917a696ffaf40607a3c677427b54a9048dec88c52c6cb28d9540b1f7e6f74"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleInterventionService.java",
+      "sha256": "1a352f9c11bcab968d39d9bd39b5d4953981977c1bf77dcf695e6a983d0d6d46"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleInterventionWorker.java",
+      "sha256": "d94425fa0c3e1c13b59a92044946101fed9bacfb1a59cb3848a409a7633bbd5f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleMediaProcessor.java",
+      "sha256": "33a4ac3728005b1d87776ce84f86bf528939ebd789d385e0481b17ca9b73c824"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleService.java",
+      "sha256": "242daa5ef05815b7564e365895cea835156a89d83ccc9937f5e728159d15172b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/CosService.java",
+      "sha256": "2357b91b2562b54a7d36b80f8a5732115b64747834b6e616e4b803bcde729b3e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/DemoImageService.java",
+      "sha256": "d2b1eeb6fb6640832a114a556bd49970103a070442906cfee11126ba1dd86196"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/DoubaoImageService.java",
+      "sha256": "edeee2c9490354d80251253c61a3f7258935737b549d1a178ec01941ca85aa05"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/EmojiPackService.java",
+      "sha256": "377b7141232d1ba5e0179076ba2a4f15e6ce34a2286839f22c6b499462afa120"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/IconifyService.java",
+      "sha256": "a47eaca8449e2228e3dc6677f02da4d01096adb8fcbf9084c6ef649550484797"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ImageSearchService.java",
+      "sha256": "a2195d2ffbb9326110817124729ca5a1a850496b10338d4864a031b5d5f3839e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ImageServiceStrategy.java",
+      "sha256": "a67b8c69fb8179f30703472ece1b283d74e997104554009dce8d2da0613722ed"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/MermaidService.java",
+      "sha256": "989e67d9e9324d2d3fa346ea9b2e0a36a8f9bb4ac4a468c278529d226d300994"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/NanoBananaService.java",
+      "sha256": "277874d45501622f5544bac0d35acf019b292e5531ea5b0157f3801224d6584a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/PaymentService.java",
+      "sha256": "34fa73f4cde349ce18c21577e828582fa5f32c7ace2d64fd45c63eb410dae275"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/PexelsService.java",
+      "sha256": "b42303613e773cdce0b4942c78e36a893ecd17da44c45a2e2472531a71908fdf"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/QuotaService.java",
+      "sha256": "eb747b92278fcc176e391d39ba6d53c6eeab1723a8371cd30bed18531918ba3e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/StatisticsService.java",
+      "sha256": "3cde935fcb8744d8b38df169621d29431aba7e3bfffb9e5ffd98169711ac28ea"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/SvgDiagramService.java",
+      "sha256": "99d31cd1b4115924ef378779c79ffc5d63767fc0cff798b7f2a925023cf3b1e8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/UserService.java",
+      "sha256": "180a9cc1053a32b3c460fb8d975bb03d4013b6b01254c37ab30fc14aa604ddb3"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/image/ImageHttpTransport.java",
+      "sha256": "9cf709daf52258b57907c983fe596dbe79e066df52e1d8c34303fd074440ae6d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/image/ImageMetadata.java",
+      "sha256": "16f2203e572bd2414fb504b973032694a7fc6f3b03ad76a8e8fe405f8346884a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/image/ImageProfile.java",
+      "sha256": "463288a68d65400c4c2b5dcba971cd336e342ba659dc12b29db2415d75ca910b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/image/ImageProfileStore.java",
+      "sha256": "da2bdb3d54a7190236d9712085cabd7bf1f4b0dcb15930dbbe477aa23abc11e1"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/image/ImageProviderException.java",
+      "sha256": "ad69303820f2120d87405581f40020a67ae3d0afc8db7ba9180e22e57ec31b0e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/image/ImageProviderProtocol.java",
+      "sha256": "097a6ae6b93406dcfa5bab23f27a17068ba3719fa6485c29f6e01a343b3fd3b8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/AgentLogServiceImpl.java",
+      "sha256": "376bf3c88d89ebc53a9c99d16d0e90572b6b57601f45f5d603e1945d02846cc7"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/ArticleServiceImpl.java",
+      "sha256": "90a4a427bf8a9e24a0e9d8a99b8e530f4da193bb22e7969c26af587b26857051"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/PaymentServiceImpl.java",
+      "sha256": "6c5c215a4c29b7b2623cdacf58f0a2aeec8a26d37585cb0932f6fdafce41e06f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/QuotaServiceImpl.java",
+      "sha256": "74122c084d777096001658082de3820e601a8042227736fa87feca72a5dd12d5"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/StatisticsServiceImpl.java",
+      "sha256": "559a6e9639271a5ef18adfc1a500d1b3f71a8877a61de32d5913e1ea5498d21a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/UserServiceImpl.java",
+      "sha256": "bbc0e569ce3b3ad7047d09bf2f1fb027dd61f13a94a9cc62ec24d4fdee4f31a1"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/storage/CosImageStorage.java",
+      "sha256": "9570c6b05913a2ed7f32695d1507443f8143b8caef21f84da80aac02eb5a4ebc"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/storage/GeneratedImageStore.java",
+      "sha256": "3d1e894170d72b69a05ee503e184bf68b91be9cbea16a6471f0584feda35fe44"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/storage/ImageReferences.java",
+      "sha256": "ec47e5198323eaa016e39f9f29f2b05c05aab6b772e29b66ac46f2d61a5b36e5"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/storage/ImageStorage.java",
+      "sha256": "b6e929a7afea6ab3fb511ab2c87c11c2fac13c7b8225220646162d1ecc2658c3"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/storage/ImageStorageException.java",
+      "sha256": "7c7b5752b555af5bd42bdb33c52134e3bdce4461196bac9b7ba84676263c0358"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/storage/LocalImageStorage.java",
+      "sha256": "dde12c5d9021618da46fe296b4e9df3bf623d176311c60beca193274574941fa"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/utils/GsonUtils.java",
+      "sha256": "a30796c6c1ce4288d7fe6f97c02dc363bb9c14e1da3628652a6f8a2a7f71adb6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/utils/SpringContextUtil.java",
+      "sha256": "5b9d57993dbfcb316fe2f8f09e33c04c474de052b7dedcbfaaa623a290227689"
+    },
+    {
+      "path": "src/main/resources/application-prod.yml",
+      "sha256": "7676b5d19bf92d5bffc07f5e59f3ce7c67543ea1ba8732934ee6cb378ce0e91a"
+    },
+    {
+      "path": "src/main/resources/application.yml",
+      "sha256": "d9c583d3328ccaa33a43932cc47b07653f64bab3dc5f77ef809901cd455c185f"
+    },
+    {
+      "path": "src/main/resources/mapper/UserMapper.xml",
+      "sha256": "70b62c9592fc2d6a89abf46ddd03defbb809b6917c88134ed423307a32a54c5b"
+    },
+    {
+      "path": "src/main/resources/skills/article-advisory-review/SKILL.md",
+      "sha256": "ce3530285dbcd7632f86bb7d8312cd9170ddf4ee61f79c5276dde914a38bc552"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/MainApplicationTests.java",
+      "sha256": "195513fc96159059987904191f1e3ab5f32034073297d276d46649accc01b56f"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/baseline/A0BaselineTest.java",
+      "sha256": "c4cd67120aaffae6f33d41c6708f094acdacb7fa6c9582c0987c82680682259d"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/intervention/A2HttpIT.java",
+      "sha256": "6531c3789a3de6bc8567a983e790d963f389aadfe5b2b85c3ae917c8d0e9a06c"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/intervention/A3HttpIT.java",
+      "sha256": "0b1e615c34085242207129f1986b9f47d5257857537945f57437fca31b031bee"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/modelconfig/TaskModelChoiceTest.java",
+      "sha256": "0fada3a310fd16f6eefc62144d41dbbfb90b33c1185fd34ce85ea79d283e2ba8"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1IntegrationTest.java",
+      "sha256": "8d55868bdb982396626bc17f041c10ed683310104283f737370fcc9a58156342"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1PersistenceTest.java",
+      "sha256": "9c8e4009ead7510768e80c21383e062dd48a73a427a7a8984f24d355dcde63bf"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1ReviewLoopTest.java",
+      "sha256": "6884cf41f26fdb6a9c9f7c467fdb71cfa3e931839175a3c2b8b0d66fb409140a"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A2MediaTest.java",
+      "sha256": "131dbf64950f30441cde176b931e59b35afd2d820167de22c51394abbedcd477"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A2RoundTest.java",
+      "sha256": "47278d5263510e5f4f02055d17c788b32d12341d22df472b7d9643d3fa928164"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A3ReviewResumeTest.java",
+      "sha256": "208220391bd39ac4b9000ddb71abd73af0234b725f082085cfe048b5be0e75b9"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A4DemoMediaTest.java",
+      "sha256": "bc966210c7b9b2bddb0fcfe1825d02fe7777dffde85cda65fb5ff708aa4c23b3"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3BudgetTest.java",
+      "sha256": "f008cba83c1c4aefc29baf07058de995a0c34ca29e679f71ad43c0e236f1be5a"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3ExternalTest.java",
+      "sha256": "ffbd5e7e6c256eade942d8159d60d8fa9c931e09ea9342dbf886f8cbad9fc610"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3ProcessIT.java",
+      "sha256": "acbe51431af87a6961009349e9360256030fef5e09ac977974af33708a8a7a6f"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3StoreIT.java",
+      "sha256": "bcdfaad3159d2b6ce8fdb1398936f854bd4a04309d349243526dda98cdad80d7"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A4MockProviderConfig.java",
+      "sha256": "f3663ac00cc50b748ce5f670ef3c097eec5155adb1a4313cdc284d870f1d8364"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/service/A4DemoTest.java",
+      "sha256": "c198075eed61c1235ed5e325475cda5425f9dc21e3a07488a2b494dc426707f5"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/service/A4ImageProviderTest.java",
+      "sha256": "36aafa277953afd4e26c58ccb6d23a7debdb579b8e2e5a85d13b7cb4a123dbaa"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/service/PlacementAndReviewSkillTest.java",
+      "sha256": "950601a2f5686446d2345065512cb247bf8fd3c02001fa2a75848ddf334cc0d1"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/storage/A4ImageAccessTest.java",
+      "sha256": "53e6eccf408cca7c4855d6495927c042fb679d8665c203e1177d476bcb3f28a8"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/storage/A4StorageBindingTest.java",
+      "sha256": "b84cf0bd3fae5648311385d313cfce4f17940cc4ef3a87179ac71d376de8be84"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/storage/A4StorageTest.java",
+      "sha256": "efb07786b2171db72e2aa9cc59a278f5ff94f5f25477c9996d852b0981d2a051"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/storage/ImageResizeTest.java",
+      "sha256": "e5d4e7d302bad8540d897a55f5c69560822562866af6ecf71c5dcb77d434587a"
+    },
+    {
+      "path": "src/test/resources/a0/cases.json",
+      "sha256": "492da0376cc6b03a47b17f6b79887c8f8f521af1438c20797140acd501f237a6"
+    },
+    {
+      "path": "src/test/resources/application-a2-isolated.properties",
+      "sha256": "440e22dcb7f22f7af9fbb1b3278c581af9ea1cecb0aa488a5336892b1a43629d"
+    }
+  ]
+}

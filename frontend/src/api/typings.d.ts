@@ -43,6 +43,7 @@ declare namespace API {
   }
 
   type ArticleCreateRequest = {
+    requestId?: string
     topic?: string
     style?: string
     enabledImageMethods?: string[]
@@ -187,6 +188,7 @@ declare namespace API {
   }
 
   type ImageItem = {
+    metadata?: { provider: string; model: string; requestId?: string; jobId?: string; usage?: Record<string, number>; errorCategory?: string }
     position?: number
     url?: string
     method?: string

@@ -152,6 +152,7 @@
 </template>
 
 <script setup lang="ts">
+import { downloadArticle } from '@/utils/article'
 import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { message, Modal } from 'ant-design-vue'
@@ -164,7 +165,7 @@ import {
   FileTextOutlined,
   RedoOutlined
 } from '@ant-design/icons-vue'
-import { listArticle, deleteArticle as deleteArticleApi, getArticle } from '@/api/articleController'
+import { listArticle, deleteArticle as deleteArticleApi } from '@/api/articleController'
 import dayjs, { type Dayjs } from 'dayjs'
 
 const router = useRouter()
@@ -298,31 +299,8 @@ const viewArticle = (record: API.ArticleVO) => {
 // 导出文章
 const exportArticle = async (record: API.ArticleVO) => {
   try {
-    const res = await getArticle({ taskId: record.taskId || '' })
-    const article = res.data.data
-    if (!article) {
-      message.error('文章数据不存在')
-      return
-    }
-
-    let markdown = `# ${article.mainTitle}\n\n`
-    markdown += `> ${article.subTitle}\n\n`
-
-    if (article.fullContent) {
-      markdown += article.fullContent
-    } else {
-      markdown += article.content || ''
-    }
-
-    const blob = new Blob([markdown], { type: 'text/markdown' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${article.mainTitle || '文章'}.md`
-    a.click()
-    URL.revokeObjectURL(url)
-
-    message.success('导出成功')
+    await downloadArticle(record.taskId || '', record.mainTitle || '文章', 'zip')
+    message.success('已下载图文包，请完整解压后打开 index.html；article.md 用预览模式查看')
   } catch (error) {
     message.error((error as Error).message || '导出失败')
   }

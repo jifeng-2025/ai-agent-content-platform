@@ -1,7 +1,11 @@
 # GitHub 交付与简单部署
-仅 G0/D1、推送、PR、CI、部署任务读取。当前是检查结果与实施规格，**未创建CI、镜像或部署脚本**。
+仅 G0/D1、推送、PR、CI、部署任务读取。A4仅准备候选发布与隔离Compose验收；CI/GHCR发布/服务器部署仍未实现。
 
-## 已核实的连接状态（2026-09-09）
+## 当前远端状态（2026-09-10）
+
+本机实查 origin 为 https://github.com/jifeng-2025/ai-agent-content-platform.git，upstream 为 https://github.com/yuyuanweb/ai-passage-creator.git。G0已完成，以下首次绑定检查是历史记录，不应重复执行remote修改。A4不提交、不推送、不创建Release。
+
+## G0之前的历史检查（2026-09-09，已被上方状态替代）
 
 - GitHub MCP 已可调用，get_profile 和 list_repositories 成功；账号为 jifeng-2025。当前可读列表中5个仓库未包含本图文平台；不因此断言账号下绝无其他未授权仓库。
 - 本地 origin（fetch/push）仍是 https://github.com/yuyuanweb/ai-passage-creator.git，属于上游；未修改远端。
@@ -9,9 +13,9 @@
 - MCP会话连接不自动配置本地Git HTTPS/SSH认证。PATH未找到gh；Git凭证可独立存在，当前未验证，后续使用系统凭证管理器或SSH，不把token写进命令/remote/.env。
 - .env已被gitignore排除且未跟踪；推送前还须检查实际暂存差异与拟提交历史。忽略规则不能清理已经提交的历史密钥。
 
-## G0：首次绑定自己的仓库
+## G0：首次绑定自己的仓库（历史流程，已完成）
 
-目标URL和可见性尚未确定。用户提供现有URL，或明确选择Fork/新仓库和可见性后执行；不默认发布为公开仓库。
+以下为绑定前的历史流程；当前URL/公开可见性已确定，勿重复执行。原始前提：目标URL和可见性尚未确定。用户提供现有URL，或明确选择Fork/新仓库和可见性后执行；不默认发布为公开仓库。
 
 推荐保留上游历史并Fork；若需要独立私有开发，按上游实际许可证建立新仓库并保留署名，先核验许可证文本，不能只依据README徽章。
 
@@ -81,3 +85,10 @@ CI对外部PR使用只读权限和固定响应，不提供生产密钥；镜像�
 - 服务器地址、资源和域名尚未指定。D1完成标准是可复现部署包与目标环境实际验收，不能仅凭YAML存在声称已上线。
 
 官方依据：[Docker Compose生产部署](https://docs.docker.com/compose/how-tos/production/)、[GitHub Actions发布镜像](https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images)。
+
+历史A4演示候选（已归档pre-dual-provider）：单文字Key候选工程门禁已通过；真实文字授权未齐，真实AI生图按用户决定延后，分发许可未明确，见 [许可核查](../../artifacts/a4/license-review.md) 和 [冒烟准备](../../artifacts/a4/paid-smoke-plan.md)。既往G0首次推送不等于授权本轮自动上传。
+
+2026-09-11双供应商候选：Gemini/豆包适配代码已加入，专项结果见A4报告，用户接手安装/页面/升级/真实体验；此前单文字Key演示PASS已归档。真实体验由用户随后选择一家完成，另一家NOT_RUN；不自动提交/推送/部署。增量为sql/add_image_providers.sql，详见A4用户实战清单。
+
+## 2026-09-11 最新授权
+用户本轮已明确要求修改README并推送当前改造到个人origin；上述A4“不自动提交/推送”是之前轮次范围，不阻止此次授权操作。保留当前main分支正常推送，禁止强推、upstream推送、tag/Release及部署。完整A4/分发许可仍不冒充通过。

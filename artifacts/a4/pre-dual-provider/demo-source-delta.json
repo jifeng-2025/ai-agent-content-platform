@@ -1,0 +1,110 @@
+{
+  "previousSourceId": "c323e006b168a13e224b9885ccd01a23f1dc8c51a4caf496ed10f7ca75c1c848",
+  "previousFiles": 247,
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "files": 251,
+  "changes": [
+    {
+      "path": ".dockerignore",
+      "sha256": "f3d4b57b21588488c651dd828d39e52aaac442a81eb214f92b2f0d542caf6c45",
+      "kind": "added"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "982d1e80f0270b14bf70d4508a3ea39fdb34c720a045e4a932f00de2f51be1a8",
+      "kind": "modified"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "bd6c411988ef581d219673960eb142ca3f80be093eba221723b3965bd0eff058",
+      "kind": "modified"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleCreatePage.vue",
+      "sha256": "341e9e7fea93ae99a426418ada1cc813f37b3232e25c74403fc7809ee65571fa",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ContentMergerAgent.java",
+      "sha256": "a3546621937dee3dd532f0b9a6d95c7f1f75fb5b6102c078ea24c09b3624dfb9",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ImageAnalyzerAgent.java",
+      "sha256": "7879dd24c392744e9da3ed52d67c10022bbf1fc36dec48c1bb14fda9144d755f",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/NanoBananaConfig.java",
+      "sha256": "bead786b37fcb6e8cc00c147949dbf8c1e1e0b6b7ad26de72679bff2bdf0f358",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/ArticleController.java",
+      "sha256": "3aaafb5aafda99a501baeb0d584df1d8570dd0dfec3c272fcd14f2faca5845d6",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ImageMethodEnum.java",
+      "sha256": "3f6803fa41ab2ac211899f428e72a5093022bee70d382acf9a197e2dadc857a1",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeExternal.java",
+      "sha256": "4b13095f522f7f37928e5b5e26ac6c18478da5f16844dc0b42d5a1db841f8d58",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeLedger.java",
+      "sha256": "840d717061c252e5595eb5c978d1c3f05538f7fe714aac6b190c31cbb66e8fbb",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleMediaProcessor.java",
+      "sha256": "53134065edc12d031dd6a0b01833dd171254eb86890d7fecabb4cae5b62ae76d",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/DemoImageService.java",
+      "sha256": "d2b1eeb6fb6640832a114a556bd49970103a070442906cfee11126ba1dd86196",
+      "kind": "added"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ImageServiceStrategy.java",
+      "sha256": "e166bd98075baeeba8520b62a2ed4843773f39e204f506aef2857eb0e5585925",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/NanoBananaService.java",
+      "sha256": "5681d5241629f2a93c261901597be73d260fe36c9e7937b2f9894387bb5d7b84",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/ArticleServiceImpl.java",
+      "sha256": "17ef6ac051e871478db8e69581715a1c589d6a3b38d92258d152cc9a1fd60569",
+      "kind": "modified"
+    },
+    {
+      "path": "src/main/resources/application.yml",
+      "sha256": "b12751cfdde9a8c9e271caa9646facdb88888469d2f56deddb5e6cf8b35cc771",
+      "kind": "modified"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A4DemoMediaTest.java",
+      "sha256": "bc966210c7b9b2bddb0fcfe1825d02fe7777dffde85cda65fb5ff708aa4c23b3",
+      "kind": "added"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A4MockProviderConfig.java",
+      "sha256": "f3663ac00cc50b748ce5f670ef3c097eec5155adb1a4313cdc284d870f1d8364",
+      "kind": "modified"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/service/A4DemoTest.java",
+      "sha256": "c198075eed61c1235ed5e325475cda5425f9dc21e3a07488a2b494dc426707f5",
+      "kind": "added"
+    }
+  ],
+  "removed": [],
+  "note": "Only business/test/build candidate delta; docs and harness are separately fingerprinted"
+}

@@ -1,0 +1,20 @@
+{
+  "status": "FAIL",
+  "error": "TimeoutError: The operation was aborted due to timeout",
+  "checks": [],
+  "timeline": [
+    {
+      "at": "2026-09-10T04:46:12.310Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T04:46:12.419Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T04:46:12.732Z",
+      "method": "POST",
+      "path": "/user/register"
+    }
+  ]
+}

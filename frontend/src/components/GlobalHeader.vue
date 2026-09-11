@@ -124,6 +124,7 @@ const originItems = [
     label: '数据',
     admin: true,
   },
+  { key: '/admin/models', icon: SettingOutlined, label: '模型设置', admin: true },
 ]
 
 // 过滤菜单项

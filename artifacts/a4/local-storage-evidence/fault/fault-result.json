@@ -1,0 +1,153 @@
+{
+  "status": "PASS",
+  "checks": [
+    "commit before dispatch is durably QUEUED",
+    "no provider effect before dispatch",
+    "recovered title submitted once",
+    "completed title reused after process restart",
+    "supplier result durable before application receives it",
+    "external success recovered by query without another submission",
+    "final persisted draft retained",
+    "late old worker cannot replace recovered checkpoint",
+    "two actual worker processes produce one provider submission",
+    "cancel terminal survives late HTTP response",
+    "late cancelled result not committed",
+    "SSE replay recovers cancellation terminal"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T07:45:18.853Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T07:45:19.013Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T07:46:04.213Z",
+      "event": "authentication HTTP readiness"
+    },
+    {
+      "at": "2026-09-10T07:46:04.561Z",
+      "method": "POST",
+      "path": "/user/register"
+    },
+    {
+      "at": "2026-09-10T07:46:06.523Z",
+      "method": "POST",
+      "path": "/user/login"
+    },
+    {
+      "at": "2026-09-10T07:46:06.825Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T07:46:08.962Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 0
+    },
+    {
+      "at": "2026-09-10T07:50:13.466Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T07:50:15.575Z",
+      "event": "queued creation recovered"
+    },
+    {
+      "at": "2026-09-10T07:50:17.105Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 1
+    },
+    {
+      "at": "2026-09-10T07:54:07.177Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T07:54:09.196Z",
+      "method": "POST",
+      "path": "/article/confirm-title"
+    },
+    {
+      "at": "2026-09-10T07:54:19.423Z",
+      "event": "outline checkpoint saved"
+    },
+    {
+      "at": "2026-09-10T07:54:19.862Z",
+      "method": "POST",
+      "path": "/article/confirm-outline"
+    },
+    {
+      "at": "2026-09-10T07:54:21.562Z",
+      "event": "external body succeeded while local save pending"
+    },
+    {
+      "at": "2026-09-10T07:54:23.592Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 2
+    },
+    {
+      "at": "2026-09-10T07:58:02.899Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T07:58:05.756Z",
+      "event": "external job queried and full task completed"
+    },
+    {
+      "at": "2026-09-10T08:00:38.816Z",
+      "event": "worker2 JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T08:00:39.221Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T08:00:48.794Z",
+      "event": "one worker has in-flight external job"
+    },
+    {
+      "at": "2026-09-10T08:00:49.410Z",
+      "event": "pause old worker",
+      "oldRole": "backend"
+    },
+    {
+      "at": "2026-09-10T08:01:04.738Z",
+      "event": "other worker reclaimed expired lease"
+    },
+    {
+      "at": "2026-09-10T08:01:05.885Z",
+      "event": "new fence saved queried result"
+    },
+    {
+      "at": "2026-09-10T08:01:10.462Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T08:01:10.961Z",
+      "event": "cancel has in-flight call"
+    },
+    {
+      "at": "2026-09-10T08:01:10.961Z",
+      "method": "GET",
+      "path": "/article/e2a830027b46487383a932319ce4238b/runtime"
+    },
+    {
+      "at": "2026-09-10T08:01:11.571Z",
+      "method": "POST",
+      "path": "/article/e2a830027b46487383a932319ce4238b/runtime"
+    }
+  ],
+  "taskIds": {
+    "id": "5b06331caf3a453c98eb346201e363ce",
+    "concurrent": "c05cd4f0395e4f0993da9ca34f9d5a7c",
+    "cancelled": "e2a830027b46487383a932319ce4238b"
+  },
+  "scope": "actual killed/restarted Spring JVMs + two workers + real MySQL/Redis/HTTP; local query-capable mock supplier"
+}

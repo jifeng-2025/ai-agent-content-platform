@@ -1,0 +1,112 @@
+{
+  "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z",
+  "results": [
+    {
+      "task": "sse",
+      "exitCode": 0,
+      "status": "PASS",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--cpus=2",
+        "--memory=3g",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\ts-cache,target=/work/frontend/node_modules/.tmp",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\vite-temp,target=/work/frontend/node_modules/.vite-temp",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "node",
+        "../a3-sse-test.cjs"
+      ]
+    },
+    {
+      "task": "type-check",
+      "exitCode": 0,
+      "status": "PASS",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--cpus=2",
+        "--memory=3g",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\ts-cache,target=/work/frontend/node_modules/.tmp",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\vite-temp,target=/work/frontend/node_modules/.vite-temp",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "npm",
+        "run",
+        "type-check"
+      ]
+    },
+    {
+      "task": "build",
+      "exitCode": 0,
+      "status": "PASS",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--cpus=2",
+        "--memory=3g",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\ts-cache,target=/work/frontend/node_modules/.tmp",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\vite-temp,target=/work/frontend/node_modules/.vite-temp",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "npm",
+        "run",
+        "build"
+      ]
+    },
+    {
+      "task": "lint:check",
+      "exitCode": 1,
+      "status": "FAIL",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--cpus=2",
+        "--memory=3g",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\ts-cache,target=/work/frontend/node_modules/.tmp",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z\\vite-temp,target=/work/frontend/node_modules/.vite-temp",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "npm",
+        "run",
+        "lint:check"
+      ]
+    }
+  ]
+}

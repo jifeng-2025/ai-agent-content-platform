@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-10T05:10:22.753Z",
+  "exitCode": 0,
+  "containers": [
+    "ai-passage-frontend\tExited (0) 20 hours ago",
+    "ai-passage-backend\tExited (143) 20 hours ago",
+    "ai-passage-redis\tExited (0) 20 hours ago",
+    "ai-passage-mysql\tExited (0) 20 hours ago"
+  ],
+  "scope": "Dedicated A4 Compose and A3 final-version test resources cleaned. Original user containers remain exited, deliberately stopped by user.",
+  "userServicesChanged": false
+}

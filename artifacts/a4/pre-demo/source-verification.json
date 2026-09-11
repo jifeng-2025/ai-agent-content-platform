@@ -1,0 +1,33 @@
+{
+  "sourceId": "c323e006b168a13e224b9885ccd01a23f1dc8c51a4caf496ed10f7ca75c1c848",
+  "snapshots": {
+    "front": {
+      "files": 68,
+      "different": []
+    },
+    "http": {
+      "files": 235,
+      "different": []
+    },
+    "mock": {
+      "files": 235,
+      "different": []
+    },
+    "fault": {
+      "files": 235,
+      "different": []
+    },
+    "store": {
+      "files": 167,
+      "different": []
+    }
+  },
+  "currentDifferences": [],
+  "configurationDifferences": [
+    "frontend/src/config/env.ts = relative /api",
+    "a2-isolated test profile, dedicated database/Redis endpoints",
+    "a4-isolated test-only HTTP adapter plugin for actual packaged application",
+    "Process fault first dispatcher delay only; default service flags remain off"
+  ],
+  "failures": []
+}

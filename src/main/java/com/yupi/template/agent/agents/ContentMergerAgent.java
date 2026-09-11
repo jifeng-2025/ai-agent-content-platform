@@ -82,6 +82,8 @@ public class ContentMergerAgent implements NodeAction {
                 String description = image.getDescription() != null ? image.getDescription() : "配图";
                 String imageMarkdown = "![" + description + "](" + image.getUrl() + ")";
                 
+                var source=com.yupi.template.model.enums.ImageMethodEnum.getByValue(image.getMethod());
+                if(source!=null && source.isFallback()) imageMarkdown+="\n\n> 演示/占位或降级图片，非AI生图，不保证语义匹配。";
                 if (fullContent.contains(placeholder)) {
                     fullContent = fullContent.replace(placeholder, imageMarkdown);
                     log.info("成功替换占位符: {} -> {}", placeholder, imageMarkdown.substring(0, Math.min(50, imageMarkdown.length())));

@@ -1,0 +1,88 @@
+{
+  "status": "FAIL",
+  "error": "Error: final persisted draft retained\n    at check (file:///D:/2026codex/ai-passage-creator/tools/dev-harness/a3-fault.mjs:12:53)\n    at file:///D:/2026codex/ai-passage-creator/tools/dev-harness/a3-fault.mjs:38:2",
+  "checks": [
+    "commit before dispatch is durably QUEUED",
+    "no provider effect before dispatch",
+    "recovered title submitted once",
+    "completed title reused after process restart",
+    "supplier result durable before application receives it",
+    "external success recovered by query without another submission"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T03:08:21.362Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T03:08:21.406Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T03:08:21.722Z",
+      "method": "POST",
+      "path": "/user/login"
+    },
+    {
+      "at": "2026-09-10T03:08:25.590Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T03:08:27.965Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 0
+    },
+    {
+      "at": "2026-09-10T03:12:12.692Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:12:14.721Z",
+      "event": "queued creation recovered"
+    },
+    {
+      "at": "2026-09-10T03:12:15.989Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 1
+    },
+    {
+      "at": "2026-09-10T03:15:21.063Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:15:23.010Z",
+      "method": "POST",
+      "path": "/article/confirm-title"
+    },
+    {
+      "at": "2026-09-10T03:15:33.682Z",
+      "event": "outline checkpoint saved"
+    },
+    {
+      "at": "2026-09-10T03:15:34.095Z",
+      "method": "POST",
+      "path": "/article/confirm-outline"
+    },
+    {
+      "at": "2026-09-10T03:15:35.633Z",
+      "event": "external body succeeded while local save pending"
+    },
+    {
+      "at": "2026-09-10T03:15:37.361Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 2
+    },
+    {
+      "at": "2026-09-10T03:18:08.714Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:18:11.094Z",
+      "event": "external job queried and full task completed"
+    }
+  ]
+}

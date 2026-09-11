@@ -76,7 +76,7 @@ article.agent.intervention.enabled=true
 
 关闭intervention即可回到原A1体验；需要时再关闭review-loop。保留新增表/历史，不反向缩列或删除数据。已暂停任务不会在关闭开关后自动继续。未默认启动或重启既有服务。
 
-**结束时环境观察**：原4个ai-passage容器在08:45 UTC（北京时间16:45）收到停止信号并退出，OOM=false；动作来源无法由Docker事件确认。本次发出的清理命令仅指定a2-live前缀容器/网络，没有重启原服务。[退出事件](container-events.txt)、[结束状态](final-user-container-state.txt)。开始时原服务运行，结束时已退出，不能描述为全程健康。所有A2测试容器已清理；源码、日志、截图保留。
+**结束时环境观察**：原4个ai-passage容器在08:45 UTC（北京时间16:45）收到停止信号并退出，OOM=false；用户已于2026-09-10确认这是主动停止，不作为故障修复。本次发出的清理命令仅指定a2-live前缀容器/网络，没有重启原服务。[退出事件](container-events.txt)、[结束状态](final-user-container-state.txt)。开始时原服务运行，结束时已退出，不能描述为全程健康。所有A2测试容器已清理；源码、日志、截图保留。
 
 ## A3依赖与待办
 

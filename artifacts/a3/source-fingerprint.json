@@ -1,0 +1,1680 @@
+{
+  "generatedAt": "2026-09-10T03:53:21.805Z",
+  "head": "09b539f9ace45e40d2c5f57ad1f6cea49c19a603",
+  "algorithm": "SHA-256",
+  "scope": "Tracked and non-ignored source, tests, SQL, harness and documentation; excludes artifacts, local secrets and dependency caches",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "826bf5ea4a143c4ff07ae3a53ee33a731ac33709f04c8c94dc0ef6e94a4315c9"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "a1ae04cb446a550a7cd5cfc220cf2adae00d86b710dfb3c4a9b90d895b206c01"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "f3dbb210d8bff2554564a5b4311d8bf706a648ff5e0c0a7a58c65095d2b4093f"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "11f2527c8dac1e877f1c97dedb0cd1455ed399f8da0657920b4f716c0c266bc5"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f1757c76199fe4d289d0409750bb64f0267679b177dfd1c71838dab818bcbece"
+    },
+    {
+      "path": "STRIPE_SETUP.md",
+      "sha256": "5ff9e9527224b515aa9880797b790eb9b9a5720e3391cf26bc5dd95eb3cb4b29"
+    },
+    {
+      "path": "VIP_FEATURES.md",
+      "sha256": "3a2ebaace66ed19ac13f53d228fea1277f1188cedcb388adf512ffcca4b0b8d1"
+    },
+    {
+      "path": "agent.md",
+      "sha256": "269265150ccd64d08d150ec4b434475a30123753e0570e638ff2bde2b25ab71a"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "7fbb3f411b7fa7cc6d97a0dbe0fb1520281f0f0474716aab3bd17e0efb93d5c5"
+    },
+    {
+      "path": "docs/agent/00-baseline.md",
+      "sha256": "c943922e2117f5deb939a120d50cb6ce577a72c1079136196fb62b01cd1e9725"
+    },
+    {
+      "path": "docs/agent/10-a-minimum.md",
+      "sha256": "c0995ebf56bf7f53d81d1632a0088eff89eeff08e5850966801fd29f2eb0dc24"
+    },
+    {
+      "path": "docs/agent/20-content-runtime.md",
+      "sha256": "98e3c582da1e329e81262c5810d95677dc7c7377c3634918f55edc7eaf8842c9"
+    },
+    {
+      "path": "docs/agent/30-b-research.md",
+      "sha256": "901943ba3ddeef8f64cb3c1897356894f9f83ae68f607a778a7b7d546e729fd8"
+    },
+    {
+      "path": "docs/agent/40-dev-harness.md",
+      "sha256": "13326581601e9944ea7271c176eca233b2d2b7c22c69327a559e2074329c7ddb"
+    },
+    {
+      "path": "docs/agent/50-github-deploy.md",
+      "sha256": "fee3bd1fac9be105e876574aa1e62b6e4aa117ca6aad237e0ce205565d80f7b2"
+    },
+    {
+      "path": "docs/agent/60-evaluation.md",
+      "sha256": "1930492db0271d15d43dc33a48480eadeea2c341cf8040f05a9d8d66e293498c"
+    },
+    {
+      "path": "docs/agent/70-roadmap.md",
+      "sha256": "c46fdbee6843e5bb0b8b65e2471e601e111fba48dd9f2d59e5ca006466788bf3"
+    },
+    {
+      "path": "docs/agent/90-sources.md",
+      "sha256": "35cb9486825c3ab5515c6b6f04761aa0c8cb088665076b3ce5ced19f571962be"
+    },
+    {
+      "path": "docs/agent/a1-contract.md",
+      "sha256": "cca1a6c23b9135039a055b027533460d6b288dcf2751a97f30c8861706a36d24"
+    },
+    {
+      "path": "docs/agent/a2-contract.md",
+      "sha256": "51ddd37fe5999863d02451604823271d14d43bd013fcbcb626876b56fe4e17df"
+    },
+    {
+      "path": "docs/agent/a3-contract.md",
+      "sha256": "a1a0c0b91e5452caca0a6a200eee80e7628dd56d87cfd7452adc9f681c724c48"
+    },
+    {
+      "path": "docs/agent/status.md",
+      "sha256": "63c6c3de6733d59bac97add4f0d79ada0497c8c212c773280cb4f572aa940c41"
+    },
+    {
+      "path": "frontend/.dockerignore",
+      "sha256": "2b4f4e671074c64d921c2f813bb98f969f2f38f96679da005015cf469877de2f"
+    },
+    {
+      "path": "frontend/.editorconfig",
+      "sha256": "9754ea748a8ce8c80dba5b5be8db01d73ff10f78dd43629c8c438814551b6da9"
+    },
+    {
+      "path": "frontend/.gitattributes",
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c"
+    },
+    {
+      "path": "frontend/.gitignore",
+      "sha256": "c74b99855c5ae26d25398cd8fd0b2352a789d7c9011e5f45f31f6a3464cbd9a1"
+    },
+    {
+      "path": "frontend/.prettierrc.json",
+      "sha256": "f676d50058f1d9c72b54328a9a44c0f0df5ad31be3252849ab910ce83123cca6"
+    },
+    {
+      "path": "frontend/Dockerfile",
+      "sha256": "d4b27a2711c79e40e0190f05a6929fb6942969aa2967ea4d1311f2ccd436168b"
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "4345741cb837140671b68df24d1d54acb42a4c92c3bae6c47b1133911a0f161c"
+    },
+    {
+      "path": "frontend/env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "frontend/eslint.config.ts",
+      "sha256": "38ae19f00afb1a921b12cf672188f7093f80b437c60d68711614ddb6e8a47a25"
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "dac5d26a936acb267e7068a9ed90bef3c66cfa26eed5fe1a888e140fe7605471"
+    },
+    {
+      "path": "frontend/nginx.conf",
+      "sha256": "0aebd2734590bd58d2c510979293f5efd91a9927862f0120e2d7c6231730a8a1"
+    },
+    {
+      "path": "frontend/openapi2ts.config.ts",
+      "sha256": "e5477a6bff3f0b4cc7cbc8094fea874388b2addf2f8b356d831964dfdffb688b"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "5c327f3006b64b948895eecd7c7f3dcb67afa8f3f40193f939cabd99fabe8b51"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "c9456cac3fee02a188410e3c37021e532087b272c28d2f0d82c1d6b49918411b"
+    },
+    {
+      "path": "frontend/public/favicon.png",
+      "sha256": "e46d2abcbc997e88bb640ca29bc9b64fd392cb4218f84922710535646ed1b579"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "4a0e82a3a1da577af3916621b5db515137d91f70acb6541fc3f7e412127cb6b4"
+    },
+    {
+      "path": "frontend/src/access.ts",
+      "sha256": "79f9e6202b2d30beeddf2a86ff7e002f49249be2f9eedf6449958ca69eaa5e91"
+    },
+    {
+      "path": "frontend/src/api/articleController.ts",
+      "sha256": "c96fd053df91ca321258f864de21fe725085657d02494dc4b1dd1bdead9124a5"
+    },
+    {
+      "path": "frontend/src/api/healthController.ts",
+      "sha256": "a609bc4ca2b57f7566d6c0d0d7769e2467ad8ec9649ddb79f490ed915621b133"
+    },
+    {
+      "path": "frontend/src/api/index.ts",
+      "sha256": "e041a4a61ec9d3eabf4e4300f3f575d9e39c9f889aea1575124067b1e3a977fc"
+    },
+    {
+      "path": "frontend/src/api/interventions.ts",
+      "sha256": "3167046910ff21bc6a0f50eed4ecf529af4005989d63407960d3358aefe87cbb"
+    },
+    {
+      "path": "frontend/src/api/paymentController.ts",
+      "sha256": "b54cf65b6bcda0a3bc382d18ca9d1f36fb60283de883f56e489a530b9b246836"
+    },
+    {
+      "path": "frontend/src/api/runtime.ts",
+      "sha256": "647e30c0bb9e857ebd010a63ca81d10a388b186aa6008751210c03425c3d2126"
+    },
+    {
+      "path": "frontend/src/api/statisticsController.ts",
+      "sha256": "af7362c4ccacd8d24f22537b3a725f9676464646caf85e0de4d5728a02c02354"
+    },
+    {
+      "path": "frontend/src/api/typings.d.ts",
+      "sha256": "099369d6fdc0442c7eeb822fddc4b9fa697b7178e52077d34cf5e2ddf17cf44e"
+    },
+    {
+      "path": "frontend/src/api/userController.ts",
+      "sha256": "29d13b9ea21e361177745684847ba650d58b55cf365ee7923683882c7bd201ed"
+    },
+    {
+      "path": "frontend/src/assets/logo.png",
+      "sha256": "72d31ccb4c8a29c4bf90e01b87dd19fd85765fd12776d52b4b61242716701cf9"
+    },
+    {
+      "path": "frontend/src/components/ArticleReviewPanel.vue",
+      "sha256": "b2c8c174e816e9072a27f0ca5919aec70ba547542d2f702448cafcdbc2841fa7"
+    },
+    {
+      "path": "frontend/src/components/AuthBrandSection.vue",
+      "sha256": "73a77e1d352eda0606de18d86b26f3bfef06de768c671d9ce70cbfebc07b28c6"
+    },
+    {
+      "path": "frontend/src/components/GlobalFooter.vue",
+      "sha256": "be887998461a6ad6a3c1bb4a9bd859003f961d28b3b6a1363b64c4e616e64f53"
+    },
+    {
+      "path": "frontend/src/components/GlobalHeader.vue",
+      "sha256": "c0be963d73809c58d43992f9bc2cc077e7cfaab9172c60247eeb315f2516b6a9"
+    },
+    {
+      "path": "frontend/src/components/StatusBadge.vue",
+      "sha256": "d778675e87cf0edaa73377db5fa5174f023644eda719788079d8bb91810c9762"
+    },
+    {
+      "path": "frontend/src/config/env.example.ts",
+      "sha256": "f85d18365c3b91a658efb44c55acadbd06aba708e369f9c6c6ba7b274d923cca"
+    },
+    {
+      "path": "frontend/src/constants/article.ts",
+      "sha256": "c6782af729957beebaa73cc4a6c1c5e54acd623cb60df7b0376fc406163958f3"
+    },
+    {
+      "path": "frontend/src/constants/index.ts",
+      "sha256": "384d1b5b67fb4f9bd35c746b68966726fbd48bd9f31a0ee9861915933667743d"
+    },
+    {
+      "path": "frontend/src/constants/user.ts",
+      "sha256": "4ac7932d26bd6eca0a17f3ab8f6d97fd18b77456aeedd7403cc1360f7c79fccd"
+    },
+    {
+      "path": "frontend/src/layouts/BasicLayout.vue",
+      "sha256": "3f464b78d63e3167eb8302837f03ecb6288a5fd1aac3e939ed6152bc6e4ba78e"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "fe8238b5dac79aa995a245234d34b7289149e65bbe5e9c0876cb46c577b8f687"
+    },
+    {
+      "path": "frontend/src/pages/HomePage.vue",
+      "sha256": "48fde237053c1a1159c2c2e2f9157e41cb20729aa4504981f777800be212cf58"
+    },
+    {
+      "path": "frontend/src/pages/VipPage.vue",
+      "sha256": "c05c46c07b626f4dd83fba6f5004719242c93bed20a1ae721919fc1a7255c426"
+    },
+    {
+      "path": "frontend/src/pages/admin/StatisticsPage.vue",
+      "sha256": "cac5e132d61b42e847d4dd32e1ab5fc12353553cf68819f0205953e62fdc5309"
+    },
+    {
+      "path": "frontend/src/pages/admin/UserManagePage.vue",
+      "sha256": "6ae886293614b420cc3f92d50a08aaa2a6ef6349443c034225ae16a70cac01ed"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleCreatePage.vue",
+      "sha256": "2ffda8f1dc0c2bc69ac31ec98dc04f3c1aed40a9a7f8c9ce373de7718b774b8a"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleDetailPage.vue",
+      "sha256": "8ae0780dbd0570553db13f53f03201a6e42478582e748ce748b09814fa7d8208"
+    },
+    {
+      "path": "frontend/src/pages/article/ArticleListPage.vue",
+      "sha256": "069364cbaf510c2d6677dbf4583765ace0495a96ce1505e20243d1fd23d3cddc"
+    },
+    {
+      "path": "frontend/src/pages/article/components/CompletedState.vue",
+      "sha256": "10c91330875bb1ee6deff1a43ab4c82d420501c4234d177538522c90a5d1a5c9"
+    },
+    {
+      "path": "frontend/src/pages/article/components/CreatingState.vue",
+      "sha256": "06250d14fe96a7b5a753caaad7631145366996ed33db92a2859d887a259e8bb6"
+    },
+    {
+      "path": "frontend/src/pages/article/components/InputState.vue",
+      "sha256": "04f5d9b7bd33b5614176d0504015c95e689f4d69af9ccc698f6ec5199d1546dd"
+    },
+    {
+      "path": "frontend/src/pages/article/components/OutlineEditingStage.vue",
+      "sha256": "8e9849faea9d2dce0435511342a830084814d2ae7d278a953828f1692104ad94"
+    },
+    {
+      "path": "frontend/src/pages/article/components/TitleSelectingStage.vue",
+      "sha256": "87a18a1786bb785c42f34ca3080ac5e62309619468e3f9d3235e0081dc65e74e"
+    },
+    {
+      "path": "frontend/src/pages/user/UserLoginPage.vue",
+      "sha256": "b13088645f20673a3d1511d9703ae05b56ddf745078084db7cbd26d021f34f1f"
+    },
+    {
+      "path": "frontend/src/pages/user/UserRegisterPage.vue",
+      "sha256": "46900332511b0ae244ba3d5acdba3c278a1a600246429b928a8b8d28419699e5"
+    },
+    {
+      "path": "frontend/src/request.ts",
+      "sha256": "62d5b20ecf6bd7200ba01ac1ccd6640633adebff18416add57aca58e70462163"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "sha256": "36c63984cd243748c0d34a833a481a1fbf8bffb376731a2917b61ed943ba233c"
+    },
+    {
+      "path": "frontend/src/stores/loginUser.ts",
+      "sha256": "aeadde618557f48bc06a91a88ff8d655efa655850799c9f56eb689c36bc21f60"
+    },
+    {
+      "path": "frontend/src/styles/common.css",
+      "sha256": "d06fc1148a3dda2f3108d3f3aa83ac082b073b8b6cfb252dff6e8c60a2f58273"
+    },
+    {
+      "path": "frontend/src/styles/variables.css",
+      "sha256": "ddc0adc23360e932b213a2df26d5ee233be76e686f9bb59405a22d60cfdb4640"
+    },
+    {
+      "path": "frontend/src/utils/article.ts",
+      "sha256": "9fc9f9fec2715eb71e5a67e2cbff12a54218b007029b399ca5cec07aab3a9404"
+    },
+    {
+      "path": "frontend/src/utils/date.ts",
+      "sha256": "e308503f050ca9cbd31c33a318488a36ce1e199e940bf776378e9815e07b2110"
+    },
+    {
+      "path": "frontend/src/utils/markdown.ts",
+      "sha256": "2860f670377e8d89a5cafd815e9c6f3f35c996b1d8a80b600e27fbb342346a96"
+    },
+    {
+      "path": "frontend/src/utils/permission.ts",
+      "sha256": "26a772432df198a9de81a10a0283ef460e50242d20044fa0ba608b5f8939f57a"
+    },
+    {
+      "path": "frontend/src/utils/reviewDiff.ts",
+      "sha256": "a70144770c76d5b7d851455f8af91ab9cfcec0203f06f5f045d5c3d772b1bf83"
+    },
+    {
+      "path": "frontend/src/utils/safeMarkdown.ts",
+      "sha256": "27227b9cd65880764f73b164c889f32ba51e3452448054ea1912939110ae4e84"
+    },
+    {
+      "path": "frontend/src/utils/sse.ts",
+      "sha256": "4a0ae12ba68b3439dbf6cffda42083418d181973549cf4fb7666ea06606eae33"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "sha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "3dd280df663fb5fbe9e85e5981289d27a7120b97a852827dd16e0ac296836d1b"
+    },
+    {
+      "path": "frontend/tsconfig.node.json",
+      "sha256": "1ea52d45c8d207adfd7bb59b478a50fb43114945efd903317706bd6a738c4867"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "sha256": "5c492bc61d8a6fc18e31c595e75f5818b1db2f42952ffd23150dd26189c0e73c"
+    },
+    {
+      "path": "go-backend/.dockerignore",
+      "sha256": "e5ae2ac18278652cec0da4106d5e024391e3d021732cee928a72ba5d6e39c530"
+    },
+    {
+      "path": "go-backend/.gitignore",
+      "sha256": "b1a263aa2a9d437941694dc0a8e4cc585ed6e94890b4eae6d5d53c47dd9d046f"
+    },
+    {
+      "path": "go-backend/DOCKER.md",
+      "sha256": "00354d0a1208dcff6e68f0f4e2f9dd3e058305cd5f9c8560fe361b94ed7410fd"
+    },
+    {
+      "path": "go-backend/Dockerfile",
+      "sha256": "8e0fe6e0c4ebe2fdd3ee55f0696835e4e7b77e12bd0840b9109292d04722d786"
+    },
+    {
+      "path": "go-backend/cmd/server/main.go",
+      "sha256": "bf8209c6fe6085b84087e0a8d19a51696d797280da6c53b78dc19f817bf8ac55"
+    },
+    {
+      "path": "go-backend/config.yaml.example",
+      "sha256": "e8838d937e2fea648bceecedafe01496ba6095e77a36a2972b3d1df944853ff8"
+    },
+    {
+      "path": "go-backend/docker-compose.yml",
+      "sha256": "f5ef2f7748ac83b853dcf2ad6a19be0ee08daa8be91b1eecda3a181195473be9"
+    },
+    {
+      "path": "go-backend/docs/docs.go",
+      "sha256": "cfbafa253ee65d4bba50fa9f32862525ef8aa48022b18716c29123ab82c92673"
+    },
+    {
+      "path": "go-backend/go.mod",
+      "sha256": "ca877904742769963f4beb15d4e083aa28debd2292049a7a6ea90827c78c7528"
+    },
+    {
+      "path": "go-backend/go.sum",
+      "sha256": "9d279d02fbdb89efdbe6253dc5e411f0257bd949e6c261dd27d986705f7785ed"
+    },
+    {
+      "path": "go-backend/internal/agent/agent.go",
+      "sha256": "b5b6c19e68e436532c79e6e96c41a4d804674e8307f5ed62ecf593062757e7f6"
+    },
+    {
+      "path": "go-backend/internal/agent/agents/content_generator.go",
+      "sha256": "affaa2350991b78e651f878f924ad54933dc0d8a2d4656286f0e7c3baf8979b5"
+    },
+    {
+      "path": "go-backend/internal/agent/agents/content_merger.go",
+      "sha256": "68cfe1f8468a803fed2cfeef4451d9a627bbc692824e2c70d8af4f0b82d2e494"
+    },
+    {
+      "path": "go-backend/internal/agent/agents/image_analyzer.go",
+      "sha256": "4d053c943e4c8763f85941fb3bfe2d514a5a3a6562ea44c4b5b90732792b1b23"
+    },
+    {
+      "path": "go-backend/internal/agent/agents/outline_generator.go",
+      "sha256": "a712354616594f2139e090eda28ee21a2ad83d2848b41874d2e1966bc2a822e0"
+    },
+    {
+      "path": "go-backend/internal/agent/agents/title_generator.go",
+      "sha256": "d411877acb118f43b074a6203f382747ee142715b88ed070717e4518fbc09778"
+    },
+    {
+      "path": "go-backend/internal/agent/context/stream_handler.go",
+      "sha256": "f5783ddf163d39059094a82ba5ef31a1bc0ac55739376b1e2340648b8c50f1c5"
+    },
+    {
+      "path": "go-backend/internal/agent/orchestrator.go",
+      "sha256": "d8bbfc1b80f2a0fbd3e4cc223287b6ad7244b54be0375432f2d097e2e7d96358"
+    },
+    {
+      "path": "go-backend/internal/agent/parallel/image_generator.go",
+      "sha256": "fb8aa011f30ee3f20cc08c4c9336a65d4711239e105d937d3a63e71a816ecf5c"
+    },
+    {
+      "path": "go-backend/internal/app/app.go",
+      "sha256": "fb46c9f63b4308bad7f57bc046c3dd55f4481fb114e9a36eabc4fa029d945ccf"
+    },
+    {
+      "path": "go-backend/internal/common/article_style.go",
+      "sha256": "a27a4bae2a77577a3bfd65214a9f1a12b4aa8dc00b1d5e24ec4765bd0e65975e"
+    },
+    {
+      "path": "go-backend/internal/common/constants.go",
+      "sha256": "fe1707c32d7d532af78221118596bb6782e31a45409eef42b473040d44176cd2"
+    },
+    {
+      "path": "go-backend/internal/common/error.go",
+      "sha256": "48f0eb57ebc598aefaca9a105e62bee7cc96dddabd08995fdc70e3f0af7de50d"
+    },
+    {
+      "path": "go-backend/internal/common/image_method.go",
+      "sha256": "d2e8d011d5517c23e33e496742c67d2ed2fdfd1e2fb22af8bfb35972b351ff55"
+    },
+    {
+      "path": "go-backend/internal/common/payment.go",
+      "sha256": "0a3764c15df5df06bfcdf80d58d9c04df0c6ea2d70b9808c07d867857c28b4cf"
+    },
+    {
+      "path": "go-backend/internal/common/prompt.go",
+      "sha256": "72af119c4f3094d05a83e799f242b0cb8b501f8d088cdc75d623d8b07e36936c"
+    },
+    {
+      "path": "go-backend/internal/common/response.go",
+      "sha256": "f4b429435141ef018851d6703234eeb2cc0a40d498673738d1f0a0638113479e"
+    },
+    {
+      "path": "go-backend/internal/common/sse.go",
+      "sha256": "e837f905ae2ff4052b7f34c6b559e37085d56df02129ac7a3ee22e977af976ad"
+    },
+    {
+      "path": "go-backend/internal/common/time_util.go",
+      "sha256": "71ec08d234f07e97d17e59ac5674cb6ea8eee13269826b09b36da6d9281c96fb"
+    },
+    {
+      "path": "go-backend/internal/config/config.go",
+      "sha256": "b8c6fcd37341381bea37a702ea16caffdae9b275a5a0040eb771d75cc3bf8738"
+    },
+    {
+      "path": "go-backend/internal/handler/article.go",
+      "sha256": "2d8d3297067b5a5b477799359a4d1470e5900be8233fb4fa757260d5a49f6fdc"
+    },
+    {
+      "path": "go-backend/internal/handler/health.go",
+      "sha256": "b1b069c60a55d5a0a09f32db21c9e4e81317572949c70fab44cc62c28bbae3bd"
+    },
+    {
+      "path": "go-backend/internal/handler/payment.go",
+      "sha256": "14d3f82cc0b4fd80b97b5d4c22ddcc12285c5931bfb1a5f7e76d043b1b5d4cd5"
+    },
+    {
+      "path": "go-backend/internal/handler/statistics.go",
+      "sha256": "f3806f4f961a8d9f4cd8835cc0b7d3651e58fd239aa956723a3512587644aa56"
+    },
+    {
+      "path": "go-backend/internal/handler/user.go",
+      "sha256": "723eda74c028f646828338c06c1c18063db533c7740f351030e404651dce2097"
+    },
+    {
+      "path": "go-backend/internal/handler/webhook.go",
+      "sha256": "2e77f6166c3b1446188e174b88f672cd47a26341aa98cc722990883e843c61c4"
+    },
+    {
+      "path": "go-backend/internal/middleware/auth.go",
+      "sha256": "6bb95cfeac6ec6995ae80bb951282d8a560043c60fed7da62457d6f2c32cbf05"
+    },
+    {
+      "path": "go-backend/internal/middleware/cors.go",
+      "sha256": "5c0447e669a1afb48677c8c1c4e4de9f29b856805f3c9f739a7a243dbdc993b2"
+    },
+    {
+      "path": "go-backend/internal/middleware/session.go",
+      "sha256": "6c8ba03a202918a894f32779fef3f116eca0f089753906b6b2cba87a7bd3b9eb"
+    },
+    {
+      "path": "go-backend/internal/model/agent_log.go",
+      "sha256": "60e4d9ecdec6775da6a095930f5838fce333ea1b8f38f4d0aefd4af5bd0bce29"
+    },
+    {
+      "path": "go-backend/internal/model/article.go",
+      "sha256": "c62fbd3a55dee1d0672b3c9a3009328bdecd032ba7208a70f87ced4a1e665bb8"
+    },
+    {
+      "path": "go-backend/internal/model/article_request.go",
+      "sha256": "a83fdd62fdbfda1ea6095ac514a2c8f33b7784deccdf92c3e6929c6492fae2bd"
+    },
+    {
+      "path": "go-backend/internal/model/image.go",
+      "sha256": "6c974bcd3e53e9ad73c2e5a14ff63d8481f4cee2ba3f61eda05610717cfd1951"
+    },
+    {
+      "path": "go-backend/internal/model/payment.go",
+      "sha256": "8625c9dde8a7cfcd0861e5c6bbf24e18e7668b2697dcfffa4d2b9b01be1d7079"
+    },
+    {
+      "path": "go-backend/internal/model/request.go",
+      "sha256": "051772966fe37c57ef2c2b9b19115914ad2be5f5095d6cf91fc4637e3c041e5e"
+    },
+    {
+      "path": "go-backend/internal/model/statistics.go",
+      "sha256": "6d6dee5f2f723da480aa77184ae794eb6fb70d4e1c05b28e6f9a991b3f567730"
+    },
+    {
+      "path": "go-backend/internal/model/user.go",
+      "sha256": "eecd48857e6ebf205be761233c2b8662154d187050a87f133fe1467fa9d9292b"
+    },
+    {
+      "path": "go-backend/internal/model/util.go",
+      "sha256": "269fbcf0fa0aa35e2e51dfb84881a99333da38a59b08960b62cdea85b4e0ccac"
+    },
+    {
+      "path": "go-backend/internal/service/agent_log.go",
+      "sha256": "410e6fe6c968a879b634f887816c5475abf08f830d6dc63628a2486efbc8ba02"
+    },
+    {
+      "path": "go-backend/internal/service/article.go",
+      "sha256": "0ccdab677d042814235e46fde75057e24bab518c75c95bfc9acd69fde3a00ea1"
+    },
+    {
+      "path": "go-backend/internal/service/article_agent.go",
+      "sha256": "5ba9052e7f7e13c3541d6a873cf56b36cee8a296bdffbb0651efcbd9659a55c0"
+    },
+    {
+      "path": "go-backend/internal/service/article_agent_stream.go",
+      "sha256": "bef9c5f3810cb24576b662d62fd8598edb2cb66ea9eea9e03b29777676f44c73"
+    },
+    {
+      "path": "go-backend/internal/service/cos.go",
+      "sha256": "b4b756f71fad2c461ba06da1b956eb7a7441a7b11977fb11cb33cacd97623c3b"
+    },
+    {
+      "path": "go-backend/internal/service/emoji_pack.go",
+      "sha256": "d6ff64c66577a58b7087315b2bdf39ce506141d75276d2c2c2f82e095079c5e1"
+    },
+    {
+      "path": "go-backend/internal/service/iconify.go",
+      "sha256": "56f4821cebb730f119c60a6332586a493b0e560719730a58a0cd9627e8ffb6b6"
+    },
+    {
+      "path": "go-backend/internal/service/image_service.go",
+      "sha256": "0b6da8051e215d979e353427a41904c4e04265761fcde94fb0586a38de8bf9f4"
+    },
+    {
+      "path": "go-backend/internal/service/image_strategy.go",
+      "sha256": "7e380016f7b473c1445a17eb9dcced68ec81238366f03261ea6fbec4aaa97e24"
+    },
+    {
+      "path": "go-backend/internal/service/mermaid.go",
+      "sha256": "81d8e23039b8f05aa575038341670ddd0ee83cbab6edc580077e8947b2d66735"
+    },
+    {
+      "path": "go-backend/internal/service/nano_banana.go",
+      "sha256": "bbd501cf3ea70bba3e9170aa5b211962ccc8e4b8d899ebcbd7ff1cf04b24a8d0"
+    },
+    {
+      "path": "go-backend/internal/service/payment.go",
+      "sha256": "b5e8d3e393d2e2351b3815cc03f3dbf4069a78204939eccf91451994b10a0c0a"
+    },
+    {
+      "path": "go-backend/internal/service/pexels.go",
+      "sha256": "c2d8814f9c4573066e300a20e0008bc186e47fa3287856b3d3f67197bbc81ad8"
+    },
+    {
+      "path": "go-backend/internal/service/picsum.go",
+      "sha256": "c492be3c739923d9d5ddf6bfde976a3fcfeabba5306f1092e5a5cc053007ed5e"
+    },
+    {
+      "path": "go-backend/internal/service/quota.go",
+      "sha256": "ce9485c456a78868d24361baea7d40945288d34f18d2b5b5a9e36b62ffbe9a86"
+    },
+    {
+      "path": "go-backend/internal/service/statistics.go",
+      "sha256": "3fc892011d104f5cff7c46a8a4e2d8fdd745c38c8dd9f926495e8f763de62e97"
+    },
+    {
+      "path": "go-backend/internal/service/svg_diagram.go",
+      "sha256": "67f6ca8d108ce5ab71a06b1e2d57da8ed0da93234231f6541d5c39f222b449af"
+    },
+    {
+      "path": "go-backend/internal/service/user.go",
+      "sha256": "04a54d9755a04b5972fee23f052efbd221e31a074755be1fa628cf053a9f0a51"
+    },
+    {
+      "path": "go-backend/internal/store/agent_log.go",
+      "sha256": "e4c1e600bf3d9d8587ad9b41ef5889c9bed13983c0b677ff66d843d8b10a8fca"
+    },
+    {
+      "path": "go-backend/internal/store/article.go",
+      "sha256": "dc714379e7373da3fda897c672974eac89834123fdd53a79a57f31d3c9697d0d"
+    },
+    {
+      "path": "go-backend/internal/store/payment.go",
+      "sha256": "3f15f21e91cc17d20641f2274f530f57c43c2d2fe476ce65a9f36e5a02d4881e"
+    },
+    {
+      "path": "go-backend/internal/store/user.go",
+      "sha256": "936a9e515ef8ba783e9952d38ce20dc5d49aa56371fc8f115c83bd7001ead862"
+    },
+    {
+      "path": "go-backend/start.bat",
+      "sha256": "3b9a1a793d20aea124764fec3c268629c055a6bfb4967b218640fb66d55fb441"
+    },
+    {
+      "path": "go-backend/start.sh",
+      "sha256": "411947c2680f94bb19fd2f71758241a9b2cbbbfdd5ec60344daee24455b3bab3"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "2a1b29cba7de1c2fe10a39784c29eb068fdd1265dbd77ba8cd3da222faa76eba"
+    },
+    {
+      "path": "python-backend/.dockerignore",
+      "sha256": "46e0a6b7dfc78763131c869446fb594dfee19758d0072290f766f504c1543a47"
+    },
+    {
+      "path": "python-backend/.gitignore",
+      "sha256": "2459142639739432ed664bf0d58313aaba323a05765898af34239ac7a9d2225c"
+    },
+    {
+      "path": "python-backend/Dockerfile",
+      "sha256": "1acd77a955d9a7bb5330277334076f0a51f9413d1e932df161bb8bc7e83cf689"
+    },
+    {
+      "path": "python-backend/Dockerfile.frontend",
+      "sha256": "ad3282b2187848096659033f86ce9102104fe7359002fa65a162d6072fa512e1"
+    },
+    {
+      "path": "python-backend/app/__init__.py",
+      "sha256": "a18859745f049083407531058e3d17fb35a8e70dede82e765ee90d30eca566a6"
+    },
+    {
+      "path": "python-backend/app/agent/__init__.py",
+      "sha256": "48337d209f95939f91afa46ecdec71adb3c4f949767608dd70507d7326f195a6"
+    },
+    {
+      "path": "python-backend/app/agent/agents/__init__.py",
+      "sha256": "a0b67bf5a7ba74b157c2d6fd4dc77c2a3fd84e6a8d1c03917d9bd160e9305f8e"
+    },
+    {
+      "path": "python-backend/app/agent/agents/content_generator.py",
+      "sha256": "6ea0474371bf66bffa31ede6669ab1ec3288e957f76ad008684c986d5e342981"
+    },
+    {
+      "path": "python-backend/app/agent/agents/content_merger.py",
+      "sha256": "853714a2432dcb44852acbe3ee03203e83ab0bfd5119122de03d573ed28932f2"
+    },
+    {
+      "path": "python-backend/app/agent/agents/image_analyzer.py",
+      "sha256": "ad2b1f4c4a16d95574887563a308cc7361178876801a1e60a2dbaf6f574aec90"
+    },
+    {
+      "path": "python-backend/app/agent/agents/outline_generator.py",
+      "sha256": "5ac1ff5126c0823075505d17c9cd13a3626fd71ac371cb338356c29fde5b52b5"
+    },
+    {
+      "path": "python-backend/app/agent/agents/title_generator.py",
+      "sha256": "e957eb5519f454bb7beba410bc44545d88baa4fc3ea790db60d469d901a5de5a"
+    },
+    {
+      "path": "python-backend/app/agent/context/__init__.py",
+      "sha256": "71dd736c6df6aa2c17ec0ef612082cf63e167e8463f160b279e48664105c1e6e"
+    },
+    {
+      "path": "python-backend/app/agent/context/stream_handler.py",
+      "sha256": "68440b8f2d68e5d56068b979c1698f0461c587c915bf972b0559cf73d66f24f3"
+    },
+    {
+      "path": "python-backend/app/agent/orchestrator.py",
+      "sha256": "e3e8b03c5d0d4b8693ad6b168c61343f190fbd196777dfd65170a26f1c410ade"
+    },
+    {
+      "path": "python-backend/app/agent/parallel/__init__.py",
+      "sha256": "defdeb7107892543bb382bbeffa569870fdf7cc2b35304a944181cd74640c9f7"
+    },
+    {
+      "path": "python-backend/app/agent/parallel/image_generator.py",
+      "sha256": "e31b01c5578597d04bfcd3cc6c16a4fefeb11fd6b2f32dd71483f646b7e969ee"
+    },
+    {
+      "path": "python-backend/app/config.py",
+      "sha256": "9b35afbcfa3159604af7322b8792e76cf10875aa5f78f9edc7374b70abf09248"
+    },
+    {
+      "path": "python-backend/app/constants/__init__.py",
+      "sha256": "d99647c942bf9a2ff175957c85680b93e068cb7f1db57488da399afa3b5eac0a"
+    },
+    {
+      "path": "python-backend/app/constants/article.py",
+      "sha256": "c9be9b1863c70b068ba92a57f897fa83e9e39e8b2d5a4726061e87035a966a5f"
+    },
+    {
+      "path": "python-backend/app/constants/prompt.py",
+      "sha256": "5e1f6f539085cbbded03beb9ec96e4adf7ed6e29129db5ae14d503c7e3d9d887"
+    },
+    {
+      "path": "python-backend/app/constants/user.py",
+      "sha256": "71365e1fe4dcdcf9747396a1e516df024aab4ffdb43ab26936f84430d378462c"
+    },
+    {
+      "path": "python-backend/app/database.py",
+      "sha256": "25e900bd5dc8436cb23eebb3f1afcef9edcd7bc66daae56a2dd179484a8a3a69"
+    },
+    {
+      "path": "python-backend/app/deps.py",
+      "sha256": "62d8cdd60414a210a3ee263b419ae6bd4be1b462106899cdf86fd64b3e8ae603"
+    },
+    {
+      "path": "python-backend/app/exceptions.py",
+      "sha256": "0481c89a63df62491caeebf10a7734b6113614cb347ded438ba56eff56d346d4"
+    },
+    {
+      "path": "python-backend/app/main.py",
+      "sha256": "21ab03eb43be81af6a1ca1c192565f2842325ab5e9aeacdfe38551e997de08ca"
+    },
+    {
+      "path": "python-backend/app/managers/__init__.py",
+      "sha256": "bc3b2eef5f99038849ba7f06e8916236491e5d1fae4a22f7fa1abd786829ca98"
+    },
+    {
+      "path": "python-backend/app/managers/sse_manager.py",
+      "sha256": "d1f4523c69b9f0185e9fe004310b61f47cf29983f24acede58e6e0b314040e29"
+    },
+    {
+      "path": "python-backend/app/models/__init__.py",
+      "sha256": "1349da231e92c96aff8dd403d3b33fc2ef8391aaf6f8c3551a934f4598e58aac"
+    },
+    {
+      "path": "python-backend/app/models/agent_log.py",
+      "sha256": "7f288db0124d70ec619083f0b1f95726ef1f52f20551bd01f14496211770595d"
+    },
+    {
+      "path": "python-backend/app/models/article.py",
+      "sha256": "bdc878d13fd28e18886059d6140f93907ba636ef7d72b5639454f6101dfad7fa"
+    },
+    {
+      "path": "python-backend/app/models/enums.py",
+      "sha256": "9caf43e9abfd05d515352e14ed65ec6aaa803f2d2251ce41461a3e962b6dd9ae"
+    },
+    {
+      "path": "python-backend/app/models/payment.py",
+      "sha256": "1d92298319f640f16e30b145cb5d303e358f571a8134bd7f238771be636bdf4f"
+    },
+    {
+      "path": "python-backend/app/models/user.py",
+      "sha256": "5a3353a97c78c7df835e1fee575ec28125980514ba6948670f69f9b1d5960f5c"
+    },
+    {
+      "path": "python-backend/app/routers/__init__.py",
+      "sha256": "deffaaea2a787ea7a6c034c5278dea56033d7a29723dafa52f6759389a748e30"
+    },
+    {
+      "path": "python-backend/app/routers/article.py",
+      "sha256": "67fbac8de5ab3448f0e2b4bfe60c2900454a7366ab091e0412ceb107d4ed43ef"
+    },
+    {
+      "path": "python-backend/app/routers/health.py",
+      "sha256": "bb0bf648deda9ee7d4d99f27eaa883a9591312b6c7dd824cc451517fa01f9a9b"
+    },
+    {
+      "path": "python-backend/app/routers/payment.py",
+      "sha256": "532f7a8d8563fb1e0b8e52a8c73b72afa0738102ef442d7bbc06f9ef5185f57e"
+    },
+    {
+      "path": "python-backend/app/routers/statistics.py",
+      "sha256": "ba67ee35daaaa2edd8e0be92fd05d61f77f6f2800847d18972b5fa9a7cfd6c1f"
+    },
+    {
+      "path": "python-backend/app/routers/user.py",
+      "sha256": "f3c30828a9cbd0be81a0d61552c24d222c6ab45c89be6dfa96d7850abe4c6545"
+    },
+    {
+      "path": "python-backend/app/schemas/__init__.py",
+      "sha256": "f270edce051f390025d20a2a826b9a1795ffc9278b4ac0f9e9a7057c3927299e"
+    },
+    {
+      "path": "python-backend/app/schemas/article.py",
+      "sha256": "716ab34ac352375c1ae134cc05717239ff114576cd026e1346dc0b1180aff7b2"
+    },
+    {
+      "path": "python-backend/app/schemas/common.py",
+      "sha256": "5969ebaf74a0f694b83c03772ff2385aeccda3a0dca9bd9e866309f3ae7d4c2c"
+    },
+    {
+      "path": "python-backend/app/schemas/image.py",
+      "sha256": "081484037b21f982216108933875cce8066ee35586e26f3b51ffa592c7a25c9a"
+    },
+    {
+      "path": "python-backend/app/schemas/payment.py",
+      "sha256": "430d3f05c4b627d4c53ddd6557026f811e710d98a283f4138c70b59f716c8121"
+    },
+    {
+      "path": "python-backend/app/schemas/statistics.py",
+      "sha256": "40c36ec123dd6071d2dfc0ba2da889998d7abf274d436090cddc95e0ffa3d193"
+    },
+    {
+      "path": "python-backend/app/schemas/user.py",
+      "sha256": "539b58b6544921ac098f571ea84f7ee0e043f0046aad3c2b7cf588d825542ae3"
+    },
+    {
+      "path": "python-backend/app/services/__init__.py",
+      "sha256": "9611c6e26c74cde79f3b72821c63d6280e74c7cc24553d701423d31610573b70"
+    },
+    {
+      "path": "python-backend/app/services/agent_log_service.py",
+      "sha256": "58a9658bed9de7baa13e5587480b60feaa23bff3ba9b5f24b829de5001fd3868"
+    },
+    {
+      "path": "python-backend/app/services/article_agent_service.py",
+      "sha256": "472db2199a4e703014e0fc1f0f3f49dcfc0d64499ba424ec25d72b41891fe131"
+    },
+    {
+      "path": "python-backend/app/services/article_async_service.py",
+      "sha256": "a0d6c639ce699534e3d7882c40b03697c9887d017646ec580ee6cd233c31081f"
+    },
+    {
+      "path": "python-backend/app/services/article_service.py",
+      "sha256": "249c06ecd8ca9dc869e388450e5ec0ef9a191f85452d98ba49c86e846a543a12"
+    },
+    {
+      "path": "python-backend/app/services/cos_service.py",
+      "sha256": "e7011f9ab7953d39579ad6d471d16337330170ee679017cd806f37935f834a86"
+    },
+    {
+      "path": "python-backend/app/services/emoji_pack_service.py",
+      "sha256": "d310a8fec0ead46d110e0c9c4db39a6113e8644f019eafd89e647bf53bef37bc"
+    },
+    {
+      "path": "python-backend/app/services/iconify_service.py",
+      "sha256": "3636dffee83fdaec6eb10185bca0808975a9fbb5fd68157ede4a818adb8b54ea"
+    },
+    {
+      "path": "python-backend/app/services/image_search_service.py",
+      "sha256": "609734620c49e6e441c43166043c3b6c2523b004f51ccd15aec4ff89ba37a479"
+    },
+    {
+      "path": "python-backend/app/services/image_service_strategy.py",
+      "sha256": "1c5b52da874a016b1f288fd680388b4b13018874e3b8ab168b062edac7baa09c"
+    },
+    {
+      "path": "python-backend/app/services/mermaid_service.py",
+      "sha256": "611158502b69f8d2dfe5a623d0a0020be42fb033fcf65816efabd876d84e3c14"
+    },
+    {
+      "path": "python-backend/app/services/nano_banana_service.py",
+      "sha256": "089bce0df78863ffddae255d2c6b62a21bd46bb0790d273c5b4494453fb1c174"
+    },
+    {
+      "path": "python-backend/app/services/payment_service.py",
+      "sha256": "7b8425558958f73c980de0c57141d89606851931a7b9532c0960467a0d855695"
+    },
+    {
+      "path": "python-backend/app/services/pexels_service.py",
+      "sha256": "8947a017949f743eee8b0c29a400a7cbadb6122330a40feff43c6d19651ba6c5"
+    },
+    {
+      "path": "python-backend/app/services/statistics_service.py",
+      "sha256": "218d05581a2a0c38c862e74351bf48b69d905817a6e826a39bad37d6302f20fc"
+    },
+    {
+      "path": "python-backend/app/services/svg_diagram_service.py",
+      "sha256": "ee6fb2c19d61d05f652dfee52563cc997bd81983e11c1eb05608d971a77a5278"
+    },
+    {
+      "path": "python-backend/app/services/user_service.py",
+      "sha256": "449037a1725af65e4e02cb5f4926d65a158981a8283e0261207e52e1fe086014"
+    },
+    {
+      "path": "python-backend/app/utils/__init__.py",
+      "sha256": "98890af48b6e3ed4142b80f4dddcb70fea979194b574dccb8e1acb5da8c3fa75"
+    },
+    {
+      "path": "python-backend/app/utils/password.py",
+      "sha256": "6831737ef062e784cdbbf90f748215c1495aa69211a5c6388b725cbcae27bd81"
+    },
+    {
+      "path": "python-backend/app/utils/session.py",
+      "sha256": "5874e9564970aa7abaf091d3d98dc589e30483b3dd713848a39bf3e9e378b513"
+    },
+    {
+      "path": "python-backend/docker-compose.yml",
+      "sha256": "e3600f973b3eebe3d8cb399b7318c5e4d9c4d2fb7bae312c041afd03e0cf2ecd"
+    },
+    {
+      "path": "python-backend/pyproject.toml",
+      "sha256": "648df7196f1ccdbe09777dd86e800c8b371bf92a03abc21bd0f05e9638a04cae"
+    },
+    {
+      "path": "python-backend/uv.lock",
+      "sha256": "8acc7d7209901cf451e9929094ff673a8f7650f782a714f5ccaf1985a6378239"
+    },
+    {
+      "path": "sql/add_article_intervention.sql",
+      "sha256": "b3febd85ecbe60a59e662c5ac15d93c279a524eaf3388c0437d89a340eb05186"
+    },
+    {
+      "path": "sql/add_article_review.sql",
+      "sha256": "16ea7a330be9ad071154393bd0e57ca0f1c05e699b25312c0284de1a9a0b2726"
+    },
+    {
+      "path": "sql/add_article_runtime.sql",
+      "sha256": "939e7fa48632493fcdaf9a5ccce9e087bf28812e4f6b17872db6c8a76ad5870e"
+    },
+    {
+      "path": "sql/add_article_style.sql",
+      "sha256": "4bf08e71c273403a8571984fc34184920d79633619e2ed0756471451be039378"
+    },
+    {
+      "path": "sql/add_phase_fields.sql",
+      "sha256": "23454d09edcfb3cd4a142d0e165c84d57ae3fbaf866ee7f82455810eff5b33a6"
+    },
+    {
+      "path": "sql/add_vip_payment.sql",
+      "sha256": "1d7f4e2c3330b2dc018133c95837fe284e56eaef666d7be1c552a8697a462a03"
+    },
+    {
+      "path": "sql/create_table.sql",
+      "sha256": "97ffe146678d8ee2274667416388f644cc9c4e8f96c98785ec7e50254a97bb43"
+    },
+    {
+      "path": "sql/init_database.sql",
+      "sha256": "b5438fe90697a633d14c94f46772eccc7f14f73b93d1add3ee6dc968d32789b1"
+    },
+    {
+      "path": "sql/update_quota.sql",
+      "sha256": "025260ef032dfe4bc28bc76d791ceb81cd45c854e277686515e473ee39f91f3b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/MainApplication.java",
+      "sha256": "5c8ecaa3f480770ab75c35b8d2d1a3d4583eeee37beb1f9036443facb02ecde0"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/ArticleAgentOrchestrator.java",
+      "sha256": "204e2361c5cf874c8184938240f9f56545c8d2987b5f5210841bfe6ff74dda3c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ContentGeneratorAgent.java",
+      "sha256": "b7d747b62af298592c9a1abd8a347b4e293edd407c98ed6ca03f8d4a2b630052"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ContentMergerAgent.java",
+      "sha256": "b3b4eff78ccd27bc645dfa5ea65cf9f0cffafd8e63dd21749a446e479016658c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/ImageAnalyzerAgent.java",
+      "sha256": "1a365b3f0e7dae1c741affb31544babfb90291fab05a82ce03daf852cc182392"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/OutlineGeneratorAgent.java",
+      "sha256": "cc79f7a1de7cffe48a6a5cb8540a4084713a9aa3ef8aba723c007f48c3274258"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/agents/TitleGeneratorAgent.java",
+      "sha256": "245ae62d22290db3965ad0e10501eddab69e7b3cb02d8b80e52262ed2fa55d87"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/config/AgentConfig.java",
+      "sha256": "4567c9e579ac22fdc0cd79f4c456a7380377cb80694c2a8b00536e689c83a9c8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/context/StreamHandlerContext.java",
+      "sha256": "71a8669593b4739d45eb7a2e26150b3736f8ce184ff9726a9c7000db46a293c4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/parallel/ParallelImageGenerator.java",
+      "sha256": "c8b7600c0309041a9842a659661b0227e57e504e983e57cf6afe656efc753841"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ArticleReviewLoop.java",
+      "sha256": "6f60b01a94102760c955b8d0c4deb029c351fdce72f56c2ab110b26599d2d9a8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/DashScopeReviewModelGateway.java",
+      "sha256": "796474c3c1f08820a6d25b5a46e3de1065d3d0de2c205bf3634895c01b68c142"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ParagraphDraft.java",
+      "sha256": "f7a0f2351cc396b2a3bdca7ac5b66d6b5cac42e383a110515c7677046b450ced"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ReviewJson.java",
+      "sha256": "971708aed72536dce89d61c66aa021c67de622a15e613f859526500eaae40d17"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ReviewModelGateway.java",
+      "sha256": "380d26331cdc742bb07e021c717d9a3723291e95be3cc2a66805f0e0f2658e47"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/review/ReviewRules.java",
+      "sha256": "6fcaf59ec405f5d8f1594fdbfd21aa18f8b6d23950b9f597f1b1f592098a12fb"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/agent/tools/ImageGenerationTool.java",
+      "sha256": "371401c26479115ff6da54f32db68f01b45c442f3df87ac131b4150c874f9ae9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/annotation/AgentExecution.java",
+      "sha256": "feafbfe962a024cf7c08cb92b380a4e1b97c3b3ed2291a0eafa7eac03aa00262"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/annotation/AuthCheck.java",
+      "sha256": "3d1f740ff68cbc1acaa0f826f6fe0422875a0046670e7c8d62f318abedb82a0e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/aop/AgentExecutionAspect.java",
+      "sha256": "46b5d7017e89f30edb2aee669ba1660226bd81afef6388a7576b768eeb2159cf"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/aop/AuthInterceptor.java",
+      "sha256": "61118fe61937eea69de096af92111a88b5c5be967145ca0b351198286c112691"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/BaseResponse.java",
+      "sha256": "21e1d1b32e8d4ae9f99a8df35ce062052c991870d100888f7311bf3da1bd8813"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/DeleteRequest.java",
+      "sha256": "0e837b63107ec2c8ff03481126aa938dc63297c08fe804012547305c4192d10a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/PageRequest.java",
+      "sha256": "9c77f6182bb463519a5f50a08a87ffd3b2783d111ef30e531aca43197fee7eba"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/common/ResultUtils.java",
+      "sha256": "31e6bf3495e25531bce4c597755b5c0cbf921755f2e7e3ef7ba024319ae5f7b4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/ArticleJdbcConfig.java",
+      "sha256": "2f999c38abf1d3ac48dedc52f32be6df865fc86cc32eb74757175d83a38cf187"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/AsyncConfig.java",
+      "sha256": "36a6559210088f8e1f7ff413d5fa361e4831c36a714a9494a1f9f6593562d408"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/CorsConfig.java",
+      "sha256": "f33fbbc9f74a45b69ae29f39fd504ceecb094e3dd204c03e004fa7f4d13531f6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/CosConfig.java",
+      "sha256": "5a426afa72b528ce60bf7428bee562477ae99870a6cb92dfe3c8a136a97724db"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/EmojiPackConfig.java",
+      "sha256": "639bbf3d449329ceb6a9671630fa8f710560a7edcbd3c6ba74cfa624bc7aeea5"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/IconifyConfig.java",
+      "sha256": "69f493bffb1e5cf284af8e613123157649332c7db8acdbb3183df00b69d44d6c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/JsonConfig.java",
+      "sha256": "2faa22eff9175462b94bd37cd04a384cc58ef429e12e9fd08fdad90f046d3214"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/MermaidConfig.java",
+      "sha256": "fbf9f96c11d0d2633bbcba5f7b323baaf29a17756fb111ec3b61d62974351eec"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/NanoBananaConfig.java",
+      "sha256": "74678bd7b31cbf5fec3450e261856d08bb1275a8d580b614ff9ce773fb285977"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/PexelsConfig.java",
+      "sha256": "645b97c76a2e61c408f91df7ef212681cb991ebe93dd8f94acb0d54f6b997e6c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/PromptConfig.java",
+      "sha256": "fb4de3d51e0d79bc95bdfeae937937910cc993dc1bd5a2bcb326366114cf2453"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/StripeConfig.java",
+      "sha256": "24c2aafb2b280059a34b0095e6d2def715580a77ce19d623a582831e6cd55b8e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/config/SvgDiagramConfig.java",
+      "sha256": "e9625dd4fee1429a12f7e22a99da9173c2d08eb4f359ba2e962e1aaf5043897a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/constant/ArticleConstant.java",
+      "sha256": "33b45abbf971f69a1c3204de27843734cc4a6e38541a9ac5fbb9078784c300d9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/constant/PromptConstant.java",
+      "sha256": "60148eca9d7c9bf520dc1e12b727824dda97594d70dd4b08025f21d24246d475"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/constant/UserConstant.java",
+      "sha256": "5bf8c772b66b3864b2d95463f018a80772d2d1e6d1a3734d3314a2d9b4b63c3d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/ArticleController.java",
+      "sha256": "f46b11440809cad7a826367c0542e80a706c85f5853fd32b49db3d496f54c256"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/ArticleInterventionController.java",
+      "sha256": "ba35d112e7ade42f3ee722f6f84cd664232799b8f02d7b007401ef2a527671fd"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/HealthController.java",
+      "sha256": "611666197fa9668f3db77a7ec7e14603838acff1803179bffd3f86d0bc147062"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/PaymentController.java",
+      "sha256": "c09bbf3eb5987da03cb8b5194a31da0d873cfa89288a4c8052c26ffa1615a5b2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/StatisticsController.java",
+      "sha256": "cb72cd300d8667304e041716136d6c78671fa9d3b3b0bf9286bcd25e33be5908"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/StripeWebhookController.java",
+      "sha256": "a2a3ada9d57b81985343c4e6e9831de7d8190a6880cd4f8a74579ddfc822529c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/controller/UserController.java",
+      "sha256": "01aee3db559f471a40690209cde12db6bfdf8717ec4c09175db8348a2b51afe1"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/BusinessException.java",
+      "sha256": "122a8eaea4709114d0b6b4a15d9a82331a4955483555f092f27e3e6482282e2f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/ErrorCode.java",
+      "sha256": "f003c02b1981f71bd2d36ed022e92de974aa271533f3b41a73d0190748d66783"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/GlobalExceptionHandler.java",
+      "sha256": "17cfc8eaae6d3b36706fc5f13220fa9304c772bbe44d017a3e2f81ab20c82337"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/exception/ThrowUtils.java",
+      "sha256": "aedb3c361360b89c41b22bfd27374d2699d0c47a534e454b975868ff82fff76f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/manager/SseEmitterManager.java",
+      "sha256": "5cea13badfcb9f818240adff7b6fe7e7ec58e9cf7cacff8a660f4f0de93b7d1f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/AgentLogMapper.java",
+      "sha256": "107ba0be969ce1ff72a0e3237da6448f1df131709a9134e13fc11e8edac1409e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/ArticleMapper.java",
+      "sha256": "163f74594eed60fc0c61ef351df91d41300f3812743fed9661f2cc46fa050dc9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/PaymentRecordMapper.java",
+      "sha256": "a2d87a544d1511ac6abb0a3ec84f741877686613468d661fd060490d7378fde4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/mapper/UserMapper.java",
+      "sha256": "63f5cc0e98b0e50c85f9792a8f5d45bd0ae1b1eec7d823090a0429017c17a55e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleAiModifyOutlineRequest.java",
+      "sha256": "cd5511662698da8d2c691c32cd354415911f2b34fb587b9dfe0b0aa5fd84a57e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleConfirmOutlineRequest.java",
+      "sha256": "09eb70f930e51b411926d86b502ab04594a7fc142177dcec0c93db4ff9f58f6a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleConfirmTitleRequest.java",
+      "sha256": "28f2d7869ebc93bbe7d020d1deb27f71bf7631224e6cd7f2a97ace9690a3c36c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleCreateRequest.java",
+      "sha256": "e7f205d7dda942f692d2c2929e63c2736c29d6df65d76ff70719085d6ccd71ba"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleQueryRequest.java",
+      "sha256": "eaf49c91eb93d7c0607d8670e2a2cc736b97a1278838e3ff56b3e08df5d39900"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ArticleState.java",
+      "sha256": "ee5d5199472760841d1ad7d3b97d833bd71b916a25013541e43eb9f00eb1a52b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/InterventionRequest.java",
+      "sha256": "a4c0cea1cab7faefa60061358357069b303efd2c6946ba6b54611bb0008ff0ff"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/InterventionView.java",
+      "sha256": "638935477700e03fe1701183d4c1519bdef94bbf83b6c247670d72af60ce9d53"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/MediaState.java",
+      "sha256": "ba378c49e32a618074210caf85f0341518b838e2658f30d63c98af98aa5086d2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ReviewResult.java",
+      "sha256": "25ead5af97f0d8b39d9efeb54caf6409d5b35fd8fba629c165e99baaec8a50b4"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/article/ReviewTrace.java",
+      "sha256": "40337bfa2560aa5865f90ed1a640179da0a94c63bcff005f6d83b426cb3128b2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/image/ImageData.java",
+      "sha256": "352fcf61324d218f1b6d7e5c224a77b99ab2d2095df2ee7379d73dfc1fb1ba19"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/image/ImageRequest.java",
+      "sha256": "71af91ffa6901b096a9b1d2cdf12b6d615de3ac313e1fee82d5417f243a787bd"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserAddRequest.java",
+      "sha256": "c81ca99be6b2705deb0f4b95be0f6116c27210d5509fe32ca6ebf6b866f64470"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserLoginRequest.java",
+      "sha256": "12eed439f1272c3d10093c16858f4e62708ea965b109eb73d845eb834085e186"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserQueryRequest.java",
+      "sha256": "1a6603dd67f44565338ab418e128f34a9d1ec26dd783196ace910391800d46f6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserRegisterRequest.java",
+      "sha256": "58a64ce574d53e23653e4614cea98bc74a1e2aa275ba4919200fd549122d3570"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/dto/user/UserUpdateRequest.java",
+      "sha256": "88096640ae946d5eb6abd437b0b3ea1dac8da8dae8028c8b3c65ebadb6ffd496"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/AgentLog.java",
+      "sha256": "b0865d2feb75edf1d2f99dd12dbf0df69fff8889eb20598543d915f6b995d31b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/Article.java",
+      "sha256": "0f4665d3e898a014b43f3ca790ba46d67b9e79037d6053a10f9cf1bae6387055"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/PaymentRecord.java",
+      "sha256": "9fd80bfa1d811972461e31dc2b62fb3e3a3fef4f0318d5df88100371c1713d4d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/entity/User.java",
+      "sha256": "ec6a4dcd2b3b16dddfac1d79a016a7508402864ac49d959afde0ea74a0916a3a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ArticlePhaseEnum.java",
+      "sha256": "2824bdf54f0b0c2153a25b379ef477a7137354f6010ff893bdbd7cbfd3dc53a8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ArticleStatusEnum.java",
+      "sha256": "7647f93001339f1dba20580e510ce216f35922a84745c97ca0a105ba47d153cc"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ArticleStyleEnum.java",
+      "sha256": "87d0ba39b345980a156611365c97586e5cd5eb75b7cb8e1b4958ad10e3c26848"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ImageMethodEnum.java",
+      "sha256": "68c67b43f54de4df0e54aa1d503b891e38e5b2e956ca632889033e9bcab8286d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/PaymentStatusEnum.java",
+      "sha256": "9088f3895b5780dc87b6e168d63c5ef0301e6d0cb76707cdb468c4ff7c2081e2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/ProductTypeEnum.java",
+      "sha256": "d2d9e4861b3b4761833ebfa5d026c8fbc4e983eaad42aeadfed743e0f2c14b33"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/SseMessageTypeEnum.java",
+      "sha256": "7fb46645496fb2b3e0ffedcbf8cdae41dcdd9b9fbaf4dbf0e843d2b2604d4d62"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/enums/UserRoleEnum.java",
+      "sha256": "c8d70e8edeb554f7e8cbadca36ff5b439c8fe622d066b0c1e14f9a3cba05fae8"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/AgentExecutionStats.java",
+      "sha256": "8cd8824901f548b4c20326cc03a726f35579ae8392d65f98941842479676b5f9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/ArticleVO.java",
+      "sha256": "9996701840fdefbef0bb8e607c0e02bc626fafba49ff3a410956a59d08fc71db"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/LoginUserVO.java",
+      "sha256": "8f6f7f57018320247dd675de9d42a3e85ac03d6621a47bba06333414c1a0df90"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/StatisticsVO.java",
+      "sha256": "ad4ae28e72461686a199843f2b09f7f8f6d2566053ad116c35ebc3208a06623c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/model/vo/UserVO.java",
+      "sha256": "74a456f8ec4fe34b6c545808236959a755c1299cbeb9f43cfd487841851d2518"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/repository/ArticleMediaStore.java",
+      "sha256": "e90650902bda98d2372bbc60a64d3ae88876dc2ac90c3afcb74534e3c06f5bdc"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/repository/ReviewTraceStore.java",
+      "sha256": "7da1109b7cbc4fd644c8ed2f27e901dfee7f50798d123e46be07df12e8845e25"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeConfig.java",
+      "sha256": "8646c3ec078080653e8b600a218174e345daaed1eda7a236f03dca110d7cc627"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeControl.java",
+      "sha256": "a76cb9a1893ba869e8dc974998defad755da998662bfa0adb3d5237577a5644c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeController.java",
+      "sha256": "0e2cdd23f877295e7d9de42ef64c8512855f2d05796c117122c1e3e2e083cb4a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeEventStore.java",
+      "sha256": "b24b460f3926002e21fa8969d8fe188bc605848eb7ac35910ade600ff44f5ed2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeEvents.java",
+      "sha256": "2f929ecfeb931cd70e1f318a7b13de0e9c85d7e536254188c0cd7c18fb1601df"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeExternal.java",
+      "sha256": "c5f10570340ed14ec639f6657270bb5bf9afbd7e46fe8b375c0d00f638313efe"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeIntake.java",
+      "sha256": "e511d5324ab4588a5d00ccbb5b24a146bfcafc4ce2da2fa89ff658e5cd4eccf9"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeLedger.java",
+      "sha256": "73bcecef7b651437d8cbb9aeba826553aa6c219052c153b622eb6c811d2e2fa2"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeProvider.java",
+      "sha256": "3ac6230d4238f681c2f9c47e57ecd762d9f8844399f1fdb2b6a0a35b01341d7a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeScope.java",
+      "sha256": "4bf560359a03046aed732957d8179c2164af406e16e1168c9e7558cb49c41738"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeSingleAttemptConfig.java",
+      "sha256": "554ef78b73f75167a905a8285842d7c618476c3ba9de455f8c63f70b9959edf6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeStop.java",
+      "sha256": "63ee65cc9154215a183fcf1955286ffa9186ad2efa5dfc4211268cd149f7373f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeStore.java",
+      "sha256": "ebb6a0a8c5526c0224717435b49973a15a5c6fb7838065d12c08e241a8575029"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/runtime/RuntimeWorker.java",
+      "sha256": "1f0c93ce6e5f66d5387262f7e479ab300e8123a5d280685c79f58c8dfb1dec0e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/AgentLogService.java",
+      "sha256": "e972aef7b9484183d20490b3f5e60af73f597faa1be953b7b2499ecee4987edb"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleAgentService.java",
+      "sha256": "31861c03efdfbbe13686c4e7fa52991f50dc48384be4014ec0ce593ceff7749c"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleAsyncService.java",
+      "sha256": "4632402b655fb13bb449d9d69d7c265856e918dfa8cc7f88f31a088555b57c45"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleInterventionService.java",
+      "sha256": "1a352f9c11bcab968d39d9bd39b5d4953981977c1bf77dcf695e6a983d0d6d46"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleInterventionWorker.java",
+      "sha256": "d94425fa0c3e1c13b59a92044946101fed9bacfb1a59cb3848a409a7633bbd5f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleMediaProcessor.java",
+      "sha256": "8adf20bb5ea0285c44cf0cc0b612655b2ee3083d04975373b1ef62b3cbf17734"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ArticleService.java",
+      "sha256": "242daa5ef05815b7564e365895cea835156a89d83ccc9937f5e728159d15172b"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/CosService.java",
+      "sha256": "c58280148eafd6900483709c996415a743470bbfeaaf8722195ed8f68d502156"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/EmojiPackService.java",
+      "sha256": "377b7141232d1ba5e0179076ba2a4f15e6ce34a2286839f22c6b499462afa120"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/IconifyService.java",
+      "sha256": "a47eaca8449e2228e3dc6677f02da4d01096adb8fcbf9084c6ef649550484797"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ImageSearchService.java",
+      "sha256": "a2195d2ffbb9326110817124729ca5a1a850496b10338d4864a031b5d5f3839e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/ImageServiceStrategy.java",
+      "sha256": "d224002b0770e68ea29e34591caffd96c0dd679eba4a05df5bac66a906fb5661"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/MermaidService.java",
+      "sha256": "989e67d9e9324d2d3fa346ea9b2e0a36a8f9bb4ac4a468c278529d226d300994"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/NanoBananaService.java",
+      "sha256": "d88b13c26182d37d03640a7cc1c648f14f463d513b5f1dddc6fb2faaba23d84d"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/PaymentService.java",
+      "sha256": "34fa73f4cde349ce18c21577e828582fa5f32c7ace2d64fd45c63eb410dae275"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/PexelsService.java",
+      "sha256": "b42303613e773cdce0b4942c78e36a893ecd17da44c45a2e2472531a71908fdf"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/QuotaService.java",
+      "sha256": "eb747b92278fcc176e391d39ba6d53c6eeab1723a8371cd30bed18531918ba3e"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/StatisticsService.java",
+      "sha256": "3cde935fcb8744d8b38df169621d29431aba7e3bfffb9e5ffd98169711ac28ea"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/SvgDiagramService.java",
+      "sha256": "8f7adba88ee8a2a47684f94f8a92ba6c18713058dbaaa2819e57348f504bd2da"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/UserService.java",
+      "sha256": "180a9cc1053a32b3c460fb8d975bb03d4013b6b01254c37ab30fc14aa604ddb3"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/AgentLogServiceImpl.java",
+      "sha256": "376bf3c88d89ebc53a9c99d16d0e90572b6b57601f45f5d603e1945d02846cc7"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/ArticleServiceImpl.java",
+      "sha256": "1f60136de122b98ecb652bd7a20a2194dc9238103bca2a3ca2b47620d1d1cdbe"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/PaymentServiceImpl.java",
+      "sha256": "6c5c215a4c29b7b2623cdacf58f0a2aeec8a26d37585cb0932f6fdafce41e06f"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/QuotaServiceImpl.java",
+      "sha256": "74122c084d777096001658082de3820e601a8042227736fa87feca72a5dd12d5"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/StatisticsServiceImpl.java",
+      "sha256": "559a6e9639271a5ef18adfc1a500d1b3f71a8877a61de32d5913e1ea5498d21a"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/service/impl/UserServiceImpl.java",
+      "sha256": "bbc0e569ce3b3ad7047d09bf2f1fb027dd61f13a94a9cc62ec24d4fdee4f31a1"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/utils/GsonUtils.java",
+      "sha256": "a30796c6c1ce4288d7fe6f97c02dc363bb9c14e1da3628652a6f8a2a7f71adb6"
+    },
+    {
+      "path": "src/main/java/com/yupi/template/utils/SpringContextUtil.java",
+      "sha256": "5b9d57993dbfcb316fe2f8f09e33c04c474de052b7dedcbfaaa623a290227689"
+    },
+    {
+      "path": "src/main/resources/application-prod.yml",
+      "sha256": "1f8f4d97f930fe7a24646b9d61758a283ec6bbf9fc01c71a152b2f6beeea3558"
+    },
+    {
+      "path": "src/main/resources/application.yml",
+      "sha256": "c56c81e3250834c67fa81e7f807e5a18999c7ec604cbf22840e1c25fd800715e"
+    },
+    {
+      "path": "src/main/resources/mapper/UserMapper.xml",
+      "sha256": "70b62c9592fc2d6a89abf46ddd03defbb809b6917c88134ed423307a32a54c5b"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/MainApplicationTests.java",
+      "sha256": "195513fc96159059987904191f1e3ab5f32034073297d276d46649accc01b56f"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/baseline/A0BaselineTest.java",
+      "sha256": "c4cd67120aaffae6f33d41c6708f094acdacb7fa6c9582c0987c82680682259d"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/intervention/A2HttpIT.java",
+      "sha256": "6531c3789a3de6bc8567a983e790d963f389aadfe5b2b85c3ae917c8d0e9a06c"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/intervention/A3HttpIT.java",
+      "sha256": "4c3aa21d71acc34561e58d49a6f30185d45d51269b5991a1ab5cf70a25acb4c4"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1IntegrationTest.java",
+      "sha256": "8d55868bdb982396626bc17f041c10ed683310104283f737370fcc9a58156342"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1PersistenceTest.java",
+      "sha256": "9c8e4009ead7510768e80c21383e062dd48a73a427a7a8984f24d355dcde63bf"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A1ReviewLoopTest.java",
+      "sha256": "6884cf41f26fdb6a9c9f7c467fdb71cfa3e931839175a3c2b8b0d66fb409140a"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A2MediaTest.java",
+      "sha256": "131dbf64950f30441cde176b931e59b35afd2d820167de22c51394abbedcd477"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A2RoundTest.java",
+      "sha256": "47278d5263510e5f4f02055d17c788b32d12341d22df472b7d9643d3fa928164"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/review/A3ReviewResumeTest.java",
+      "sha256": "208220391bd39ac4b9000ddb71abd73af0234b725f082085cfe048b5be0e75b9"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3BudgetTest.java",
+      "sha256": "f008cba83c1c4aefc29baf07058de995a0c34ca29e679f71ad43c0e236f1be5a"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3ExternalTest.java",
+      "sha256": "ffbd5e7e6c256eade942d8159d60d8fa9c931e09ea9342dbf886f8cbad9fc610"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3ProcessIT.java",
+      "sha256": "acbe51431af87a6961009349e9360256030fef5e09ac977974af33708a8a7a6f"
+    },
+    {
+      "path": "src/test/java/com/yupi/template/runtime/A3StoreIT.java",
+      "sha256": "319071e29842d41b5a883bee11674d58e635522c9add1ea9e2b5bffbbcf6d0f5"
+    },
+    {
+      "path": "src/test/resources/a0/cases.json",
+      "sha256": "492da0376cc6b03a47b17f6b79887c8f8f521af1438c20797140acd501f237a6"
+    },
+    {
+      "path": "src/test/resources/application-a2-isolated.properties",
+      "sha256": "440e22dcb7f22f7af9fbb1b3278c581af9ea1cecb0aa488a5336892b1a43629d"
+    },
+    {
+      "path": "start.sh",
+      "sha256": "8a78cf590abe8be4f28bba5b80d4bcc9a9d7d42c1a59d2a9158a87dc6d25608d"
+    },
+    {
+      "path": "tools/dev-harness/README.md",
+      "sha256": "b3fb0d95eb436add8749539d2340873c9237c6df7de544ff2b7232e43ea03127"
+    },
+    {
+      "path": "tools/dev-harness/a0.task.json",
+      "sha256": "4feb943f0f62930806131925d01cd95debe8ce6a45d9415dc0581df180276e76"
+    },
+    {
+      "path": "tools/dev-harness/a1-db-smoke.mjs",
+      "sha256": "153b4b6a9c629893a07df4ef07d2ab93562c019a1fd7666ad8358a2127e2228c"
+    },
+    {
+      "path": "tools/dev-harness/a1-sse-test.cjs",
+      "sha256": "a61e91d1df305556cb8354b29351c3639415f178e8e34438fe64efab72b21091"
+    },
+    {
+      "path": "tools/dev-harness/a2-browser.mjs",
+      "sha256": "fd1e75a9551d9ecf25c5486ec6a8f526681adf5ece1be6642d35c3cad4c7bac6"
+    },
+    {
+      "path": "tools/dev-harness/a2-final-backend.mjs",
+      "sha256": "7c239808c32e88a3db566ca9ee0e3d0c6ff6b5b785cbb545003236166ca447c9"
+    },
+    {
+      "path": "tools/dev-harness/a2-front.mjs",
+      "sha256": "7514aae1ca4df6c1077ed57f95911887026a80ca709ffef89b764a43cc7fc5a4"
+    },
+    {
+      "path": "tools/dev-harness/a2-live.mjs",
+      "sha256": "e015b5d8e3a6c40554ce4160e8b666be728e2b68f956d895946af2a76f6bb14c"
+    },
+    {
+      "path": "tools/dev-harness/a3-browser.mjs",
+      "sha256": "7d0265e3f8ea3ee694e9c63e2b2c064c998a205b08dd02f25c661901440b1f09"
+    },
+    {
+      "path": "tools/dev-harness/a3-db-smoke.mjs",
+      "sha256": "411332fa162ab8d29feaad6cc6cad91150f981c2d00f2b1fc37db8f62e38dd12"
+    },
+    {
+      "path": "tools/dev-harness/a3-fault.mjs",
+      "sha256": "199baf3781436012b2aeeae60f60ae0562ffa3db75c846a1b40122caf9d5a8fe"
+    },
+    {
+      "path": "tools/dev-harness/a3-front.mjs",
+      "sha256": "e8b0b560a70fc55ad908e10619194caecfd89d93c55eb38b37892b47f5b64db4"
+    },
+    {
+      "path": "tools/dev-harness/a3-live.mjs",
+      "sha256": "5038efe1adf9f19df85942f78b49c3b12c5773bb83a517e4aa1a1ee3bd0c23cb"
+    },
+    {
+      "path": "tools/dev-harness/a3-process-clean.mjs",
+      "sha256": "443a74ac1a1dee6ba3d09809112ed2ca59b5cd388f6a844cf968df42a9405209"
+    },
+    {
+      "path": "tools/dev-harness/a3-provider.mjs",
+      "sha256": "f3ee18316e0f2e13f0d355996cc427eee850be8eff2be9c33031cd4cce05cb44"
+    },
+    {
+      "path": "tools/dev-harness/a3-sse-test.cjs",
+      "sha256": "247e6fc4eb759c472ec0ea4b3edddff85f4f0017a5401e560cd2c054997061b9"
+    },
+    {
+      "path": "tools/dev-harness/a3-store.mjs",
+      "sha256": "87038587b9046d9866c126fe354adc4bce0e2f26f2165b778168df2780c1fba1"
+    },
+    {
+      "path": "tools/dev-harness/maven-settings.xml",
+      "sha256": "6a46a016285612a3f03c1fbd6fc81c3c4da02f5a18e8717c2fb15da2da90273b"
+    },
+    {
+      "path": "tools/dev-harness/real-smoke.mjs",
+      "sha256": "57f681a5f29b700da92b7c11f5b34f08fe6c626697e6e5d3eb7c448472945458"
+    },
+    {
+      "path": "tools/dev-harness/run.mjs",
+      "sha256": "560d260fe8dc3cf2f167d9c95b6cdfddd1fd93c5080e97305a779c40020b5e34"
+    }
+  ]
+}

@@ -1,451 +1,129 @@
-# AI 爆款文章创作器 ✍️
+# AI 图文创作平台
 
-<div align="center">
+输入主题，选择标题和大纲，自动生成正文与配图，最后给出 AI 审稿建议。支持管理员在网页配置文字与图片模型，图片保存在本机持久卷中。
 
-**AI 爆款文章创作器**
+基于 [鱼皮 / 编程导航 yuyuanweb/ai-passage-creator](https://github.com/yuyuanweb/ai-passage-creator) 改造，保留上游署名与 Git 历史。当前仓库：[jifeng-2025/ai-agent-content-platform](https://github.com/jifeng-2025/ai-agent-content-platform)。技术栈为 Java / Spring Boot、Vue 3、MySQL、Redis 和 Docker Compose。
 
-基于多智能体协作，自动完成从选题、大纲、正文到配图的全流程图文创作
+> 当前是可体验的开发候选版，尚未发布正式 v0.1.0。默认配图为演示占位，不是免费 AI 生图，不保证与正文语义匹配。真实文字和图片服务可能收费。
 
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.9-6DB33F?style=flat-square&logo=springboot&logoColor=white)
-![Spring AI Alibaba](https://img.shields.io/badge/Spring%20AI%20Alibaba-1.1.0-FF6A00?style=flat-square&logo=spring&logoColor=white)
-![Vue](https://img.shields.io/badge/Vue-3.5-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
-![JDK](https://img.shields.io/badge/JDK-21+-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+## 现在如何创作
 
-</div>
+1. 输入主题，生成并选择一个标题。
+2. 选择后续使用的**文字模型**、**配图供应商**和 **1–5 张图片**。
+3. 生成、编辑并确认大纲，开始图文创作。
+4. 正文以打字机式流式展示；配图等待显示旋转圆环，不虚构进度百分比。
+5. 图片放在相关正文段落附近，生成完毕后提供一次 **AI 评审建议**，不要求人工接受才出稿，也不自动改写正文。
+6. 可在配图旁点击“重试 / 修改提示词”，只调整目标图片；审稿失败时可单独重试建议。
+7. 在文章详情页下载图文 ZIP、离线 HTML 或单文件 MD。
 
-## 🏗 项目简介
+图片位置由程序根据正文段落选择并持久保存，提示词带入对应章节和段落；单图重试保留原位置。画面是否真正符合内容仍需人工检查。审稿使用可复用的 [article-advisory-review Skill](src/main/resources/skills/article-advisory-review/SKILL.md)，检查表达、结构和风险，**不代表联网事实核查，也不代表已完成视觉审查**。
 
-AI 爆款文章创作器是一个基于 **Spring AI Alibaba** 构建的智能图文创作平台，通过 **5 个智能体协作** 完成从选题到图文文章的全自动创作，每个阶段都支持用户介入，实现人机协作的创作体验。
+顶部导航：首页 → 创作 → 历史 → 管理 → 数据 → 模型设置。管理、数据和模型设置仅对管理员显示。
 
-```
-阶段1: 选题 → 生成 3-5 个标题方案 → 用户选择
-阶段2: 标题 → 生成大纲 → 用户编辑 / AI 优化大纲
-阶段3: 大纲 → 生成正文 → 分析配图需求 → 生成配图 → 图文合成
-```
+## 模型设置
 
-## 🎯 核心价值
+没有模型 Key 也可以启动、登录；创建真实文字任务前需要配置文字模型。管理员登录后进入“模型设置”，无需修改 `.env` 即可新增配置、轮换 Key 和选择默认模型，新任务使用新配置。
 
-| 特性 | 说明 | 价值 |
-|------|------|------|
-| 🤖 多智能体协作 | 5 个 Agent 分工协作，StateGraph 编排 | 专业分工，质量更高 |
-| 🎨 多元配图 | 6 种配图策略 + 自动降级 | 图文并茂，永不中断 |
-| 📡 实时流式输出 | SSE 推送大纲/正文创作过程 | 所见即所得 |
-| 🧑‍💻 人机协作 | 三阶段创作，每步可介入 | 创作可控 |
-| 💎 VIP 会员体系 | Stripe 支付 + 配额管理 | 商业化就绪 |
-| 🐳 Docker 一键部署 | docker compose up 即可运行 | 5 分钟上手 |
+| 用途 | 已适配协议 | 说明 |
+|---|---|---|
+| 文字 | 百炼 DashScope | 保留原有文字模型支持 |
+| 文字 | DeepSeek / 火山方舟兼容聊天 | 用于标题、大纲、正文和审稿；不是生图接口 |
+| 图片 | demo | 默认，无图片 Key；受限图库不可用时绘制 PNG 占位图，明确标记演示 |
+| 图片 | 豆包 / Seedream | 火山方舟 `images/generations` 图片接口 |
+| 图片 | Gemini 原生 | 可选增强，使用对应 Google 图片模型及凭据 |
 
-## ✨ 功能特性
+使用火山方舟时，文字与图片配置的 Base URL 均可填写 `https://ark.cn-beijing.volces.com/api/v3`，后台按协议调用不同接口。模型 ID 填账户实际开通的模型或接入点 ID，不能把 DeepSeek 聊天模型当作 Seedream 生图模型。DeepSeek 官方账户使用 `https://api.deepseek.com`；各供应商 Key 不通用。
 
-### 智能体协作
+只需配置自己要用的一家图片供应商，不要求同时购买 Gemini 和豆包。普通创作请求不能覆盖后台接口地址；未配置的供应商前后端均禁止选择，失败不会自动切换到另一家收费服务。
 
-| 智能体 | 功能 | 说明 |
-|--------|------|------|
-| Agent 1 | 标题生成 | 根据选题生成 3-5 个标题方案供用户选择 |
-| Agent 2 | 大纲生成 | 根据标题生成文章大纲（流式输出） |
-| Agent 3 | 正文生成 | 根据大纲生成 Markdown 正文（流式输出） |
-| Agent 4 | 配图分析 | 分析正文内容，生成配图需求 |
-| Agent 5 | 配图生成 | 获取图片并上传到 COS |
-| 合成 | 合并图文 | 将配图插入正文生成完整图文 |
+Key 仅在后端使用，加密存入数据库；接口不返回完整 Key，浏览器不保存 Key。编辑时留空表示保留，清除须显式确认。主密钥首次需要时生成并保存在独立受限卷中，不要求用户手工填写第三个服务 Key。模型配置版本与任务绑定，在途恢复不会因默认配置变化而悄悄换供应商。
 
-### 配图方式（策略模式）
+“格式检查”不收费，但不是连接成功；“实际测试”需自行确认，可能收费，不自动重试。配置和安全细节见 [管理员模型设置](docs/agent/model-settings.md)。
 
-系统采用策略模式实现多种配图方式，支持灵活扩展：
+## 本地快速启动
 
-| 方式 | 说明 | 数据来源 | 权限 |
-|------|------|---------|------|
-| Pexels | 高质量图库检索 | 关键词检索 | 全部用户 |
-| Mermaid | 流程图/架构图生成 | AI Prompt 生成 | 全部用户 |
-| Iconify | 图标库检索 | 关键词检索 | 全部用户 |
-| 表情包 | Bing 图片搜索 | 关键词检索 | 全部用户 |
-| Nano Banana | Gemini AI 生图 | AI Prompt 生成 | VIP |
-| SVG Diagram | AI 概念示意图 | AI Prompt 生成 | VIP |
-| Picsum | 随机图片 | 降级方案 | 自动触发 |
+准备 Docker Desktop（Linux 引擎）、Docker Compose 和 Node.js，在仓库根目录执行：
 
-> 当主配图方式失败时，系统会自动降级到 Picsum 随机图片，确保文章生成不中断。
-
-### 文章风格
-
-- 🔬 科技风格 - 专业严谨
-- 💝 情感风格 - 温暖感人  
-- 📚 教育风格 - 通俗易懂
-- 😄 轻松幽默 - 诙谐有趣
-
-### SSE 实时通信
-
-基于 Server-Sent Events 实现实时进度推送：
-
-| 消息类型 | 说明 |
-|---------|------|
-| `AGENT1_COMPLETE` | 标题方案生成完成 |
-| `AGENT2_STREAMING` | 大纲流式输出中 |
-| `AGENT2_COMPLETE` | 大纲生成完成 |
-| `AGENT3_STREAMING` | 正文流式输出中 |
-| `AGENT3_COMPLETE` | 正文生成完成 |
-| `AGENT4_COMPLETE` | 配图需求分析完成 |
-| `IMAGE_COMPLETE` | 单张配图生成完成 |
-| `AGENT5_COMPLETE` | 所有配图生成完成 |
-| `MERGE_COMPLETE` | 图文合成完成 |
-| `ERROR` | 错误通知 |
-
-### 其他特性
-
-- ✅ 文章管理（列表、详情、删除）
-- ✅ Markdown 导出
-- ✅ VIP 会员体系（Stripe 支付）
-- ✅ 智能体执行日志追踪（AOP 自动记录）
-- ✅ 管理后台统计分析
-
-## 🛠 技术栈
-
-### 后端
-
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| Spring Boot | 3.5.9 | Web 框架 |
-| Spring AI Alibaba | 1.1.0 | 多智能体编排框架 |
-| DashScope | - | 通义千问大模型 |
-| MyBatis-Flex | 1.11.1 | ORM 框架 |
-| MySQL | 8.0 | 数据存储 |
-| Spring Data Redis | - | Redis 客户端 |
-| Redisson | 3.50.0 | 分布式锁 |
-| Stripe | 31.2.0 | 支付集成 |
-| Knife4j | 4.4.0 | 接口文档 |
-| 腾讯云 COS SDK | 5.6.228 | 对象存储 |
-| Google Gen AI SDK | 1.35.0 | Gemini AI 生图 |
-
-### 前端
-
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| Vue | 3.5 | 前端框架 |
-| TypeScript | 5.8 | 类型安全 |
-| Ant Design Vue | 4.2 | UI 组件库 |
-| Vite | 7.0 | 构建工具 |
-| Pinia | 3.0 | 状态管理 |
-| Vue Router | 4.5 | 路由管理 |
-| ECharts | 6.0 | 数据可视化 |
-| Axios | 1.11 | HTTP 客户端 |
-
-## 🚀 快速开始
-
-### 环境要求
-
-- JDK 21+
-- Node.js 18+
-- MySQL 8.0+
-- Redis 7.x
-
-### 1. 数据库初始化
-
-```bash
-mysql -uroot -p < sql/create_table.sql
-```
-
-### 2. 配置 API Key
-
-```bash
-cp src/main/resources/application-local.yml.example src/main/resources/application-local.yml
-```
-
-编辑 `application-local.yml`：
-
-```yaml
-spring:
-  ai:
-    alibaba:
-      dashscope:
-        api-key: your-dashscope-api-key  # 必填
-
-pexels:
-  api-key: your-pexels-api-key  # 必填
-
-# 可选配置
-stripe:
-  api-key: sk_test_xxx  # 支付功能
-  
-tencent:
-  cos:
-    secret-id: xxx  # 图片上传
-```
-
-### 3. 启动后端
-
-```bash
-mvn spring-boot:run
-```
-
-接口文档：http://localhost:8567/api/doc.html
-
-### 4. 启动前端
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-前端页面：http://localhost:5173
-
-## 🐳 Docker 一键部署（推荐）
-
-### 前置条件
-
-- Docker 20.10+
-- Docker Compose v2+
-
-### 快速启动
-
-```bash
-# 1. 复制环境变量配置文件
-cp .env.example .env
-
-# 2. 编辑 .env 文件，填写必需的 API Key
-# 必须配置：DASHSCOPE_API_KEY 和 PEXELS_API_KEY
-vim .env
-
-# 3. 一键启动所有服务
+```powershell
+node tools/init-local-env.mjs
 docker compose up -d --build
-
-# 或使用启动脚本（自动检查环境）
-./start.sh
 ```
 
-### 国内网络使用（镜像加速）
+初始化工具仅在 `.env` 不存在时生成随机数据库密码，保留已有配置；缺少前端同源配置时补齐。不要把 `.env`、Key 或私有备份提交 Git。
 
-如果遇到 Docker 镜像拉取失败，使用国内镜像版本：
+默认打开 **http://localhost**。使用已有管理员账号进入“模型设置”；普通注册账号不会自动成为管理员，新安装需按自己的管理流程授予管理员权限，不提供公开默认管理员密码。自定义前端端口时，`MODEL_ADMIN_ORIGIN` 必须与浏览器地址的协议、主机、端口一致。外部访问需正确配置 HTTPS；默认端口只绑定回环地址。
 
-```bash
-docker compose -f docker-compose.china.yml up -d --build
+默认 `/create` 是“选标题 → 确认大纲 → 图文 → 建议”的简化流程，使用持久任务执行，不需要开启旧评审阻断流程。旧高级入口 `/create/advanced` 保留；其评审 Loop、人工操作和 Runtime 开关 `REVIEW_LOOP_ENABLED`、`INTERVENTION_ENABLED`、`RUNTIME_ENABLED` 默认关闭，仅在使用旧流程时按需开启。详见 [创作契约](docs/agent/quick-creation.md)。
+
+### 更新现有环境
+
+先完成当前任务，并备份数据库、图片和模型主密钥。已具备本轮数据库结构的环境可执行：
+
+```powershell
+git pull --ff-only
+docker compose up -d --build backend frontend
 ```
 
-### 服务端口
+只更新导航等前端代码时：`docker compose up -d --build --no-deps frontend`。随后刷新网页，导出文件需重新下载。
 
-| 服务 | 端口 | 说明 |
-|------|------|------|
-| 前端 | 80 | 访问地址：http://localhost |
-| 后端 | 8123 | API 接口：http://localhost:8123/api |
-| 接口文档 | 8123 | http://localhost:8123/api/doc.html |
-| MySQL | 不暴露 | 仅内部网络访问（可选暴露到 13306） |
-| Redis | 不暴露 | 仅内部网络访问（可选暴露到 16379） |
+空数据库由 Compose 初始化 SQL；**旧数据库不会因为重建容器自动迁移**。旧版本需依次补齐尚未应用的 `add_article_review.sql`、`add_article_intervention.sql`、`add_article_runtime.sql`、`add_local_image_storage.sql`、`add_image_providers.sql`、`add_model_settings.sql`，先备份再执行，具体命令见 [升级说明](docs/agent/model-settings.md)。不要对已有库重放建库脚本，不使用 `down -v` 升级。
 
-> **安全说明**：MySQL 和 Redis 默认不暴露端口到宿主机，仅通过 Docker 内部网络访问。如需从宿主机连接数据库进行调试，可在 `docker-compose.yml` 中取消相应 `ports` 注释。
+## 本地图片与备份
 
-### 常用命令
+默认 `IMAGE_STORAGE=local`，**无需 COS Key 或桶**；COS 仅为可选兼容实现，旧 COS 链接与旧文章保留，不自动搬迁或删除。
 
-```bash
-# 查看服务状态
-docker compose ps
+| 内容 | Compose 持久卷 | 容器位置 |
+|---|---|---|
+| 文章、用户、配置与执行记录 | `ai-passage-mysql-data` | MySQL 数据目录 |
+| 本地配图 | `ai-passage-image-data` | `/data/images` |
+| 模型配置加密主密钥 | `ai-passage-model-secrets` | `/data/model-secrets` |
 
-# 查看服务日志
-docker compose logs -f backend    # 后端日志
-docker compose logs -f frontend   # 前端日志
-docker compose logs -f mysql      # 数据库日志
+备份和迁移必须同时保留数据库、图片与对应主密钥；只复制数据库无法解密原 Key。容器重建保留命名卷，但删除卷会丢失数据。不要将备份放到 Git 或公开目录，也不要设置全目录 `chmod 777`。
 
-# 重启单个服务
-docker compose restart backend
+图片使用随机对象 ID、原子写入和受限目录，转换为经过校验的 PNG；拒绝主动 SVG/HTML。站内图片通过鉴权接口读取，不公开整个磁盘。生成结果先留存；图片保存失败时优先复用已收到的结果，不因为保存失败自动再次收费生成。供应商请求结果不确定时暂停确认，不承诺跨供应商 exactly-once。
 
-# 停止所有服务
-docker compose down
+## 三种导出方式
 
-# 停止并删除数据卷（清空数据）
-docker compose down -v
+| 导出 | 如何使用 | 图片兼容性 |
+|---|---|---|
+| **图文 ZIP（推荐）** | 完整解压，包含 `article.md`、`images/` 和 `index.html` | MD 使用标准相对路径；保留图片文件夹，可离线查看 |
+| **网页 HTML** | 双击打开单个文件 | 内嵌本地图片，带阅读排版，适配桌面和手机 |
+| **单文件 MD** | 在支持内嵌图片的 Markdown 编辑器中预览 | 使用 data 图片，部分编辑器/平台不支持，建议改用 ZIP |
+
+历史列表默认下载图文 ZIP，详情页可选三种格式。**Markdown 源码模式只显示语法**：VS Code 打开 ZIP 内的 `article.md` 后按 `Ctrl+Shift+V` 预览，不要单独移走 `images/` 文件夹。
+
+HTML 支持常用标题、段落、强调、列表、引用、代码块与配图排版，不执行文章原始 HTML；暂不承诺完整 GFM 表格与嵌套列表。旧外链图片仍可能需要联网，不宣称已离线打包。
+
+以下是本地合成样例的离线排版检查，非真实模型质量证明：
+
+![离线图文阅读样例](artifacts/offline-export/browser-2026-09-11T09-44-47-467Z/12-offline-desktop.png)
+
+## 上游能力与新增改造
+
+- **上游基础**：标题方案、大纲、正文、多种配图、文章管理及 Markdown 导出。
+- **本次新增**：网页多模型配置、文字模型选择、1–5 张段落配图、流式简化创作、末尾审稿 Skill、单图提示词重试、本地持久图片、离线导出及导航调整。
+- **可靠执行与高级流程**：持久状态、检查点、租约/fence、取消、预算、SSE 恢复；旧高级流程保留结构化评审、最多两次局部修订、版本比较和人工处理。
+- **尚未实现**：B 的 Research/RAG、偏好记忆、产品 MCP；H1 自动开发调度；D1 自动 CI/GHCR 发布和服务器部署。现有 Compose 启动不等于自动部署平台。
+
+## 验证范围
+
+开发验证默认使用 Mock 云边界。最近几轮专项结果分别为：配图与存储 36 项、模型选择/审稿 47 项、审稿恢复 52 项、最新离线导出 29 项通过；这些是不同版本的专项结果，**不能合并为当前版本完整 A4 全绿**。最新导出后端打包、前端类型检查通过，合成离线样例在真实浏览器断网状态下检查桌面/手机，截图已查看。
+
+- [最新离线导出结果](artifacts/offline-export/report.md)
+- [审稿修复](artifacts/advice-timeout/report.md)
+- [文字模型与配图数量](artifacts/composition-options/report.md)
+- [A4 阶段报告及历史限制](artifacts/a4/report.md)
+- [当前状态](docs/agent/status.md)
+
+可复用验证入口：
+
+```powershell
+node tools/dev-harness/run.mjs a3-providers
+node tools/dev-harness/run.mjs a3-mock
 ```
 
-### 环境变量说明
+完整安装、升级、用户页面和真实供应商体验由用户手动验收。用户已反馈真实图文使用情况，但未形成当前源码统一版本的完整收费 API 验收报告；代理未另行调用真实 Key。不要把 Mock 或配置存在视为账户调用验证。既有 `contextLoads` 配置问题及历史 lint 16 错误/1 警告未作为本轮顺手全仓修复，不宣称全仓全绿。详细原始日志、运行目录、缓存、真实用户导出及私密配置不进入 Git；公开报告保留范围和限制。
 
-| 变量名 | 必需 | 默认值 | 说明 |
-|--------|------|--------|------|
-| DASHSCOPE_API_KEY | ✅ | - | 通义千问 API Key |
-| PEXELS_API_KEY | ✅ | - | Pexels 图片 API Key |
-| MYSQL_ROOT_PASSWORD | - | 123456 | MySQL root 密码 |
-| MYSQL_DATABASE | - | ai_passage_creator | 数据库名 |
-| BACKEND_PORT | - | 8123 | 后端端口 |
-| FRONTEND_PORT | - | 80 | 前端端口 |
-| NANO_BANANA_API_KEY | - | - | AI 生图（VIP功能） |
-| STRIPE_API_KEY | - | - | Stripe 支付（VIP功能） |
+## 署名与许可
 
-详见 `.env.example` 文件获取完整配置说明。
-
-## 📁 项目结构
-
-```
-├── src/main/java/com/yupi/template/
-│   ├── agent/                       # 智能体模块
-│   │   ├── agents/                  # 各智能体实现
-│   │   │   ├── TitleGeneratorAgent.java
-│   │   │   ├── OutlineGeneratorAgent.java
-│   │   │   ├── ContentGeneratorAgent.java
-│   │   │   ├── ImageAnalyzerAgent.java
-│   │   │   └── ContentMergerAgent.java
-│   │   ├── parallel/                # 并行配图生成
-│   │   │   └── ParallelImageGenerator.java
-│   │   ├── config/                  # 智能体配置
-│   │   ├── context/                 # 流式处理上下文
-│   │   ├── tools/                   # 智能体工具
-│   │   └── ArticleAgentOrchestrator.java
-│   ├── annotation/                  # 自定义注解（@AgentExecution）
-│   ├── aop/                         # AOP 切面（执行日志记录）
-│   ├── config/                      # 配置类（COS、Pexels、Mermaid 等）
-│   ├── constant/                    # 常量（PromptConstant、ArticleConstant）
-│   ├── controller/                  # 控制器
-│   ├── exception/                   # 异常处理
-│   ├── manager/                     # 管理器（SseEmitterManager）
-│   ├── mapper/                      # MyBatis Mapper
-│   ├── model/
-│   │   ├── dto/                     # 数据传输对象
-│   │   │   ├── article/             # ArticleState、ArticleCreateRequest 等
-│   │   │   └── image/               # ImageData、ImageRequest
-│   │   ├── entity/                  # 实体类
-│   │   ├── enums/                   # 枚举（ImageMethodEnum、ArticleStyleEnum）
-│   │   └── vo/                      # 视图对象
-│   ├── service/                     # 业务服务
-│   │   ├── impl/                    # 服务实现
-│   │   ├── ArticleAgentService.java # 智能体编排
-│   │   ├── ImageServiceStrategy.java# 配图策略选择器
-│   │   ├── CosService.java          # COS 上传
-│   │   ├── PexelsService.java       # Pexels 图库
-│   │   ├── NanoBananaService.java   # Gemini AI 生图
-│   │   ├── MermaidService.java      # Mermaid 流程图
-│   │   ├── IconifyService.java      # Iconify 图标
-│   │   ├── EmojiPackService.java    # 表情包搜索
-│   │   └── SvgDiagramService.java   # SVG 示意图
-│   └── utils/                       # 工具类
-├── frontend/                        # 前端项目
-│   ├── src/
-│   │   ├── pages/                   # 页面组件
-│   │   ├── components/              # 公共组件
-│   │   ├── api/                     # API 接口
-│   │   └── stores/                  # 状态管理
-│   └── package.json
-├── sql/                             # 数据库脚本
-│   ├── create_table.sql             # 建表语句
-│   ├── init_database.sql            # 初始化数据
-│   └── ...                          # 增量更新脚本
-├── docker-compose.yml               # Docker 编排
-├── start.sh                         # 启动脚本
-└── pom.xml                          # Maven 配置
-```
-
-## 🗄 数据库设计
-
-### 核心表
-
-| 表名 | 说明 |
-|------|------|
-| user | 用户表（含 VIP 时间、配额） |
-| article | 文章表（含状态、阶段、配图方式限制） |
-| agent_log | 智能体执行日志 |
-| payment_record | 支付记录 |
-
-### 文章表关键字段
-
-```sql
-taskId               -- 任务ID（UUID）
-phase                -- 当前阶段：TITLE_SELECTION/OUTLINE_EDITING/CONTENT_GENERATION/COMPLETED
-style                -- 文章风格
-titleOptions         -- 标题方案列表（JSON）
-enabledImageMethods  -- 允许的配图方式（JSON 数组）
-```
-
-## 🔑 API Key 获取
-
-| 服务 | 获取地址 | 说明 |
-|------|---------|------|
-| 通义千问 | https://bailian.console.aliyun.com | 必需 |
-| Pexels | https://www.pexels.com/api/ | 必需 |
-| Stripe | https://dashboard.stripe.com | 支付功能 |
-| 腾讯云 COS | https://console.cloud.tencent.com | 图片上传 |
-| Nano Banana | - | Gemini AI 生图（VIP 功能） |
-
-## 🧪 测试账号
-
-| 账号 | 密码 | 角色 |
-|------|------|------|
-| admin | 12345678 | 管理员 |
-| user | 12345678 | 普通用户 |
-| test | 12345678 | 测试账号 |
-
-## 🏛 架构特点
-
-### 多智能体编排
-
-采用 Spring AI Alibaba 的 StateGraph 实现智能体编排：
-
-```java
-StateGraph graph = new StateGraph(keyStrategyFactory)
-    .addNode("content_generator", node_async(contentGeneratorAgent))
-    .addNode("image_analyzer", node_async(imageAnalyzerAgent))
-    .addNode("parallel_image_generator", node_async(parallelImageGenerator))
-    .addNode("content_merger", node_async(contentMergerAgent))
-    .addEdge(START, "content_generator")
-    .addEdge("content_generator", "image_analyzer")
-    .addEdge("image_analyzer", "parallel_image_generator")
-    .addEdge("parallel_image_generator", "content_merger")
-    .addEdge("content_merger", END);
-```
-
-### 配图策略模式
-
-支持 6 种配图方式，通过策略模式实现灵活扩展：
-
-```java
-public enum ImageMethodEnum {
-    PEXELS("PEXELS", "Pexels 图库", false, false),
-    NANO_BANANA("NANO_BANANA", "AI 生图", true, false),
-    MERMAID("MERMAID", "流程图", true, false),
-    ICONIFY("ICONIFY", "图标库", false, false),
-    EMOJI_PACK("EMOJI_PACK", "表情包", false, false),
-    SVG_DIAGRAM("SVG_DIAGRAM", "示意图", true, false);
-}
-```
-
-### 流式输出
-
-基于 SSE（Server-Sent Events）实现实时进度推送：
-
-- 大纲生成流式输出
-- 正文创作流式输出
-- 配图生成实时通知
-- 阶段状态实时更新
-
-## 🔧 扩展指南
-
-### 添加新的配图方式
-
-1. 在 `ImageMethodEnum` 添加枚举值：
-
-```java
-NEW_METHOD("NEW_METHOD", "新方式描述", isAiGenerated, isFallback)
-```
-
-2. 实现 `ImageSearchService` 接口：
-
-```java
-@Service("NEW_METHOD")
-public class NewMethodService implements ImageSearchService {
-    @Override
-    public ImageData search(ImageRequest request) {
-        // 实现图片获取逻辑
-    }
-}
-```
-
-3. 添加对应的配置类（如需要 API Key）
-4. 策略选择器会自动注册新服务
-
-### 添加新的文章风格
-
-1. 在 `ArticleStyleEnum` 添加枚举值
-2. 在 `PromptConstant` 添加对应的 Prompt 附加内容
-3. 在 `ArticleAgentService.getStylePrompt()` 添加 case
-
-## 📖 相关文档
-
-- [VIP 功能说明](VIP_FEATURES.md) - VIP 会员权益介绍
-- [Stripe 支付配置](STRIPE_SETUP.md) - 支付功能配置指南
-- [项目架构概览](PROJECT_OVERVIEW.md) - 详细技术架构文档
-
-## 👨‍💻 作者
-
-<a href="https://codefather.cn">编程导航学习圈</a>
+保留上游作者链接、代码署名和历史。本地已有的 MIT 徽章线索尚未补齐对应版本的完整许可正文与适用范围；本项目不擅自补发 MIT/Apache 许可证，也不把公开仓库等同于任意再分发或商业使用许可。详见 [授权核查记录](artifacts/a4/license-review.md)。本次源码更新不代表正式版本发布或分发授权核查已完成。

@@ -22,6 +22,7 @@ public class ArticleInterventionService {
     private final ArticleService articles;
     private final ReviewTraceStore reviews;
     private final AgentConfig config;
+    @org.springframework.beans.factory.annotation.Autowired(required=false) private com.yupi.template.runtime.RuntimeStore runtime;
     public record Receipt(String requestId, String status, boolean replayed) {}
 
     @Transactional(readOnly = true)
@@ -79,6 +80,7 @@ public class ArticleInterventionService {
         jdbc.update("INSERT INTO article_intervention(taskId,revision) VALUES (?,1) ON DUPLICATE KEY UPDATE revision=revision+1",taskId);
         jdbc.update("INSERT INTO article_operation(taskId,requestId,payloadHash,action,requestJson,status) VALUES (?,?,?,?,?,'QUEUED')",taskId,request.requestId(),hash,request.action(),GsonUtils.toJson(request));
         jdbc.update("UPDATE article SET status='PROCESSING',phase=?,errorMessage=NULL WHERE taskId=?", "EDIT_REVIEW".equals(request.action())?"REVIEWING":"IMAGE_GENERATING",taskId);
+        if (runtime != null && runtime.enabled()) runtime.enroll(taskId,request.requestId(),"EDIT_REVIEW".equals(request.action())?"REVIEW":"MEDIA");
         return new Receipt(request.requestId(),"QUEUED",false);
     }
     private void validate(InterventionRequest r) {

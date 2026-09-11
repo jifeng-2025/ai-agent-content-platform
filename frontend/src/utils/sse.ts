@@ -21,15 +21,21 @@ export interface SSEOptions {
 export const connectSSE = (taskId: string, options: SSEOptions): EventSource => {
   const { onMessage, onError, onComplete } = options
 
-  const eventSource = new EventSource(`/api/article/progress/${taskId}`)
+  const key = 'article-runtime-cursor:' + taskId
+  let cursor = 0
+  try { cursor = Number(sessionStorage.getItem(key) || 0) } catch { /* storage may be unavailable */ }
+  const eventSource = new EventSource('/api/article/progress/' + encodeURIComponent(taskId) + (cursor > 0 ? '?cursor=' + cursor : ''))
 
   eventSource.onmessage = (event) => {
     try {
       const message: SSEMessage = JSON.parse(event.data)
+      if (typeof message.resetCursor === 'number') cursor = message.resetCursor
+      else if (typeof message.seq === 'number') { if (message.seq <= cursor) return; cursor = message.seq }
       onMessage(message)
+      try { if (cursor > 0) sessionStorage.setItem(key, String(cursor)) } catch { /* GET remains available */ }
       
       // 检查是否完成
-      if (message.type === 'IMAGES_FAILED' || message.type === 'NEEDS_REVIEW' || message.type === 'ALL_COMPLETE' || message.type === 'ERROR') {
+      if (message.terminal === true || ['CANCELLED','TIMED_OUT','BUDGET_EXHAUSTED','EXTERNAL_UNCERTAIN'].includes(message.type) || message.type === 'IMAGES_FAILED' || message.type === 'NEEDS_REVIEW' || message.type === 'ALL_COMPLETE' || message.type === 'ERROR') {
         eventSource.close()
         onComplete?.()
       }

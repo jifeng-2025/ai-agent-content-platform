@@ -1,0 +1,28 @@
+{
+  "sourceId": "f2134aa4417fc62294609738c377a08e107a2bf1e9dae90f0177f4de2076c7f8",
+  "scope": "User delegated installation, upgrade, page end-to-end, provider selectors and paid trial; do not run further stages",
+  "snapshots": {
+    "mock": {
+      "files": 155,
+      "different": []
+    },
+    "front": {
+      "files": 68,
+      "different": []
+    },
+    "store": {
+      "files": 155,
+      "different": []
+    },
+    "http": {
+      "files": 155,
+      "different": []
+    },
+    "fault": {
+      "files": 155,
+      "different": []
+    }
+  },
+  "currentDifferences": [],
+  "failures": []
+}

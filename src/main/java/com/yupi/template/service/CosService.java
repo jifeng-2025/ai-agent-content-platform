@@ -30,6 +30,7 @@ import java.util.UUID;
  * @author <a href="https://codefather.cn">编程导航学习圈</a>
  */
 @Service
+@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name="article.storage.type",havingValue="cos")
 @Slf4j
 public class CosService {
 

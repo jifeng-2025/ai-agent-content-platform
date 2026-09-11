@@ -1,0 +1,282 @@
+{
+  "status": "PASS",
+  "checks": [
+    "owner login",
+    "authenticated real local PNG",
+    "private image response",
+    "anonymous image denied",
+    "different user image denied",
+    "different user ZIP denied",
+    "traversal returns no file",
+    "real authenticated ZIP export",
+    "ZIP extracted in dedicated workspace",
+    "offline Markdown relative image paths",
+    "no COS environment variables",
+    "durable budget exists before recreation",
+    "new container instance",
+    "same image bytes survive container replacement",
+    "persistent image recovery",
+    "recreation preserves callsUsed",
+    "recreation preserves imageRetriesUsed",
+    "recreation preserves reservedCostMicros"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T11:02:00.069Z",
+      "event": "backend container forcibly recreated"
+    }
+  ],
+  "budgetBefore": {
+    "taskId": "43396cec0e9c4f28b4b4fa28056842d6",
+    "runId": "cf7abcc5-358f-4ab1-b471-5c2c0c0fbe69",
+    "userId": "455612248154288128",
+    "createRequestId": "79115614-aed7-45f2-8fb2-6fa0a3896e72",
+    "createPayloadHash": "f692b432498b04c932471f0543433b51f3f889728a6b15863d8b53028f7734ff",
+    "stateVersion": "30",
+    "lastEventId": "30",
+    "remainingMs": "894646",
+    "maxCalls": 12,
+    "callsUsed": 5,
+    "maxImageRetries": 3,
+    "imageRetriesUsed": 0,
+    "maxEstimatedCostMicros": "5000000",
+    "reservedCostMicros": "400000",
+    "actualCostMicros": "0",
+    "createdTime": "2026-09-10T19:01:41.355",
+    "enabled": true,
+    "status": "COMPLETED",
+    "phase": "COMPLETED",
+    "errorMessage": null,
+    "calls": [
+      {
+        "callId": "81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+        "stepId": "TITLE",
+        "provider": "dashscope",
+        "payloadHash": "48927d645c331526706714ca9f9fa60cdc7e09790c185a891623856841d6f511",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:41.66"
+      },
+      {
+        "callId": "4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+        "stepId": "OUTLINE",
+        "provider": "dashscope",
+        "payloadHash": "1980a5c120185b599fa5f69cc06015ad02d36c3bf19634d2aede79c1e5c3c926",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:43.662"
+      },
+      {
+        "callId": "64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+        "stepId": "BODY",
+        "provider": "dashscope",
+        "payloadHash": "7c917a050c4de2976a681b498e48c63129289b9e13097287c93826c2f8eca6d1",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:46.667"
+      },
+      {
+        "callId": "86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+        "stepId": "REVIEW",
+        "provider": "dashscope",
+        "payloadHash": "a5d95d291bf75ce4cc4d19a5281f10cd5403f204cd29ef6d0bd5dba2fc666c9b",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:46.717"
+      },
+      {
+        "callId": "06a3cd49ea42cb45fe30935155d2d6fa4fdc4bf5fcc235c75aecad2f7eefc60f",
+        "stepId": "IMAGE:image-1",
+        "provider": "image:DEMO",
+        "payloadHash": "4cee269a7323b1060609362bac9e0076adc033cff4ab2207438505419458ca2b",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": null,
+        "reservedCostMicros": "0",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:47.673"
+      }
+    ],
+    "operations": [
+      {
+        "requestId": "normal-title-0001",
+        "action": "CREATE",
+        "status": "COMPLETED",
+        "phase": "TITLE_WAIT",
+        "fence": "1",
+        "stateVersion": "3"
+      },
+      {
+        "requestId": "normal-outline-0001",
+        "action": "CONFIRM_TITLE",
+        "status": "COMPLETED",
+        "phase": "OUTLINE_WAIT",
+        "fence": "1",
+        "stateVersion": "3"
+      },
+      {
+        "requestId": "normal-body-0001",
+        "action": "CONFIRM_OUTLINE",
+        "status": "COMPLETED",
+        "phase": "DONE",
+        "fence": "1",
+        "stateVersion": "5"
+      },
+      {
+        "requestId": "d48c79a4-aad9-42d8-b926-eaae64d74531",
+        "action": "ACCEPT",
+        "status": "COMPLETED",
+        "phase": "DONE",
+        "fence": "1",
+        "stateVersion": "5"
+      }
+    ],
+    "mayStillCharge": false
+  },
+  "budgetAfter": {
+    "taskId": "43396cec0e9c4f28b4b4fa28056842d6",
+    "runId": "cf7abcc5-358f-4ab1-b471-5c2c0c0fbe69",
+    "userId": "455612248154288128",
+    "createRequestId": "79115614-aed7-45f2-8fb2-6fa0a3896e72",
+    "createPayloadHash": "f692b432498b04c932471f0543433b51f3f889728a6b15863d8b53028f7734ff",
+    "stateVersion": "30",
+    "lastEventId": "30",
+    "remainingMs": "894646",
+    "maxCalls": 12,
+    "callsUsed": 5,
+    "maxImageRetries": 3,
+    "imageRetriesUsed": 0,
+    "maxEstimatedCostMicros": "5000000",
+    "reservedCostMicros": "400000",
+    "actualCostMicros": "0",
+    "createdTime": "2026-09-10T19:01:41.355",
+    "enabled": true,
+    "status": "COMPLETED",
+    "phase": "COMPLETED",
+    "errorMessage": null,
+    "calls": [
+      {
+        "callId": "81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+        "stepId": "TITLE",
+        "provider": "dashscope",
+        "payloadHash": "48927d645c331526706714ca9f9fa60cdc7e09790c185a891623856841d6f511",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:41.66"
+      },
+      {
+        "callId": "4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+        "stepId": "OUTLINE",
+        "provider": "dashscope",
+        "payloadHash": "1980a5c120185b599fa5f69cc06015ad02d36c3bf19634d2aede79c1e5c3c926",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:43.662"
+      },
+      {
+        "callId": "64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+        "stepId": "BODY",
+        "provider": "dashscope",
+        "payloadHash": "7c917a050c4de2976a681b498e48c63129289b9e13097287c93826c2f8eca6d1",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:46.667"
+      },
+      {
+        "callId": "86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+        "stepId": "REVIEW",
+        "provider": "dashscope",
+        "payloadHash": "a5d95d291bf75ce4cc4d19a5281f10cd5403f204cd29ef6d0bd5dba2fc666c9b",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": "a4-86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+        "reservedCostMicros": "100000",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:46.717"
+      },
+      {
+        "callId": "06a3cd49ea42cb45fe30935155d2d6fa4fdc4bf5fcc235c75aecad2f7eefc60f",
+        "stepId": "IMAGE:image-1",
+        "provider": "image:DEMO",
+        "payloadHash": "4cee269a7323b1060609362bac9e0076adc033cff4ab2207438505419458ca2b",
+        "status": "SUCCEEDED",
+        "attempts": 1,
+        "queryAttempts": 0,
+        "providerJobId": null,
+        "reservedCostMicros": "0",
+        "actualCostMicros": "0",
+        "deadlineAt": "2026-09-10T19:02:47.673"
+      }
+    ],
+    "operations": [
+      {
+        "requestId": "normal-title-0001",
+        "action": "CREATE",
+        "status": "COMPLETED",
+        "phase": "TITLE_WAIT",
+        "fence": "1",
+        "stateVersion": "3"
+      },
+      {
+        "requestId": "normal-outline-0001",
+        "action": "CONFIRM_TITLE",
+        "status": "COMPLETED",
+        "phase": "OUTLINE_WAIT",
+        "fence": "1",
+        "stateVersion": "3"
+      },
+      {
+        "requestId": "normal-body-0001",
+        "action": "CONFIRM_OUTLINE",
+        "status": "COMPLETED",
+        "phase": "DONE",
+        "fence": "1",
+        "stateVersion": "5"
+      },
+      {
+        "requestId": "d48c79a4-aad9-42d8-b926-eaae64d74531",
+        "action": "ACCEPT",
+        "status": "COMPLETED",
+        "phase": "DONE",
+        "fence": "1",
+        "stateVersion": "5"
+      }
+    ],
+    "mayStillCharge": false
+  },
+  "imageSha256": "ae4d99730d8e3c7cb7228795b02911dcd9aefa84698a3cf57420010778d5c171",
+  "zipSha256": "42ccdce2ded492f5e7b52cb330b0a7a4f975b48ff8043716bc3aad487d10e7e3",
+  "unpack": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-install-2026-09-10t10-56-34-866z\\offline-export",
+  "taskId": "43396cec0e9c4f28b4b4fa28056842d6",
+  "scope": "Actual packaged application, real MySQL/Redis/HTTP and named image volume; no cloud model API"
+}

@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-10T05:26:00.795Z",
+  "upstream": "https://github.com/yuyuanweb/ai-passage-creator",
+  "localUpstreamCommit": "9a7dbf1ff58ec68115f2c0c7310b680b2febe370",
+  "licenseFiles": [],
+  "readmeMitBadge": true,
+  "readmeSha256": "f1757c76199fe4d289d0409750bb64f0267679b177dfd1c71838dab818bcbece",
+  "livePublicPage": "Read via web browser retrieval; no license text identified",
+  "remoteRecursiveApi": "NOT_VERIFIED: unauthenticated GitHub API returned HTTP 403; no credential workaround",
+  "distribution": "UNRESOLVED"
+}

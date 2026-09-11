@@ -1,0 +1,33 @@
+{
+  "runs": [
+    {
+      "run": "artifacts/a3/runs/2026-09-10T09-12-52-949Z",
+      "status": "PASS",
+      "tests": 96,
+      "note": "Intermediate source; not final evidence; 8 demo tests passed twice"
+    },
+    {
+      "run": "artifacts/a4/runs/gate-2026-09-10T09-24-15-108Z",
+      "status": "INTERRUPTED",
+      "reason": "Tighten explicit demo-only plan validation before acceptance; stopped dedicated compiler only"
+    },
+    {
+      "run": "artifacts/a4/runs/gate-2026-09-10T09-26-51-431Z",
+      "status": "INTERRUPTED",
+      "reason": "Legacy application.yml xxx image key must not count as configured. Refreeze before acceptance."
+    },
+    {
+      "run": "artifacts/a4/runs/gate-2026-09-10T09-31-47-833Z",
+      "status": "INTERRUPTED",
+      "tests": 99,
+      "reason": "Java regressions passed; production runtime image needs fonts and non-root media directory ownership. Add actual runtime-image install verification before final acceptance."
+    },
+    {
+      "run": "artifacts/a4/runs/gate-2026-09-10T09-47-48-077Z",
+      "status": "HARNESS_FAILURE_INSTALL_REPEATED",
+      "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+      "reason": "Default demo refresh wait dereferenced not-yet-mounted img. Changed wait to optional element access; naturalWidth>0 assertion and 30s deadline unchanged. All installation/browser stages repeated using same JAR/source; Java/HTTP/process results unchanged.",
+      "evidence": "artifacts/a4/runs/a4-install-2026-09-10t10-50-11-029z/browser-2026-09-10T10-54-51-039Z/result.json"
+    }
+  ]
+}

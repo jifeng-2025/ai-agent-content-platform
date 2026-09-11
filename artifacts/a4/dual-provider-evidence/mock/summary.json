@@ -1,0 +1,278 @@
+{
+  "mode": "a3-mock",
+  "generatedAt": "2026-09-11T03:13:35.955Z",
+  "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-11T03-03-36-255Z",
+  "images": {
+    "maven": "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+    "node": "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32"
+  },
+  "results": [
+    {
+      "id": "git-head",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 226,
+      "status": "PASS"
+    },
+    {
+      "id": "git-status",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 239,
+      "status": "PASS"
+    },
+    {
+      "id": "git-diff",
+      "command": [
+        "git",
+        "diff",
+        "--",
+        "frontend/package.json",
+        ".gitignore"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 195,
+      "status": "PASS"
+    },
+    {
+      "id": "maven-version",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-version"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 1139,
+      "status": "PASS"
+    },
+    {
+      "id": "backend-package",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "a0-2026-09-11t03-03-36-255z-backend-package",
+        "--cpus=2",
+        "--memory=3g",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-11T03-03-36-255Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/a0-maven-settings.xml",
+        "-B",
+        "-DskipTests",
+        "package"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 263647,
+      "status": "PASS"
+    },
+    {
+      "id": "test-dependencies",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "a0-2026-09-11t03-03-36-255z-test-dependencies",
+        "--cpus=2",
+        "--memory=3g",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-11T03-03-36-255Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/a0-maven-settings.xml",
+        "-B",
+        "-Dtest=A0BaselineTest,A1*Test,A2*Test,A3*Test,A4*Test",
+        "test"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 170605,
+      "status": "PASS"
+    },
+    {
+      "id": "mock",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "a0-2026-09-11t03-03-36-255z-mock",
+        "--cpus=2",
+        "--memory=3g",
+        "--network=none",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-11T03-03-36-255Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/a0-maven-settings.xml",
+        "-o",
+        "-B",
+        "-Dtest=A0BaselineTest,A1*Test,A2*Test,A3*Test,A4*Test",
+        "test"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 163028,
+      "status": "PASS"
+    },
+    {
+      "id": "original-service-health",
+      "status": "NOT_RUN",
+      "reason": "User deliberately stopped original services; A3 uses dedicated integration environments."
+    },
+    {
+      "id": "actual-test-coverage",
+      "status": "PASS",
+      "suites": [
+        {
+          "file": "mock-TEST-com.yupi.template.baseline.A0BaselineTest.xml",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A1IntegrationTest.xml",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A1PersistenceTest.xml",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A1ReviewLoopTest.xml",
+          "tests": 37,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A2MediaTest.xml",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A2RoundTest.xml",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A3ReviewResumeTest.xml",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A4DemoMediaTest.xml",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.runtime.A3BudgetTest.xml",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.runtime.A3ExternalTest.xml",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.service.A4DemoTest.xml",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.service.A4ImageProviderTest.xml",
+          "tests": 25,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.storage.A4ImageAccessTest.xml",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.storage.A4StorageBindingTest.xml",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.storage.A4StorageTest.xml",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ],
+      "total": 124,
+      "a3Executed": 11,
+      "providerExecuted": 25,
+      "reason": "Requires executed A3 tests; Surefire selector success alone is insufficient."
+    },
+    {
+      "id": "real-api",
+      "status": "NOT_RUN",
+      "reason": "Separate opt-in provider smoke; health and mocks do not demonstrate real generation."
+    }
+  ]
+}

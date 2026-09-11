@@ -1,7 +1,7 @@
 package com.yupi.template.service;
 
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import com.yupi.template.config.SvgDiagramConfig;
 import com.yupi.template.constant.PromptConstant;
 import com.yupi.template.model.dto.image.ImageData;
@@ -32,7 +32,7 @@ public class SvgDiagramService implements ImageSearchService {
     private SvgDiagramConfig svgDiagramConfig;
 
     @Resource
-    private DashScopeChatModel chatModel;
+    private ChatModel chatModel;
 
     @Override
     public String searchImage(String keywords) {

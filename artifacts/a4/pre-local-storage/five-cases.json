@@ -1,0 +1,152 @@
+{
+  "qualityClaim": false,
+  "baselineEvidence": "../a0/baseline-report.md",
+  "candidateId": "07d8b1f9cd71d44c65fd58d72693a7447400b9de5533d35468da100510450082",
+  "cases": [
+    {
+      "id": "C01",
+      "topic": "普通人如何用 AI 提升工作效率",
+      "style": "educational",
+      "audience": "非技术职场新人",
+      "outcome": "success",
+      "reviewFocus": "受众偏离、未经证实的效率百分比",
+      "baseline": "A0 fixed response assertion passed",
+      "currentSameFixture": "PASS in A4 candidate A0BaselineTest (5/5)",
+      "additionalUiScenario": {
+        "sameTopic": true,
+        "description": "Separate controlled response scenario; audience supplemented uniformly for novices, not a quality-comparison sample",
+        "taskId": "003a3a796b8a47f9a97eed412372554f",
+        "status": "COMPLETED",
+        "globalVersion": 1,
+        "reviewStatus": "PASS",
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "decision": "REVISE"
+          },
+          {
+            "version": 1,
+            "content": "## 开始行动\n\n先选择一个简单任务，记录操作步骤，用日常语言解释。\n\n保留这一段，不要重写。",
+            "decision": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "topic": "周末散步中的小发现",
+      "style": "emotional",
+      "audience": "普通生活读者",
+      "outcome": "success",
+      "reviewFocus": "可读性、段落连贯、图文匹配",
+      "baseline": "A0 fixed response assertion passed",
+      "currentSameFixture": "PASS in A4 candidate A0BaselineTest (5/5)",
+      "additionalUiScenario": {
+        "sameTopic": true,
+        "description": "Separate controlled response scenario; audience supplemented uniformly for novices, not a quality-comparison sample",
+        "taskId": "82afd3f54994425c8b96d765452c39e2",
+        "status": "COMPLETED",
+        "globalVersion": 0,
+        "reviewStatus": "PASS",
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "decision": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "topic": "给新手解释数据备份",
+      "style": "tech",
+      "audience": "电脑新手",
+      "outcome": "success",
+      "reviewFocus": "术语解释、不编造机构归因",
+      "baseline": "A0 fixed response assertion passed",
+      "currentSameFixture": "PASS in A4 candidate A0BaselineTest (5/5)",
+      "additionalUiScenario": {
+        "sameTopic": true,
+        "description": "Separate controlled response scenario; audience supplemented uniformly for novices, not a quality-comparison sample",
+        "taskId": "0546247630fa43c49414ac19d18659fc",
+        "status": "COMPLETED",
+        "globalVersion": 2,
+        "reviewStatus": "HUMAN_ACCEPTED",
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "decision": "REVISE"
+          },
+          {
+            "version": 1,
+            "content": "## 开始行动\n\n修订尝试1：仍需调整表达。\n\n保留这一段，不要重写。",
+            "decision": "REVISE"
+          },
+          {
+            "version": 2,
+            "content": "## 开始行动\n\n修订尝试2：仍需调整表达。\n\n保留这一段，不要重写。",
+            "decision": "REVISE"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "topic": "整理书桌的三个步骤",
+      "style": "humorous",
+      "audience": "学生",
+      "outcome": "malformed-json",
+      "reviewFocus": "结构错误进入失败出口",
+      "baseline": "A0 fixed response assertion passed",
+      "currentSameFixture": "PASS in A4 candidate A0BaselineTest (5/5)",
+      "additionalUiScenario": {
+        "sameTopic": true,
+        "description": "Separate controlled response scenario; audience supplemented uniformly for novices, not a quality-comparison sample",
+        "taskId": "380c2bbad2b2456abe424dd9ff4d2615",
+        "status": "COMPLETED",
+        "globalVersion": 1,
+        "reviewStatus": "PASS",
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "decision": "NEEDS_REVIEW"
+          },
+          {
+            "version": 1,
+            "content": "## 开始行动\n\n人工修改完成：先整理一件物品，记录步骤。\n\n保留这一段，不要重写。",
+            "decision": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "topic": "第一次制作旅行清单",
+      "style": "educational",
+      "audience": "旅行新手",
+      "outcome": "model-error",
+      "reviewFocus": "服务异常进入失败出口",
+      "baseline": "A0 fixed response assertion passed",
+      "currentSameFixture": "PASS in A4 candidate A0BaselineTest (5/5)",
+      "additionalUiScenario": {
+        "sameTopic": true,
+        "description": "Separate controlled response scenario; audience supplemented uniformly for novices, not a quality-comparison sample",
+        "taskId": "d035cbe24ae64c639067e9a8b7cda007",
+        "status": "COMPLETED",
+        "globalVersion": 0,
+        "reviewStatus": "PASS",
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "decision": "PASS"
+          }
+        ]
+      }
+    }
+  ]
+}

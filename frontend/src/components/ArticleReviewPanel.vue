@@ -2,6 +2,19 @@
   <section class="review-panel" aria-label="评审与人工处理">
     <div class="review-heading"><h2>评审与人工处理</h2><a-button size="small" :loading="loading" @click="refresh">刷新状态</a-button></div>
     <a-alert v-if="loadError" type="error" :message="loadError" show-icon />
+    <div v-if="runtime?.enabled" class="runtime-panel" aria-label="可靠执行状态">
+      <a-tag :color="runtime.status === 'COMPLETED' ? 'green' : 'blue'">{{ runtimeLabel(runtime.status) }}</a-tag>
+      <p class="muted">运行 {{ runtime.runId }} · 状态版本 {{ runtime.stateVersion }}<br />调用 {{ runtime.callsUsed }}/{{ runtime.maxCalls }} · 单图重试 {{ runtime.imageRetriesUsed }}/{{ runtime.maxImageRetries }} · 剩余执行时间 {{ Math.max(0, Math.ceil(runtime.remainingMs / 1000)) }} 秒（人工等待不计时）</p>
+      <p class="muted">预算预留 {{ runtime.reservedCostMicros / 1000000 }}/{{ runtime.maxEstimatedCostMicros / 1000000 }} 单位 · 实际费用：{{ runtime.actualCostMicros == null ? '供应商未提供，待核对账单' : runtime.actualCostMicros / 1000000 }}。预留值为配置估算，不是账单金额。</p>
+      <a-alert v-if="runtime.mayStillCharge" type="warning" message="已发出的外部请求可能仍在执行并产生费用；刷新或查询不会自动重复提交收费请求。" class="block" />
+      <div class="actions">
+        <a-button v-if="['PROCESSING','RECOVERING','NEEDS_REVIEW','IMAGES_FAILED','EXTERNAL_UNCERTAIN'].includes(runtime.status)" danger :loading="runtimeSubmitting" @click="runtimeAction('CANCEL')">取消任务并保留草稿</a-button>
+        <a-button v-if="runtime.status === 'EXTERNAL_UNCERTAIN'" :loading="runtimeSubmitting" @click="runtimeAction('RECHECK_EXTERNAL')">查询已有外部请求</a-button>
+        <a-button v-if="runtime.status === 'EXTERNAL_UNCERTAIN'" @click="retryAcknowledged = false; retryOpen = true">人工确认后重试</a-button>
+      </div>
+      <p v-if="runtime.status === 'EXTERNAL_UNCERTAIN'" class="muted">当前同步云接口不提供任务查询时，将继续暂停。先核对供应商账单；重新调用可能重复收费。</p>
+    </div>
+    <a-modal v-model:open="retryOpen" title="确认重新调用外部服务" ok-text="接受风险并重试" :ok-button-props="{ disabled: !retryAcknowledged }" :confirm-loading="runtimeSubmitting" @ok="runtimeAction('RETRY_UNCERTAIN')"><p>上一次请求可能已经成功并收费。此次重试会消耗同一运行的剩余预算，已保存的成功步骤仍会复用。</p><a-checkbox v-model:checked="retryAcknowledged">我已核对并接受可能重复收费的风险</a-checkbox></a-modal>
     <template v-if="view">
       <p v-if="!view.enabled" class="muted">评审面板未启用，原文章仍可查看与导出。</p>
       <p v-else-if="!trace" class="muted">这篇文章暂无评审记录。旧文章正文保留，不推断它已通过评审。</p>
@@ -23,7 +36,7 @@
         <p class="muted">{{ selected?.review ? '该版评审：' + stateLabel(selected.review.decision) : '该版本尚无评审结果' }}</p>
         <div v-if="showDiff && previous" class="diff" aria-label="版本差异"><div v-for="(line,i) in diff" :key="i" :class="line.kind"><span aria-hidden="true">{{ line.kind === 'added' ? '+ ' : line.kind === 'removed' ? '− ' : '  ' }}</span>{{ line.text || ' ' }}</div></div>
         <pre v-else class="draft" aria-label="版本正文">{{ selected?.content }}</pre>
-        <div v-if="view.media?.slots.length" class="media-section"><h3>配图与单张重试</h3><div class="image-grid"><article v-for="slot in view.media.slots" :key="slot.id" class="image-slot"><img v-if="slot.result?.url" :src="slot.result.url" :alt="slot.requirement.sectionTitle || slot.id" /><div v-else class="missing-image">图片暂缺</div><strong>{{ slot.id }} · {{ slot.requirement.sectionTitle || '配图' }}</strong><p><a-tag :color="slot.status === 'SUCCESS' ? 'green' : 'warning'">{{ imageLabel(slot.status) }}</a-tag>尝试 {{ slot.attempts }} 次</p><p class="muted">请求来源 {{ slot.requirement.imageSource }} · 实际来源 {{ slot.result?.method || '无' }}</p><p v-if="slot.result && slot.result.method !== slot.requirement.imageSource" class="image-error">当前图片使用占位或降级来源，未保证图文语义匹配。</p><p v-if="slot.error" class="image-error">{{ slot.error }}</p><a-button v-if="can('RETRY_IMAGE')" :disabled="submitting" @click="submit('RETRY_IMAGE', slot.id)">重试 {{ slot.id }}</a-button></article></div></div>
+        <div v-if="view.media?.slots.length" class="media-section"><h3>配图与单张重试</h3><div class="image-grid"><article v-for="slot in view.media.slots" :key="slot.id" class="image-slot"><img v-if="slot.result?.url" :src="slot.result.url" :alt="slot.requirement.sectionTitle || slot.id" /><div v-else class="missing-image">图片暂缺</div><strong>{{ slot.id }} · {{ slot.requirement.sectionTitle || '配图' }}</strong><p><a-tag :color="slot.status === 'SUCCESS' ? 'green' : 'warning'">{{ imageLabel(slot.status) }}</a-tag>尝试 {{ slot.attempts }} 次</p><p class="muted">请求来源 {{ slot.requirement.imageSource }} · 实际来源 {{ slot.result?.method || '无' }}</p><p v-if="slot.result && slot.result.method !== slot.requirement.imageSource" class="image-error">当前图片使用占位或降级来源，未保证图文语义匹配。</p><p v-if="slot.result?.metadata" class="muted">供应商 {{ slot.result.metadata.provider }} · 模型 {{ slot.result.metadata.model }}<br />请求 {{ slot.result.metadata.requestId || '未提供' }} · usage {{ JSON.stringify(slot.result.metadata.usage || {}) }}（非账单）</p><p v-if="slot.error" class="image-error">{{ slot.error }}</p><a-button v-if="can('RETRY_IMAGE')" :disabled="submitting" @click="submit('RETRY_IMAGE', slot.id)">重试 {{ slot.id }}</a-button></article></div></div>
       </template>
     </template>
     <a-modal v-model:open="acceptOpen" title="人工接受当前稿件" ok-text="确认接受并继续配图" :confirm-loading="submitting" :ok-button-props="{ disabled: !acknowledged }" @ok="submit('ACCEPT')"><p>接受 v{{ trace?.currentVersion }}。原评审及问题会保留；此操作只继续配图和合成，不重写正文。</p><a-checkbox v-model:checked="acknowledged">我理解事实尚未核查，并接受当前稿件的风险</a-checkbox><a-textarea v-model:value="note" placeholder="决定备注（可选）" :maxlength="500" class="block" /></a-modal>
@@ -35,12 +48,15 @@
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { message } from 'ant-design-vue'
 import { fetchIntervention, submitIntervention, InterventionError, type InterventionView } from '@/api/interventions'
+import { fetchRuntime, submitRuntime, runtimeLabel, type RuntimeView } from '@/api/runtime'
+import { connectSSE } from '@/utils/sse'
 import { reviewDiff } from '@/utils/reviewDiff'
 const props = defineProps<{ taskId: string }>()
 const emit = defineEmits<{ updated: [view: InterventionView] }>()
 const view = ref<InterventionView>(), loading = ref(false), submitting = ref(false), loadError = ref('')
+const runtime = ref<RuntimeView>(), runtimeSubmitting = ref(false), retryOpen = ref(false), retryAcknowledged = ref(false)
 const trace = computed(() => view.value?.reviewTrace)
-const busy = computed(() => view.value?.articleStatus === 'PROCESSING')
+const busy = computed(() => runtime.value?.enabled ? runtime.value.operations?.some(o => ['QUEUED','RUNNING'].includes(o.status)) || runtime.value.status === 'RECOVERING' : view.value?.articleStatus === 'PROCESSING')
 const selectedVersion = ref(0), showDiff = ref(false)
 const selected = computed(() => trace.value?.versions.find(v => v.version === selectedVersion.value))
 const previous = computed(() => trace.value?.versions.find(v => v.version === selectedVersion.value - 1))
@@ -59,16 +75,16 @@ async function refresh() {
   const id = ++generation
   controller?.abort(); controller = new AbortController(); loading.value = true
   try {
-    const next = await fetchIntervention(props.taskId, controller.signal)
+    const [next, execution] = await Promise.all([fetchIntervention(props.taskId, controller.signal), fetchRuntime(props.taskId, controller.signal)])
     if (disposed || id !== generation) return
     const wasCurrent = selectedVersion.value === trace.value?.currentVersion || !trace.value
+    runtime.value = execution
     view.value = next; if (wasCurrent) selectedVersion.value = next.reviewTrace?.currentVersion || 0
     loadError.value = ''; emit('updated', next)
-    if (next.articleStatus === 'PROCESSING' && next.enabled) {
-      if (!source && !streamFailed.value) {
-        source = new EventSource('/api/article/progress/' + encodeURIComponent(props.taskId))
-        source.onmessage = event => { try { const data = JSON.parse(event.data); if (['ALL_COMPLETE','NEEDS_REVIEW','IMAGES_FAILED','ERROR'].includes(data.type)) { source?.close(); source = undefined }; schedule(150) } catch { schedule(1000) } }
-        source.onerror = () => { source?.close(); source = undefined; streamFailed.value = true; schedule(1000) }
+    if (busy.value && next.enabled) {
+      if (!source) {
+        streamFailed.value = false
+        source = connectSSE(props.taskId, { onMessage: () => schedule(150), onComplete: () => { source = undefined; schedule(150) }, onError: () => { source = undefined; streamFailed.value = true; schedule(1000) } })
       }
       schedule(2000)
     } else { clearTimeout(timer); source?.close(); source = undefined }
@@ -77,6 +93,13 @@ async function refresh() {
     loadError.value = (error as Error).message || '状态读取失败，请刷新'
     if (!(error instanceof InterventionError && [40100,40101,40400].includes(error.code))) schedule(5000)
   } finally { if (id === generation) loading.value = false }
+}
+async function runtimeAction(action: string) {
+ if (!runtime.value || runtimeSubmitting.value) return
+ runtimeSubmitting.value = true
+ try { await submitRuntime(props.taskId, action, runtime.value.stateVersion, retryAcknowledged.value); retryOpen.value = false }
+ catch (error) { message.error((error as Error).message) }
+ finally { runtimeSubmitting.value = false; await refresh() }
 }
 function openAccept() { acceptBase = { version: trace.value!.currentVersion, revision: view.value!.revision }; acknowledged.value = false; acceptOpen.value = true }
 function openEditor() { editedContent.value = trace.value?.versions[trace.value.versions.length - 1]?.content || ''; editBase = { version: trace.value!.currentVersion, revision: view.value!.revision }; editorOpen.value = true }
@@ -92,11 +115,11 @@ async function submit(action: string, imageId?: string) {
   finally { submitting.value = false; await refresh() }
 }
 const stateLabel = (s: string) => (({ REVIEWING: '评审中', REVISING: '局部修订中', NEEDS_REVIEW: '待人工处理', PASS: '文本评审通过', REVISE: '需要修订', HUMAN_ACCEPTED: '人工接受' } as Record<string, string>)[s] || s)
-const taskLabel = (s: string) => (({ PROCESSING: '图文任务处理中', COMPLETED: '图文任务完成', IMAGES_FAILED: '配图待重试', NEEDS_REVIEW: '图文任务已暂停', FAILED: '任务失败，草稿保留' } as Record<string, string>)[s] || s)
+const taskLabel = (s: string) => runtime.value?.enabled ? runtimeLabel(s) : (({ PROCESSING: '图文任务处理中', COMPLETED: '图文任务完成', IMAGES_FAILED: '配图待重试', NEEDS_REVIEW: '图文任务已暂停', FAILED: '任务失败，草稿保留' } as Record<string, string>)[s] || s)
 const stopLabel = (s: string) => (({ HUMAN_REQUIRED: '需要人工判断或补充证据', REVISION_LIMIT: '本轮已达两次修订上限', REPEATED_ISSUES: '问题重复，未见改善', NO_PROGRESS: '修订没有实质变化', REVIEW_FAILURE: '评审模型或输出异常', REVISION_FAILURE: '修订模型或补丁异常' } as Record<string, string>)[s] || s)
 const issueLabel = (s: string) => (({ AUDIENCE: '受众匹配', STRUCTURE: '结构', LENGTH: '篇幅', UNSUPPORTED_NUMBER: '数字缺少依据', UNSUPPORTED_ATTRIBUTION: '机构归因缺少依据', EVIDENCE_REQUIRED: '需要外部证据', OUTPUT_ERROR: '输出格式错误', MODEL_ERROR: '模型异常', MODEL_TIMEOUT: '模型超时', NO_PROGRESS: '没有改善' } as Record<string, string>)[s] || s)
 const imageLabel = (s: string) => (({ SUCCESS: '图片可用', FAILED: '本次失败', DEGRADED: '降级 / 占位', PENDING: '等待处理' } as Record<string, string>)[s] || s)
-watch(() => props.taskId, () => { cleanup(); generation++; view.value = undefined; streamFailed.value = false; void refresh() }, { immediate: true })
+watch(() => props.taskId, () => { cleanup(); generation++; view.value = undefined; runtime.value = undefined; streamFailed.value = false; void refresh() }, { immediate: true })
 onBeforeUnmount(() => { disposed = true; generation++; cleanup() })
 </script>
 

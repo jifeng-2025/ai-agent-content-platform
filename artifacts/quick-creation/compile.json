@@ -1,0 +1,6 @@
+{
+  "exitCode": 0,
+  "durationMs": 175658,
+  "testsExecuted": 0,
+  "command": "isolated Docker mvn -o -Dmaven.test.skip=true package"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "error": "TimeoutError: The operation was aborted due to timeout",
+  "checks": [],
+  "timeline": [
+    {
+      "at": "2026-09-10T03:05:00.422Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T03:05:00.577Z",
+      "event": "isolated frontend reachable"
+    }
+  ]
+}

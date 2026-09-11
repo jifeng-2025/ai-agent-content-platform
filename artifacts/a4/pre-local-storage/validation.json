@@ -1,0 +1,276 @@
+{
+  "at": "2026-09-10T05:10:22.253Z",
+  "candidateSourceId": "07d8b1f9cd71d44c65fd58d72693a7447400b9de5533d35468da100510450082",
+  "status": "ENGINEERING_CANDIDATE",
+  "a4AllPassed": false,
+  "realApi": "NOT_RUN",
+  "formalReleaseReady": false,
+  "remainingGates": [
+    "Explicitly authorized final-build text and image cloud smoke and actual semantic image review",
+    "Verify applicable upstream license before formal distribution; no standalone LICENSE found"
+  ],
+  "junit": {
+    "featureExecuted": 88,
+    "featurePassed": 88,
+    "featureFailed": 0,
+    "featureSkipped": 0,
+    "baselineContextExecuted": 1,
+    "baselineContextErrors": 1,
+    "suites": [
+      {
+        "file": "mock-TEST-com.yupi.template.baseline.A0BaselineTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1IntegrationTest.xml",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1PersistenceTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1ReviewLoopTest.xml",
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2MediaTest.xml",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2RoundTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A3ReviewResumeTest.xml",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3BudgetTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3ExternalTest.xml",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "fault": {
+    "status": "PASS",
+    "checks": 12,
+    "realSigkill": 3,
+    "workers": 2,
+    "externalCounts": "evidence/fault/provider-state.json"
+  },
+  "browser": {
+    "checks": 123,
+    "screenshotsActuallyViewed": 33,
+    "realBrowser": true,
+    "realBackend": true,
+    "cloudBoundary": "HTTP Mock",
+    "details": "visual-review.json"
+  },
+  "sse": {
+    "legacy": 4,
+    "runtime": 6,
+    "passed": 10,
+    "kind": "Production helper with simulated EventSource; real network separately tested"
+  },
+  "frontend": {
+    "typecheck": "PASS",
+    "build": "PASS",
+    "lint": "EXISTING_FAILURE: 16 errors, 1 warning"
+  },
+  "install": {
+    "fresh": "PASS",
+    "upgrade": "PASS",
+    "rollback": "PASS",
+    "actualApplicationJar": true,
+    "userDataTouched": false
+  },
+  "commands": [
+    {
+      "command": "node tools/dev-harness/run.mjs a3-mock",
+      "exitCode": 0,
+      "tests": 74,
+      "durationMs": 673452,
+      "evidence": "evidence/mock/summary.json"
+    },
+    {
+      "command": "node tools/dev-harness/a3-front.mjs <http-live.json>",
+      "exitCode": 1,
+      "classification": "BASELINE_LINT_16_ERRORS_1_WARNING",
+      "durationMs": null,
+      "evidence": "evidence/front/summary.json"
+    },
+    {
+      "command": "node tools/dev-harness/a3-store.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "junitDurationSeconds": 29.52,
+      "durationMs": null,
+      "evidence": "evidence/store/"
+    },
+    {
+      "command": "node tools/dev-harness/a3-live.mjs start; a3-browser.mjs <live>; a3-live.mjs stop <live>",
+      "exitCode": 0,
+      "tests": 13,
+      "browserChecks": 30,
+      "junitDurationSeconds": 417.6,
+      "durationMs": null,
+      "evidence": "evidence/http/"
+    },
+    {
+      "command": "A3_PROCESS_ISOLATED=true node tools/dev-harness/a3-live.mjs start; node tools/dev-harness/a3-fault.mjs <live>; node tools/dev-harness/a3-process-clean.mjs <live>",
+      "exitCode": 0,
+      "checks": 12,
+      "durationMs": 997401,
+      "durationScope": "Recorded fault timeline, excludes Maven warmup and final cleanup",
+      "evidence": "evidence/fault/"
+    },
+    {
+      "command": "node tools/dev-harness/a4-compose.mjs start <build> <front> fresh|upgrade; a4-install-check.mjs <live>; a4-compose.mjs stop <live>",
+      "exitCode": 0,
+      "checks": 11,
+      "durationMs": null,
+      "evidence": "evidence/fresh/ and evidence/upgrade/"
+    },
+    {
+      "command": "node tools/dev-harness/a4-browser.mjs <live>; a4-inspect.mjs <live> <snapshots>; a4-degraded.mjs <live>",
+      "exitCode": 0,
+      "checks": 93,
+      "durationMs": null,
+      "evidence": "evidence/browser/, evidence/visual/, evidence/degraded/"
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--memory=3g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-10T04-09-26-113Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/a0-maven-settings.xml",
+        "-o",
+        "-B",
+        "-Dtest=MainApplicationTests",
+        "test"
+      ],
+      "exitCode": 1,
+      "durationMs": 105592,
+      "classification": "Expected existing missing DashScope configuration; verify actual log",
+      "network": "none",
+      "evidence": "evidence/context/"
+    },
+    {
+      "file": "a1-sse-test.cjs",
+      "exitCode": 0,
+      "durationMs": 2068,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--memory=1g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "node",
+        "../a1-sse-test.cjs"
+      ],
+      "evidence": "evidence/sse/"
+    },
+    {
+      "file": "a3-sse-test.cjs",
+      "exitCode": 0,
+      "durationMs": 1221,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--memory=1g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "node",
+        "../a3-sse-test.cjs"
+      ],
+      "evidence": "evidence/sse/"
+    },
+    {
+      "command": "node tools/dev-harness/a4-verify-evidence.mjs",
+      "exitCode": 0,
+      "durationMs": null,
+      "evidence": "final-gate.json"
+    }
+  ],
+  "notes": [
+    "Commands executed componentwise against fixed source/build; new serial wrapper provided but not separately re-executed end-to-end.",
+    "Null duration means tool did not capture wall time; JUnit duration and fault timeline are explicitly scoped.",
+    "Pure-regression prewarm/repeat not double-counted. Raw paths and commands in acceptance-runs.json and evidence."
+  ],
+  "notImplemented": [
+    "B Research/RAG/preferences/product MCP",
+    "H1 autonomous development harness",
+    "D1 CI/GHCR/server deployment"
+  ],
+  "noCommit": true,
+  "noPush": true,
+  "noDeployment": true,
+  "releasePreflight": {
+    "at": "2026-09-10T05:26:00.805Z",
+    "engineering": "ENGINEERING_PASS",
+    "realApi": "NOT_RUN",
+    "configuration": "MISSING_GEMINI_AND_COS",
+    "distributionLicense": "UNRESOLVED",
+    "feeAuthorization": false,
+    "businessSourceChanged": false
+  }
+}

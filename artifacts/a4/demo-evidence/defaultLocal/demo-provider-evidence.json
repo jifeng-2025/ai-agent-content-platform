@@ -1,0 +1,25 @@
+{
+  "imageAttempts": 0,
+  "ledger": [
+    [
+      "image:DEMO",
+      "3",
+      "0",
+      "0",
+      "3"
+    ],
+    [
+      "dashscope",
+      "10",
+      "1000000",
+      "0",
+      "10"
+    ]
+  ],
+  "source": "production DemoImageService; mock plugin excludes image:DEMO",
+  "taskIds": [
+    "7b28f3f6741e412a828ca6fe76cd2776",
+    "43396cec0e9c4f28b4b4fa28056842d6"
+  ],
+  "scope": "Default revision, single-image retry and human acceptance; no Gemini credentials or outbound model requests"
+}

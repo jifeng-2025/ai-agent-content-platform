@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "checks": [
+    "commit before dispatch is durably QUEUED",
+    "no provider effect before dispatch",
+    "recovered title submitted once",
+    "completed title reused after process restart",
+    "supplier result durable before application receives it",
+    "external success recovered by query without another submission",
+    "final persisted draft retained",
+    "late old worker cannot replace recovered checkpoint",
+    "two actual worker processes produce one provider submission",
+    "cancel terminal survives late HTTP response",
+    "late cancelled result not committed",
+    "SSE replay recovers cancellation terminal"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T04:49:22.391Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T04:49:22.431Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T04:49:26.743Z",
+      "event": "authentication HTTP readiness"
+    },
+    {
+      "at": "2026-09-10T04:49:27.119Z",
+      "method": "POST",
+      "path": "/user/login"
+    },
+    {
+      "at": "2026-09-10T04:49:27.514Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T04:49:29.875Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 0
+    },
+    {
+      "at": "2026-09-10T04:53:02.936Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T04:53:05.096Z",
+      "event": "queued creation recovered"
+    },
+    {
+      "at": "2026-09-10T04:53:06.602Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 1
+    },
+    {
+      "at": "2026-09-10T04:57:20.096Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T04:57:21.978Z",
+      "method": "POST",
+      "path": "/article/confirm-title"
+    },
+    {
+      "at": "2026-09-10T04:57:33.038Z",
+      "event": "outline checkpoint saved"
+    },
+    {
+      "at": "2026-09-10T04:57:33.447Z",
+      "method": "POST",
+      "path": "/article/confirm-outline"
+    },
+    {
+      "at": "2026-09-10T04:57:34.166Z",
+      "event": "external body succeeded while local save pending"
+    },
+    {
+      "at": "2026-09-10T04:57:36.282Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 2
+    },
+    {
+      "at": "2026-09-10T05:02:41.456Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T05:02:43.958Z",
+      "event": "external job queried and full task completed"
+    },
+    {
+      "at": "2026-09-10T05:05:28.220Z",
+      "event": "worker2 JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T05:05:28.679Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T05:05:37.618Z",
+      "event": "one worker has in-flight external job"
+    },
+    {
+      "at": "2026-09-10T05:05:38.280Z",
+      "event": "pause old worker",
+      "oldRole": "worker2"
+    },
+    {
+      "at": "2026-09-10T05:05:54.214Z",
+      "event": "other worker reclaimed expired lease"
+    },
+    {
+      "at": "2026-09-10T05:05:54.555Z",
+      "event": "new fence saved queried result"
+    },
+    {
+      "at": "2026-09-10T05:05:59.033Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T05:05:59.424Z",
+      "event": "cancel has in-flight call"
+    },
+    {
+      "at": "2026-09-10T05:05:59.424Z",
+      "method": "GET",
+      "path": "/article/79b5b497d90c4f6dbba8030ec7d2a41c/runtime"
+    },
+    {
+      "at": "2026-09-10T05:05:59.792Z",
+      "method": "POST",
+      "path": "/article/79b5b497d90c4f6dbba8030ec7d2a41c/runtime"
+    }
+  ],
+  "taskIds": {
+    "id": "6bc6cc5c9d8d4a6894e94c32e775434b",
+    "concurrent": "6ac4db39cf5f450b910014de0991d1b6",
+    "cancelled": "79b5b497d90c4f6dbba8030ec7d2a41c"
+  },
+  "scope": "actual killed/restarted Spring JVMs + two workers + real MySQL/Redis/HTTP; local query-capable mock supplier"
+}

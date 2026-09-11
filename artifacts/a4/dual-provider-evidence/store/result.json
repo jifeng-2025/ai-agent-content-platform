@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "Real MySQL and actual killed/restarted Java processes; RuntimeStore integration only, not full HTTP flow",
+  "timeline": [
+    {
+      "at": "2026-09-11T03:30:48.808Z",
+      "event": "SIGKILL after committed checkpoint, before completion"
+    }
+  ]
+}

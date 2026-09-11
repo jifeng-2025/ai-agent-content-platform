@@ -41,6 +41,18 @@ import jakarta.servlet.http.HttpServletRequest;
 @Slf4j
 public class ArticleController {
 
+    @Resource private com.yupi.template.config.NanoBananaConfig imageConfig;
+    @Resource private com.yupi.template.config.DoubaoConfig doubaoConfig;
+    @Resource private com.yupi.template.modelconfig.ModelSettings modelSettings;
+    @GetMapping("/text-capabilities")
+    public BaseResponse<java.util.Map<String,Object>> textCapabilities(HttpServletRequest request){userService.getLoginUser(request);var text=modelSettings.selection("TEXT",null);return ResultUtils.success(java.util.Map.of("name",text.name(),"model",text.model(),"protocol",text.protocol()));}
+    @GetMapping("/image-capabilities")
+    public BaseResponse<java.util.Map<String,Object>> imageCapabilities(HttpServletRequest request) {
+        userService.getLoginUser(request);
+        var g=modelSettings.selection("IMAGE","gemini");var d=modelSettings.selection("IMAGE","doubao");
+        return ResultUtils.success(java.util.Map.of("defaultMethod",modelSettings.defaultImage(),"geminiConfigured",g!=null||imageConfig.configured(),"doubaoConfigured",d!=null||doubaoConfig.configured(),"geminiModel",g==null?imageConfig.getModel():g.model(),"doubaoModel",d==null?doubaoConfig.getModel():d.model(),"realCallsVerified",false,"demoNotice","演示/占位，非AI生图，不保证语义匹配"));
+    }
+
     @GetMapping("/{taskId}/review")
     @Operation(summary = "获取已保存的评审与草稿版本")
     public BaseResponse<com.yupi.template.model.dto.article.ReviewTrace> getReview(
@@ -50,6 +62,9 @@ public class ArticleController {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource private com.yupi.template.runtime.RuntimeIntake runtime;
+    @Resource private com.yupi.template.runtime.RuntimeEvents runtimeEvents;
 
     @Resource
     private ArticleAsyncService articleAsyncService;
@@ -77,6 +92,8 @@ public class ArticleController {
                 ErrorCode.PARAMS_ERROR, "无效的文章风格");
 
         User loginUser = userService.getLoginUser(httpServletRequest);
+
+        if (runtime != null && runtime.enabled()) return ResultUtils.success(runtime.create(request, loginUser));
 
         // 检查并消耗配额 + 创建文章任务（在同一事务中）
         String taskId = articleService.createArticleTaskWithQuotaCheck(
@@ -109,6 +126,14 @@ public class ArticleController {
         User loginUser = userService.getLoginUser(httpServletRequest);
         articleService.getArticleDetail(taskId, loginUser);
 
+        if (runtimeEvents != null && runtimeEvents.handles(taskId)) {
+            String value = httpServletRequest.getHeader("Last-Event-ID");
+            if (value == null) value = httpServletRequest.getParameter("cursor");
+            long cursor = 0;
+            try { if (value != null) cursor = Long.parseLong(value); } catch (NumberFormatException e) { throw new com.yupi.template.exception.BusinessException(ErrorCode.PARAMS_ERROR,"事件游标无效"); }
+            ThrowUtils.throwIf(cursor < 0, ErrorCode.PARAMS_ERROR,"事件游标无效");
+            return runtimeEvents.open(taskId,cursor);
+        }
         // 创建 SSE Emitter
         SseEmitter emitter = sseEmitterManager.createEmitter(taskId);
         
@@ -177,6 +202,8 @@ public class ArticleController {
 
         User loginUser = userService.getLoginUser(httpServletRequest);
 
+        if (runtime != null && runtime.enabled()) { runtime.title(request, loginUser); return ResultUtils.success(null); }
+
         // 确认标题
         articleService.confirmTitle(
                 request.getTaskId(),
@@ -206,6 +233,8 @@ public class ArticleController {
                 ErrorCode.PARAMS_ERROR, "大纲不能为空");
 
         User loginUser = userService.getLoginUser(httpServletRequest);
+
+        if (runtime != null && runtime.enabled()) { runtime.outline(request, loginUser); return ResultUtils.success(null); }
 
         // 确认大纲
         articleService.confirmOutline(
@@ -237,6 +266,7 @@ public class ArticleController {
         User loginUser = userService.getLoginUser(httpServletRequest);
 
         // AI 修改大纲
+        ThrowUtils.throwIf(runtime != null && runtime.enabled(), ErrorCode.CONFLICT_ERROR,"可靠执行模式请直接编辑大纲；自动改纲尚未接入持久预算");
         List<ArticleState.OutlineSection> modifiedOutline = articleService.aiModifyOutline(
                 request.getTaskId(),
                 request.getModifySuggestion(),

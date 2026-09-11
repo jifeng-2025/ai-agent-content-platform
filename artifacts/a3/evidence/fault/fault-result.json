@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "checks": [
+    "commit before dispatch is durably QUEUED",
+    "no provider effect before dispatch",
+    "recovered title submitted once",
+    "completed title reused after process restart",
+    "supplier result durable before application receives it",
+    "external success recovered by query without another submission",
+    "final persisted draft retained",
+    "late old worker cannot replace recovered checkpoint",
+    "two actual worker processes produce one provider submission",
+    "cancel terminal survives late HTTP response",
+    "late cancelled result not committed",
+    "SSE replay recovers cancellation terminal"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T03:08:21.362Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T03:08:21.406Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T03:08:21.722Z",
+      "method": "POST",
+      "path": "/user/login"
+    },
+    {
+      "at": "2026-09-10T03:08:25.590Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T03:08:27.965Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 0
+    },
+    {
+      "at": "2026-09-10T03:12:12.692Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:12:14.721Z",
+      "event": "queued creation recovered"
+    },
+    {
+      "at": "2026-09-10T03:12:15.989Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 1
+    },
+    {
+      "at": "2026-09-10T03:15:21.063Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:15:23.010Z",
+      "method": "POST",
+      "path": "/article/confirm-title"
+    },
+    {
+      "at": "2026-09-10T03:15:33.682Z",
+      "event": "outline checkpoint saved"
+    },
+    {
+      "at": "2026-09-10T03:15:34.095Z",
+      "method": "POST",
+      "path": "/article/confirm-outline"
+    },
+    {
+      "at": "2026-09-10T03:15:35.633Z",
+      "event": "external body succeeded while local save pending"
+    },
+    {
+      "at": "2026-09-10T03:15:37.361Z",
+      "event": "SIGKILL",
+      "role": "backend",
+      "generation": 2
+    },
+    {
+      "at": "2026-09-10T03:18:08.714Z",
+      "event": "backend JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:18:11.094Z",
+      "event": "external job queried and full task completed"
+    },
+    {
+      "at": "2026-09-10T03:20:39.400Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T03:20:39.507Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T03:20:39.921Z",
+      "method": "POST",
+      "path": "/user/login"
+    },
+    {
+      "at": "2026-09-10T03:21:10.912Z",
+      "event": "initial JVM ready"
+    },
+    {
+      "at": "2026-09-10T03:21:10.954Z",
+      "event": "isolated frontend reachable"
+    },
+    {
+      "at": "2026-09-10T03:21:11.451Z",
+      "method": "POST",
+      "path": "/user/login"
+    },
+    {
+      "at": "2026-09-10T03:21:11.790Z",
+      "event": "resume after explicit mysql UTF-8 fix"
+    },
+    {
+      "at": "2026-09-10T03:23:35.059Z",
+      "event": "worker2 JVM ready after restart"
+    },
+    {
+      "at": "2026-09-10T03:23:35.467Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T03:23:38.056Z",
+      "event": "one worker has in-flight external job"
+    },
+    {
+      "at": "2026-09-10T03:23:38.650Z",
+      "event": "pause old worker",
+      "oldRole": "worker2"
+    },
+    {
+      "at": "2026-09-10T03:23:54.531Z",
+      "event": "other worker reclaimed expired lease"
+    },
+    {
+      "at": "2026-09-10T03:23:54.855Z",
+      "event": "new fence saved queried result"
+    },
+    {
+      "at": "2026-09-10T03:23:59.603Z",
+      "method": "POST",
+      "path": "/article/create"
+    },
+    {
+      "at": "2026-09-10T03:24:00.815Z",
+      "event": "cancel has in-flight call"
+    },
+    {
+      "at": "2026-09-10T03:24:00.815Z",
+      "method": "GET",
+      "path": "/article/49f58d023e3b4561a04e297c94da9eff/runtime"
+    },
+    {
+      "at": "2026-09-10T03:24:01.184Z",
+      "method": "POST",
+      "path": "/article/49f58d023e3b4561a04e297c94da9eff/runtime"
+    }
+  ],
+  "taskIds": {
+    "id": "1241aacca2cf454ab0808aa1e985aa4d",
+    "concurrent": "1f10203b8c79494e8bf83779a8906e3a",
+    "cancelled": "49f58d023e3b4561a04e297c94da9eff"
+  },
+  "scope": "actual killed/restarted Spring JVMs + two workers + real MySQL/Redis/HTTP; local query-capable mock supplier"
+}

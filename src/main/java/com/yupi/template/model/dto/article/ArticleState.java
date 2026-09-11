@@ -122,6 +122,7 @@ public class ArticleState implements Serializable {
      */
     @Data
     public static class ImageRequirement implements Serializable {
+        private com.yupi.template.service.image.ImageProfile profile;
         private Integer position;
         private String type;
         private String sectionTitle;
@@ -138,6 +139,8 @@ public class ArticleState implements Serializable {
          * 占位符ID，用于在正文中定位插入位置，格式：{{IMAGE_PLACEHOLDER_N}}
          */
         private String placeholderId;
+        /** Stable paragraph anchor in the original text; absent for legacy media. */
+        private String afterParagraphId;
     }
 
     /**
@@ -145,6 +148,7 @@ public class ArticleState implements Serializable {
      */
     @Data
     public static class ImageResult implements Serializable {
+        private com.yupi.template.service.image.ImageMetadata metadata;
         private Integer position;
         private String url;
         private String method;

@@ -1,0 +1,121 @@
+{
+  "status": "PASS_WITH_MINOR_UI_NOTES",
+  "sourceId": "c323e006b168a13e224b9885ccd01a23f1dc8c51a4caf496ed10f7ca75c1c848",
+  "previousReview": "pre-local-storage/visual-review.json",
+  "reviewedAt": "2026-09-10T08:18:56.5884849Z",
+  "sets": [
+    {
+      "files": [
+        "01-desktop-cancelled.png",
+        "02-desktop-budget.png",
+        "03-desktop-recovering.png",
+        "04-desktop-uncertain.png",
+        "05-mobile-uncertain.png",
+        "06-mobile-retry-confirmation.png",
+        "07-mobile-cancelled.png",
+        "08-mobile-old-article.png"
+      ],
+      "observations": "Actually viewed all 8 screenshots. Desktop/mobile terminal and uncertainty notices visible; modal readable; old article has no fabricated review. Existing BUDGET_EXHAUSTED raw code remains a minor UI note.",
+      "result": "PASS_WITH_MINOR_UI_NOTES",
+      "out": "artifacts/a3/runs/2026-09-10T07-30-21-583Z-live/browser-2026-09-10T07-37-24-966Z",
+      "name": "runtimeBrowser"
+    },
+    {
+      "observations": "All listed screenshots actually viewed. Local raster images and offline relative images visible; source/degradation labels readable. Main limit screenshot captures a transient refresh; same-candidate earlier stable screenshot retained separately.",
+      "result": "PASS_WITH_MINOR_UI_NOTES",
+      "consoleErrors": 0,
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t08-10-22-231z/browser-2026-09-10T08-14-47-443Z",
+      "files": [
+        "12-offline-desktop.png",
+        "13-offline-mobile.png"
+      ],
+      "name": "offline",
+      "unexpectedNetworkErrors": 0
+    },
+    {
+      "observations": "All listed screenshots actually viewed. Local raster images and offline relative images visible; source/degradation labels readable. Main limit screenshot captures a transient refresh; same-candidate earlier stable screenshot retained separately.",
+      "result": "PASS_WITH_MINOR_UI_NOTES",
+      "consoleErrors": 0,
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t08-10-22-231z/browser-2026-09-10T08-14-57-966Z",
+      "files": [
+        "14-default-desktop.png",
+        "15-default-mobile.png",
+        "PASS-outline.png",
+        "PASS-title.png"
+      ],
+      "name": "defaultLocal",
+      "unexpectedNetworkErrors": 0
+    },
+    {
+      "observations": "All listed screenshots actually viewed. Local raster images and offline relative images visible; source/degradation labels readable. Main limit screenshot captures a transient refresh; same-candidate earlier stable screenshot retained separately.",
+      "result": "PASS_WITH_MINOR_UI_NOTES",
+      "consoleErrors": 0,
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t08-10-22-231z/browser-2026-09-10T08-13-03-128Z",
+      "files": [
+        "01-normal-complete.png",
+        "02-revised.png",
+        "03-limit.png",
+        "04-human-accepted.png",
+        "05-edited.png",
+        "06-image-failed.png",
+        "07-image-retry.png",
+        "08-mobile-complete.png",
+        "IMAGE_FAIL-outline.png",
+        "IMAGE_FAIL-title.png",
+        "LIMIT-outline.png",
+        "LIMIT-title.png",
+        "MANUAL-outline.png",
+        "MANUAL-title.png",
+        "PASS-outline.png",
+        "PASS-title.png",
+        "REVISE-outline.png",
+        "REVISE-title.png"
+      ],
+      "name": "browser",
+      "unexpectedNetworkErrors": 0
+    },
+    {
+      "observations": "All listed screenshots actually viewed. Local raster images and offline relative images visible; source/degradation labels readable. Main limit screenshot captures a transient refresh; same-candidate earlier stable screenshot retained separately.",
+      "result": "PASS_WITH_MINOR_UI_NOTES",
+      "consoleErrors": 0,
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t08-10-22-231z/browser-2026-09-10T08-14-52-365Z",
+      "files": [
+        "09-version-diff.png",
+        "10-generated-fixture-image.png",
+        "11-mobile-fixture-image.png"
+      ],
+      "name": "visual",
+      "unexpectedNetworkErrors": 0
+    },
+    {
+      "observations": "All listed screenshots actually viewed. Local raster images and offline relative images visible; source/degradation labels readable. Main limit screenshot captures a transient refresh; same-candidate earlier stable screenshot retained separately.",
+      "result": "PASS_WITH_MINOR_UI_NOTES",
+      "consoleErrors": 0,
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t08-10-22-231z/browser-2026-09-10T08-15-09-928Z",
+      "files": [
+        "12-degraded-desktop.png",
+        "13-degraded-mobile.png",
+        "DEGRADED-outline.png",
+        "DEGRADED-title.png"
+      ],
+      "name": "degraded",
+      "unexpectedNetworkErrors": 0
+    },
+    {
+      "result": "PASS",
+      "name": "limitSupplement",
+      "files": [
+        "03-limit-stable.png"
+      ],
+      "observations": "Actually viewed same-candidate stable NEEDS_REVIEW screenshot with 2/2 limit and both human action buttons; earlier run uses identical JAR.",
+      "out": "artifacts/a4/runs/local-limit-supplement"
+    }
+  ],
+  "reviewedScreenshots": 40,
+  "notes": [
+    "Runtime seeded visual fixtures are separate from actual process fault proof.",
+    "Expected Runtime disconnect error plus canceled navigation/SSE requests; no unexpected console or HTTP errors in final five page/export sets.",
+    "Existing English budget/revision error codes and short-lived old toast remain minor UI notes.",
+    "Offline index.html intentionally displays escaped Markdown text plus local image gallery, not styled Markdown rendering."
+  ]
+}

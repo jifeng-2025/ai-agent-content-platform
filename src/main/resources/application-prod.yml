@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/ai_passage_creator?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8}
     username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
   # Redis 配置（通过环境变量覆盖）
   data:
     redis:
@@ -23,15 +23,30 @@ spring:
   ai:
     dashscope:
       api-key: ${DASHSCOPE_API_KEY:}
+      base-url: ${TEXT_MODEL_BASE_URL:https://dashscope.aliyuncs.com}
+      chat:
+        options:
+          model: ${TEXT_MODEL:qwen-plus}
+          max-tokens: ${TEXT_MAX_TOKENS:2000}
 
 # Pexels API 配置
 pexels:
   api-key: ${PEXELS_API_KEY:}
 
 # Nano Banana API 配置（可选）
-nano:
-  banana:
-    api-key: ${NANO_BANANA_API_KEY:}
+nano-banana:
+  api-key: ${GEMINI_API_KEY:${IMAGE_MODEL_API_KEY:}}
+  model: ${GEMINI_MODEL:${IMAGE_MODEL:gemini-3.1-flash-image}}
+  base-url: ${GEMINI_BASE_URL:${IMAGE_MODEL_BASE_URL:https://generativelanguage.googleapis.com}}
+  image-size: ${GEMINI_IMAGE_SIZE:1K}
+  aspect-ratio: ${GEMINI_ASPECT_RATIO:16:9}
+  timeout-seconds: ${IMAGE_TIMEOUT_SECONDS:120}
+doubao:
+  api-key: ${DOUBAO_API_KEY:}
+  model: ${DOUBAO_MODEL:}
+  base-url: ${DOUBAO_BASE_URL:https://ark.cn-beijing.volces.com/api/v3}
+  image-size: ${DOUBAO_IMAGE_SIZE:2K}
+  timeout-seconds: ${IMAGE_TIMEOUT_SECONDS:120}
 
 # Stripe 支付配置（可选）
 stripe:
@@ -47,3 +62,8 @@ tencent:
     secret-key: ${TENCENT_COS_SECRET_KEY:}
     region: ${TENCENT_COS_REGION:ap-guangzhou}
     bucket: ${TENCENT_COS_BUCKET:}
+article:
+  storage:
+    type: ${IMAGE_STORAGE:local}
+    local:
+      root: ${IMAGE_STORAGE_ROOT:/data/images}

@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "scope": "Real MySQL and actual killed/restarted Java processes; RuntimeStore integration only, not full HTTP flow",
+  "timeline": [
+    {
+      "at": "2026-09-10T03:33:47.519Z",
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "a3-store-2026-09-10t03-33-46-088z-mysql",
+        "--network",
+        "a3-store-2026-09-10t03-33-46-088z-net",
+        "--tmpfs",
+        "/var/lib/mysql",
+        "--memory=1g",
+        "-e",
+        "MYSQL_ROOT_PASSWORD=a3-test-only",
+        "mysql:8.0"
+      ],
+      "exit": 0
+    },
+    {
+      "at": "2026-09-10T03:33:55.541Z",
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "a3-store-2026-09-10t03-33-46-088z-prepare",
+        "--network",
+        "a3-store-2026-09-10t03-33-46-088z-net",
+        "--memory=3g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-store-2026-09-10t03-33-46-088z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "-e",
+        "A3_STORE_ISOLATED=true",
+        "-e",
+        "A3_PROCESS_STAGE=prepare",
+        "-e",
+        "A3_DB_URL=jdbc:mysql://a3-store-2026-09-10t03-33-46-088z-mysql:3306/ai_passage_creator",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/settings.xml",
+        "-o",
+        "-B",
+        "-Dtest=A3StoreIT",
+        "test"
+      ],
+      "exit": 0
+    },
+    {
+      "at": "2026-09-10T03:36:53.349Z",
+      "args": [
+        "kill",
+        "--signal=KILL",
+        "a3-store-2026-09-10t03-33-46-088z-prepare"
+      ],
+      "exit": 0
+    },
+    {
+      "at": "2026-09-10T03:36:53.349Z",
+      "event": "SIGKILL after committed checkpoint, before completion"
+    },
+    {
+      "at": "2026-09-10T03:37:09.848Z",
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "a3-store-2026-09-10t03-33-46-088z-recover",
+        "--network",
+        "a3-store-2026-09-10t03-33-46-088z-net",
+        "--memory=3g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-store-2026-09-10t03-33-46-088z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "-e",
+        "A3_STORE_ISOLATED=true",
+        "-e",
+        "A3_PROCESS_STAGE=recover",
+        "-e",
+        "A3_DB_URL=jdbc:mysql://a3-store-2026-09-10t03-33-46-088z-mysql:3306/ai_passage_creator",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/settings.xml",
+        "-o",
+        "-B",
+        "-Dtest=A3StoreIT",
+        "test"
+      ],
+      "exit": 0
+    },
+    {
+      "at": "2026-09-10T03:38:30.350Z",
+      "args": [
+        "wait",
+        "a3-store-2026-09-10t03-33-46-088z-recover"
+      ],
+      "exit": 0,
+      "result": "0\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "reviewedAt": "2026-09-10T03:50:09.696Z",
+  "screenshots": [
+    "01-desktop-cancelled.png",
+    "02-desktop-budget.png",
+    "03-desktop-recovering.png",
+    "04-desktop-uncertain.png",
+    "05-mobile-uncertain.png",
+    "06-mobile-retry-confirmation.png",
+    "07-mobile-cancelled.png",
+    "08-mobile-old-article.png"
+  ],
+  "result": "PASS",
+  "observations": [
+    "Desktop status and retained review/draft readable",
+    "Mobile 390x844 no horizontal overflow; buttons and risk confirmation fit",
+    "Human acceptance and runtime termination remain distinct",
+    "Old article does not claim a review exists"
+  ],
+  "minor": "Budget alert additionally displays BUDGET_EXHAUSTED code below the Chinese status; cosmetic, not a success label"
+}

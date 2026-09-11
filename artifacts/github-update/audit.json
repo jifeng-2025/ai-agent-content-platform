@@ -1,0 +1,8 @@
+{
+  "scope": "Explicit source/docs/tests and curated evidence; raw logs/snapshots, credentials, user data, dependencies and builds excluded",
+  "files": 406,
+  "totalBytes": 3054578,
+  "excludedCount": 353,
+  "issues": [],
+  "limitations": "Pattern and filename scan, not a proof of absence; user images are not included."
+}

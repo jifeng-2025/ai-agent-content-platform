@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "file": "a1-sse-test.cjs",
+      "exitCode": 0,
+      "durationMs": 1529,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--memory=1g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T09-59-39-514Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "node",
+        "../a1-sse-test.cjs"
+      ]
+    },
+    {
+      "file": "a3-sse-test.cjs",
+      "exitCode": 0,
+      "durationMs": 1392,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--memory=1g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T09-59-39-514Z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend\\node_modules,target=/work/frontend/node_modules,readonly",
+        "-w",
+        "/work/frontend",
+        "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32",
+        "node",
+        "../a3-sse-test.cjs"
+      ]
+    }
+  ],
+  "scope": "Production SSE helper transpiled from fixed candidate; simulated EventSource, actual network separately tested"
+}

@@ -1,0 +1,95 @@
+{
+  "runs": {
+    "mock": {
+      "out": "artifacts/a3/runs/2026-09-10T04-09-26-113Z",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-10T04-09-26-113Z",
+      "required": [
+        "summary.json"
+      ]
+    },
+    "front": {
+      "out": "artifacts/a3/runs/2026-09-10T04-11-53-974Z-front",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z",
+      "required": [
+        "summary.json"
+      ]
+    },
+    "http": {
+      "out": "artifacts/a3/runs/2026-09-10T04-29-33-798Z-live",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-10T04-29-33-798Z",
+      "required": [
+        "com.yupi.template.intervention.A3HttpIT.txt"
+      ]
+    },
+    "store": {
+      "out": "artifacts/a3/runs/2026-09-10T04-21-13-704Z-store",
+      "work": "tools/dev-harness/.work/a3-store-2026-09-10t04-21-13-704z",
+      "required": [
+        "com.yupi.template.runtime.A3StoreIT.txt"
+      ]
+    },
+    "fault": {
+      "out": "artifacts/a3/runs/2026-09-10T04-41-02-011Z-live",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-10T04-41-02-011Z",
+      "required": [
+        "fault-result.json"
+      ]
+    },
+    "fresh": {
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t04-19-25-821z",
+      "required": [
+        "install-check.json"
+      ]
+    },
+    "upgrade": {
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t04-35-43-514z",
+      "required": [
+        "install-check.json"
+      ]
+    },
+    "browser": {
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t04-19-25-821z/browser-2026-09-10T04-25-59-449Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "runtimeBrowser": {
+      "out": "artifacts/a3/runs/2026-09-10T04-29-33-798Z-live/browser-2026-09-10T04-39-07-626Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "visual": {
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t04-19-25-821z/browser-2026-09-10T04-31-58-137Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "context": {
+      "out": "artifacts/a4/runs/context-2026-09-10T04-39-55-231Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "degraded": {
+      "out": "artifacts/a4/runs/a4-install-2026-09-10t04-53-56-553z/browser-2026-09-10T04-55-38-033Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "sse": {
+      "out": "artifacts/a4/runs/sse-2026-09-10T04-47-57-148Z",
+      "required": [
+        "result.json"
+      ]
+    }
+  },
+  "jar": {
+    "path": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-install-2026-09-10t04-19-25-821z/app.jar",
+    "sha256": "fbce0b0667ef50e88f4263060eaaac8dd0d24a06a6de17f30885c00bc1de698f"
+  },
+  "frontend": {
+    "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T04-11-53-974Z",
+    "configuration": "Same dist used in fresh and upgrade; additional a4-image.svg is an explicitly labeled Mock asset"
+  }
+}

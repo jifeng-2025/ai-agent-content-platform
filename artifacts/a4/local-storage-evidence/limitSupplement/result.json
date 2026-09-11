@@ -1,0 +1,6 @@
+{
+  "scope": "Earlier fresh run of the exact same local-storage business candidate/JAR, before the test-only session bug; screenshot actually viewed; no additional test count",
+  "jarSha256": "4492f3371d37038f0ef8b5a7127182dc31ebc55a56809b6780a5e8a24fe70880",
+  "status": "PASS",
+  "sourceId": "c323e006b168a13e224b9885ccd01a23f1dc8c51a4caf496ed10f7ca75c1c848"
+}

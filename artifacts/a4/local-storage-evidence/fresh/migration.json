@@ -1,0 +1,14 @@
+{
+  "kind": "fresh",
+  "appliedTwice": [
+    "add_article_review.sql",
+    "add_article_intervention.sql",
+    "add_article_runtime.sql",
+    "add_local_image_storage.sql"
+  ],
+  "oldDataPreserved": false,
+  "reviewVersion": null,
+  "operationStatus": null,
+  "interventionRevision": null,
+  "scope": "Own Compose named volumes; original volumes untouched"
+}

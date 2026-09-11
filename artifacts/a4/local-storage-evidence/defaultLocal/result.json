@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "checks": [
+    "loaded /user/login",
+    "login form",
+    "registered through real HTTP",
+    "login",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "default model task complete",
+    "default slot success",
+    "default is configured Gemini adapter",
+    "default local reference",
+    "default local bytes loaded"
+  ],
+  "errors": [],
+  "scope": "Normal non-VIP account, no image selection, no COS environment, actual local disk; cloud model boundary Mock"
+}

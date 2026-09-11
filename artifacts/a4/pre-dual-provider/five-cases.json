@@ -1,0 +1,372 @@
+{
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "qualityClaim": false,
+  "cases": [
+    {
+      "id": "C01",
+      "topic": "普通人如何用 AI 提升工作效率",
+      "style": "educational",
+      "audience": "非技术职场新人",
+      "outcome": "success",
+      "reviewFocus": "受众偏离、未经证实的效率百分比",
+      "baseline": "A0 fixed response assertions",
+      "currentSameFixture": "PASS unchanged A0BaselineTest 5/5",
+      "additionalUiScenario": {
+        "scope": "Same topic, separate controlled response; not real quality comparison",
+        "taskId": "a7ee178c19314a349938d389c62310b0",
+        "status": "COMPLETED",
+        "version": 1,
+        "reviewStatus": "PASS",
+        "stopReason": null,
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "REVISE",
+              "issues": [
+                {
+                  "type": "AUDIENCE",
+                  "severity": "ERROR",
+                  "sectionId": "p2",
+                  "reason": "当前表达不适合新手，需要调整",
+                  "suggestedAction": "只修改本段，保留其他段落"
+                }
+              ]
+            }
+          },
+          {
+            "version": 1,
+            "content": "## 开始行动\n\n先选择一个简单任务，记录操作步骤，用日常语言解释。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "PASS",
+              "issues": []
+            }
+          }
+        ],
+        "media": {
+          "template": "## 开始行动\n\n先选择一个简单任务，记录操作步骤，用日常语言解释。\n\n保留这一段，不要重写。",
+          "slots": [
+            {
+              "id": "image-1",
+              "requirement": {
+                "position": 1,
+                "type": "section",
+                "sectionTitle": "开始行动",
+                "keywords": "fixed",
+                "imageSource": "PEXELS",
+                "prompt": null,
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "result": {
+                "position": 1,
+                "url": "/api/images/ec338c0a08b14f379e223ca4facfeea7",
+                "method": "PEXELS",
+                "keywords": "fixed",
+                "sectionTitle": "开始行动",
+                "description": "开始行动",
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "status": "SUCCESS",
+              "attempts": 1,
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "topic": "周末散步中的小发现",
+      "style": "emotional",
+      "audience": "普通生活读者",
+      "outcome": "success",
+      "reviewFocus": "可读性、段落连贯、图文匹配",
+      "baseline": "A0 fixed response assertions",
+      "currentSameFixture": "PASS unchanged A0BaselineTest 5/5",
+      "additionalUiScenario": {
+        "scope": "Same topic, separate controlled response; not real quality comparison",
+        "taskId": "270e2eccaa744598b80d9d9e8ef9e394",
+        "status": "COMPLETED",
+        "version": 0,
+        "reviewStatus": "PASS",
+        "stopReason": null,
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "PASS",
+              "issues": []
+            }
+          }
+        ],
+        "media": {
+          "template": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+          "slots": [
+            {
+              "id": "image-1",
+              "requirement": {
+                "position": 1,
+                "type": "section",
+                "sectionTitle": "开始行动",
+                "keywords": "fixed",
+                "imageSource": "PEXELS",
+                "prompt": null,
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "result": {
+                "position": 1,
+                "url": "/api/images/b90e1618998e4d149a1218e4e66bb805",
+                "method": "PEXELS",
+                "keywords": "fixed",
+                "sectionTitle": "开始行动",
+                "description": "开始行动",
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "status": "SUCCESS",
+              "attempts": 1,
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C03",
+      "topic": "给新手解释数据备份",
+      "style": "tech",
+      "audience": "电脑新手",
+      "outcome": "success",
+      "reviewFocus": "术语解释、不编造机构归因",
+      "baseline": "A0 fixed response assertions",
+      "currentSameFixture": "PASS unchanged A0BaselineTest 5/5",
+      "additionalUiScenario": {
+        "scope": "Same topic, separate controlled response; not real quality comparison",
+        "taskId": "3a248b4cfeb14338a881c525b8da3a63",
+        "status": "COMPLETED",
+        "version": 2,
+        "reviewStatus": "HUMAN_ACCEPTED",
+        "stopReason": "REVISION_LIMIT",
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "REVISE",
+              "issues": [
+                {
+                  "type": "AUDIENCE",
+                  "severity": "ERROR",
+                  "sectionId": "p2",
+                  "reason": "当前表达不适合新手，需要调整",
+                  "suggestedAction": "只修改本段，保留其他段落"
+                }
+              ]
+            }
+          },
+          {
+            "version": 1,
+            "content": "## 开始行动\n\n修订尝试1：仍需调整表达。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "REVISE",
+              "issues": [
+                {
+                  "type": "STRUCTURE",
+                  "severity": "ERROR",
+                  "sectionId": "p2",
+                  "reason": "当前表达不适合新手，需要调整",
+                  "suggestedAction": "只修改本段，保留其他段落"
+                }
+              ]
+            }
+          },
+          {
+            "version": 2,
+            "content": "## 开始行动\n\n修订尝试2：仍需调整表达。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "REVISE",
+              "issues": [
+                {
+                  "type": "AUDIENCE",
+                  "severity": "ERROR",
+                  "sectionId": "p2",
+                  "reason": "当前表达不适合新手，需要调整",
+                  "suggestedAction": "只修改本段，保留其他段落"
+                }
+              ]
+            }
+          }
+        ],
+        "media": {
+          "template": "## 开始行动\n\n修订尝试2：仍需调整表达。\n\n保留这一段，不要重写。",
+          "slots": [
+            {
+              "id": "image-1",
+              "requirement": {
+                "position": 1,
+                "type": "section",
+                "sectionTitle": "开始行动",
+                "keywords": "fixed",
+                "imageSource": "PEXELS",
+                "prompt": null,
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "result": {
+                "position": 1,
+                "url": "/api/images/f6c9c698fd6d44c7ac1a74cb7fbdf36a",
+                "method": "PEXELS",
+                "keywords": "fixed",
+                "sectionTitle": "开始行动",
+                "description": "开始行动",
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "status": "SUCCESS",
+              "attempts": 1,
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C04",
+      "topic": "整理书桌的三个步骤",
+      "style": "humorous",
+      "audience": "学生",
+      "outcome": "malformed-json",
+      "reviewFocus": "结构错误进入失败出口",
+      "baseline": "A0 fixed response assertions",
+      "currentSameFixture": "PASS unchanged A0BaselineTest 5/5",
+      "additionalUiScenario": {
+        "scope": "Same topic, separate controlled response; not real quality comparison",
+        "taskId": "5bb9d8b0c41a4491aa131ac9ef2243fe",
+        "status": "COMPLETED",
+        "version": 1,
+        "reviewStatus": "PASS",
+        "stopReason": null,
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "NEEDS_REVIEW",
+              "issues": [
+                {
+                  "type": "EVIDENCE_REQUIRED",
+                  "severity": "ERROR",
+                  "sectionId": "p2",
+                  "reason": "缺少外部证据，需要人工判断",
+                  "suggestedAction": "只修改本段，保留其他段落"
+                }
+              ]
+            }
+          },
+          {
+            "version": 1,
+            "content": "## 开始行动\n\n人工修改完成：先整理一件物品，记录步骤。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "PASS",
+              "issues": []
+            }
+          }
+        ],
+        "media": {
+          "template": "## 开始行动\n\n人工修改完成：先整理一件物品，记录步骤。\n\n保留这一段，不要重写。",
+          "slots": [
+            {
+              "id": "image-1",
+              "requirement": {
+                "position": 1,
+                "type": "section",
+                "sectionTitle": "开始行动",
+                "keywords": "fixed",
+                "imageSource": "PEXELS",
+                "prompt": null,
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "result": {
+                "position": 1,
+                "url": "/api/images/5d9f5d4627bb4554be1200f6d20ebfc3",
+                "method": "PEXELS",
+                "keywords": "fixed",
+                "sectionTitle": "开始行动",
+                "description": "开始行动",
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "status": "SUCCESS",
+              "attempts": 1,
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C05",
+      "topic": "第一次制作旅行清单",
+      "style": "educational",
+      "audience": "旅行新手",
+      "outcome": "model-error",
+      "reviewFocus": "服务异常进入失败出口",
+      "baseline": "A0 fixed response assertions",
+      "currentSameFixture": "PASS unchanged A0BaselineTest 5/5",
+      "additionalUiScenario": {
+        "scope": "Same topic, separate controlled response; not real quality comparison",
+        "taskId": "0c587ef21d10478a8215266484acfc1d",
+        "status": "COMPLETED",
+        "version": 0,
+        "reviewStatus": "PASS",
+        "stopReason": null,
+        "versions": [
+          {
+            "version": 0,
+            "content": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+            "review": {
+              "schemaVersion": 1,
+              "decision": "PASS",
+              "issues": []
+            }
+          }
+        ],
+        "media": {
+          "template": "## 开始行动\n\n使用复杂参数矩阵完成任务优化。\n\n保留这一段，不要重写。",
+          "slots": [
+            {
+              "id": "image-1",
+              "requirement": {
+                "position": 1,
+                "type": "section",
+                "sectionTitle": "开始行动",
+                "keywords": "fixed",
+                "imageSource": "PEXELS",
+                "prompt": null,
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "result": {
+                "position": 1,
+                "url": "/api/images/b48187219d2b4bf69bc710c867376b24",
+                "method": "PEXELS",
+                "keywords": "fixed",
+                "sectionTitle": "开始行动",
+                "description": "开始行动",
+                "placeholderId": "{{A2_IMAGE_1}}"
+              },
+              "status": "SUCCESS",
+              "attempts": 2,
+              "error": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package com.yupi.template.agent.config;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import com.alibaba.cloud.ai.graph.checkpoint.savers.MemorySaver;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

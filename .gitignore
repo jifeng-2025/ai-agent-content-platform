@@ -78,3 +78,19 @@ tools/dev-harness/.work/
 artifacts/a1/runs/
 
 artifacts/a2/runs/
+
+artifacts/a3/runs/
+
+artifacts/a4/runs/
+
+# Local persistent media and real exports
+/data/
+*.zip
+
+# Downloaded export files are local verification outputs
+artifacts/**/downloads/
+
+# Model encryption master key and private persistence
+data/model-secrets/
+**/master.key
+**/master.lock

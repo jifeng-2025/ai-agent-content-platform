@@ -1,0 +1,986 @@
+{
+  "at": "2026-09-10T11:07:49.146Z",
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "sourceFiles": 251,
+  "engineering": "ENGINEERING_PASS",
+  "realText": "NOT_RUN",
+  "realAiImage": "DEFERRED_BY_USER_NOT_RUN",
+  "distributionLicense": "UNRESOLVED",
+  "fullA4Pass": false,
+  "release": "v0.1.0 demo candidate, not published",
+  "junit": {
+    "featureExecuted": 113,
+    "featurePassed": 113,
+    "pure": 99,
+    "pureRuns": 2,
+    "http": 13,
+    "storeProcess": 1,
+    "suites": [
+      {
+        "file": "mock-TEST-com.yupi.template.baseline.A0BaselineTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1IntegrationTest.xml",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1PersistenceTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1ReviewLoopTest.xml",
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2MediaTest.xml",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2RoundTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A3ReviewResumeTest.xml",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A4DemoMediaTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3BudgetTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3ExternalTest.xml",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.service.A4DemoTest.xml",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4ImageAccessTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4StorageBindingTest.xml",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4StorageTest.xml",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "baselineContextExecuted": 1,
+    "baselineContextErrors": 1
+  },
+  "frontend": {
+    "typeCheck": "PASS",
+    "build": "PASS",
+    "legacySseChecks": 4,
+    "runtimeSseChecks": 6,
+    "lint": {
+      "status": "EXISTING_FAILURE",
+      "errors": 16,
+      "warnings": 1
+    }
+  },
+  "browser": {
+    "realBrowser": true,
+    "textBoundary": "MOCK",
+    "demoImages": "Production DemoImageService, not mocked",
+    "checks": 177,
+    "screenshots": 44,
+    "actualVisualReview": {
+      "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+      "status": "PASS",
+      "sets": [
+        {
+          "name": "runtimeBrowser",
+          "dir": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z",
+          "actuallyViewed": true,
+          "files": [
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/01-desktop-cancelled.png",
+              "sha256": "368c9878ce38f867827771c2fd2cbb226254dceb201fb783b602980bbece92fd"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/02-desktop-budget.png",
+              "sha256": "4d32544d53ee09f11d04ce27b66a74ed760c35bf06734cce25b3cb33f454c330"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/03-desktop-recovering.png",
+              "sha256": "38f02e26a445406114fd93b9048a20b47f02347df472f9ad6b093fe9207e5897"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/04-desktop-uncertain.png",
+              "sha256": "8bdece90a62d70ecad05eb286f18cd029038ee1ec4f1a47ae1597d0af2e5756a"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/05-mobile-uncertain.png",
+              "sha256": "4749dbc95ae892c7ff64722c405f2f522a1c552edcb851d57ad51358250ebb66"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/06-mobile-retry-confirmation.png",
+              "sha256": "3b111452dda9d901c637918dbd7ca8a58bc54f2c6d5a3d7dd4c82ed2ef694a34"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/07-mobile-cancelled.png",
+              "sha256": "6110d680ef6b0fccb6a973990b0c4ae8936874c3f95caf1ccd423f4375a59d05"
+            },
+            {
+              "path": "artifacts/a3/runs/2026-09-10T10-18-10-602Z-live/browser-2026-09-10T10-25-17-926Z/08-mobile-old-article.png",
+              "sha256": "9410b89072371e85ba2ddcb893b20ada71688e758470b2bdf28b513f74394e19"
+            }
+          ],
+          "findings": [
+            "Desktop and mobile status warnings and preserved drafts readable",
+            "Uncertain-result retry requires explicit checkbox; mobile modal fits",
+            "Legacy article explicitly states no review record",
+            "Existing raw BUDGET_EXHAUSTED error code retained; no new layout regression"
+          ]
+        },
+        {
+          "name": "browser",
+          "dir": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z",
+          "actuallyViewed": true,
+          "files": [
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/01-normal-complete.png",
+              "sha256": "007e4ca138aabf0f8d403cbc4c32f52c3a15e477784c8ef80a149c87e2b0f9da"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/02-revised.png",
+              "sha256": "3a9eeb759a4f19b7ae1bf654fcd6f3f21b3d9e3cb57205bc8eca200fba130f12"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/03-limit.png",
+              "sha256": "7d053f62c71a77bab9e200e889919b79e1f756d583592edf705921021b0be1a5"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/04-human-accepted.png",
+              "sha256": "bfbe5bd957a5ddfb5467eef94d2609ca84c51a3c6c670a54bae17eac9023d5fc"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/05-edited.png",
+              "sha256": "a8ced2ccbd36afee56a9d7a0672bf60446acaab6b3aa10003b55d5da351f1f32"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/06-image-failed.png",
+              "sha256": "0051a5b6531adffd94411c8db14687d39b2f30449821bd8417fd0c2089dc4e40"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/07-image-retry.png",
+              "sha256": "937156ece5355be518129ea87c1f2ae4af5eeea73bda045e582892ee33cd5ffb"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/08-mobile-complete.png",
+              "sha256": "ee596e24061d5b646e9d6cd80c72eb4bae9aaf16d5902353d1a999e62d23c80c"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/IMAGE_FAIL-outline.png",
+              "sha256": "eff6000af5302e17583430c1d4cb8581e73516fe4d1b9626928080ec92c31c14"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/IMAGE_FAIL-title.png",
+              "sha256": "f8d3524eb1b20bdf99d412146506cfeba0baccc56fb26f748223fad1e5e216ff"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/LIMIT-outline.png",
+              "sha256": "7bd2ecd295f6b0ae0fd17e88bfac6b907ea4296a87a6a6ce58f8376652bb9502"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/LIMIT-title.png",
+              "sha256": "f6b040d6e3e99e2182888330d8f9b0ffae523093ed663c06e484467cbae35c40"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/MANUAL-outline.png",
+              "sha256": "69d1e753b3c4ed36e4bf6114f379a91e3f0b406cdb1e28a37ff18de1c7afe425"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/MANUAL-title.png",
+              "sha256": "f5d81b2104e46d26d3850c91cd92e2bcabe4611a64c658ac2ed8b39363909342"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/PASS-outline.png",
+              "sha256": "b68fac7bf655dd6fff1f8f90db32e4770132ca579e7589dc58a8219a8b133c95"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/PASS-title.png",
+              "sha256": "89af80db323d94d1a0df604042ef2d5955cfcf4ec10e95b94399fa0246e607fd"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/REVISE-outline.png",
+              "sha256": "d66abca0dcc373d370e95a7505a7fbffc06477ede86689f27aaed7d6b09c0ebb"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T10-59-16-920Z/REVISE-title.png",
+              "sha256": "e412d8e0f0ca2fb4e123dcf7a1d5e63bc5730b2a5d1a2c47db27973561dff5b0"
+            }
+          ],
+          "findings": "18张五案例截图逐张查看：标题/大纲、v0/v1/v2、待人工、人工决定、编辑重评、失败重试及390px移动端状态清晰。既有旧侧栏步骤可能滞后，部分英文停止枚举保留。",
+          "console": {
+            "count": 0,
+            "errors": []
+          },
+          "network": {
+            "count": 360,
+            "httpErrors": [],
+            "failures": []
+          }
+        },
+        {
+          "name": "visual",
+          "dir": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-17-150Z",
+          "actuallyViewed": true,
+          "files": [
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-17-150Z/09-version-diff.png",
+              "sha256": "b85cbb4c480b1dd00e010fd6348cf0b35a12f4b2b1080c98635fc1de46f155fa"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-17-150Z/10-generated-fixture-image.png",
+              "sha256": "81a18ea32db558a7328badb8c65324bd21cf842090b2ccf428bb6a49f1abb27a"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-17-150Z/11-mobile-fixture-image.png",
+              "sha256": "6123c22b28c12b709c14d27df15b4662f052f4df4bb74d87de8b305983aa38d2"
+            }
+          ],
+          "findings": "3张实看：红绿差异只修改目标段，未涉及段落保留；图片与重试来源可见，移动布局正常。图为测试fixture，不是生成质量证据。",
+          "console": {
+            "count": 0,
+            "errors": []
+          },
+          "network": {
+            "count": 50,
+            "httpErrors": [],
+            "failures": []
+          }
+        },
+        {
+          "name": "defaultLocal",
+          "dir": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z",
+          "actuallyViewed": true,
+          "files": [
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/14-default-desktop.png",
+              "sha256": "004b62f6b4c95274df9725fcab31cef9ce8d6e3ad464279dd3d8dc591ad46f57"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/15-default-mobile.png",
+              "sha256": "c4604f37229c10fce32108a527c6f1a702caf8e094d41c5b7a1b974bd203824e"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/16-human-demo-desktop.png",
+              "sha256": "f1a88586549aef131ccce544f3c4b085084b55cc53022555cef1899110050752"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/17-human-demo-mobile.png",
+              "sha256": "dbbc1174bfa02bd045e12fef8d7f33465839cae0d7bf31774a3453ad27fb4cc3"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/demo-mode-input.png",
+              "sha256": "807f989fd821bc3172c9cfbc1e5efe9e7ffc66bca925a2d1d9a4e571e071db64"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/MANUAL-outline.png",
+              "sha256": "35879cd94a2af79c92e9869a78877492abdb66295df410371f69ceec5fbcaa3e"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/MANUAL-title.png",
+              "sha256": "2b1042ad6ca128be05edef5673aef58a92ee4ac4be241d5bddff8e3dae9fd961"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/REVISE-outline.png",
+              "sha256": "d5c3d144ea8ace3ab7a3bb62c0b71a30cafff8d213a7dea62e4e78e39e1d892e"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-01-22-390Z/REVISE-title.png",
+              "sha256": "1b19a94b1af1b6f00b70b369b8ba016a1ff94baa58e59c894f4beb48c9168a3a"
+            }
+          ],
+          "findings": "9张实看：默认DEMO选中，Gemini灰禁并说明未配置；程序PNG、来源DEMO_PNG、降级/占位、非AI及不保证匹配文案清晰。桌面/移动端正常；人工接受仍保留原评审。占位警示有两行近似文案，非阻断。",
+          "console": {
+            "count": 0,
+            "errors": []
+          },
+          "network": {
+            "count": 203,
+            "httpErrors": [],
+            "failures": []
+          }
+        },
+        {
+          "name": "offline",
+          "dir": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-49-912Z",
+          "actuallyViewed": true,
+          "files": [
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-49-912Z/12-offline-desktop.png",
+              "sha256": "bd1d9bd42eecf0c56e95faf4161247d0946675ec2bcc5b0f36e11d670096da22"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-49-912Z/13-offline-mobile.png",
+              "sha256": "ab9ca7c3782620136403522ba366f29b9806aece3c9e6e328c99a7cc0b3fb03e"
+            }
+          ],
+          "findings": "2张实看：网络阻断的本地解压index.html显示正文及程序PNG；相对图片路径；桌面/移动均可见。HTML为转义正文加图片，保留Markdown符号，不是富文本排版。",
+          "console": {
+            "count": 0,
+            "errors": []
+          },
+          "network": {
+            "count": 2,
+            "httpErrors": [],
+            "failures": []
+          }
+        },
+        {
+          "name": "degraded",
+          "dir": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-53-889Z",
+          "actuallyViewed": true,
+          "files": [
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-53-889Z/12-degraded-desktop.png",
+              "sha256": "336c4d4f30c69773b5d451f6c9c25e586141d4c64836c00eed43d683a6112b10"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-53-889Z/13-degraded-mobile.png",
+              "sha256": "d236a954181661c0579f521bbe6378fa7a0139b2111660b30dab742842c5eb3a"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-53-889Z/DEGRADED-outline.png",
+              "sha256": "500ba1163f023195e7106ab9fb52d8c3be2749d8bf732f226ff29ff527269c57"
+            },
+            {
+              "path": "artifacts/a4/runs/a4-install-2026-09-10t10-56-34-866z/browser-2026-09-10T11-02-53-889Z/DEGRADED-title.png",
+              "sha256": "07fa2bbd7067ec8d704c79077c80a8fd7af902856bed743972b0fd4efffad072"
+            }
+          ],
+          "findings": "4张实看：旧Pexels降级PLACEHOLDER来源和质量警示清楚，未伪装成功生成，标题/大纲可操作。",
+          "console": {
+            "count": 0,
+            "errors": []
+          },
+          "network": {
+            "count": 76,
+            "httpErrors": [],
+            "failures": []
+          }
+        }
+      ],
+      "reviewedAt": "2026-09-10T11:06:43.130Z",
+      "screenshots": 44,
+      "scope": "Actual human-visible inspection through image tool, not merely screenshot existence. Text cloud boundary Mock, default DEMO PNG production implementation."
+    },
+    "sets": [
+      {
+        "name": "runtimeBrowser",
+        "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T10-18-10-602Z-live\\browser-2026-09-10T10-25-17-926Z",
+        "checks": 30,
+        "screenshots": 8,
+        "status": "PASS"
+      },
+      {
+        "name": "browser",
+        "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T10-59-16-920Z",
+        "checks": 70,
+        "screenshots": 18,
+        "status": "PASS"
+      },
+      {
+        "name": "visual",
+        "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-01-17-150Z",
+        "checks": 9,
+        "screenshots": 3,
+        "status": "PASS"
+      },
+      {
+        "name": "defaultLocal",
+        "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-01-22-390Z",
+        "checks": 49,
+        "screenshots": 9,
+        "status": "PASS"
+      },
+      {
+        "name": "degraded",
+        "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-02-53-889Z",
+        "checks": 17,
+        "screenshots": 4,
+        "status": "PASS"
+      },
+      {
+        "name": "offline",
+        "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-02-49-912Z",
+        "checks": 2,
+        "screenshots": 2,
+        "status": "PASS"
+      }
+    ]
+  },
+  "demoProvider": {
+    "imageAttempts": 0,
+    "ledger": [
+      [
+        "image:DEMO",
+        "3",
+        "0",
+        "0",
+        "3"
+      ],
+      [
+        "dashscope",
+        "10",
+        "1000000",
+        "0",
+        "10"
+      ]
+    ],
+    "source": "production DemoImageService; mock plugin excludes image:DEMO",
+    "taskIds": [
+      "7b28f3f6741e412a828ca6fe76cd2776",
+      "43396cec0e9c4f28b4b4fa28056842d6"
+    ],
+    "scope": "Default revision, single-image retry and human acceptance; no Gemini credentials or outbound model requests"
+  },
+  "localStorage": {
+    "status": "PASS",
+    "checks": [
+      "owner login",
+      "authenticated real local PNG",
+      "private image response",
+      "anonymous image denied",
+      "different user image denied",
+      "different user ZIP denied",
+      "traversal returns no file",
+      "real authenticated ZIP export",
+      "ZIP extracted in dedicated workspace",
+      "offline Markdown relative image paths",
+      "no COS environment variables",
+      "durable budget exists before recreation",
+      "new container instance",
+      "same image bytes survive container replacement",
+      "persistent image recovery",
+      "recreation preserves callsUsed",
+      "recreation preserves imageRetriesUsed",
+      "recreation preserves reservedCostMicros"
+    ],
+    "timeline": [
+      {
+        "at": "2026-09-10T11:02:00.069Z",
+        "event": "backend container forcibly recreated"
+      }
+    ],
+    "budgetBefore": {
+      "taskId": "43396cec0e9c4f28b4b4fa28056842d6",
+      "runId": "cf7abcc5-358f-4ab1-b471-5c2c0c0fbe69",
+      "userId": "455612248154288128",
+      "createRequestId": "79115614-aed7-45f2-8fb2-6fa0a3896e72",
+      "createPayloadHash": "f692b432498b04c932471f0543433b51f3f889728a6b15863d8b53028f7734ff",
+      "stateVersion": "30",
+      "lastEventId": "30",
+      "remainingMs": "894646",
+      "maxCalls": 12,
+      "callsUsed": 5,
+      "maxImageRetries": 3,
+      "imageRetriesUsed": 0,
+      "maxEstimatedCostMicros": "5000000",
+      "reservedCostMicros": "400000",
+      "actualCostMicros": "0",
+      "createdTime": "2026-09-10T19:01:41.355",
+      "enabled": true,
+      "status": "COMPLETED",
+      "phase": "COMPLETED",
+      "errorMessage": null,
+      "calls": [
+        {
+          "callId": "81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+          "stepId": "TITLE",
+          "provider": "dashscope",
+          "payloadHash": "48927d645c331526706714ca9f9fa60cdc7e09790c185a891623856841d6f511",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:41.66"
+        },
+        {
+          "callId": "4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+          "stepId": "OUTLINE",
+          "provider": "dashscope",
+          "payloadHash": "1980a5c120185b599fa5f69cc06015ad02d36c3bf19634d2aede79c1e5c3c926",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:43.662"
+        },
+        {
+          "callId": "64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+          "stepId": "BODY",
+          "provider": "dashscope",
+          "payloadHash": "7c917a050c4de2976a681b498e48c63129289b9e13097287c93826c2f8eca6d1",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:46.667"
+        },
+        {
+          "callId": "86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+          "stepId": "REVIEW",
+          "provider": "dashscope",
+          "payloadHash": "a5d95d291bf75ce4cc4d19a5281f10cd5403f204cd29ef6d0bd5dba2fc666c9b",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:46.717"
+        },
+        {
+          "callId": "06a3cd49ea42cb45fe30935155d2d6fa4fdc4bf5fcc235c75aecad2f7eefc60f",
+          "stepId": "IMAGE:image-1",
+          "provider": "image:DEMO",
+          "payloadHash": "4cee269a7323b1060609362bac9e0076adc033cff4ab2207438505419458ca2b",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": null,
+          "reservedCostMicros": "0",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:47.673"
+        }
+      ],
+      "operations": [
+        {
+          "requestId": "normal-title-0001",
+          "action": "CREATE",
+          "status": "COMPLETED",
+          "phase": "TITLE_WAIT",
+          "fence": "1",
+          "stateVersion": "3"
+        },
+        {
+          "requestId": "normal-outline-0001",
+          "action": "CONFIRM_TITLE",
+          "status": "COMPLETED",
+          "phase": "OUTLINE_WAIT",
+          "fence": "1",
+          "stateVersion": "3"
+        },
+        {
+          "requestId": "normal-body-0001",
+          "action": "CONFIRM_OUTLINE",
+          "status": "COMPLETED",
+          "phase": "DONE",
+          "fence": "1",
+          "stateVersion": "5"
+        },
+        {
+          "requestId": "d48c79a4-aad9-42d8-b926-eaae64d74531",
+          "action": "ACCEPT",
+          "status": "COMPLETED",
+          "phase": "DONE",
+          "fence": "1",
+          "stateVersion": "5"
+        }
+      ],
+      "mayStillCharge": false
+    },
+    "budgetAfter": {
+      "taskId": "43396cec0e9c4f28b4b4fa28056842d6",
+      "runId": "cf7abcc5-358f-4ab1-b471-5c2c0c0fbe69",
+      "userId": "455612248154288128",
+      "createRequestId": "79115614-aed7-45f2-8fb2-6fa0a3896e72",
+      "createPayloadHash": "f692b432498b04c932471f0543433b51f3f889728a6b15863d8b53028f7734ff",
+      "stateVersion": "30",
+      "lastEventId": "30",
+      "remainingMs": "894646",
+      "maxCalls": 12,
+      "callsUsed": 5,
+      "maxImageRetries": 3,
+      "imageRetriesUsed": 0,
+      "maxEstimatedCostMicros": "5000000",
+      "reservedCostMicros": "400000",
+      "actualCostMicros": "0",
+      "createdTime": "2026-09-10T19:01:41.355",
+      "enabled": true,
+      "status": "COMPLETED",
+      "phase": "COMPLETED",
+      "errorMessage": null,
+      "calls": [
+        {
+          "callId": "81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+          "stepId": "TITLE",
+          "provider": "dashscope",
+          "payloadHash": "48927d645c331526706714ca9f9fa60cdc7e09790c185a891623856841d6f511",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-81c7403254d5476c7db89877d5f20fcfaea89bd2f4d2da62ca0eda6485846bba",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:41.66"
+        },
+        {
+          "callId": "4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+          "stepId": "OUTLINE",
+          "provider": "dashscope",
+          "payloadHash": "1980a5c120185b599fa5f69cc06015ad02d36c3bf19634d2aede79c1e5c3c926",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-4c3384a9167c67efd444a7e0ed8eedb2987659e3fced3406335edff1861e559e",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:43.662"
+        },
+        {
+          "callId": "64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+          "stepId": "BODY",
+          "provider": "dashscope",
+          "payloadHash": "7c917a050c4de2976a681b498e48c63129289b9e13097287c93826c2f8eca6d1",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-64a17f25f95574628a22aa80b33fc7d6895e3d0b726c7cefb6145104f11bb629",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:46.667"
+        },
+        {
+          "callId": "86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+          "stepId": "REVIEW",
+          "provider": "dashscope",
+          "payloadHash": "a5d95d291bf75ce4cc4d19a5281f10cd5403f204cd29ef6d0bd5dba2fc666c9b",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": "a4-86cdca171b4f2ccadf617af52951010cbb481a05ab9cb6ced40a83c1304e21f8",
+          "reservedCostMicros": "100000",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:46.717"
+        },
+        {
+          "callId": "06a3cd49ea42cb45fe30935155d2d6fa4fdc4bf5fcc235c75aecad2f7eefc60f",
+          "stepId": "IMAGE:image-1",
+          "provider": "image:DEMO",
+          "payloadHash": "4cee269a7323b1060609362bac9e0076adc033cff4ab2207438505419458ca2b",
+          "status": "SUCCEEDED",
+          "attempts": 1,
+          "queryAttempts": 0,
+          "providerJobId": null,
+          "reservedCostMicros": "0",
+          "actualCostMicros": "0",
+          "deadlineAt": "2026-09-10T19:02:47.673"
+        }
+      ],
+      "operations": [
+        {
+          "requestId": "normal-title-0001",
+          "action": "CREATE",
+          "status": "COMPLETED",
+          "phase": "TITLE_WAIT",
+          "fence": "1",
+          "stateVersion": "3"
+        },
+        {
+          "requestId": "normal-outline-0001",
+          "action": "CONFIRM_TITLE",
+          "status": "COMPLETED",
+          "phase": "OUTLINE_WAIT",
+          "fence": "1",
+          "stateVersion": "3"
+        },
+        {
+          "requestId": "normal-body-0001",
+          "action": "CONFIRM_OUTLINE",
+          "status": "COMPLETED",
+          "phase": "DONE",
+          "fence": "1",
+          "stateVersion": "5"
+        },
+        {
+          "requestId": "d48c79a4-aad9-42d8-b926-eaae64d74531",
+          "action": "ACCEPT",
+          "status": "COMPLETED",
+          "phase": "DONE",
+          "fence": "1",
+          "stateVersion": "5"
+        }
+      ],
+      "mayStillCharge": false
+    },
+    "imageSha256": "ae4d99730d8e3c7cb7228795b02911dcd9aefa84698a3cf57420010778d5c171",
+    "zipSha256": "42ccdce2ded492f5e7b52cb330b0a7a4f975b48ff8043716bc3aad487d10e7e3",
+    "unpack": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-install-2026-09-10t10-56-34-866z\\offline-export",
+    "taskId": "43396cec0e9c4f28b4b4fa28056842d6",
+    "scope": "Actual packaged application, real MySQL/Redis/HTTP and named image volume; no cloud model API"
+  },
+  "initialization": {
+    "at": "2026-09-10T09:24:02.384Z",
+    "status": "PASS",
+    "checks": [
+      "random database credential generated",
+      "Gemini optional and empty",
+      "same-origin frontend config created",
+      "existing env unchanged",
+      "existing frontend unchanged"
+    ],
+    "scriptSha256": "69a5eb46532b6adf8104db18fd5ee2770cf223c3797552300e257ef58ff6c369",
+    "scope": "Dedicated workspace only; user env not read or modified"
+  },
+  "markdownExport": {
+    "status": "PASS",
+    "bytes": 210,
+    "sha256": "2aa92f922f0c0ad488419c0862bad047b805510b663194a35444a7ac516372d9",
+    "scope": "Actual browser download inspected; file retained only in ignored downloads directory"
+  },
+  "fault": {
+    "checks": 12,
+    "status": "PASS",
+    "providerJobs": [
+      {
+        "jobId": "mock-93f585b4fdcef374ed93086047b37e5e694498b9e30d523e52f44a7ad2cab6b0",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-9c0aad8c6f3b9793e57b562e462fd36e433f7ea91e112b327c09f34f1d69529e",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-ae5d0cdf5adc34380be63dd07189009876ed1ce6099a7b4703edcf7c32b976e4",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 1
+      },
+      {
+        "jobId": "mock-ceac009a377a5914e719e9a4f32505a26d47edd12b79b565fddfa5c8027088e0",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-801b1e08756b40e790a66483e1f5541f9d910540d7a083d504c68389d6b30cc5",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-65ddacff39d3310cfc89b6d43f5a14d7ca9b3e5b58d9934e3f7c4ba2b6991ae0",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-23d818be39d4d924f012f42c30987cc3576a7d42283c925a5d99bc4b7d8444db",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 1
+      },
+      {
+        "jobId": "mock-879cc2f1e1b3dec1f775c54a0535e814a0589e12c1b3623d282463e5e62f63c9",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      }
+    ],
+    "evidence": "demo-evidence/fault/"
+  },
+  "runtimeImage": {
+    "status": "PASS",
+    "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+    "sourceDockerfileSha256": "982d1e80f0270b14bf70d4508a3ea39fdb34c720a045e4a932f00de2f51be1a8",
+    "imageId": "sha256:165cd04cf5335f75f7cd28b41f534c01a371120484cd6e426ae6e5bdab566bf6",
+    "tag": "a4-demo-runtime:2026-09-10t09-59-16-883z",
+    "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\runtime-2026-09-10t09-59-16-883z",
+    "jarSha256": "b7ae1922d1439a4dcb22e29234d92dff0f9fe7e95c8ae0a07bd9a3fd388f37c1",
+    "results": [
+      {
+        "name": "build",
+        "command": [
+          "docker",
+          "build",
+          "--tag",
+          "a4-demo-runtime:2026-09-10t09-59-16-883z",
+          "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-runtime-2026-09-10t09-59-16-883z"
+        ],
+        "exitCode": 0,
+        "durationMs": 20777
+      },
+      {
+        "name": "image-id",
+        "command": [
+          "docker",
+          "image",
+          "inspect",
+          "a4-demo-runtime:2026-09-10t09-59-16-883z",
+          "--format",
+          "{{.Id}}"
+        ],
+        "exitCode": 0,
+        "durationMs": 332
+      },
+      {
+        "name": "non-root",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--network=none",
+          "--entrypoint",
+          "sh",
+          "a4-demo-runtime:2026-09-10t09-59-16-883z",
+          "-c",
+          "test \"$(id -u)\" = 1000 && test -w /data/images && fc-list | head -n 1"
+        ],
+        "exitCode": 0,
+        "durationMs": 810
+      }
+    ],
+    "scope": "Exact production runtime stage with already-tested packaged JAR; non-root writable media root and fonts verified; Maven build stage uses same tested artifact, not recompiled here"
+  },
+  "install": {
+    "fresh": {
+      "status": "PASS",
+      "kind": "fresh",
+      "checks": [
+        "actual packaged MainApplication, no JUnit runner",
+        "register/login real HTTP and Redis session",
+        "non-destructive switch-off rollback preserves article count",
+        "Redis login session survives application restart",
+        "same JAR re-enabled; no table or volume dropped"
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-10T10:57:35.794Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T10:58:25.887Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T10:59:16.573Z",
+          "event": "application health HTTP 200"
+        }
+      ],
+      "jarSha256": "b7ae1922d1439a4dcb22e29234d92dff0f9fe7e95c8ae0a07bd9a3fd388f37c1"
+    },
+    "upgrade": {
+      "status": "PASS",
+      "kind": "upgrade",
+      "checks": [
+        "actual packaged MainApplication, no JUnit runner",
+        "register/login real HTTP and Redis session",
+        "synthetic legacy content retained",
+        "non-destructive switch-off rollback preserves article count",
+        "Redis login session survives application restart",
+        "same JAR re-enabled; no table or volume dropped"
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-10T11:04:22.727Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T11:05:16.161Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T11:06:10.899Z",
+          "event": "application health HTTP 200"
+        }
+      ],
+      "jarSha256": "b7ae1922d1439a4dcb22e29234d92dff0f9fe7e95c8ae0a07bd9a3fd388f37c1"
+    },
+    "migration": {
+      "kind": "upgrade",
+      "appliedTwice": [
+        "add_article_review.sql",
+        "add_article_intervention.sql",
+        "add_article_runtime.sql",
+        "add_local_image_storage.sql"
+      ],
+      "oldDataPreserved": true,
+      "reviewVersion": 2,
+      "operationStatus": "COMPLETED",
+      "interventionRevision": 3,
+      "scope": "Own Compose named volumes; original volumes untouched"
+    }
+  },
+  "failures": {
+    "existing": [
+      "contextLoads: missing DashScope key, 1 error",
+      "lint: 16 errors / 1 warning"
+    ],
+    "intermediate": "demo-intermediate-runs.json",
+    "newUnresolved": []
+  },
+  "notImplemented": [
+    "B Research/RAG/preferences/product MCP",
+    "H1 autonomous developer scheduling",
+    "D1 CI/GHCR/automatic deployment"
+  ],
+  "noCommit": true,
+  "noPush": true,
+  "noRelease": true,
+  "noDeployment": true
+}

@@ -1,0 +1,7 @@
+{
+  "exitCode": null,
+  "durationMs": null,
+  "collection": "docker wait on the already-running build; CLI wait timeout was not a compiler exit",
+  "evidence": "frontend-linux-final.log",
+  "waitExit": 1
+}

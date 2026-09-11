@@ -23,21 +23,28 @@ public class ArticleReviewLoop {
     /** Called only for a durably claimed user edit; never resets the persisted budget. */
     public void runRound(ArticleState state, Consumer<ArticleState> checkpoint) {
         var initial = Objects.requireNonNull(state.getReviewTrace());
-        if (!"REVIEWING".equals(initial.status()) || initial.currentVersion() != initial.versions().size()-1
+        if (!("REVIEWING".equals(initial.status()) || (com.yupi.template.runtime.RuntimeScope.active() && "REVISING".equals(initial.status()))) || initial.currentVersion() != initial.versions().size()-1
                 || initial.roundStartVersion() < 0 || initial.currentVersion()-initial.roundStartVersion() > MAX_REVISIONS)
             throw new IllegalStateException("Invalid review round");
         List<ReviewTrace.DraftVersion> versions = new ArrayList<>(initial.versions());
         publish(state, versions, "REVIEWING", null, null, checkpoint);
-        Set<String> previousIssues = Set.of();
+        Set<String> previousIssues = new HashSet<>();
+        if (com.yupi.template.runtime.RuntimeScope.active() && initial.currentVersion() > initial.roundStartVersion()) {
+            var previous = versions.get(initial.currentVersion()-1).review();
+            if (previous != null) for (var i: previous.issues()) previousIssues.add(i.type()+":"+i.severity()+":"+i.sectionId());
+        }
         for (int version = initial.currentVersion(); version <= initial.roundStartVersion() + MAX_REVISIONS; version++) {
             ParagraphDraft draft = new ParagraphDraft(state.getContent());
             ReviewResult review;
             try {
+                if (com.yupi.template.runtime.RuntimeScope.active() && versions.get(version).review() != null) {
+                    review = versions.get(version).review(); // Already committed review: do not call the provider again.
+                } else {
                 List<Issue> deterministic = ReviewRules.check(state, draft);
                 if (deterministic.stream().anyMatch(i -> i.sectionId().equals("article"))) {
                     review = new ReviewResult(1, Decision.NEEDS_REVIEW, deterministic);
                 } else {
-                    review = ReviewJson.review(model.complete(reviewPrompt(state, draft)), draft.ids());
+                    review = ReviewJson.review(call("REVIEW", reviewPrompt(state, draft)), draft.ids());
                     LinkedHashMap<String, Issue> merged = new LinkedHashMap<>();
                     review.issues().forEach(i -> merged.put(i.type() + ":" + i.sectionId(), i));
                     deterministic.forEach(i -> merged.put(i.type() + ":" + i.sectionId(), i));
@@ -46,7 +53,9 @@ public class ArticleReviewLoop {
                     if (merged.values().stream().anyMatch(i -> i.type() == Type.EVIDENCE_REQUIRED)) decision = Decision.NEEDS_REVIEW;
                     review = new ReviewResult(1, decision, new ArrayList<>(merged.values()));
                 }
+                }
             } catch (RuntimeException e) {
+                if (e instanceof com.yupi.template.runtime.RuntimeStop stop) throw stop;
                 stop(state, versions, failure(e), "REVIEW_FAILURE", checkpoint);
                 return;
             }
@@ -75,8 +84,9 @@ public class ArticleReviewLoop {
             try {
                 Set<String> allowed = new LinkedHashSet<>();
                 review.issues().forEach(i -> allowed.add(i.sectionId()));
-                revised = draft.apply(model.complete(revisionPrompt(state, draft, review)), allowed);
+                revised = draft.apply(call("REVISION", revisionPrompt(state, draft, review)), allowed);
             } catch (RuntimeException e) {
+                if (e instanceof com.yupi.template.runtime.RuntimeStop stop) throw stop;
                 stop(state, versions, failure(e), "REVISION_FAILURE", checkpoint);
                 return;
             }
@@ -92,6 +102,7 @@ public class ArticleReviewLoop {
         }
         throw new IllegalStateException("Unreachable review loop boundary");
     }
+    private String call(String step, String prompt) { return com.yupi.template.runtime.RuntimeScope.call(step,"dashscope",prompt,()->model.complete(prompt)); }
     private void stop(ArticleState state, List<ReviewTrace.DraftVersion> versions, ReviewResult review,
                       String reason, Consumer<ArticleState> checkpoint) {
         publish(state, versions, "NEEDS_REVIEW", reason, review.needsReview(), checkpoint);

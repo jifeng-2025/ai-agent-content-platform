@@ -1,0 +1,73 @@
+{
+  "sourceId": "f2134aa4417fc62294609738c377a08e107a2bf1e9dae90f0177f4de2076c7f8",
+  "status": "IN_PROGRESS",
+  "sets": [
+    {
+      "name": "runtimeBrowser",
+      "dir": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z",
+      "actuallyViewed": true,
+      "files": [
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/01-desktop-cancelled.png",
+          "sha256": "9f5c73067afe45ea94c6978a46cf9f228cf2bbb80215246548be38ac8226fd71"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/02-desktop-budget.png",
+          "sha256": "dfb5ebddab40085418f5298f277640851a52a9cd8a9086e94eabe9cdba4bed51"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/03-desktop-recovering.png",
+          "sha256": "53c724365454bdceeb466465ce71bd764b31c22dd1efa573032e32e971120cd9"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/04-desktop-uncertain.png",
+          "sha256": "64e8296ae75137b846fed5d1804b12b8039268fed31762a05138a62d3bcca43c"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/05-mobile-uncertain.png",
+          "sha256": "1aa95d83bc3b20c3534739b2d13a451ae8eb7360e3753dc752275cca7adf7f79"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/06-mobile-retry-confirmation.png",
+          "sha256": "1b65067e6c8ee70e48c4b03f4993cc640a184d85f2eefaf10ed7e470d3d9685e"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/07-mobile-cancelled.png",
+          "sha256": "b5afba168744c9bfc5138baf46e73cbbfdc4e3d05b23900c72314da1534f3e13"
+        },
+        {
+          "path": "artifacts/a3/runs/2026-09-11T03-45-39-074Z-live/browser-2026-09-11T03-53-24-035Z/08-mobile-old-article.png",
+          "sha256": "bfa03351f57cdeef1a9abf6cb68d4927dcd419b2612981593c40b3dc670f0a5b"
+        }
+      ],
+      "findings": "逐张实看8张：取消/预算/恢复/外部不确定状态明确，390px手机无横向溢出，风险确认默认未勾选，旧文章无评审提示及ZIP/Markdown入口正常。既有预算错误正文仍显示英文枚举，状态标签中文；非新增问题。",
+      "console": [
+        {
+          "type": "error",
+          "args": [
+            "SSE 连接错误:",
+            "Event"
+          ]
+        }
+      ],
+      "networkProblems": [
+        {
+          "requestId": "42288.561",
+          "error": "net::ERR_CONNECTION_CLOSED",
+          "canceled": false
+        },
+        {
+          "requestId": "42288.764",
+          "error": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "requestId": "42288.768",
+          "error": "net::ERR_ABORTED",
+          "canceled": true
+        }
+      ],
+      "networkClassification": "One deliberately injected SSE ConnectionClosed plus page-navigation aborted requests; reconnection/terminal cleanup assertions passed; no unexpected HTTP >=400."
+    }
+  ]
+}

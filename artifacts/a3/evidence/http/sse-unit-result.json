@@ -1,0 +1,13 @@
+{
+  "scope": "Transpiled production utility; simulated EventSource, separate from browser HTTP evidence",
+  "results": [
+    {
+      "file": "a1-sse-test.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "a3-sse-test.cjs",
+      "exitCode": 0
+    }
+  ]
+}

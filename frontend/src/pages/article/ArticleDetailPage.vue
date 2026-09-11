@@ -22,11 +22,13 @@
               </template>
               重新创建
             </a-button>
-            <a-button type="primary" @click="exportMarkdown" class="export-btn">
+            <a-button @click="exportZip" class="export-btn" title="推荐：包含article.md和图片文件夹，完整解压后可离线查看">下载图文 ZIP（含图片）</a-button>
+            <a-button @click="downloadExport('html')" class="export-btn">下载网页 HTML</a-button>
+            <a-button type="primary" @click="exportMarkdown" title="内嵌图片数据；编辑器不支持时请选择图文ZIP" class="export-btn">
               <template #icon>
                 <DownloadOutlined />
               </template>
-              导出 Markdown
+              下载单文件 MD
             </a-button>
           </div>
         </div>
@@ -50,7 +52,7 @@
 
           <a-divider />
 
-          <ArticleReviewPanel :task-id="String(route.params.taskId)" @updated="refreshFromReview" />
+          <a-button @click="router.push({path: '/create', query: {topic: article.topic || article.mainTitle}})">按此主题一键重新创作</a-button>
 
           <!-- 执行日志面板 -->
           <div v-if="executionStats && executionStats.logs && executionStats.logs.length > 0" class="execution-logs-section">
@@ -153,6 +155,9 @@
             <div v-html="markdownToHtml(article.content)" class="markdown-content"></div>
           </div>
 
+          <QuickMedia :task-id="String(route.params.taskId)" @updated="article = $event" />
+          <QuickAdvice :task-id="String(route.params.taskId)" @mode="quickMode = $event" />
+          <details v-if="!quickMode" class="legacy-controls"><summary>旧任务处理与运行详情（按需展开）</summary><ArticleReviewPanel :task-id="String(route.params.taskId)" @updated="refreshFromReview" /></details>
           <!-- 配图（仅在没有 fullContent 时单独展示） -->
           <div v-if="!article.fullContent && article.images && article.images.length > 0" class="images-section">
             <h2 class="section-title">
@@ -176,6 +181,8 @@
 </template>
 
 <script setup lang="ts">
+import { downloadArticle } from '@/utils/article'
+import QuickMedia from '@/components/QuickMedia.vue'
 import { ref, watch, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { message, Modal } from 'ant-design-vue'
@@ -194,7 +201,10 @@ import {
 } from '@ant-design/icons-vue'
 import { getArticle, getExecutionLogs } from '@/api/articleController'
 import { safeMarkdown } from '@/utils/safeMarkdown'
+import { runtimeLabel } from '@/api/runtime'
 import ArticleReviewPanel from '@/components/ArticleReviewPanel.vue'
+import QuickAdvice from '@/components/QuickAdvice.vue'
+const quickMode = ref(false)
 import type { InterventionView } from '@/api/interventions'
 import dayjs from 'dayjs'
 
@@ -267,44 +277,15 @@ const goBack = () => {
 }
 
 // 导出 Markdown
-const exportMarkdown = () => {
-  if (!article.value) return
-
-  let markdown = `# ${article.value.mainTitle}\n\n`
-  markdown += `> ${article.value.subTitle}\n\n`
-
-  // 优先使用完整图文
-  if (article.value.fullContent) {
-    markdown += article.value.fullContent
-  } else {
-    if (article.value.outline && article.value.outline.length > 0) {
-      markdown += `## 目录\n\n`
-      article.value.outline.forEach(item => {
-        markdown += `${item.section}. ${item.title}\n`
-      })
-      markdown += `\n---\n\n`
-    }
-
-    markdown += article.value.content || ''
-
-    if (article.value.images && article.value.images.length > 0) {
-      markdown += `\n\n## 配图\n\n`
-      article.value.images.forEach(image => {
-        markdown += `![${image.description}](${image.url})\n\n`
-      })
-    }
-  }
-
-  const blob = new Blob([markdown], { type: 'text/markdown' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `${article.value.mainTitle}.md`
-  a.click()
-  URL.revokeObjectURL(url)
-
-  message.success('导出成功')
+const downloadExport = async (kind: 'md' | 'zip' | 'html') => {
+ if (!article.value?.taskId) return
+ try {
+  await downloadArticle(article.value.taskId, article.value.mainTitle || '文章', kind)
+  message.success(kind === 'html' ? '已导出离线网页，双击文件即可查看图文' : kind === 'zip' ? '请完整解压，打开 index.html 或预览 article.md，保留图片文件夹' : '已导出含图片数据的MD，请用预览模式查看；不兼容时请选择图文ZIP')
+ } catch { message.error('导出失败，请检查登录状态和图片是否存在') }
 }
+const exportZip = () => downloadExport('zip')
+const exportMarkdown = () => downloadExport('md')
 
 // 格式化日期
 const formatDate = (date: string) => {
@@ -334,7 +315,7 @@ const getStatusText = (status: string) => {
     NEEDS_REVIEW: '待人工评审',
     FAILED: '失败',
   }
-  return textMap[status] || status
+  return textMap[status] || runtimeLabel(status)
 }
 
 // 获取智能体显示名称

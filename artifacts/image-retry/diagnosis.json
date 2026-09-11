@@ -1,0 +1,16 @@
+{
+  "taskId": "f65085c88f73446bb388f45a77ce08c6",
+  "provider": "doubao",
+  "model": "doubao-seedream-5-0-260128",
+  "ledgerStatus": "STORAGE_FAILED",
+  "cachedMime": "image/jpeg",
+  "cachedBytes": 600777,
+  "width": 2048,
+  "height": 2048,
+  "normalizedPngBytes": 6520847,
+  "storageLimitBytes": 5242880,
+  "imageRootWritable": true,
+  "source": "read-only user task ledger and cached raster; isolated Java ImageIO reproduction",
+  "paidRequestsByAgent": 0,
+  "privateDiagnosticCopy": "deleted"
+}

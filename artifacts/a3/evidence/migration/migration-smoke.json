@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "scope": "isolated schema smoke; not Spring transaction integration",
+  "logs": [
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "mysql:8.0",
+        "--format",
+        "{{.Id}}"
+      ],
+      "exitCode": 0,
+      "stdout": "sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "a3-migration-2026-09-10t02-29-11-059z",
+        "--network=none",
+        "--memory=1g",
+        "--cpus=2",
+        "--tmpfs",
+        "/var/lib/mysql",
+        "-e",
+        "MYSQL_ROOT_PASSWORD=a1-test-only",
+        "sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b"
+      ],
+      "exitCode": 0,
+      "stdout": "6751897d05ce59943f271f7aa148e663a3abc28b6e89b45886bf635e68b0d265\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "-i",
+        "a3-migration-2026-09-10t02-29-11-059z",
+        "mysql",
+        "-uroot",
+        "-pa1-test-only",
+        "--batch",
+        "--skip-column-names"
+      ],
+      "exitCode": 0,
+      "stdout": "original synthetic row\nCOMPLETED\n{\"currentVersion\":2}\n3\n",
+      "stderr": "mysql: [Warning] Using a password on the command line interface can be insecure.\n"
+    },
+    {
+      "cleanupExitCode": 0
+    }
+  ]
+}

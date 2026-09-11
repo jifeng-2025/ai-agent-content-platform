@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-10T05:26:48.179Z",
+  "scope": "All proposed file bytes checked for exact current DashScope secret; all unstaged diff read by inspection script, source identity separately verified",
+  "realSecretMatches": [],
+  "removedAttributionLines": [
+    {
+      "requiresReview": true
+    }
+  ],
+  "sourceFiles": 236,
+  "diffSha256": "d8cd05e3bd72e4093c31a2ecfb166a7e32940ce5ef898f3027182a9d3097dda8",
+  "diffBytes": 86959,
+  "stagedPaths": [],
+  "head": "09b539f9ace45e40d2c5f57ad1f6cea49c19a603",
+  "status": "PASS",
+  "limits": "Pattern and exact known-secret scans are not proof of all possible secrets. Logs/snapshots are dedicated synthetic test data. Existing README rewrite retains upstream author link; removed old README attribution reviewed via current README and source identity."
+}

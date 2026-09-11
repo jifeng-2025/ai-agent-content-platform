@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "scope": "fresh isolated MySQL; A1 and A2 migrations applied twice; synthetic preservation asserted in HTTP test",
+  "mysqlImage": "sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b"
+}

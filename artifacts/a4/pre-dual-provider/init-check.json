@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-10T09:24:02.384Z",
+  "status": "PASS",
+  "checks": [
+    "random database credential generated",
+    "Gemini optional and empty",
+    "same-origin frontend config created",
+    "existing env unchanged",
+    "existing frontend unchanged"
+  ],
+  "scriptSha256": "69a5eb46532b6adf8104db18fd5ee2770cf223c3797552300e257ef58ff6c369",
+  "scope": "Dedicated workspace only; user env not read or modified"
+}

@@ -32,7 +32,10 @@ public class ImageServiceStrategy {
     private List<ImageSearchService> imageSearchServices;
 
     @Resource
-    private CosService cosService;
+    private com.yupi.template.storage.ImageStorage imageStorage;
+
+    @Resource private com.yupi.template.storage.GeneratedImageStore generated;
+    @Resource private DemoImageService demo;
 
     /**
      * 图片服务映射：ImageMethodEnum -> ImageSearchService
@@ -63,34 +66,51 @@ public class ImageServiceStrategy {
      */
     public ImageResult getImageAndUpload(String imageSource, ImageRequest request) {
         ImageMethodEnum method = resolveMethod(imageSource);
+        if (method == ImageMethodEnum.DEMO) return demo.create(request);
         ImageSearchService service = serviceMap.get(method);
+
         
-        if (service == null || !service.isAvailable()) {
+        if (!com.yupi.template.service.image.ImageProfile.paid(method.name()) && (service == null || !service.isAvailable())) {
             log.warn("图片服务不可用: {}, 尝试降级", method);
             return handleFallbackWithUpload(request.getPosition());
         }
 
         try {
             // 1. 获取图片数据
-            ImageData imageData = service.getImageData(request);
+            String payload=method.name()+":"+com.yupi.template.utils.GsonUtils.toJson(request);
+            String cacheKey = request.getProfile()!=null ? generated.key(request.getProfile().taskId(),payload) : generated.key(payload);
+            ImageData imageData = generated.find(cacheKey);
+            if (imageData == null) {
+                if (com.yupi.template.service.image.ImageProfile.paid(method.name()) && (service == null || ((request.getProfile()==null || request.getProfile().configId()==null) && !service.isAvailable()))) throw new com.yupi.template.service.image.ImageProviderException(com.yupi.template.service.image.ImageProviderException.Category.NOT_CONFIGURED,false);
+                imageData = service.getImageData(request);
+                if (imageData != null && imageData.isValid() && imageData.getDataType()!=ImageData.DataType.URL) {if(request.getProfile()!=null)generated.save(cacheKey,imageData,request.getProfile().taskId());else generated.save(cacheKey,imageData);}
+            }
             
             if (imageData == null || !imageData.isValid()) {
+                if (method.isAiGenerated()) throw new com.yupi.template.runtime.RuntimeStop("EXTERNAL_UNCERTAIN");
                 log.warn("图片数据获取失败, 使用降级方案, method={}", method);
                 return handleFallbackWithUpload(request.getPosition());
             }
             
             // 2. 上传到 COS
             String folder = getFolderForMethod(method);
-            String cosUrl = cosService.uploadImageData(imageData, folder);
+            com.yupi.template.runtime.RuntimeScope.guard();
+            String cosUrl = imageStorage.save(imageData, folder);
             
             if (cosUrl != null && !cosUrl.isEmpty()) {
                 log.info("图片获取并上传成功, method={}, cosUrl={}", method, cosUrl);
-                return new ImageResult(cosUrl, method);
+                return new ImageResult(cosUrl, method, imageData.getMetadata());
             } else {
+                if(com.yupi.template.service.image.ImageProfile.paid(method.name()))throw new com.yupi.template.storage.ImageStorageException();
                 log.warn("图片上传 COS 失败, 使用降级方案, method={}", method);
                 return handleFallbackWithUpload(request.getPosition());
             }
         } catch (Exception e) {
+            if (e instanceof com.yupi.template.service.image.ImageProviderException failure) throw failure;
+            if (com.yupi.template.service.image.ImageProfile.paid(method.name()) && e instanceof IllegalArgumentException failure) throw failure;
+            if (e instanceof com.yupi.template.runtime.RuntimeStop stop) throw stop;
+            if (e instanceof com.yupi.template.storage.ImageStorageException failure) throw failure;
+            if (com.yupi.template.service.image.ImageProfile.paid(method.name()) || com.yupi.template.runtime.RuntimeScope.active()) throw new com.yupi.template.runtime.RuntimeStop("EXTERNAL_UNCERTAIN");
             log.error("获取图片并上传异常, method={}", method, e);
             return handleFallbackWithUpload(request.getPosition());
         }
@@ -148,12 +168,14 @@ public class ImageServiceStrategy {
     private String getFolderForMethod(ImageMethodEnum method) {
         return switch (method) {
             case PEXELS -> "pexels";
+            case DOUBAO -> "doubao";
             case NANO_BANANA -> "nano-banana";
             case MERMAID -> "mermaid";
             case ICONIFY -> "iconify";
             case EMOJI_PACK -> "emoji-pack";
             case SVG_DIAGRAM -> "svg-diagram";
             case PICSUM -> "picsum";
+            case DEMO, DEMO_PNG -> "demo";
         };
     }
 
@@ -187,7 +209,7 @@ public class ImageServiceStrategy {
         
         // 将降级图片也上传到 COS
         ImageData fallbackData = ImageData.fromUrl(fallbackUrl);
-        String cosUrl = cosService.uploadImageData(fallbackData, "fallback");
+        String cosUrl = imageStorage.save(fallbackData, "fallback");
         
         // 如果上传失败，直接使用原始 URL
         String finalUrl = (cosUrl != null && !cosUrl.isEmpty()) ? cosUrl : fallbackUrl;
@@ -230,6 +252,9 @@ public class ImageServiceStrategy {
      * 图片获取结果
      */
     public static class ImageResult {
+        private com.yupi.template.service.image.ImageMetadata metadata;
+        public com.yupi.template.service.image.ImageMetadata getMetadata(){return metadata;}
+        public ImageResult(String url,ImageMethodEnum method,com.yupi.template.service.image.ImageMetadata metadata){this(url,method);this.metadata=metadata;}
         private final String url;
         private final ImageMethodEnum method;
 

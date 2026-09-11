@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": [
+    "offline HTML loaded",
+    "extracted local images render without network"
+  ],
+  "errors": [],
+  "offline": true,
+  "scope": "Actual extracted ZIP opened as file URL with HTTP(S) blocked"
+}

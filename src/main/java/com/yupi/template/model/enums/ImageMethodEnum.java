@@ -17,11 +17,15 @@ public enum ImageMethodEnum {
     /**
      * Pexels 图库检索
      */
+    DEMO("DEMO", "演示/占位（非AI生图）", false, true),
+    DEMO_PNG("DEMO_PNG", "程序绘制PNG占位", false, true),
+
     PEXELS("PEXELS", "Pexels 图库", false, false),
 
     /**
      * Nano Banana AI 生图（Gemini 原生图片生成）
      */
+    DOUBAO("DOUBAO", "豆包 Seedream 生图", true, false),
     NANO_BANANA("NANO_BANANA", "Nano Banana AI 生图", true, false),
 
     /**

@@ -78,14 +78,19 @@
               <div class="image-methods-section">
                 <div class="section-header">
                   <span class="section-title">配图方式</span>
-                  <span class="section-tip">（不选择表示支持所有方式）</span>
+                  <span class="section-tip">（默认演示/占位，非AI生图，不保证语义匹配）</span>
                 </div>
                 <a-checkbox-group v-model:value="selectedImageMethods" class="methods-group">
+                  <a-checkbox value="DEMO">演示/占位（无需图片Key）</a-checkbox>
                   <a-checkbox value="PEXELS">Pexels</a-checkbox>
-                  <a-tooltip :title="isVip ? '' : '仅限 VIP 会员'">
-                    <a-checkbox value="NANO_BANANA" :disabled="!isVip">
-                      Nano Banana
-                      <CrownOutlined v-if="!isVip" class="vip-icon" />
+                  <a-tooltip title="使用后端配置的火山方舟 Seedream 图片模型">
+                    <a-checkbox value="DOUBAO" :disabled="!doubaoConfigured">
+                      豆包 Seedream {{ doubaoConfigured ? doubaoModel : '（未配置Key/模型ID）' }}
+                    </a-checkbox>
+                  </a-tooltip>
+                  <a-tooltip title="使用后端配置的 Google Gemini 图片模型">
+                    <a-checkbox value="NANO_BANANA" :disabled="!geminiConfigured">
+                      Gemini {{ geminiConfigured ? geminiModel : '（未配置图片Key）' }}
                     </a-checkbox>
                   </a-tooltip>
                   <a-checkbox value="MERMAID">Mermaid</a-checkbox>
@@ -98,9 +103,10 @@
                     </a-checkbox>
                   </a-tooltip>
                 </a-checkbox-group>
+                <p class="section-tip">配置齐全不代表账户调用已验证；选择真实生图可能收费。</p>
                 <div v-if="!isVip" class="vip-notice">
                   <CrownOutlined />
-                  <span>AI 生图和 SVG 图表为 VIP 专属功能，</span>
+                  <span>SVG 图表为 VIP 专属功能，本地存储不提供主动 SVG，</span>
                   <RouterLink to="/vip" class="upgrade-link">立即升级</RouterLink>
                 </div>
               </div>
@@ -534,7 +540,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount, onMounted, nextTick, computed } from 'vue'
+import { ref, onBeforeUnmount, onMounted, nextTick, computed, watch } from 'vue'
+import imageApi from '@/request'
 import { fetchIntervention } from '@/api/interventions'
 import { useRouter, useRoute } from 'vue-router'
 import { message } from 'ant-design-vue'
@@ -560,7 +567,8 @@ import {
   CrownOutlined,
   FileTextOutlined
 } from '@ant-design/icons-vue'
-import { createArticle, confirmTitle, confirmOutline } from '@/api/articleController'
+import { getArticle, createArticle, confirmTitle, confirmOutline } from '@/api/articleController'
+import { fetchRuntime } from '@/api/runtime'
 import { connectSSE, closeSSE, type SSEMessage } from '@/utils/sse'
 import { isAdmin as checkIsAdmin, isVip as checkIsVip, hasQuota as checkHasQuota } from '@/utils/permission'
 import { marked } from 'marked'
@@ -603,7 +611,11 @@ const currentPhase = ref<string>('INPUT')  // INPUT, TITLE_SELECTING, OUTLINE_ED
 // 状态
 const topic = ref('')
 const selectedStyle = ref('')  // 选中的文章风格（空字符串表示默认）
-const selectedImageMethods = ref<string[]>([])  // 选中的配图方式（空数组表示全部）
+const geminiConfigured = ref(false)
+const doubaoConfigured = ref(false)
+const geminiModel = ref('')
+const doubaoModel = ref('')
+const selectedImageMethods = ref<string[]>(['DEMO'])  // 默认演示；空选择由后端回退到演示
 const isCreating = ref(false)
 const isCompleted = ref(false)
 const isStreaming = ref(false)
@@ -713,8 +725,10 @@ const scrollToBottom = () => {
   })
 }
 
+let createAttempt: { payload: string; requestId: string } | undefined
 // 开始创作
 const startCreate = async () => {
+  if (isCreating.value) return
   if (!topic.value.trim()) {
     message.warning('请输入选题')
     return
@@ -731,8 +745,11 @@ const startCreate = async () => {
   addLog('开始创建文章任务...', 'info')
 
   try {
+    const payload = JSON.stringify([topic.value, selectedStyle.value, selectedImageMethods.value])
+    if (!createAttempt || createAttempt.payload !== payload) createAttempt = { payload, requestId: crypto.randomUUID() }
     // 创建任务
     const res = await createArticle({
+      requestId: createAttempt.requestId,
       topic: topic.value,
       style: selectedStyle.value || undefined,
       enabledImageMethods: selectedImageMethods.value.length > 0 ? selectedImageMethods.value : undefined
@@ -743,6 +760,9 @@ const startCreate = async () => {
     }
     taskId.value = newTaskId
     addLog(`任务创建成功，ID: ${newTaskId}`, 'success')
+
+    const execution = await fetchRuntime(taskId.value).catch(() => null)
+    if (execution?.enabled) { await router.replace({ query: { ...route.query, taskId: taskId.value } }); scheduleRuntimeRestore() }
 
     // 刷新用户信息（更新配额）
     await loginUserStore.fetchLoginUser()
@@ -903,6 +923,7 @@ const handleConfirmTitle = async (data: {mainTitle: string, subTitle: string, us
       selectedSubTitle: data.subTitle,
       userDescription: data.userDescription
     })
+    scheduleRuntimeRestore()
     // 保存标题信息，用于大纲生成阶段展示
     article.value.mainTitle = data.mainTitle
     article.value.subTitle = data.subTitle
@@ -942,8 +963,28 @@ const handleConfirmOutline = async (outlineData: Array<{section: number, title: 
   }
 }
 
+let restoreTimer: ReturnType<typeof setTimeout> | undefined
+let restoreController: AbortController | undefined
+let createDisposed = false
+function scheduleRuntimeRestore() { clearTimeout(restoreTimer); if (!createDisposed) restoreTimer = setTimeout(restoreRuntime, 1500) }
+async function restoreRuntime() {
+ if (createDisposed || !taskId.value) return
+ restoreController?.abort(); restoreController = new AbortController()
+ try {
+  const execution = await fetchRuntime(taskId.value, restoreController.signal)
+  if (createDisposed || !execution.enabled) return
+  const response = await getArticle({ taskId: taskId.value }, { signal: restoreController.signal })
+  const saved = response.data.data; if (!saved || createDisposed) return
+  if (['CANCELLED','TIMED_OUT','BUDGET_EXHAUSTED','EXTERNAL_UNCERTAIN','NEEDS_REVIEW','COMPLETED','IMAGES_FAILED'].includes(execution.status) || ['BODY','REVIEW','MEDIA','CONTENT_GENERATING','REVIEWING','REVISING','IMAGE_GENERATING'].includes(saved.phase || '')) { closeSSE(eventSource); await router.push('/article/' + taskId.value); return }
+  topic.value = saved.topic || ''; article.value.mainTitle = saved.mainTitle || ''; article.value.subTitle = saved.subTitle || ''
+  if (saved.phase === 'TITLE_SELECTING') { titleOptions.value = (saved.titleOptions || []).map(t => ({ mainTitle: t.mainTitle || '', subTitle: t.subTitle || '' })); currentPhase.value = saved.phase; isCreating.value = false }
+  else if (saved.phase === 'OUTLINE_EDITING') { outline.value = (saved.outline || []).map((o, i) => ({ section: o.section ?? i + 1, title: o.title || '', points: o.points || [] })); currentPhase.value = saved.phase; isCreating.value = false }
+  else { isCreating.value = true; currentPhase.value = saved.phase === 'OUTLINE' ? 'OUTLINE_GENERATING' : 'TITLE_GENERATING'; scheduleRuntimeRestore() }
+ } catch { if (!createDisposed && !restoreController.signal.aborted) scheduleRuntimeRestore() }
+}
 // 处理 SSE 错误
 const handleSSEError = (error: Event) => {
+  if (route.query.taskId) { scheduleRuntimeRestore(); return }
   console.error('SSE错误:', error)
   message.error('连接失败,请重试')
   isCreating.value = false
@@ -972,6 +1013,7 @@ const viewArticle = () => {
 
 // 重新创作
 const resetCreate = () => {
+  createAttempt = undefined; clearTimeout(restoreTimer); restoreController?.abort(); closeSSE(eventSource)
   currentPhase.value = 'INPUT'
   topic.value = ''
   selectedStyle.value = ''
@@ -997,7 +1039,15 @@ const resetCreate = () => {
 }
 
 // 组件挂载时检查路由参数
+watch(selectedImageMethods, (next, previous) => {
+  const added = next.find(x => !previous.includes(x))
+  if (added && ['DEMO','NANO_BANANA','DOUBAO'].includes(added) && next.length > 1) { selectedImageMethods.value = [added]; return }
+  if (next.some(x => ['NANO_BANANA','DOUBAO'].includes(x)) && next.length > 1) { selectedImageMethods.value = next.filter(x => !['NANO_BANANA','DOUBAO'].includes(x)); return }
+  if (next.includes('DEMO') && next.length > 1) selectedImageMethods.value = previous.includes('DEMO') ? next.filter(x => x !== 'DEMO') : ['DEMO']
+})
 onMounted(() => {
+  void imageApi.get('/article/image-capabilities').then(r => { if (!taskId.value && ['DEMO','NANO_BANANA','DOUBAO'].includes(r.data?.data?.defaultMethod)) selectedImageMethods.value = [r.data.data.defaultMethod]; geminiConfigured.value = r.data?.data?.geminiConfigured === true; doubaoConfigured.value = r.data?.data?.doubaoConfigured === true; geminiModel.value = r.data?.data?.geminiModel ?? ''; doubaoModel.value = r.data?.data?.doubaoModel ?? '' }).catch(() => { geminiConfigured.value = false })
+  if (typeof route.query.taskId === 'string') { taskId.value = route.query.taskId; void restoreRuntime() }
   if (route.query.topic) {
     topic.value = route.query.topic as string
   }
@@ -1005,6 +1055,7 @@ onMounted(() => {
 
 // 组件卸载前关闭 SSE
 onBeforeUnmount(() => {
+  createDisposed = true; clearTimeout(restoreTimer); restoreController?.abort()
   closeSSE(eventSource)
 })
 </script>
@@ -1327,6 +1378,9 @@ onBeforeUnmount(() => {
 }
 
 .methods-group :deep(.ant-checkbox-wrapper) {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
   margin: 0;
   padding: 6px 12px;
   background: white;

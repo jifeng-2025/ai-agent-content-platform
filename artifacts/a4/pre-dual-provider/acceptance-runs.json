@@ -1,0 +1,119 @@
+{
+  "runs": {
+    "mock": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T09-47-48-884Z",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-10T09-47-48-884Z",
+      "required": [
+        "summary.json"
+      ]
+    },
+    "runtimeImage": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\runtime-2026-09-10t09-59-16-883z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "sse": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\sse-2026-09-10T10-07-07-806Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "front": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T09-59-39-514Z-front",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T09-59-39-514Z",
+      "required": [
+        "summary.json"
+      ]
+    },
+    "context": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\context-2026-09-10T10-07-11-133Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "store": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T10-10-14-805Z-store",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-store-2026-09-10T10-10-14-805Z",
+      "required": [
+        "com.yupi.template.runtime.A3StoreIT.txt"
+      ]
+    },
+    "http": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T10-18-10-602Z-live",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-10T10-18-10-602Z",
+      "required": [
+        "com.yupi.template.intervention.A3HttpIT.txt"
+      ]
+    },
+    "runtimeBrowser": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T10-18-10-602Z-live\\browser-2026-09-10T10-25-17-926Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "fault": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T10-26-53-745Z-live",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-10T10-26-53-745Z",
+      "required": [
+        "fault-result.json"
+      ]
+    },
+    "fresh": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z",
+      "required": [
+        "install-check.json"
+      ]
+    },
+    "browser": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T10-59-16-920Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "localStorage": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\local-storage",
+      "required": [
+        "result.json"
+      ]
+    },
+    "offline": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-02-49-912Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "visual": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-01-17-150Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "defaultLocal": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-01-22-390Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "degraded": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t10-56-34-866z\\browser-2026-09-10T11-02-53-889Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "upgrade": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\a4-install-2026-09-10t11-03-13-116z",
+      "required": [
+        "install-check.json"
+      ]
+    }
+  },
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "jar": {
+    "path": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-install-2026-09-10t11-03-13-116z\\app.jar",
+    "sha256": "b7ae1922d1439a4dcb22e29234d92dff0f9fe7e95c8ae0a07bd9a3fd388f37c1"
+  },
+  "frontend": {
+    "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-front-2026-09-10T09-59-39-514Z"
+  }
+}

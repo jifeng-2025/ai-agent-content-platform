@@ -1,0 +1,28 @@
+{
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network=none",
+    "--memory=3g",
+    "--cpus=2",
+    "--mount",
+    "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-10T09-47-48-884Z,target=/work",
+    "--mount",
+    "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+    "-w",
+    "/work",
+    "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+    "mvn",
+    "-s",
+    "/work/a0-maven-settings.xml",
+    "-o",
+    "-B",
+    "-Dtest=MainApplicationTests",
+    "test"
+  ],
+  "exitCode": 1,
+  "durationMs": 183303,
+  "classification": "Expected existing missing DashScope configuration; verify actual log",
+  "network": "none"
+}

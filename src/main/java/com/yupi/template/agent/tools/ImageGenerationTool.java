@@ -27,8 +27,6 @@ public class ImageGenerationTool {
     @Resource
     private ImageServiceStrategy imageServiceStrategy;
 
-    @Resource
-    private CosService cosService;
 
     /**
      * 根据需求生成或搜索图片
@@ -72,6 +70,7 @@ public class ImageGenerationTool {
             generationResult.setPosition(position);
             generationResult.setUrl(cosUrl);
             generationResult.setMethod(method.getValue());
+            generationResult.setMetadata(result.getMetadata());
             generationResult.setKeywords(keywords);
             generationResult.setSectionTitle(sectionTitle);
             generationResult.setDescription(type);
@@ -83,6 +82,10 @@ public class ImageGenerationTool {
             return GsonUtils.toJson(generationResult);
             
         } catch (Exception e) {
+            if (e instanceof com.yupi.template.service.image.ImageProviderException failure) throw failure;
+            if (com.yupi.template.service.image.ImageProfile.paid(imageSource) && e instanceof IllegalArgumentException failure) throw failure;
+            if (e instanceof com.yupi.template.runtime.RuntimeStop stop) throw stop;
+            if (e instanceof com.yupi.template.storage.ImageStorageException failure) throw failure;
             log.error("ImageGenerationTool 执行失败: imageSource={}, position={}", imageSource, position, e);
             
             // 返回失败结果
@@ -111,12 +114,16 @@ public class ImageGenerationTool {
     public ImageGenerationResult generateImageDirect(String imageSource, String keywords, String prompt,
                                                       Integer position, String type, String sectionTitle,
                                                       String placeholderId) {
+        return generateImageDirect(imageSource,keywords,prompt,position,type,sectionTitle,placeholderId,null);
+    }
+    public ImageGenerationResult generateImageDirect(String imageSource,String keywords,String prompt,Integer position,String type,String sectionTitle,String placeholderId,com.yupi.template.service.image.ImageProfile profile) {
         try {
             ImageRequest imageRequest = ImageRequest.builder()
                     .keywords(keywords)
                     .prompt(prompt)
                     .position(position)
                     .type(type)
+                    .profile(profile)
                     .build();
             
             // 使用统一上传到 COS 的方法
@@ -128,6 +135,7 @@ public class ImageGenerationTool {
             generationResult.setPosition(position);
             generationResult.setUrl(cosUrl);
             generationResult.setMethod(method.getValue());
+            generationResult.setMetadata(result.getMetadata());
             generationResult.setKeywords(keywords);
             generationResult.setSectionTitle(sectionTitle);
             generationResult.setDescription(type);
@@ -137,6 +145,10 @@ public class ImageGenerationTool {
             return generationResult;
             
         } catch (Exception e) {
+            if (e instanceof com.yupi.template.service.image.ImageProviderException failure) throw failure;
+            if (com.yupi.template.service.image.ImageProfile.paid(imageSource) && e instanceof IllegalArgumentException failure) throw failure;
+            if (e instanceof com.yupi.template.runtime.RuntimeStop stop) throw stop;
+            if (e instanceof com.yupi.template.storage.ImageStorageException failure) throw failure;
             log.error("图片生成失败: imageSource={}, position={}", imageSource, position, e);
             
             ImageGenerationResult failResult = new ImageGenerationResult();
@@ -166,5 +178,6 @@ public class ImageGenerationTool {
         private String placeholderId;
         private boolean success;
         private String error;
+        private com.yupi.template.service.image.ImageMetadata metadata;
     }
 }

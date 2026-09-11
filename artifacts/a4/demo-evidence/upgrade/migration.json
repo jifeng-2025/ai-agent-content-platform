@@ -1,0 +1,14 @@
+{
+  "kind": "upgrade",
+  "appliedTwice": [
+    "add_article_review.sql",
+    "add_article_intervention.sql",
+    "add_article_runtime.sql",
+    "add_local_image_storage.sql"
+  ],
+  "oldDataPreserved": true,
+  "reviewVersion": 2,
+  "operationStatus": "COMPLETED",
+  "interventionRevision": 3,
+  "scope": "Own Compose named volumes; original volumes untouched"
+}

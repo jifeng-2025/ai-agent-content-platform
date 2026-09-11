@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": [
+    "loaded /user/login",
+    "login form",
+    "login",
+    "loaded /article/003a3a796b8a47f9a97eed412372554f",
+    "diff switch available",
+    "revised paragraph visible",
+    "loaded /article/d035cbe24ae64c639067e9a8b7cda007",
+    "saved image displayed",
+    "image bytes loaded"
+  ],
+  "errors": [],
+  "scope": "Real persisted final-version articles, diff rendering and explicitly labeled fixed mock image; no true generation-quality claim"
+}

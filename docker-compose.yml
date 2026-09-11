@@ -14,7 +14,7 @@ services:
     container_name: ai-passage-mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?请运行初始化配置脚本生成数据库密码}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-ai_passage_creator}
       TZ: ${TZ:-Asia/Shanghai}
     # 默认不暴露端口到宿主机（更安全），如需外部访问可取消注释
@@ -28,10 +28,16 @@ services:
       - ./sql/add_phase_fields.sql:/docker-entrypoint-initdb.d/03_add_phase_fields.sql:ro
       - ./sql/add_article_style.sql:/docker-entrypoint-initdb.d/04_add_article_style.sql:ro
       - ./sql/add_vip_payment.sql:/docker-entrypoint-initdb.d/05_add_vip_payment.sql:ro
+      - ./sql/add_article_review.sql:/docker-entrypoint-initdb.d/06_review.sql:ro
+      - ./sql/add_article_intervention.sql:/docker-entrypoint-initdb.d/07_intervention.sql:ro
+      - ./sql/add_article_runtime.sql:/docker-entrypoint-initdb.d/08_runtime.sql:ro
+      - ./sql/add_local_image_storage.sql:/docker-entrypoint-initdb.d/09_local_images.sql:ro
+      - ./sql/add_image_providers.sql:/docker-entrypoint-initdb.d/10_image_providers.sql:ro
+      - ./sql/add_model_settings.sql:/docker-entrypoint-initdb.d/11_model_settings.sql:ro
     networks:
       - app-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-123456}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:?请运行初始化配置脚本生成数据库密码}"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -85,21 +91,43 @@ services:
       # 数据库配置
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-ai_passage_creator}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-root}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD:?请运行初始化配置脚本生成数据库密码}
       
       # Redis 配置
       SPRING_DATA_REDIS_HOST: redis
       SPRING_DATA_REDIS_PORT: 6379
       SPRING_DATA_REDIS_PASSWORD: ${REDIS_PASSWORD:-}
       
-      # AI 配置（必需）
-      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:?请在 .env 中设置 DASHSCOPE_API_KEY}
+      # 模型环境变量仅作兼容后备；推荐登录管理员网页配置
+      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
       
-      # Pexels 配置（必需）
-      PEXELS_API_KEY: ${PEXELS_API_KEY:?请在 .env 中设置 PEXELS_API_KEY}
+      # Pexels 配置（可选）
+      PEXELS_API_KEY: ${PEXELS_API_KEY:-}
       
-      # Nano Banana 配置（可选）
-      NANO_BANANA_API_KEY: ${NANO_BANANA_API_KEY:-}
+      # 可选真实图片供应商；无需同时配置。DEMO 不使用图片 Key。
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-${IMAGE_MODEL_API_KEY:-}}
+      GEMINI_MODEL: ${GEMINI_MODEL:-${IMAGE_MODEL:-gemini-3.1-flash-image}}
+      GEMINI_BASE_URL: ${GEMINI_BASE_URL:-https://generativelanguage.googleapis.com}
+      DOUBAO_API_KEY: ${DOUBAO_API_KEY:-}
+      DOUBAO_MODEL: ${DOUBAO_MODEL:-}
+      DOUBAO_BASE_URL: ${DOUBAO_BASE_URL:-https://ark.cn-beijing.volces.com/api/v3}
+      DOUBAO_IMAGE_SIZE: ${DOUBAO_IMAGE_SIZE:-2K}
+      GEMINI_IMAGE_SIZE: ${GEMINI_IMAGE_SIZE:-1K}
+      IMAGE_TIMEOUT_SECONDS: ${IMAGE_TIMEOUT_SECONDS:-120}
+      # 兼容旧环境变量
+      IMAGE_MODEL_API_KEY: ${IMAGE_MODEL_API_KEY:-}
+      IMAGE_MODEL: ${IMAGE_MODEL:-gemini-3.1-flash-image}
+      IMAGE_MODEL_BASE_URL: ${IMAGE_MODEL_BASE_URL:-https://generativelanguage.googleapis.com}
+      TEXT_MODEL: ${TEXT_MODEL:-qwen-plus}
+      TEXT_MODEL_BASE_URL: ${TEXT_MODEL_BASE_URL:-https://dashscope.aliyuncs.com}
+      IMAGE_STORAGE: ${IMAGE_STORAGE:-local}
+      IMAGE_STORAGE_ROOT: /data/images
+      MODEL_MASTER_KEY_DIR: /data/model-secrets
+      MODEL_ADMIN_ORIGIN: ${MODEL_ADMIN_ORIGIN:-http://localhost}
+      MODEL_ADMIN_TRUST_PRIVATE_PROXY: "true"
+      ARTICLE_AGENT_REVIEWLOOP_ENABLED: ${REVIEW_LOOP_ENABLED:-false}
+      ARTICLE_AGENT_INTERVENTION_ENABLED: ${INTERVENTION_ENABLED:-false}
+      ARTICLE_RUNTIME_ENABLED: ${RUNTIME_ENABLED:-false}
       
       # Stripe 配置（可选）
       STRIPE_API_KEY: ${STRIPE_API_KEY:-}
@@ -115,8 +143,11 @@ services:
       
       # JVM 配置
       JAVA_OPTS: ${JAVA_OPTS:--Xms512m -Xmx1024m -XX:+UseG1GC}
+    volumes:
+      - image-data:/data/images
+      - model-secrets:/data/model-secrets
     ports:
-      - "${BACKEND_PORT:-8123}:8123"
+      - "127.0.0.1:${BACKEND_PORT:-8123}:8123"
     depends_on:
       mysql:
         condition: service_healthy
@@ -149,7 +180,7 @@ services:
     environment:
       TZ: ${TZ:-Asia/Shanghai}
     ports:
-      - "${FRONTEND_PORT:-80}:80"
+      - "127.0.0.1:${FRONTEND_PORT:-80}:80"
     depends_on:
       - backend
     networks:
@@ -178,3 +209,9 @@ volumes:
     name: ai-passage-mysql-data
   redis-data:
     name: ai-passage-redis-data
+
+  image-data:
+    name: ai-passage-image-data
+
+  model-secrets:
+    name: ai-passage-model-secrets

@@ -42,6 +42,7 @@ public class ImageRequest {
      * 图片风格描述
      */
     private String style;
+    private com.yupi.template.service.image.ImageProfile profile;
 
     /**
      * 获取有效的搜索/生成参数

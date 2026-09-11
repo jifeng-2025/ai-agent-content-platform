@@ -1,0 +1,12 @@
+[
+  {
+    "id": "typecheck",
+    "exitCode": 0,
+    "durationMs": 3502
+  },
+  {
+    "id": "frontend-build",
+    "exitCode": 1,
+    "durationMs": 479
+  }
+]

@@ -1,0 +1,225 @@
+{
+  "at": "2026-09-11T04:25:25.872Z",
+  "sourceId": "f2134aa4417fc62294609738c377a08e107a2bf1e9dae90f0177f4de2076c7f8",
+  "sourceFiles": 261,
+  "status": "SCOPED_ENGINEERING_PASS",
+  "fullA4Pass": false,
+  "junit": {
+    "uniquePassed": 139,
+    "pure": 124,
+    "pureRuns": 2,
+    "supplierTests": 25,
+    "http": 14,
+    "storeProcess": 1,
+    "suites": [
+      {
+        "file": "mock-TEST-com.yupi.template.baseline.A0BaselineTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1IntegrationTest.xml",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1PersistenceTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1ReviewLoopTest.xml",
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2MediaTest.xml",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2RoundTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A3ReviewResumeTest.xml",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A4DemoMediaTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3BudgetTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3ExternalTest.xml",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.service.A4DemoTest.xml",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.service.A4ImageProviderTest.xml",
+        "tests": 25,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4ImageAccessTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4StorageBindingTest.xml",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4StorageTest.xml",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "frontend": {
+    "typeCheck": "PASS",
+    "build": "PASS",
+    "sse": "PASS",
+    "lint": "EXISTING_FAILURE 16 errors / 1 warning"
+  },
+  "fault": {
+    "status": "PASS",
+    "checks": 12,
+    "durationMs": 1049315.46875,
+    "providerJobs": [
+      {
+        "jobId": "mock-9c0a32990b0d857bcdeb1e4953e18b00d14c2a286ef64e9f5459bb615c80d89d",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-85d66790f3c5d4c54c1d2a6b7d82ba59a5a21a29912b271523cdc7293c82eeba",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-41c0244ccd1aa362fb69950281c627486736d9b3945d527a6aa2c287a5be9893",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 1
+      },
+      {
+        "jobId": "mock-328bfefe95b8aca7fb48ef5dc1c4d727b0daab41b82c75cc31d64cad9317821a",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-7872e1b185f7fdc2081e4857b10a22a2b3e84ba056fb4b56548bec6883352d9c",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-44a8477ac736675b61eaa15391c40c5814b54337e81d66a4baa3436415ec98dd",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-1830c9a61f37c8738747637d92f6355d840bed0b98ba69839c3402abdbff535b",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 1
+      },
+      {
+        "jobId": "mock-c08e95748c4360de7221b070d4d0ada850b71101e5852db89bd6037438bc3759",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      }
+    ],
+    "durationScope": "first recorded driver event to persisted final result; excludes earlier compilation"
+  },
+  "browser": {
+    "scope": "Runtime states only, real HTTP with mock cloud",
+    "checks": 30,
+    "screenshots": 8,
+    "status": "PASS"
+  },
+  "delegated": [
+    "新安装与完整Compose升级/回退",
+    "正常页面创建到配图/导出的全链路及新供应商选择器桌面/手机验收",
+    "新候选本地图容器重建与离线ZIP完整验收",
+    "真实百炼文字与真实豆包体验；Gemini仅可选后续体验"
+  ],
+  "realText": "NOT_RUN",
+  "doubao": "NOT_RUN",
+  "gemini": "NOT_RUN",
+  "distribution": "UNRESOLVED",
+  "failures": {
+    "existing": [
+      "contextLoads: DashScope API key missing, 1 error",
+      "lint16 errors/1 warning"
+    ],
+    "resolved": [
+      "Added test compilation ambiguity fixed",
+      "Browser navigation readiness race fixed; HTTP/browser rerun passed"
+    ],
+    "remaining": []
+  },
+  "noCommit": true,
+  "noPush": true,
+  "noDeployment": true,
+  "cleanup": {
+    "testEnvironment": "CLEANED",
+    "workerExitCodes": [
+      0,
+      0
+    ],
+    "originalServices": "Four original containers remain exited; no user service/database operation"
+  },
+  "historicalOnly": true,
+  "supersededBy": "artifacts/quick-creation/validation.json",
+  "currentCandidateStatus": "PENDING_USER_VALIDATION"
+}

@@ -1,6 +1,6 @@
 package com.yupi.template.agent.review;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -9,9 +9,9 @@ import java.util.concurrent.TimeoutException;
 
 @Component
 public class DashScopeReviewModelGateway implements ReviewModelGateway {
-    private final DashScopeChatModel model;
+    private final ChatModel model;
     private final Duration timeout;
-    public DashScopeReviewModelGateway(DashScopeChatModel model,
+    public DashScopeReviewModelGateway(ChatModel model,
             @Value("${article.agent.review-loop.timeout-ms:45000}") long timeoutMs) {
         this.model = model;
         this.timeout = Duration.ofMillis(Math.max(1, Math.min(60000, timeoutMs)));

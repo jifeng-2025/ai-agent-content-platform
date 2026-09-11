@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-10T11:06:42.454Z",
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "status": "ENGINEERING_PASS",
+  "failures": [],
+  "junit": {
+    "executed": 113,
+    "passed": 113
+  },
+  "realApi": "NOT_RUN",
+  "visualReview": "See visual-review.json; never inferred from screenshots merely existing"
+}

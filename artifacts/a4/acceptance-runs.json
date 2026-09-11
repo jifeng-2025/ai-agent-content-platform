@@ -1,0 +1,66 @@
+{
+  "sourceId": "f2134aa4417fc62294609738c377a08e107a2bf1e9dae90f0177f4de2076c7f8",
+  "runs": {
+    "mock": {
+      "out": "D:/2026codex/ai-passage-creator/artifacts/a3/runs/2026-09-11T03-03-36-255Z",
+      "work": "D:/2026codex/ai-passage-creator/tools/dev-harness/.work/2026-09-11T03-03-36-255Z",
+      "required": [
+        "summary.json"
+      ]
+    },
+    "runtimeImage": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\runtime-2026-09-11t03-13-36-644z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "front": {
+      "out": "D:/2026codex/ai-passage-creator/artifacts/a3/runs/2026-09-11T03-13-57-756Z-front",
+      "work": "D:/2026codex/ai-passage-creator/tools/dev-harness/.work/a3-front-2026-09-11T03-13-57-756Z",
+      "required": [
+        "summary.json"
+      ]
+    },
+    "store": {
+      "out": "D:/2026codex/ai-passage-creator/artifacts/a3/runs/2026-09-11T03-23-37-155Z-store",
+      "work": "D:/2026codex/ai-passage-creator/tools/dev-harness/.work/a3-store-2026-09-11T03-23-37-155Z",
+      "required": [
+        "com.yupi.template.runtime.A3StoreIT.txt"
+      ]
+    },
+    "sse": {
+      "out": "D:/2026codex/ai-passage-creator/artifacts/a4/runs/sse-2026-09-11T03-20-53-056Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "context": {
+      "out": "D:/2026codex/ai-passage-creator/artifacts/a4/runs/context-2026-09-11T03-20-55-800Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "http": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-11T03-45-39-074Z-live",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-11T03-45-39-074Z",
+      "required": [
+        "com.yupi.template.intervention.A3HttpIT.txt"
+      ]
+    },
+    "runtimeBrowser": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-11T03-45-39-074Z-live\\browser-2026-09-11T03-53-24-035Z",
+      "required": [
+        "result.json"
+      ]
+    },
+    "fault": {
+      "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-11T03-55-10-040Z-live",
+      "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-11T03-55-10-040Z",
+      "required": [
+        "fault-result.json"
+      ]
+    }
+  },
+  "resumeReason": "HTTP browser navigation readiness inspected stale about:blank; scope remains same source; failed run retained at gate-2026-09-11T03-03-35-347Z",
+  "scope": "User delegated installation, upgrade, page end-to-end, provider selectors and paid trial; do not run further stages"
+}

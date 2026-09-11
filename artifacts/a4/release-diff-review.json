@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-10T11:09:38.004Z",
+  "status": "PASS",
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "sourceFiles": 251,
+  "scope": "Proposed file bytes checked for exact configured two-model credentials; values never output. Diff fingerprint and retained upstream attribution checked.",
+  "knownConfiguredKeysChecked": 1,
+  "realSecretMatches": [],
+  "diffSha256": "61ee5a0e336d04482c7561be955d1a1fb383913b8acb46f50e5ddd5310689de2",
+  "diffBytes": 122789,
+  "stagedPaths": [],
+  "head": "09b539f9ace45e40d2c5f57ad1f6cea49c19a603",
+  "limits": "Pattern and exact known-key checks are not a proof that all secrets are absent. Dedicated synthetic test logs only; no user data included. No commit/push."
+}

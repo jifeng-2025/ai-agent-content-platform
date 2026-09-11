@@ -1,0 +1,383 @@
+{
+  "at": "2026-09-10T08:22:13.645Z",
+  "sourceId": "c323e006b168a13e224b9885ccd01a23f1dc8c51a4caf496ed10f7ca75c1c848",
+  "sourceFiles": 247,
+  "status": "ENGINEERING_PASS_API_NOT_RUN",
+  "engineering": "ENGINEERING_PASS",
+  "paidApi": "NOT_RUN",
+  "distributionLicense": "UNRESOLVED",
+  "fullA4Pass": false,
+  "release": "v0.1.0 engineering candidate only; not released",
+  "junit": {
+    "featureExecuted": 102,
+    "featurePassed": 102,
+    "featureFailed": 0,
+    "featureSkipped": 0,
+    "pure": 88,
+    "pureRuns": 2,
+    "http": 13,
+    "storeProcess": 1,
+    "suites": [
+      {
+        "file": "mock-TEST-com.yupi.template.baseline.A0BaselineTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1IntegrationTest.xml",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1PersistenceTest.xml",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A1ReviewLoopTest.xml",
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2MediaTest.xml",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A2RoundTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.review.A3ReviewResumeTest.xml",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3BudgetTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.runtime.A3ExternalTest.xml",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4ImageAccessTest.xml",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4StorageBindingTest.xml",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "file": "mock-TEST-com.yupi.template.storage.A4StorageTest.xml",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "baselineContextExecuted": 1,
+    "baselineContextErrors": 1
+  },
+  "frontend": {
+    "typeCheck": "PASS",
+    "build": "PASS",
+    "legacySseChecks": 4,
+    "runtimeSseChecks": 6,
+    "lint": {
+      "status": "EXISTING_FAILURE",
+      "errors": 16,
+      "warnings": 1
+    }
+  },
+  "browser": {
+    "realBrowser": true,
+    "cloudBoundary": "MOCK",
+    "checks": 143,
+    "primaryScreenshots": 39,
+    "sameCandidateSupplementalScreenshots": 1,
+    "allScreenshotsActuallyViewed": 40,
+    "sets": [
+      {
+        "name": "runtimeBrowser",
+        "status": "PASS",
+        "checks": 30,
+        "screenshots": 8,
+        "evidence": "local-storage-evidence/runtimeBrowser/result.json"
+      },
+      {
+        "name": "browser",
+        "status": "PASS",
+        "checks": 67,
+        "screenshots": 18,
+        "evidence": "local-storage-evidence/browser/result.json"
+      },
+      {
+        "name": "offline",
+        "status": "PASS",
+        "checks": 2,
+        "screenshots": 2,
+        "evidence": "local-storage-evidence/offline/result.json"
+      },
+      {
+        "name": "visual",
+        "status": "PASS",
+        "checks": 9,
+        "screenshots": 3,
+        "evidence": "local-storage-evidence/visual/result.json"
+      },
+      {
+        "name": "defaultLocal",
+        "status": "PASS",
+        "checks": 18,
+        "screenshots": 4,
+        "evidence": "local-storage-evidence/defaultLocal/result.json"
+      },
+      {
+        "name": "degraded",
+        "status": "PASS",
+        "checks": 17,
+        "screenshots": 4,
+        "evidence": "local-storage-evidence/degraded/result.json"
+      }
+    ]
+  },
+  "localStorage": {
+    "status": "PASS",
+    "httpChecks": 14,
+    "checks": [
+      "owner login",
+      "authenticated real local PNG",
+      "private image response",
+      "anonymous image denied",
+      "different user image denied",
+      "different user ZIP denied",
+      "traversal returns no file",
+      "real authenticated ZIP export",
+      "ZIP extracted in dedicated workspace",
+      "offline Markdown relative image paths",
+      "no COS environment variables",
+      "new container instance",
+      "same image bytes survive container replacement",
+      "persistent image recovery"
+    ],
+    "timeline": [
+      {
+        "at": "2026-09-10T08:13:59.274Z",
+        "event": "backend container forcibly recreated"
+      }
+    ],
+    "imageSha256": "e0406aa69b96445a29e13e070bfa4639694ecdbb371b5fceb3feb90627cabd87",
+    "zipSha256": "fc7ce2fd1dc9d17efa7cc2622b64593427d9b484de8b5a27569230c77a25626a",
+    "unpack": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-install-2026-09-10t08-10-22-231z\\offline-export",
+    "taskId": "dbdf45126f474891bd26dd794b387154",
+    "scope": "Actual packaged application, real MySQL/Redis/HTTP and named image volume; no cloud model API"
+  },
+  "initialization": {
+    "status": "PASS",
+    "scope": "Dedicated ignored initialization directory; no original .env read or written",
+    "checks": [
+      "fresh clone frontend configuration generated",
+      "random local database password generated without output",
+      "existing .env preserved",
+      "existing frontend config preserved"
+    ],
+    "at": "2026-09-10T08:04:11.8988296Z"
+  },
+  "markdownExport": {
+    "sha256": "1e01e469b2fba1c7461f14c05bf89ef3c624bd18d50243e2b139df97e1c3ec33",
+    "checks": [
+      "exactly one Markdown downloaded",
+      "article and local image reference present"
+    ],
+    "bytes": 210,
+    "scope": "Actual browser download inspected after browser step; two additional artifact assertions, not counted as browser script checks",
+    "status": "PASS"
+  },
+  "fault": {
+    "status": "PASS",
+    "checks": 12,
+    "providerJobs": [
+      {
+        "jobId": "mock-052f060698d1d95ec3ff5c8071b767dece9b51f1599b6d2754d0a095d9a167d4",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-f4503b4f218640fd7ef8477ccdb938f23abc2d5247cbd09e2697a037144eae39",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-502df45971c885737e99dec316a7fdd080dd3e05afaaac3e19eb73ed68bf9afd",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 1
+      },
+      {
+        "jobId": "mock-7cab045bfd43aa84ba9c8b88638c2be114229a944bff7c5eca89c852918c9955",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-68f7c185b65898db255226b203592ffe003d1d8b5776f84d17ccfa0c5eb9d4fa",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-03dc82b62cdfa4c76892389a05a15eace68cf66c6aea14a38bead2882878c52f",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      },
+      {
+        "jobId": "mock-9123e40be6c68ac19d38646bb5e54fa0522e987e5a1bb45b0602f23c0f2aad0f",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 1
+      },
+      {
+        "jobId": "mock-0820edc761d037d11e9b607db5b0f40c9178aa7c44ff1343c21a42946463d830",
+        "status": "SUCCEEDED",
+        "submitCount": 1,
+        "queryCount": 0
+      }
+    ],
+    "evidence": "local-storage-evidence/fault/"
+  },
+  "install": {
+    "fresh": {
+      "status": "PASS",
+      "kind": "fresh",
+      "checks": [
+        "actual packaged MainApplication, no JUnit runner",
+        "register/login real HTTP and Redis session",
+        "non-destructive switch-off rollback preserves article count",
+        "Redis login session survives application restart",
+        "same JAR re-enabled; no table or volume dropped"
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-10T08:11:19.679Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T08:12:10.862Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T08:13:02.418Z",
+          "event": "application health HTTP 200"
+        }
+      ],
+      "jarSha256": "4492f3371d37038f0ef8b5a7127182dc31ebc55a56809b6780a5e8a24fe70880"
+    },
+    "upgrade": {
+      "status": "PASS",
+      "kind": "upgrade",
+      "checks": [
+        "actual packaged MainApplication, no JUnit runner",
+        "register/login real HTTP and Redis session",
+        "synthetic legacy content retained",
+        "non-destructive switch-off rollback preserves article count",
+        "Redis login session survives application restart",
+        "same JAR re-enabled; no table or volume dropped"
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-10T08:16:35.120Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T08:17:33.334Z",
+          "event": "application health HTTP 200"
+        },
+        {
+          "at": "2026-09-10T08:18:29.666Z",
+          "event": "application health HTTP 200"
+        }
+      ],
+      "jarSha256": "4492f3371d37038f0ef8b5a7127182dc31ebc55a56809b6780a5e8a24fe70880"
+    },
+    "upgradeMigration": {
+      "kind": "upgrade",
+      "appliedTwice": [
+        "add_article_review.sql",
+        "add_article_intervention.sql",
+        "add_article_runtime.sql",
+        "add_local_image_storage.sql"
+      ],
+      "oldDataPreserved": true,
+      "reviewVersion": 2,
+      "operationStatus": "COMPLETED",
+      "interventionRevision": 3,
+      "scope": "Own Compose named volumes; original volumes untouched"
+    }
+  },
+  "failures": {
+    "existing": [
+      "contextLoads missing DashScope key: 1 error",
+      "lint: 16 errors / 1 warning"
+    ],
+    "fixedBeforeFinalFreeze": [
+      "Java quote escaping compile error in intermediate candidate",
+      "Null model output classification corrected; final candidate starts fresh"
+    ],
+    "fixedHarnessOnly": [
+      "First local HTTP test switched users within same session; valid ownership denial. Corrected independent session, full install/browser tail rerun using unchanged source/JAR."
+    ],
+    "interrupted": [
+      "06:56 gate intentionally stopped before package completion to refreeze business fix"
+    ],
+    "newUnresolvedRegressions": []
+  },
+  "commands": "commands.json",
+  "notes": [
+    "Initial serial gate passed all A0-A3 regressions and full fault matrix; failed test-only session setup at local HTTP. Same-source --install-only repeated complete installation/browser tail, then full source/build/evidence gate passed.",
+    "No older business candidate evidence is used. One stable limit screenshot is from the first fresh run of the exact same JAR.",
+    "Pure warm/repeat runs are not double-counted; browser checks and artifact checks are separate from JUnit.",
+    "Mock images are fixed raster fixtures, not evidence of real generation quality.",
+    "Final paid image model account/usage/bill and optional COS service are NOT_RUN."
+  ],
+  "notImplemented": [
+    "B Research/RAG/preferences/product MCP",
+    "H1 autonomous development scheduling",
+    "D1 CI/GHCR/server deployment"
+  ],
+  "noCommit": true,
+  "noPush": true,
+  "noTag": true,
+  "noRelease": true,
+  "noDeployment": true
+}

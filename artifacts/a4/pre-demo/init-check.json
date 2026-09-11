@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "scope": "Dedicated ignored initialization directory; no original .env read or written",
+  "checks": [
+    "fresh clone frontend configuration generated",
+    "random local database password generated without output",
+    "existing .env preserved",
+    "existing frontend config preserved"
+  ],
+  "at": "2026-09-10T08:04:11.8988296Z"
+}

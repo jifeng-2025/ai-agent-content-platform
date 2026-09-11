@@ -6,10 +6,10 @@ import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const mode = process.argv[2] ?? 'baseline'
-if (!['baseline', 'mock', 'health', 'dev', 'a1', 'a1-mock', 'a2', 'a2-mock'].includes(mode)) throw new Error('Use baseline | mock | a1 | a1-mock | a2 | a2-mock | health | dev <snapshot>; real API uses real-smoke.mjs')
+if (!['baseline', 'mock', 'health', 'dev', 'a1', 'a1-mock', 'a2', 'a2-mock', 'a3', 'a3-mock', 'a3-providers'].includes(mode)) throw new Error('Use baseline | mock | a1 | a1-mock | a2 | a2-mock | health | dev <snapshot>; real API uses real-smoke.mjs')
 const stamp = new Date().toISOString().replace(/[:.]/g, '-')
-const out = resolve(root, mode.startsWith('a2') ? 'artifacts/a2/runs' : mode.startsWith('a1') ? 'artifacts/a1/runs' : 'artifacts/a0/runs', stamp)
-const testSelector = mode.startsWith('a2') ? 'A0BaselineTest,A1*Test,A2*Test' : mode.startsWith('a1') ? 'A0BaselineTest,A1*Test' : 'A0BaselineTest'
+const out = resolve(root, mode.startsWith('a3') ? 'artifacts/a3/runs' : mode.startsWith('a2') ? 'artifacts/a2/runs' : mode.startsWith('a1') ? 'artifacts/a1/runs' : 'artifacts/a0/runs', stamp)
+const testSelector = mode === 'a3-providers' ? 'A4ImageProviderTest' : mode.startsWith('a3') ? 'A0BaselineTest,A1*Test,A2*Test,A3*Test,A4*Test' : mode.startsWith('a2') ? 'A0BaselineTest,A1*Test,A2*Test' : mode.startsWith('a1') ? 'A0BaselineTest,A1*Test' : 'A0BaselineTest'
 const workBase = resolve(root, 'tools/dev-harness/.work')
 const work = mode === 'dev' ? realpathSync(resolve(process.argv[3] ?? '')) : resolve(workBase, stamp)
 if (mode === 'dev' && (!/^\d{4}-\d{2}-\d{2}T[\d-]+Z$/.test(relative(realpathSync(workBase), work)) || !existsSync(resolve(work, 'frontend/node_modules')))) {
@@ -97,26 +97,38 @@ if (mode !== 'health' && mode !== 'dev') {
   }
   writeFileSync(resolve(work, 'frontend/src/config/env.ts'), "export const API_BASE_URL = '/api'\n")
   writeFileSync(resolve(out, 'source-manifest.json'), JSON.stringify(manifest, null, 2))
-  if (mode.startsWith('a1') || mode.startsWith('a2')) copyFileSync(resolve(root, 'tools/dev-harness/a1-sse-test.cjs'), resolve(work, 'a1-sse-test.cjs'))
+  if (mode.startsWith('a1') || mode.startsWith('a2') || mode.startsWith('a3')) copyFileSync(resolve(root, 'tools/dev-harness/a1-sse-test.cjs'), resolve(work, 'a1-sse-test.cjs'))
+  if(mode.startsWith('a3')) copyFileSync(resolve(root,'tools/dev-harness/a3-sse-test.cjs'),resolve(work,'a3-sse-test.cjs'))
   command('maven-version', 'docker', ['run', '--rm', maven, 'mvn', '-version'])
   const compiled = docker('backend-package', maven, ['mvn', '-B', '-DskipTests', 'package'])
   if (compiled) {
     docker('test-dependencies', maven, ['mvn', '-B', `-Dtest=${testSelector}`, 'test'])
     docker('mock', maven, ['mvn', '-o', '-B', `-Dtest=${testSelector}`, 'test'], { offline: true })
-    if (['baseline', 'a1', 'a2'].includes(mode)) docker('existing-test', maven, ['mvn', '-o', '-B', '-Dtest=MainApplicationTests', 'test'], { offline: true })
+    if (['baseline', 'a1', 'a2', 'a3'].includes(mode)) docker('existing-test', maven, ['mvn', '-o', '-B', '-Dtest=MainApplicationTests', 'test'], { offline: true })
   } else results.push({ id: 'mock', status: 'BLOCKED', reason: 'backend-package failed' })
-  if (['baseline', 'a1', 'a2'].includes(mode)) {
+  if (['baseline', 'a1', 'a2', 'a3'].includes(mode)) {
     command('node-version', 'docker', ['run', '--rm', node, 'node', '--version'])
     if (docker('npm-ci', node, ['npm', 'ci', '--no-audit', '--no-fund'], { frontend: true })) {
-      if (mode === 'a1' || mode === 'a2') docker('sse-compatibility', node, ['node', '../a1-sse-test.cjs'], { frontend: true, offline: true })
+      if (mode === 'a1' || mode === 'a2' || mode === 'a3') docker('sse-compatibility', node, ['node', '../a1-sse-test.cjs'], { frontend: true, offline: true })
+      if(mode === 'a3') docker('a3-sse',node,['node','../a3-sse-test.cjs'],{frontend:true,offline:true})
       await devStartup()
       for (const task of ['type-check', 'build', 'lint:check']) docker(task.replace(':', '-'), node, ['npm', 'run', task], { frontend: true, offline: true })
     }
   }
 }
 if (mode.startsWith('a1') && existsSync(resolve(work, 'target/a1-example.json'))) copyFileSync(resolve(work, 'target/a1-example.json'), resolve(out, 'a1-example.json'))
-await health('deployed-backend-health', 'http://localhost:8123/api/health', true)
-await health('deployed-frontend-health', 'http://localhost/')
+if (mode.startsWith('a3')) {
+  results.push({ id: 'original-service-health', status: 'NOT_RUN', reason: 'User deliberately stopped original services; A3 uses dedicated integration environments.' })
+} else {
+  await health('deployed-backend-health', 'http://localhost:8123/api/health', true)
+  await health('deployed-frontend-health', 'http://localhost/')
+}
+if (mode.startsWith('a3')) {
+ const reports = readdirSync(out).filter(f => /^mock-TEST-.*\.xml$/.test(f))
+ const suites = reports.map(f => { const xml = readFileSync(resolve(out,f),'utf8'); const head = xml.match(/<testsuite\s[^>]+>/)?.[0] || ''; const value = k => Number(head.match(new RegExp(k+'="(\\d+)"'))?.[1] || 0); return {file:f, tests:value('tests'), failures:value('failures'), errors:value('errors'), skipped:value('skipped')} })
+ const a3 = suites.filter(s => s.file.includes(mode === 'a3-providers' ? '.A4ImageProviderTest' : '.A3'))
+ results.push({id:'actual-test-coverage',status:a3.some(s=>s.tests>s.skipped)?'PASS':'FAIL',suites,total:suites.reduce((n,s)=>n+s.tests,0),a3Executed:suites.filter(s=>s.file.includes('.A3')).reduce((n,s)=>n+s.tests-s.skipped,0),providerExecuted:suites.filter(s=>s.file.includes('.A4ImageProviderTest')).reduce((n,s)=>n+s.tests-s.skipped,0),reason:mode === 'a3-providers' ? 'Requires executed A4 provider tests, not selector exit alone.' : 'Requires executed A3 tests; Surefire selector success alone is insufficient.'})
+}
 results.push({ id: 'real-api', status: 'NOT_RUN', reason: 'Separate opt-in provider smoke; health and mocks do not demonstrate real generation.' })
 writeFileSync(resolve(out, 'summary.json'), JSON.stringify({ mode, generatedAt: new Date().toISOString(), work, images: { maven, node }, results }, null, 2))
 console.log(`Evidence: ${out}`)

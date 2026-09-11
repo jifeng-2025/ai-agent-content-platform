@@ -4,7 +4,7 @@
 
 ## 6. 开发 Harness：让 Codex 在项目中执行闭环
 
-业务 Runtime 服务创作者；开发 Harness 服务开发者，放在 tools/dev-harness（拟新增），不暴露给普通创作用户。Codex 已提供编码执行能力，我们建设任务契约、环境适配、独立验证和反馈调度，不宣称重写了 Codex。
+业务 Runtime 服务创作者；开发 Harness 服务开发者，放在 tools/dev-harness（H0入口已建立），不暴露给普通创作用户。Codex 已提供编码执行能力，我们建设任务契约、环境适配、独立验证和反馈调度，不宣称重写了 Codex。
 
 ```text
 任务规格 → 读取相关代码/约束 → Codex 开发
@@ -31,6 +31,6 @@
 
 - H0 随 A0–A4 逐步建立，H1 在 A 验收后实现。
 - 仅读取 agent.md + status.md + 本任务模块，不递归加载全部设计文档；错误日志截取相关片段，完整产物保存磁盘。
-- tools/dev-harness、tasks、tests/e2e、artifacts 均为拟新增，先检查实际目录，不假定已经存在。
+- tools/dev-harness 与 artifacts 已由 A0–A3 建立；tasks/tests/e2e及H1调度器不因此视为已实现。
 - 每个任务结束更新 docs/agent/status.md；详细证据放该任务的产物目录。新会话只从状态索引查找必要证据。
 - GitHub MCP 用于仓库/PR/CI 交互，Git 负责本地提交推送；这与产品里的搜索 MCP 是两个独立用途。

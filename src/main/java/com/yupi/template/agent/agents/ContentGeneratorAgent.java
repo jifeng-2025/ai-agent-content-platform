@@ -1,6 +1,6 @@
 package com.yupi.template.agent.agents;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import com.alibaba.cloud.ai.graph.OverAllState;
 import com.alibaba.cloud.ai.graph.action.NodeAction;
 import com.yupi.template.agent.context.StreamHandlerContext;
@@ -31,7 +31,7 @@ import java.util.function.Consumer;
 @RequiredArgsConstructor
 public class ContentGeneratorAgent implements NodeAction {
 
-    private final DashScopeChatModel chatModel;
+    private final ChatModel chatModel;
 
     public static final String INPUT_MAIN_TITLE = "mainTitle";
     public static final String INPUT_SUB_TITLE = "subTitle";

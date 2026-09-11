@@ -1,6 +1,6 @@
 package com.yupi.template.service;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.yupi.template.annotation.AgentExecution;
@@ -32,9 +32,10 @@ import java.util.function.Consumer;
 @Service
 @Slf4j
 public class ArticleAgentService {
+    @jakarta.annotation.Resource private com.yupi.template.service.image.ImageProfileStore imageProfiles;
 
     @Resource
-    private DashScopeChatModel chatModel;
+    private ChatModel chatModel;
 
     @Resource
     private ImageServiceStrategy imageServiceStrategy;
@@ -229,6 +230,7 @@ public class ArticleAgentService {
             
             // 构建图片请求对象
             ImageRequest imageRequest = ImageRequest.builder()
+                    .profile(imageProfiles.find(state.getTaskId(),requirement.getImageSource()))
                     .keywords(requirement.getKeywords())
                     .prompt(requirement.getPrompt())
                     .position(requirement.getPosition())
@@ -243,6 +245,7 @@ public class ArticleAgentService {
             
             // 创建配图结果（URL 已经是 COS 地址）
             ArticleState.ImageResult imageResult = buildImageResult(requirement, cosUrl, method);
+            imageResult.setMetadata(result.getMetadata());
             imageResults.add(imageResult);
             
             // 推送单张配图完成

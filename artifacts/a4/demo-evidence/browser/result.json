@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "checks": [
+    "loaded /user/login",
+    "login form",
+    "registered through real HTTP",
+    "login",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "normal complete",
+    "export created",
+    "one Markdown file downloaded",
+    "Markdown contains article and authenticated local image reference",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "revision complete",
+    "one revision persisted",
+    "unrelated paragraph retained",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "two revision limit",
+    "hard limit stops for human",
+    "stable human-review state",
+    "accept confirmation",
+    "human accept continues media",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "manual editing available",
+    "editor",
+    "edited draft completed",
+    "editing appended global version",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "image failure retained body",
+    "single image retry completed",
+    "image retry preserves review versions",
+    "mobile refresh complete",
+    "mobile no overflow"
+  ],
+  "errors": [],
+  "networkErrors": [
+    {
+      "requestId": "44260.6",
+      "error": "net::ERR_CONNECTION_CLOSED",
+      "canceled": false
+    },
+    {
+      "requestId": "44260.114",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.227",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.336",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.350",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.455",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.466",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.575",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "44260.589",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "scope": "Actual packaged JAR + built Vue/Nginx + Compose MySQL/Redis; all tasks created through normal UI, local HTTP cloud fixture"
+}

@@ -1,4 +1,14 @@
 spring:
+  autoconfigure:
+    exclude:
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeChatAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeAgentAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeImageAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeVideoAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeAudioSpeechAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeAudioTranscriptionAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeRerankAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeEmbeddingAutoConfiguration
   application:
     name: ai-passage-creator
   profiles:
@@ -49,11 +59,19 @@ pexels:
   api-key: ${PEXELS_API_KEY:xxx}
 # Nano Banana (Gemini 原生图片生成) 配置
 nano-banana:
-  api-key: xxx  # 请在 https://aistudio.google.com/apikey 获取
-  model: gemini-3-pro-image-preview  # 可选: gemini-2.5-flash-image (快速), gemini-3-pro-image-preview (高质量)
-  aspect-ratio: "16:9"  # 可选，支持 1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9
-  image-size: "1K"  # 可选（仅 gemini-3-pro 支持），支持 1K, 2K, 4K
-  output-mime-type: image/png  # 可选，支持 image/jpeg, image/png
+  api-key: ${GEMINI_API_KEY:${IMAGE_MODEL_API_KEY:}}
+  model: ${GEMINI_MODEL:${IMAGE_MODEL:gemini-3.1-flash-image}}
+  base-url: ${GEMINI_BASE_URL:${IMAGE_MODEL_BASE_URL:https://generativelanguage.googleapis.com}}
+  image-size: ${GEMINI_IMAGE_SIZE:1K}
+  aspect-ratio: ${GEMINI_ASPECT_RATIO:16:9}
+  timeout-seconds: ${IMAGE_TIMEOUT_SECONDS:120}
+doubao:
+  api-key: ${DOUBAO_API_KEY:}
+  model: ${DOUBAO_MODEL:}
+  base-url: ${DOUBAO_BASE_URL:https://ark.cn-beijing.volces.com/api/v3}
+  image-size: ${DOUBAO_IMAGE_SIZE:2K}
+  timeout-seconds: ${IMAGE_TIMEOUT_SECONDS:120}
+
 # Mermaid 图表生成配置
 mermaid:
   cli-command: mmdc  # CLI 命令（Windows 下会自动使用 mmdc.cmd）
@@ -91,3 +109,9 @@ article:
       enabled: true
     # Agent 最大迭代次数
     max-iterations: 10
+
+models:
+  master-key-dir: ${MODEL_MASTER_KEY_DIR:./data/model-secrets}
+  admin:
+    origin: ${MODEL_ADMIN_ORIGIN:http://localhost}
+    trust-private-proxy: ${MODEL_ADMIN_TRUST_PRIVATE_PROXY:false}

@@ -1,0 +1,10 @@
+{
+  "sha256": "1e01e469b2fba1c7461f14c05bf89ef3c624bd18d50243e2b139df97e1c3ec33",
+  "checks": [
+    "exactly one Markdown downloaded",
+    "article and local image reference present"
+  ],
+  "bytes": 210,
+  "scope": "Actual browser download inspected after browser step; two additional artifact assertions, not counted as browser script checks",
+  "status": "PASS"
+}

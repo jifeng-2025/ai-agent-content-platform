@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "checks": [
+    "owner login",
+    "authenticated real local PNG",
+    "private image response",
+    "anonymous image denied",
+    "different user image denied",
+    "different user ZIP denied",
+    "traversal returns no file",
+    "real authenticated ZIP export",
+    "ZIP extracted in dedicated workspace",
+    "offline Markdown relative image paths",
+    "no COS environment variables",
+    "new container instance",
+    "same image bytes survive container replacement",
+    "persistent image recovery"
+  ],
+  "timeline": [
+    {
+      "at": "2026-09-10T08:13:59.274Z",
+      "event": "backend container forcibly recreated"
+    }
+  ],
+  "imageSha256": "e0406aa69b96445a29e13e070bfa4639694ecdbb371b5fceb3feb90627cabd87",
+  "zipSha256": "fc7ce2fd1dc9d17efa7cc2622b64593427d9b484de8b5a27569230c77a25626a",
+  "unpack": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-install-2026-09-10t08-10-22-231z\\offline-export",
+  "taskId": "dbdf45126f474891bd26dd794b387154",
+  "scope": "Actual packaged application, real MySQL/Redis/HTTP and named image volume; no cloud model API"
+}

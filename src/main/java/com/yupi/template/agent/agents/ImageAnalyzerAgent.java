@@ -1,6 +1,6 @@
 package com.yupi.template.agent.agents;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import com.alibaba.cloud.ai.graph.OverAllState;
 import com.alibaba.cloud.ai.graph.action.NodeAction;
 import com.google.gson.reflect.TypeToken;
@@ -30,7 +30,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ImageAnalyzerAgent implements NodeAction {
 
-    private final DashScopeChatModel chatModel;
+    private final ChatModel chatModel;
 
     public static final String INPUT_MAIN_TITLE = "mainTitle";
     public static final String INPUT_CONTENT = "content";
@@ -60,6 +60,10 @@ public class ImageAnalyzerAgent implements NodeAction {
         
         log.info("ImageAnalyzerAgent 开始执行: mainTitle={}, enabledMethods={}", mainTitle, enabledMethods);
         
+        if (com.yupi.template.service.DemoImageService.selected(enabledMethods)) {
+            return Map.of(OUTPUT_CONTENT_WITH_PLACEHOLDERS, content+"\n\n{{DEMO_IMAGE}}", INPUT_CONTENT, content+"\n\n{{DEMO_IMAGE}}", OUTPUT_IMAGE_REQUIREMENTS, com.yupi.template.service.DemoImageService.plan());
+        }
+
         // 构建可用配图方式说明
         String availableMethods = buildAvailableMethodsDescription(enabledMethods);
         // 构建各配图方式的详细使用指南（只包含允许的方式）
@@ -176,6 +180,7 @@ public class ImageAnalyzerAgent implements NodeAction {
         return switch (method) {
             case "PEXELS" -> """
                     - PEXELS: 提供英文搜索关键词(keywords)，要准确、具体。prompt 留空。""";
+            case "DOUBAO" -> "- DOUBAO: 提供详细图片提示词(prompt)，仅生成一张封面；不指定模型或接口。keywords 留空。";
             case "NANO_BANANA" -> """
                     - NANO_BANANA: 提供详细的英文生图提示词(prompt)，描述场景、风格、细节。keywords 留空。""";
             case "MERMAID" -> """

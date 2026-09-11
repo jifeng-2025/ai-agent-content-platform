@@ -1,0 +1,89 @@
+{
+  "reviewedAt": "2026-09-10T05:04:05.849Z",
+  "status": "PASS_WITH_MINOR_UI_NOTES",
+  "sets": [
+    {
+      "name": "browser",
+      "files": [
+        "01-normal-complete.png",
+        "02-revised.png",
+        "03-limit.png",
+        "04-human-accepted.png",
+        "05-edited.png",
+        "06-image-failed.png",
+        "07-image-retry.png",
+        "08-mobile-complete.png",
+        "IMAGE_FAIL-outline.png",
+        "IMAGE_FAIL-title.png",
+        "LIMIT-outline.png",
+        "LIMIT-title.png",
+        "MANUAL-outline.png",
+        "MANUAL-title.png",
+        "PASS-outline.png",
+        "PASS-title.png",
+        "REVISE-outline.png",
+        "REVISE-title.png"
+      ],
+      "checks": 67
+    },
+    {
+      "name": "runtimeBrowser",
+      "files": [
+        "01-desktop-cancelled.png",
+        "02-desktop-budget.png",
+        "03-desktop-recovering.png",
+        "04-desktop-uncertain.png",
+        "05-mobile-uncertain.png",
+        "06-mobile-retry-confirmation.png",
+        "07-mobile-cancelled.png",
+        "08-mobile-old-article.png"
+      ],
+      "checks": 30
+    },
+    {
+      "name": "visual",
+      "files": [
+        "09-version-diff.png",
+        "10-generated-fixture-image.png",
+        "11-mobile-fixture-image.png"
+      ],
+      "checks": 9
+    },
+    {
+      "name": "degraded",
+      "files": [
+        "12-degraded-desktop.png",
+        "13-degraded-mobile.png",
+        "DEGRADED-outline.png",
+        "DEGRADED-title.png"
+      ],
+      "checks": 17
+    }
+  ],
+  "totalScreenshots": 33,
+  "allActuallyViewed": true,
+  "viewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "observations": [
+    "Version diff highlights only p2, p1/p3 remain",
+    "Manual acceptance retains original issues and global v2",
+    "Image failure preserves body; single retry increases slot attempts only",
+    "Mock image visibly labeled A4 MOCK; not evidence of real semantic image generation",
+    "Mobile buttons, confirmation modal and image fit width",
+    "No unexpected console/network error; injected SSE closure and intentional navigation aborts explained",
+    "Degraded desktop/mobile actually viewed: PLACEHOLDER actual source, warning, retained body and retry control visible. Title and outline normal-page screenshots viewed."
+  ],
+  "minor": [
+    "Legacy creation sidebar can still show title step while outline editor is active; main stage editor and actions are correct",
+    "Some old error codes remain alongside Chinese labels",
+    "Transient previous-step success toast may overlap final completion view briefly"
+  ],
+  "export": {
+    "files": [
+      "周末散步中的小发现.md"
+    ],
+    "checked": "Read actual downloaded Markdown: title, subtitle, body, retained paragraph and image URL present; URL belongs to temporary test environment, not a permanent published asset"
+  }
+}

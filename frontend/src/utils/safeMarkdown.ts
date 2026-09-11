@@ -11,7 +11,7 @@ export function safeMarkdown(source: string): string {
       if (!allowed) element.removeAttribute(attr.name)
     }
     for (const attr of ['href','src']) if (element.hasAttribute(attr)) {
-      try { const url = new URL(element.getAttribute(attr) || '', window.location.href); if (!['http:','https:'].includes(url.protocol)) element.removeAttribute(attr) }
+      try { const raw = element.getAttribute(attr) || ''; if (attr === 'src' && raw.startsWith('/') && !/^\/api\/images\/[a-f0-9]{32}$/.test(raw)) { element.removeAttribute(attr); continue } const url = new URL(raw, window.location.href); if (!['http:','https:'].includes(url.protocol)) element.removeAttribute(attr) }
       catch { element.removeAttribute(attr) }
     }
     if (element.tagName === 'A') element.setAttribute('rel','noopener noreferrer')

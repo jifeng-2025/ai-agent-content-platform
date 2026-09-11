@@ -1,0 +1,66 @@
+{
+  "mock": {
+    "work": "tools/dev-harness/.work/2026-09-10T03-30-55-495Z",
+    "compared": 186,
+    "differences": [
+      "frontend/src/config/env.ts"
+    ],
+    "intentionalHarnessConfigDifferences": [
+      "frontend/src/config/env.ts"
+    ],
+    "businessDifferences": []
+  },
+  "http": {
+    "work": "tools/dev-harness/.work/a3-live-2026-09-10T03-27-13-486Z",
+    "compared": 186,
+    "differences": [
+      "frontend/src/config/env.ts"
+    ],
+    "intentionalHarnessConfigDifferences": [
+      "frontend/src/config/env.ts"
+    ],
+    "businessDifferences": []
+  },
+  "store": {
+    "work": "tools/dev-harness/.work/a3-store-2026-09-10T03-33-46-088Z",
+    "compared": 136,
+    "differences": [],
+    "intentionalHarnessConfigDifferences": [],
+    "businessDifferences": []
+  },
+  "fault": {
+    "work": "tools/dev-harness/.work/a3-live-2026-09-10T02-59-00-920Z",
+    "compared": 186,
+    "differences": [
+      "src/main/java/com/yupi/template/controller/ArticleController.java",
+      "src/main/java/com/yupi/template/runtime/RuntimeEvents.java",
+      "src/main/java/com/yupi/template/runtime/RuntimeExternal.java",
+      "src/main/java/com/yupi/template/runtime/RuntimeLedger.java",
+      "frontend/src/api/typings.d.ts",
+      "frontend/src/config/env.ts",
+      "frontend/src/pages/article/ArticleCreatePage.vue"
+    ],
+    "intentionalHarnessConfigDifferences": [
+      "frontend/src/config/env.ts"
+    ],
+    "businessDifferences": [
+      "src/main/java/com/yupi/template/controller/ArticleController.java",
+      "src/main/java/com/yupi/template/runtime/RuntimeEvents.java",
+      "src/main/java/com/yupi/template/runtime/RuntimeExternal.java",
+      "src/main/java/com/yupi/template/runtime/RuntimeLedger.java",
+      "frontend/src/api/typings.d.ts",
+      "frontend/src/pages/article/ArticleCreatePage.vue"
+    ]
+  },
+  "front": {
+    "work": "tools/dev-harness/.work/a3-front-2026-09-10T03-12-19-049Z",
+    "compared": 50,
+    "differences": [
+      "frontend/src/config/env.ts"
+    ],
+    "intentionalHarnessConfigDifferences": [
+      "frontend/src/config/env.ts"
+    ],
+    "businessDifferences": []
+  }
+}

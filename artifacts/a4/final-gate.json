@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-11T04:25:25.870Z",
+  "sourceId": "f2134aa4417fc62294609738c377a08e107a2bf1e9dae90f0177f4de2076c7f8",
+  "status": "SCOPED_ENGINEERING_PASS",
+  "fullA4Pass": false,
+  "failures": [],
+  "delegated": [
+    "新安装与完整Compose升级/回退",
+    "正常页面创建到配图/导出的全链路及新供应商选择器桌面/手机验收",
+    "新候选本地图容器重建与离线ZIP完整验收",
+    "真实百炼文字与真实豆包体验；Gemini仅可选后续体验"
+  ],
+  "realApi": "NOT_RUN",
+  "distribution": "UNRESOLVED",
+  "note": "User stopped full gate; scoped evidence is not ENGINEERING_PASS for full A4",
+  "historicalOnly": true,
+  "supersededBy": "artifacts/quick-creation/validation.json",
+  "currentCandidateStatus": "PENDING_USER_VALIDATION"
+}

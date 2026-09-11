@@ -1,0 +1,16 @@
+{
+  "redirectCount": 1,
+  "bytes": 78209,
+  "checkedAt": "2026-09-10T09:23:06.8587448Z",
+  "scope": "Read-only public Picsum reachability probe; sample excluded from Git; production downloader tested separately",
+  "initialStatus": 302,
+  "response": [
+    "HTTP/1.1 200 OK",
+    "Content-Type: image/jpeg"
+  ],
+  "sha256": "D908AD6F24709D1D1845513CB42A88239D42B9B65DD0BE2385FD2C533888DD61",
+  "redirectHost": "fastly.picsum.photos",
+  "downloadExitCode": 0,
+  "headStatus": 405,
+  "note": "HEAD is unsupported; real GET returns 302 then trusted CDN GET 200. Production uses GET, not HEAD."
+}

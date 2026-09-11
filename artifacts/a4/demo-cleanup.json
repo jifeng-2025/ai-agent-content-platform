@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-10T11:09:35.656Z",
+  "userContainers": [
+    {
+      "name": "ai-passage-frontend",
+      "status": "exited",
+      "startedAt": "2026-09-09T03:52:19.455656921Z",
+      "finishedAt": "2026-09-09T08:45:20.827898548Z"
+    },
+    {
+      "name": "ai-passage-backend",
+      "status": "exited",
+      "startedAt": "2026-09-09T03:52:27.5131024Z",
+      "finishedAt": "2026-09-09T08:45:22.383162865Z"
+    },
+    {
+      "name": "ai-passage-redis",
+      "status": "exited",
+      "startedAt": "2026-09-09T03:51:55.667475161Z",
+      "finishedAt": "2026-09-09T08:45:23.023109392Z"
+    },
+    {
+      "name": "ai-passage-mysql",
+      "status": "exited",
+      "startedAt": "2026-09-09T03:51:56.115601525Z",
+      "finishedAt": "2026-09-09T08:45:24.732107546Z"
+    }
+  ],
+  "userExit": "User confirmed intentional stop on 2026-09-09; unchanged",
+  "runningContainers": [],
+  "dedicatedCleanup": "Gate cleaned its fresh/upgrade/process/store environments. Candidate images retained as build artifacts in local Docker cache, not submitted.",
+  "noUserDatabaseMigration": true,
+  "noCommit": true,
+  "noPush": true,
+  "noDeployment": true
+}

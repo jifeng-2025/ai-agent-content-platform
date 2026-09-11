@@ -1,0 +1,9 @@
+{
+  "sourceId": "b66545cd900b3ea5f04135e22ab8912a068501bfea57f9240f1a7b4fe7bb40f5",
+  "builds": [
+    {
+      "path": "tools\\dev-harness\\.work\\model-settings-compile\\target\\ai-passage-creator-0.0.1-SNAPSHOT.jar",
+      "sha256": "e15c9d4c83d58f7106f1f30909e38865832ce87cfb8dd2a6a571e3121828813b"
+    }
+  ]
+}

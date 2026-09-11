@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "sourceId": "d930f5ff1ceec42313f1f5a76906360d3956e9dc61d3cad0d9ed988f898c196f",
+  "sourceDockerfileSha256": "982d1e80f0270b14bf70d4508a3ea39fdb34c720a045e4a932f00de2f51be1a8",
+  "imageId": "sha256:165cd04cf5335f75f7cd28b41f534c01a371120484cd6e426ae6e5bdab566bf6",
+  "tag": "a4-demo-runtime:2026-09-10t09-59-16-883z",
+  "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a4\\runs\\runtime-2026-09-10t09-59-16-883z",
+  "jarSha256": "b7ae1922d1439a4dcb22e29234d92dff0f9fe7e95c8ae0a07bd9a3fd388f37c1",
+  "results": [
+    {
+      "name": "build",
+      "command": [
+        "docker",
+        "build",
+        "--tag",
+        "a4-demo-runtime:2026-09-10t09-59-16-883z",
+        "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a4-runtime-2026-09-10t09-59-16-883z"
+      ],
+      "exitCode": 0,
+      "durationMs": 20777
+    },
+    {
+      "name": "image-id",
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "a4-demo-runtime:2026-09-10t09-59-16-883z",
+        "--format",
+        "{{.Id}}"
+      ],
+      "exitCode": 0,
+      "durationMs": 332
+    },
+    {
+      "name": "non-root",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network=none",
+        "--entrypoint",
+        "sh",
+        "a4-demo-runtime:2026-09-10t09-59-16-883z",
+        "-c",
+        "test \"$(id -u)\" = 1000 && test -w /data/images && fc-list | head -n 1"
+      ],
+      "exitCode": 0,
+      "durationMs": 810
+    }
+  ],
+  "scope": "Exact production runtime stage with already-tested packaged JAR; non-root writable media root and fonts verified; Maven build stage uses same tested artifact, not recompiled here"
+}

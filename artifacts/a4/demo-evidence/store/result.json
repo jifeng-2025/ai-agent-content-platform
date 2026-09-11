@@ -1,0 +1,2929 @@
+{
+  "status": "PASS",
+  "scope": "Real MySQL and actual killed/restarted Java processes; RuntimeStore integration only, not full HTTP flow",
+  "log": [
+    {
+      "at": "2026-09-10T10:10:15.713Z",
+      "args": [
+        "network",
+        "create",
+        "--internal",
+        "a3-store-2026-09-10t10-10-14-805z-net"
+      ],
+      "exit": 0,
+      "stdout": "37c37445341c5f37279e8d705fd8ff3708d9688f66b3e9ef958c1ffa47f81576\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:16.176Z",
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "a3-store-2026-09-10t10-10-14-805z-mysql",
+        "--network",
+        "a3-store-2026-09-10t10-10-14-805z-net",
+        "--tmpfs",
+        "/var/lib/mysql",
+        "--memory=1g",
+        "-e",
+        "MYSQL_ROOT_PASSWORD=a3-test-only",
+        "mysql:8.0"
+      ],
+      "exit": 0,
+      "stdout": "019c9094645ef56eceb39754b0e2fa774a1a875776f6b36975185624d54a175d\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:23.723Z",
+      "args": [
+        "exec",
+        "-i",
+        "a3-store-2026-09-10t10-10-14-805z-mysql",
+        "mysql",
+        "-uroot",
+        "-pa3-test-only"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "mysql: [Warning] Using a password on the command line interface can be insecure.\n"
+    },
+    {
+      "at": "2026-09-10T10:10:24.319Z",
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--network",
+        "a3-store-2026-09-10t10-10-14-805z-net",
+        "--memory=3g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-store-2026-09-10t10-10-14-805z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "-e",
+        "A3_STORE_ISOLATED=true",
+        "-e",
+        "A3_PROCESS_STAGE=prepare",
+        "-e",
+        "A3_DB_URL=jdbc:mysql://a3-store-2026-09-10t10-10-14-805z-mysql:3306/ai_passage_creator",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/settings.xml",
+        "-o",
+        "-B",
+        "-Dtest=A3StoreIT",
+        "test"
+      ],
+      "exit": 0,
+      "stdout": "bf3d1c516d3d1f943f38c3995ba830a55c7ac3e08fe49f08170bd2bbdab82a97\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:24.595Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:25.883Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:27.169Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:28.449Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:29.726Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:30.991Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:32.284Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:33.590Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:34.911Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:36.221Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:37.551Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:38.899Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:40.230Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:41.504Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:42.777Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:44.077Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:45.355Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:46.634Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:47.925Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:49.206Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:50.473Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:51.736Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:53.012Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:54.288Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:55.579Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:56.869Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:58.152Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:10:59.427Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:00.719Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:01.994Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:03.267Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:04.545Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:05.843Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:07.124Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:08.390Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:09.669Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:10.948Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:12.227Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:13.505Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:14.819Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:16.111Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:17.408Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:18.725Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:20.031Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:21.348Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:22.669Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:23.979Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:25.252Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:26.546Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:27.827Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:29.107Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:30.384Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:31.669Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:32.957Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:34.233Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:35.518Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:36.788Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:38.056Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:39.361Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:40.654Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:41.950Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:43.246Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:44.562Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:45.867Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:47.175Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:48.465Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:49.762Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:51.037Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:52.322Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:53.600Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:54.865Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:56.148Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:57.432Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:11:58.709Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:00.018Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:01.311Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:02.590Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:03.856Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:05.121Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:06.389Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:07.673Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:08.945Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:10.229Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:11.492Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:12.758Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:14.040Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:15.312Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:16.614Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:17.884Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:19.174Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:20.470Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:21.751Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:23.039Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:24.341Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:25.639Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:27.010Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:28.320Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:29.622Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:30.979Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:32.283Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:33.587Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:34.870Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:36.147Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:37.415Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:38.697Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:40.004Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:41.285Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:42.568Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:43.838Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:45.105Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:46.382Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:47.660Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:48.954Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:50.260Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:51.568Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:52.885Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:54.179Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:55.502Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:56.791Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:58.100Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:12:59.393Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:00.671Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:01.942Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:03.212Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:04.493Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:05.768Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:07.046Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:08.309Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:09.596Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:10.881Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:12.185Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:13.457Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:14.746Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:16.026Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:17.313Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:18.603Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:19.899Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:21.175Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:22.445Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:23.739Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:25.011Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:26.311Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:27.587Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:28.853Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:30.146Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:31.425Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:32.695Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:34.020Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:35.326Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:36.645Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:37.944Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:39.273Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:40.581Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:41.890Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:43.166Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:44.444Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:45.732Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:47.026Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:48.317Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:49.598Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:50.886Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:52.190Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:53.481Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:54.747Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:56.035Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:57.343Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:58.674Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:13:59.991Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:01.289Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:02.603Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:03.908Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:05.206Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:06.513Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:07.816Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:09.086Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:10.367Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:11.637Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:12.900Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:14.177Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:15.467Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:16.730Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:17.990Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:19.270Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:20.548Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:21.825Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:23.107Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:24.379Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:25.653Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:26.939Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:28.229Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:29.527Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:30.822Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:32.097Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:33.381Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:34.655Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:35.935Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:37.209Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:38.504Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:39.788Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:41.068Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:42.389Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:43.694Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:45.000Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:46.329Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:47.637Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:48.956Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:50.269Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:51.562Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:52.845Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:54.128Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:55.405Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:56.694Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:57.973Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:14:59.254Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:00.549Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:01.841Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:03.131Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:04.407Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:05.673Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:06.991Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:08.324Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:09.633Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:10.946Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:12.248Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:13.569Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:14.872Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:16.184Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:17.465Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:18.756Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:20.050Z",
+      "args": [
+        "inspect",
+        "a3-store-2026-09-10t10-10-14-805z-prepare",
+        "--format",
+        "{{.State.Running}}"
+      ],
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:21.354Z",
+      "args": [
+        "logs",
+        "a3-store-2026-09-10t10-10-14-805z-prepare"
+      ],
+      "exit": 0,
+      "stdout": "[INFO] Scanning for projects...\n[INFO] \n[INFO] --------------------< com.yupi:ai-passage-creator >---------------------\n[INFO] Building ai-passage-creator 0.0.1-SNAPSHOT\n[INFO]   from pom.xml\n[INFO] --------------------------------[ jar ]---------------------------------\n[INFO] \n[INFO] --- resources:3.3.1:resources (default-resources) @ ai-passage-creator ---\n[INFO] Copying 2 resources from src/main/resources to target/classes\n[INFO] Copying 1 resource from src/main/resources to target/classes\n[INFO] \n[INFO] --- compiler:3.14.1:compile (default-compile) @ ai-passage-creator ---\n[INFO] Recompiling the module because of changed source code.\n[INFO] Compiling 144 source files with javac [debug parameters release 21] to target/classes\n[INFO] \n[INFO] --- resources:3.3.1:testResources (default-testResources) @ ai-passage-creator ---\n[INFO] Copying 2 resources from src/test/resources to target/test-classes\n[INFO] \n[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ai-passage-creator ---\n[INFO] Recompiling the module because of changed dependency.\n[INFO] Compiling 20 source files with javac [debug parameters release 21] to target/test-classes\n[INFO] /work/src/test/java/com/yupi/template/baseline/A0BaselineTest.java: Some input files use unchecked or unsafe operations.\n[INFO] /work/src/test/java/com/yupi/template/baseline/A0BaselineTest.java: Recompile with -Xlint:unchecked for details.\n[INFO] \n[INFO] --- surefire:3.5.4:test (default-test) @ ai-passage-creator ---\n[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider\n[INFO] \n[INFO] -------------------------------------------------------\n[INFO]  T E S T S\n[INFO] -------------------------------------------------------\n[INFO] Running com.yupi.template.runtime.A3StoreIT\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:22.150Z",
+      "args": [
+        "kill",
+        "--signal=KILL",
+        "a3-store-2026-09-10t10-10-14-805z-prepare"
+      ],
+      "exit": 0,
+      "stdout": "a3-store-2026-09-10t10-10-14-805z-prepare\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:15:22.150Z",
+      "event": "SIGKILL after committed checkpoint, before completion"
+    },
+    {
+      "at": "2026-09-10T10:15:38.743Z",
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "a3-store-2026-09-10t10-10-14-805z-recover",
+        "--network",
+        "a3-store-2026-09-10t10-10-14-805z-net",
+        "--memory=3g",
+        "--cpus=2",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-store-2026-09-10t10-10-14-805z,target=/work",
+        "--mount",
+        "type=bind,source=D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.cache\\m2,target=/root/.m2",
+        "-w",
+        "/work",
+        "-e",
+        "A3_STORE_ISOLATED=true",
+        "-e",
+        "A3_PROCESS_STAGE=recover",
+        "-e",
+        "A3_DB_URL=jdbc:mysql://a3-store-2026-09-10t10-10-14-805z-mysql:3306/ai_passage_creator",
+        "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+        "mvn",
+        "-s",
+        "/work/settings.xml",
+        "-o",
+        "-B",
+        "-Dtest=A3StoreIT",
+        "test"
+      ],
+      "exit": 0,
+      "stdout": "1c7a472d574b1117800064d0d1e75cd9e8da81fa10af511b5f4bdfb349ae996b\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:18:07.601Z",
+      "args": [
+        "wait",
+        "a3-store-2026-09-10t10-10-14-805z-recover"
+      ],
+      "exit": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-10T10:18:07.899Z",
+      "args": [
+        "logs",
+        "a3-store-2026-09-10t10-10-14-805z-recover"
+      ],
+      "exit": 0,
+      "stdout": "[INFO] Scanning for projects...\n[INFO] \n[INFO] --------------------< com.yupi:ai-passage-creator >---------------------\n[INFO] Building ai-passage-creator 0.0.1-SNAPSHOT\n[INFO]   from pom.xml\n[INFO] --------------------------------[ jar ]---------------------------------\n[INFO] \n[INFO] --- resources:3.3.1:resources (default-resources) @ ai-passage-creator ---\n[INFO] Copying 2 resources from src/main/resources to target/classes\n[INFO] Copying 1 resource from src/main/resources to target/classes\n[INFO] \n[INFO] --- compiler:3.14.1:compile (default-compile) @ ai-passage-creator ---\n[INFO] Nothing to compile - all classes are up to date.\n[INFO] \n[INFO] --- resources:3.3.1:testResources (default-testResources) @ ai-passage-creator ---\n[INFO] Copying 2 resources from src/test/resources to target/test-classes\n[INFO] \n[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ai-passage-creator ---\n[INFO] Nothing to compile - all classes are up to date.\n[INFO] \n[INFO] --- surefire:3.5.4:test (default-test) @ ai-passage-creator ---\n[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider\n[INFO] \n[INFO] -------------------------------------------------------\n[INFO]  T E S T S\n[INFO] -------------------------------------------------------\n[INFO] Running com.yupi.template.runtime.A3StoreIT\n10:18:02.255 [main] INFO com.yupi.template.service.ImageServiceStrategy -- 注册图片服务: NANO_BANANA -> ImageSearchService$MockitoMock$cWvO3Wwu (AI生图: true, 降级: false)\n10:18:02.883 [main] INFO com.yupi.template.service.ImageServiceStrategy -- 图片获取并上传成功, method=NANO_BANANA, cosUrl=/api/images/3aba86667372476a894292a7275273e7\n[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.47 s -- in com.yupi.template.runtime.A3StoreIT\n[INFO] \n[INFO] Results:\n[INFO] \n[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0\n[INFO] \n[INFO] ------------------------------------------------------------------------\n[INFO] BUILD SUCCESS\n[INFO] ------------------------------------------------------------------------\n[INFO] Total time:  02:27 min\n[INFO] Finished at: 2026-09-10T10:18:07Z\n[INFO] ------------------------------------------------------------------------\n",
+      "stderr": "Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3\nOpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\nWARNING: A Java agent has been loaded dynamically (/root/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)\nWARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning\nWARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information\nWARNING: Dynamic loading of agents will be disallowed by default in a future release\n"
+    }
+  ]
+}

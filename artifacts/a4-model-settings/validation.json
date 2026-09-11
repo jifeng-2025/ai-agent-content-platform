@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-11T05:42:14.372Z",
+  "status": "COMPILE_PASS_USER_VALIDATION_PENDING",
+  "sourceId": "b66545cd900b3ea5f04135e22ab8912a068501bfea57f9240f1a7b4fe7bb40f5",
+  "sourceFiles": 257,
+  "compile": {
+    "exitCode": 0,
+    "durationMs": 144857,
+    "testsExecuted": 0,
+    "command": "isolated Docker mvn -o -Dmaven.test.skip=true package"
+  },
+  "frontend": {
+    "exitCode": 0,
+    "durationMs": 220329
+  },
+  "typecheck": {
+    "id": "typecheck",
+    "exitCode": 0,
+    "durationMs": 3502
+  },
+  "testsExecuted": 0,
+  "tests": "交由用户验证",
+  "browser": "交由用户验证",
+  "migration": "交由用户验证",
+  "realApi": "NOT_RUN",
+  "fullA4Pass": false,
+  "userServices": "NOT_TOUCHED",
+  "distribution": "UNRESOLVED",
+  "builds": [
+    {
+      "path": "tools\\dev-harness\\.work\\model-settings-compile\\target\\ai-passage-creator-0.0.1-SNAPSHOT.jar",
+      "sha256": "e15c9d4c83d58f7106f1f30909e38865832ce87cfb8dd2a6a571e3121828813b"
+    }
+  ]
+}

@@ -51,3 +51,16 @@ src/test/
 .github/
 .gitlab-ci.yml
 .travis.yml
+
+# Local secrets, persistent data and isolated verification outputs
+.env
+.env.*
+src/main/resources/application-local.yml
+src/main/resources/application-local.yaml
+data/
+tools/
+artifacts/
+frontend/
+**/node_modules/
+**/.cache/
+*.zip

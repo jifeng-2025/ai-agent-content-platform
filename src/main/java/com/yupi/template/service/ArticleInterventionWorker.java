@@ -17,8 +17,10 @@ public class ArticleInterventionWorker {
     private final ArticleReviewLoop review;
     private final ArticleMediaProcessor media;
     private final SseEmitterManager sse;
+    @org.springframework.beans.factory.annotation.Autowired(required=false) private com.yupi.template.runtime.RuntimeConfig runtimeConfig;
     @Async("articleExecutor")
     public void execute(String taskId,String requestId) {
+        if (runtimeConfig != null && runtimeConfig.isEnabled()) return; // durable dispatcher owns A3 operations
         var request=interventions.claim(taskId,requestId);
         if(request==null)return;
         try {

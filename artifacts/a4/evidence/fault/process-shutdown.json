@@ -1,0 +1,10 @@
+[
+  {
+    "role": "backend",
+    "exit": 0
+  },
+  {
+    "role": "worker2",
+    "exit": 0
+  }
+]

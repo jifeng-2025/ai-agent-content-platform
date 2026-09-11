@@ -1,0 +1,33 @@
+{
+  "originalExitReason": "User confirmed intentional exit; not started or restarted",
+  "originalContainers": [
+    {
+      "name": "ai-passage-frontend",
+      "finishedAt": "2026-09-09T08:45:20.827898548Z",
+      "startedAt": "2026-09-09T03:52:19.455656921Z",
+      "status": "exited"
+    },
+    {
+      "name": "ai-passage-backend",
+      "finishedAt": "2026-09-09T08:45:22.383162865Z",
+      "startedAt": "2026-09-09T03:52:27.5131024Z",
+      "status": "exited"
+    },
+    {
+      "name": "ai-passage-redis",
+      "finishedAt": "2026-09-09T08:45:23.023109392Z",
+      "startedAt": "2026-09-09T03:51:55.667475161Z",
+      "status": "exited"
+    },
+    {
+      "name": "ai-passage-mysql",
+      "finishedAt": "2026-09-09T08:45:24.732107546Z",
+      "startedAt": "2026-09-09T03:51:56.115601525Z",
+      "status": "exited"
+    }
+  ],
+  "scope": "Only dedicated test projects removed with their own volumes; original volumes untouched",
+  "at": "2026-09-10T08:25:24.9350822Z",
+  "dedicatedContainersRemaining": [],
+  "status": "PASS"
+}

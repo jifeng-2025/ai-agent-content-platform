@@ -1,0 +1,34 @@
+{
+  "at": "2026-09-11T07:09:12.367Z",
+  "status": "BACKEND_AND_TYPES_PASS_FRONTEND_BUILD_UNVERIFIED",
+  "sourceId": "a521010ec341faa5437a87bdb630740fbd2e8c8bd5158b39759a265a578c709c",
+  "sourceFiles": 262,
+  "compile": {
+    "exitCode": 0,
+    "durationMs": 175658,
+    "testsExecuted": 0,
+    "command": "isolated Docker mvn -o -Dmaven.test.skip=true package"
+  },
+  "frontendBuild": {
+    "exitCode": null,
+    "durationMs": null,
+    "collection": "docker wait on the already-running build; CLI wait timeout was not a compiler exit",
+    "evidence": "frontend-linux-final.log",
+    "waitExit": 1
+  },
+  "typecheck": {
+    "exitCode": 0,
+    "evidence": "typecheck.log"
+  },
+  "testsExecuted": 0,
+  "browser": "交由用户验证",
+  "realApi": "NOT_RUN",
+  "userServices": "NOT_TOUCHED",
+  "fullA4Pass": false,
+  "builds": [
+    {
+      "path": "tools/dev-harness/.work/quick-creation-compile/target/ai-passage-creator-0.0.1-SNAPSHOT.jar",
+      "sha256": "fc2a4ee6e80db4cf4e891484baaecc51952faba86a05350cd471b9d52804110a"
+    }
+  ]
+}

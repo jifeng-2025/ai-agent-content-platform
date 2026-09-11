@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "checks": [
+    "loaded /user/login",
+    "login form",
+    "registered through real HTTP",
+    "login",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "normal complete",
+    "export created",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "revision complete",
+    "one revision persisted",
+    "unrelated paragraph retained",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "two revision limit",
+    "hard limit stops for human",
+    "accept confirmation",
+    "human accept continues media",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "manual editing available",
+    "editor",
+    "edited draft completed",
+    "editing appended global version",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "image failure retained body",
+    "single image retry completed",
+    "image retry preserves review versions",
+    "mobile refresh complete",
+    "mobile no overflow"
+  ],
+  "errors": [],
+  "networkErrors": [
+    {
+      "requestId": "38884.135",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.243",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.350",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.367",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.475",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.486",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.593",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "38884.607",
+      "error": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "scope": "Actual packaged JAR + built Vue/Nginx + Compose MySQL/Redis; all tasks created through normal UI, local HTTP cloud fixture"
+}

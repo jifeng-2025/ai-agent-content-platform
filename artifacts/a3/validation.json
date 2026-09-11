@@ -1,0 +1,139 @@
+{
+  "generatedAt": "2026-09-10T03:50:09.694Z",
+  "status": "PASS_WITH_EXISTING_BASELINE_FAILURES",
+  "junit": {
+    "total": 88,
+    "passed": 88,
+    "failed": 0,
+    "skipped": 0,
+    "mock": {
+      "total": 74,
+      "a0": 5,
+      "a1": 51,
+      "a2": 7,
+      "a3": 11,
+      "suites": [
+        {
+          "file": "mock-TEST-com.yupi.template.baseline.A0BaselineTest.xml",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A1IntegrationTest.xml",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A1PersistenceTest.xml",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A1ReviewLoopTest.xml",
+          "tests": 37,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A2MediaTest.xml",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A2RoundTest.xml",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.review.A3ReviewResumeTest.xml",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.runtime.A3BudgetTest.xml",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "file": "mock-TEST-com.yupi.template.runtime.A3ExternalTest.xml",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    },
+    "http": {
+      "total": 13,
+      "a2Inherited": 9,
+      "a3": 4
+    },
+    "processStore": 1
+  },
+  "processFaultChecks": [
+    "commit before dispatch is durably QUEUED",
+    "no provider effect before dispatch",
+    "recovered title submitted once",
+    "completed title reused after process restart",
+    "supplier result durable before application receives it",
+    "external success recovered by query without another submission",
+    "final persisted draft retained",
+    "late old worker cannot replace recovered checkpoint",
+    "two actual worker processes produce one provider submission",
+    "cancel terminal survives late HTTP response",
+    "late cancelled result not committed",
+    "SSE replay recovers cancellation terminal"
+  ],
+  "browser": {
+    "status": "PASS",
+    "checks": 28,
+    "screenshots": 8,
+    "visuallyInspected": 8,
+    "console": "One expected injected SSE error; no unexpected console errors",
+    "network": "One injected ERR_CONNECTION_CLOSED; two intentional canceled requests",
+    "scope": "Actual Chrome with real Spring/MySQL/Redis HTTP; cloud mocked. Recovering visual uses explicitly seeded persisted fixture; actual recovery is separately proven by process tests."
+  },
+  "sseUtility": {
+    "legacy": 4,
+    "a3": 6,
+    "scope": "Simulated EventSource; actual reconnect separately tested in browser"
+  },
+  "migration": "PASS: A3 applied twice; original synthetic article, operation and review retained",
+  "build": {
+    "backend": "PASS",
+    "frontendTypeCheck": "PASS",
+    "frontendBuild": "PASS"
+  },
+  "existingFailures": {
+    "contextLoads": "1 error: missing DashScope API key in isolated config",
+    "lint": {
+      "errors": 16,
+      "warnings": 1
+    }
+  },
+  "realPaidApi": "NOT_RUN",
+  "runs": {
+    "mock": "2026-09-10T03-30-55-495Z",
+    "http": "2026-09-10T03-27-13-486Z-live",
+    "store": "2026-09-10T03-33-46-088Z-store",
+    "fault": "2026-09-10T02-59-00-920Z-live",
+    "front": "2026-09-10T03-12-19-049Z-front",
+    "migration": "2026-09-10T02-29-11-059Z"
+  },
+  "sourceVerification": "source-verification.json"
+}

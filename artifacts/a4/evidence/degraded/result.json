@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "checks": [
+    "loaded /user/login",
+    "login form",
+    "registered through real HTTP",
+    "login",
+    "loaded /create",
+    "creation page",
+    "create enabled",
+    "titles generated",
+    "title control ready",
+    "title selection refresh restored",
+    "title control ready",
+    "outline ready",
+    "detail route",
+    "degraded task retains complete text",
+    "backend marks degraded slot",
+    "actual fallback source retained",
+    "degraded warning visible"
+  ],
+  "errors": [],
+  "scope": "Normal UI creation, actual packaged backend, intentionally degraded HTTP mock response; warning and source validated"
+}

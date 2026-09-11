@@ -14,6 +14,7 @@ import java.util.Base64;
 @Data
 @Builder
 public class ImageData {
+    private com.yupi.template.service.image.ImageMetadata metadata;
 
     /**
      * 图片字节数据

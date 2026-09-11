@@ -25,7 +25,7 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # 安装必要工具（用于健康检查）
-RUN apk add --no-cache curl
+RUN apk add --no-cache curl fontconfig ttf-dejavu
 
 # 从构建阶段复制 JAR 包
 COPY --from=build /app/target/*.jar app.jar
@@ -33,7 +33,8 @@ COPY --from=build /app/target/*.jar app.jar
 # 创建非 root 用户运行应用（安全最佳实践）
 RUN addgroup -g 1000 appuser && \
     adduser -D -u 1000 -G appuser appuser && \
-    chown -R appuser:appuser /app
+    mkdir -p /data/images /data/model-secrets && chmod 700 /data/model-secrets && \
+    chown -R appuser:appuser /app /data/images /data/model-secrets
 
 USER appuser
 

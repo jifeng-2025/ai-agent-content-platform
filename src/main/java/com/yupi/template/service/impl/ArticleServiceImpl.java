@@ -49,6 +49,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveReviewProgress(String taskId, ArticleState state) {
+        com.yupi.template.runtime.RuntimeScope.guard();
         Article article = getByTaskId(taskId);
         ThrowUtils.throwIf(article == null, ErrorCode.NOT_FOUND_ERROR, "文章不存在");
         var trace = java.util.Objects.requireNonNull(state.getReviewTrace());
@@ -60,6 +61,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         article.setPhase("PASS".equals(trace.status()) ? "CONTENT_GENERATING" : trace.status());
         article.setErrorMessage(human ? trace.stopReason() : null);
         if (!updateById(article)) throw new IllegalStateException("草稿保存失败");
+        var runtime = com.yupi.template.runtime.RuntimeScope.current();
+        if (runtime != null) runtime.store().checkpoint(runtime.ticket(), human ? "DONE" : "PASS".equals(trace.status()) ? "MEDIA" : "REVIEW", "REVIEW_UPDATED");
     }
 
     @Override
@@ -77,11 +80,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private ArticleAgentService articleAgentService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public String createArticleTask(String topic, String style, List<String> enabledImageMethods, User loginUser) {
         // 处理配图方式：如果用户未选择，给普通用户设置默认的非 VIP 方式
         List<String> finalImageMethods = processImageMethods(enabledImageMethods, loginUser);
         
-        // 校验配图方式权限（普通用户不能使用 NANO_BANANA 和 SVG_DIAGRAM）
+        // 校验配图方式权限（普通用户不能使用 SVG_DIAGRAM；自托管图片模型对登录用户可用）
         validateImageMethods(finalImageMethods, loginUser);
 
         // 生成任务ID
@@ -100,6 +104,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         article.setCreateTime(LocalDateTime.now());
 
         this.save(article);
+        modelSettings.snapshot(taskId);
+        imageProfiles.save(taskId, finalImageMethods);
 
         log.info("文章任务已创建, taskId={}, userId={}, style={}", taskId, loginUser.getId(), style);
         return taskId;
@@ -373,25 +379,31 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             return enabledImageMethods;
         }
 
-        // VIP 和管理员：不限制，返回 null 表示支持所有方式
-        if (isVipOrAdmin(loginUser)) {
-            return null;
-        }
-
-        // 普通用户：返回默认的非 VIP 方式
-        return List.of(
-                ImageMethodEnum.PEXELS.getValue(),
-                ImageMethodEnum.MERMAID.getValue(),
-                ImageMethodEnum.ICONIFY.getValue(),
-                ImageMethodEnum.EMOJI_PACK.getValue()
-        );
+        // Explicit no-key demo default; optional models require configuration.
+        return List.of(modelSettings.defaultImage());
     }
 
     /**
      * 校验配图方式权限
-     * 普通用户不能使用 NANO_BANANA 和 SVG_DIAGRAM
+     * 所有用户的Gemini选择均检查配置；SVG保留VIP权限
      */
+    @jakarta.annotation.Resource private com.yupi.template.config.NanoBananaConfig imageConfig;
+
+    @Resource private com.yupi.template.config.DoubaoConfig doubaoConfig;
+    @Resource private com.yupi.template.service.image.ImageProfileStore imageProfiles;
+    @Resource private com.yupi.template.modelconfig.ModelSettings modelSettings;
+
     private void validateImageMethods(List<String> enabledImageMethods, User loginUser) {
+        if (enabledImageMethods != null) {
+            for (String value : enabledImageMethods) {
+                var method = ImageMethodEnum.getByValue(value);
+                if (method == null || (method.isFallback() && method != ImageMethodEnum.DEMO)) throw new BusinessException(ErrorCode.PARAMS_ERROR, "不允许的配图方式");
+                if (method == ImageMethodEnum.DOUBAO && (modelSettings.selection("IMAGE","doubao")==null && (doubaoConfig == null || !doubaoConfig.configured()))) throw new BusinessException(ErrorCode.PARAMS_ERROR, "豆包未配置Key和模型ID，请选择演示模式");
+                if (method == ImageMethodEnum.NANO_BANANA && (modelSettings.selection("IMAGE","gemini")==null && (imageConfig == null || !imageConfig.configured()))) throw new BusinessException(ErrorCode.PARAMS_ERROR, "Gemini 未配置，请选择演示/占位模式");
+            }
+            if (enabledImageMethods.stream().anyMatch(com.yupi.template.service.image.ImageProfile::paid) && enabledImageMethods.size()!=1) throw new BusinessException(ErrorCode.PARAMS_ERROR,"每个任务只能明确选择一家图片供应商");
+            if (enabledImageMethods.contains("DEMO") && enabledImageMethods.size()!=1) throw new BusinessException(ErrorCode.PARAMS_ERROR, "演示模式不能与其他配图方式混选");
+        }
         if (enabledImageMethods == null || enabledImageMethods.isEmpty()) {
             return;
         }
@@ -403,10 +415,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
         // 普通用户限制
         for (String method : enabledImageMethods) {
-            if (ImageMethodEnum.NANO_BANANA.getValue().equals(method) || 
-                ImageMethodEnum.SVG_DIAGRAM.getValue().equals(method)) {
+            if (ImageMethodEnum.SVG_DIAGRAM.getValue().equals(method)) {
                 throw new BusinessException(ErrorCode.NO_AUTH_ERROR, 
-                        "高级配图功能（AI 生图、SVG 图表）仅限 VIP 会员使用");
+                        "SVG 图表功能仅限 VIP 会员使用");
             }
         }
     }

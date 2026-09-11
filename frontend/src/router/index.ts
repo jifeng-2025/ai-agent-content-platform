@@ -7,6 +7,8 @@ import UserManagePage from '@/pages/admin/UserManagePage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {path:'/create/advanced',name:'分步创作',component:()=>import('@/pages/article/ArticleCreatePage.vue')},
+    { path: '/admin/models', name: '模型设置', component: () => import('@/pages/admin/ModelSettingsPage.vue') },
     {
       path: '/',
       name: '主页',
@@ -15,7 +17,7 @@ const router = createRouter({
     {
       path: '/create',
       name: '创作文章',
-      component: () => import('@/pages/article/ArticleCreatePage.vue'),
+      component: () => import('@/pages/article/QuickCreatePage.vue'),
     },
     {
       path: '/article/list',

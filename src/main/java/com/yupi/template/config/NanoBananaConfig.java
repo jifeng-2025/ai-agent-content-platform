@@ -17,14 +17,18 @@ public class NanoBananaConfig {
     /**
      * Gemini API Key
      */
-    private String apiKey;
+    @lombok.ToString.Exclude private String apiKey;
+    public boolean configured() { return apiKey != null && apiKey.trim().length() >= 16 && !apiKey.equalsIgnoreCase("xxx") && !apiKey.isBlank() && !apiKey.contains("your-") && !apiKey.contains("placeholder"); }
+    private String baseUrl = "https://generativelanguage.googleapis.com";
+    private int maxOutputTokens = 2048;
+    private int timeoutSeconds = 120;
 
     /**
      * 模型名称
      * gemini-2.5-flash-image: 速度快，适合高吞吐低延迟
      * gemini-3-pro-image-preview: 专业级，支持高级推理和高分辨率
      */
-    private String model = "gemini-2.5-flash-image";
+    private String model = "gemini-3.1-flash-image";
 
     /**
      * 图片宽高比

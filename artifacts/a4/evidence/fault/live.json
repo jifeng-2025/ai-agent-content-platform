@@ -1,0 +1,16 @@
+{
+  "processTest": true,
+  "prefix": "a3-live-2026-09-10T04-41-02-011Z",
+  "work": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\a3-live-2026-09-10T04-41-02-011Z",
+  "out": "D:\\2026codex\\ai-passage-creator\\artifacts\\a3\\runs\\2026-09-10T04-41-02-011Z-live",
+  "frontend": "http://127.0.0.1:59897",
+  "backend": "http://127.0.0.1:59897",
+  "dependencySnapshot": "D:\\2026codex\\ai-passage-creator\\tools\\dev-harness\\.work\\2026-09-09T08-22-36-997Z\\frontend",
+  "images": {
+    "mysql": "sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b",
+    "redis": "sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf",
+    "maven": "maven@sha256:65353f527c86cb23187c8233475713e15067e8d36220d18863c379680698fe85",
+    "node": "node@sha256:c610fcdfb1d5b4740dd70c284ed3cb16bb857e0f7166196e36a5501df7a3aa32"
+  },
+  "cleanedUp": true
+}
