@@ -1,8 +1,8 @@
-# AI 图文创作平台
+# AI Agent 全栈图文创作平台
 
 输入主题，选择标题和大纲，自动生成正文与配图，最后给出 AI 审稿建议。支持管理员在网页配置文字与图片模型，图片保存在本机持久卷中。
 
-基于 [鱼皮 / 编程导航 yuyuanweb/ai-passage-creator](https://github.com/yuyuanweb/ai-passage-creator) 改造，保留上游署名与 Git 历史。当前仓库：[jifeng-2025/ai-agent-content-platform](https://github.com/jifeng-2025/ai-agent-content-platform)。技术栈为 Java / Spring Boot、Vue 3、MySQL、Redis 和 Docker Compose。
+项目仓库：[jifeng-2025/ai-agent-content-platform](https://github.com/jifeng-2025/ai-agent-content-platform)。技术栈为 Java / Spring Boot、Vue 3、MySQL、Redis 和 Docker Compose。
 
 > 当前是可体验的开发候选版，尚未发布正式 v0.1.0。默认配图为演示占位，不是免费 AI 生图，不保证与正文语义匹配。真实文字和图片服务可能收费。
 
@@ -98,10 +98,10 @@ HTML 支持常用标题、段落、强调、列表、引用、代码块与配图
 
 ![离线图文阅读样例](artifacts/offline-export/browser-2026-09-11T09-44-47-467Z/12-offline-desktop.png)
 
-## 上游能力与新增改造
+## 平台能力
 
-- **上游基础**：标题方案、大纲、正文、多种配图、文章管理及 Markdown 导出。
-- **本次新增**：网页多模型配置、文字模型选择、1–5 张段落配图、流式简化创作、末尾审稿 Skill、单图提示词重试、本地持久图片、离线导出及导航调整。
+- **基础创作**：标题方案、大纲、正文、多种配图、文章管理及 Markdown 导出。
+- **创作与模型管理**：网页多模型配置、文字模型选择、1–5 张段落配图、流式简化创作、末尾审稿 Skill、单图提示词重试、本地持久图片、离线导出及导航调整。
 - **可靠执行与高级流程**：持久状态、检查点、租约/fence、取消、预算、SSE 恢复；旧高级流程保留结构化评审、最多两次局部修订、版本比较和人工处理。
 - **尚未实现**：B 的 Research/RAG、偏好记忆、产品 MCP；H1 自动开发调度；D1 自动 CI/GHCR 发布和服务器部署。现有 Compose 启动不等于自动部署平台。
 
@@ -127,3 +127,5 @@ node tools/dev-harness/run.mjs a3-mock
 ## 署名与许可
 
 保留上游作者链接、代码署名和历史。本地已有的 MIT 徽章线索尚未补齐对应版本的完整许可正文与适用范围；本项目不擅自补发 MIT/Apache 许可证，也不把公开仓库等同于任意再分发或商业使用许可。详见 [授权核查记录](artifacts/a4/license-review.md)。本次源码更新不代表正式版本发布或分发授权核查已完成。
+
+基于 [鱼皮 / 编程导航 yuyuanweb/ai-passage-creator](https://github.com/yuyuanweb/ai-passage-creator) 改造，保留上游署名与 Git 历史。
